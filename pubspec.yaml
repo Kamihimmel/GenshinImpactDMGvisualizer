@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  easy_localization: 
   responsive_grid:
   flutter:
     sdk: flutter
@@ -50,6 +51,7 @@ flutter:
   assets:
   - images/
   - images/weapon/
+  - assets/langs/
   
 
   # An image asset can refer to one or more resolution-specific "variants", see

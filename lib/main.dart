@@ -3,9 +3,18 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:responsive_grid/responsive_grid.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
+  runApp(EasyLocalization(
+      supportedLocales: [Locale('en'), Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans')],
+      path: 'langs', // <-- change the path of the translation files
+      fallbackLocale: Locale('en'),
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +23,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Genshin Damage Calculator & Visualizer',
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      title: "Genshin Damage Calculator & Visualizer",
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -27,7 +39,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Genshin Damage Calculator & Visualizer'),
+      home: MyHomePage(title: "Genshin Damage Calculator & Visualizer"),
     );
   }
 }
@@ -8196,20 +8208,71 @@ class _MyHomePageState extends State<MyHomePage> {
     double heightadjust = (MediaQuery.of(context).size.height - 200 > 800) ? (MediaQuery.of(context).size.height - 200) : 800;
 
     return Scaffold(
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              //decoration: BoxDecoration(color: Colors.white),
+              //margin: EdgeInsets.only(bottom: 40.0),
+              currentAccountPicture: CircleAvatar(
+                // radius: 72.0,
+                backgroundColor: Colors.white,
+                backgroundImage: AssetImage('images/ganyu.png'),
+              ),
+              accountName: new Container(
+                  child: Text(
+                "ganyu".tr(),
+                style: TextStyle(color: Colors.white),
+              )),
+              accountEmail: Text("Ganyu"),
+            ),
+            ListTile(
+                title: Text(
+                  "Languages".tr(),
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                dense: true,
+                tileColor: Colors.grey[400]),
+            ListTile(
+              title: Text('English'),
+              onTap: () {
+                setState(() {
+                  EasyLocalization.of(context).setLocale(Locale('en'));
+                });
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: Text('简体中文'),
+              onTap: () {
+                // Update the state of the app.
+                EasyLocalization.of(context).setLocale(Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'));
+                // ...
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(widget.title),
+            Text("title".tr()),
             SizedBox(width: 10),
             Container(
               width: 120,
               decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 1), borderRadius: BorderRadius.all(Radius.circular(10))),
               child: Center(
                 child: Text(
-                  ' ver Ganyu 0.9',
+                  "ver " + "ganyu".tr() + " 0.9",
                   style: TextStyle(
                     //fontWeight: FontWeight.bold,
                     color: Colors.blue,
@@ -8256,11 +8319,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               height: 100,
                             ),
                             SelectableText(
-                              'Ganyu',
+                              "ganyu".tr(),
                               style: TextStyle(
                                 //fontWeight: FontWeight.bold,
                                 color: Colors.white,
                                 fontSize: 40,
+                                height: 1.1,
                               ),
                             ),
                           ],
