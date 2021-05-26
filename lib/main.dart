@@ -1441,7 +1441,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return StatefulBuilder(
             builder: (context, setState) {
               return SimpleDialog(
-                title: Text('Select Weapon:'),
+                title: Text('Select Weapon:').tr(),
                 children: <Widget>[
                   SimpleDialogOption(
                     child: Container(
@@ -1474,7 +1474,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             width: 200,
                             child: Text(
-                              "Amos' Bow",
+                              "Amos' Bow".tr(),
                               style: TextStyle(
                                 //fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -1527,7 +1527,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             width: 200,
                             child: Text(
-                              'Skyward Harp',
+                              'Skyward Harp'.tr(),
                               style: TextStyle(
                                 //fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -1903,7 +1903,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             width: 200,
                             child: Text(
-                              'Prototype Crescent',
+                              'Prototype Crescent'.tr(),
                               style: TextStyle(
                                 //fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -2536,7 +2536,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return StatefulBuilder(
             builder: (context, setState) {
               return SimpleDialog(
-                title: Text('Select Artifact 2-Set A:'),
+                title: Text('Select Artifact 2-Set A:').tr(),
                 children: <Widget>[
                   SimpleDialogOption(
                     child: Container(
@@ -2574,7 +2574,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black,
                               fontSize: 20,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -2625,7 +2625,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black,
                               fontSize: 20,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -2675,7 +2675,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black,
                               fontSize: 20,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -2726,7 +2726,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black,
                               fontSize: 20,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -2777,7 +2777,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black,
                               fontSize: 20,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -2828,7 +2828,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black,
                               fontSize: 20,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -2879,7 +2879,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black,
                               fontSize: 20,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -2913,7 +2913,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return StatefulBuilder(
             builder: (context, setState) {
               return SimpleDialog(
-                title: Text('Select Artifact 2-Set B:'),
+                title: Text('Select Artifact 2-Set B:').tr(),
                 children: <Widget>[
                   SimpleDialogOption(
                     child: Container(
@@ -2951,7 +2951,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black,
                               fontSize: 20,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -3002,7 +3002,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black,
                               fontSize: 20,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -3052,7 +3052,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black,
                               fontSize: 20,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -3103,7 +3103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black,
                               fontSize: 20,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -3154,7 +3154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black,
                               fontSize: 20,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -3205,7 +3205,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black,
                               fontSize: 20,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -3256,7 +3256,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black,
                               fontSize: 20,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -3290,14 +3290,14 @@ class _MyHomePageState extends State<MyHomePage> {
           return StatefulBuilder(
             builder: (context, setState) {
               return SimpleDialog(
-                title: Text('Set artifact stats:'),
+                title: Text('Set artifact stats:').tr(),
                 children: <Widget>[
                   SimpleDialogOption(
                     child: ListTile(
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -3325,7 +3325,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('ATK%:$stat1atkpercent'),
+                            Text('${"ATK".tr()}%:$stat1atkpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -3375,7 +3375,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -3403,7 +3403,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('HP%:$stat1hppercent'),
+                            Text('${"HP".tr()}%:$stat1hppercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -3456,7 +3456,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -3484,7 +3484,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('DEF%:$stat1defpercent'),
+                            Text('${"DEF".tr()}%:$stat1defpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -3565,7 +3565,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Critical Rate%:$stat1CRpercent'),
+                            Text('${"Critical Rate".tr()}%:$stat1CRpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -3646,7 +3646,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Critical Damage%:$stat1CDpercent'),
+                            Text('${"Critical Damage".tr()}%:$stat1CDpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -3727,7 +3727,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Elemental Mastery:$stat1EM'),
+                            Text('${"Elemental Mastery".tr()}:$stat1EM'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -3803,7 +3803,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Energy Recharge%:$stat1ERpercent'),
+                            Text('${"Energy Recharge".tr()}%:$stat1ERpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -3856,7 +3856,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -3884,7 +3884,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('HP:$stat1hp'),
+                            Text('${"HP".tr()}:$stat1hp'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -3937,7 +3937,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -3965,7 +3965,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('ATK:$stat1atk'),
+                            Text('${"ATK".tr()}:$stat1atk'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -4018,7 +4018,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -4044,7 +4044,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('DEF:$stat1def'),
+                            Text('${"DEF".tr()}:$stat1def'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -4111,14 +4111,14 @@ class _MyHomePageState extends State<MyHomePage> {
           return StatefulBuilder(
             builder: (context, setState) {
               return SimpleDialog(
-                title: Text('Set artifact stats:'),
+                title: Text('Set artifact stats:').tr(),
                 children: <Widget>[
                   SimpleDialogOption(
                     child: ListTile(
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -4146,7 +4146,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('ATK%:$stat2atkpercent'),
+                            Text('${"ATK".tr()}%:$stat2atkpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -4196,7 +4196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -4224,7 +4224,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('HP%:$stat2hppercent'),
+                            Text('${"HP".tr()}%:$stat2hppercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -4277,7 +4277,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -4305,7 +4305,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('DEF%:$stat2defpercent'),
+                            Text('${"DEF".tr()}%:$stat2defpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -4386,7 +4386,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Critical Rate%:$stat2CRpercent'),
+                            Text('${"Critical Rate".tr()}%:$stat2CRpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -4467,7 +4467,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Critical Damage%:$stat2CDpercent'),
+                            Text('${"Critical Damage".tr()}%:$stat2CDpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -4548,7 +4548,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Elemental Mastery:$stat2EM'),
+                            Text('${"Elemental Mastery".tr()}:$stat2EM'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -4624,7 +4624,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Energy Recharge%:$stat2ERpercent'),
+                            Text('${"Energy Recharge".tr()}%:$stat2ERpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -4677,7 +4677,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -4705,7 +4705,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('HP:$stat2hp'),
+                            Text('${"HP".tr()}:$stat2hp'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -4758,7 +4758,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -4786,7 +4786,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('ATK:$stat2atk'),
+                            Text('${"ATK".tr()}:$stat2atk'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -4839,7 +4839,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -4865,7 +4865,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('DEF:$stat2def'),
+                            Text('${"DEF".tr()}:$stat2def'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -4932,14 +4932,14 @@ class _MyHomePageState extends State<MyHomePage> {
           return StatefulBuilder(
             builder: (context, setState) {
               return SimpleDialog(
-                title: Text('Set artifact stats:'),
+                title: Text('Set artifact stats:').tr(),
                 children: <Widget>[
                   SimpleDialogOption(
                     child: ListTile(
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -4967,7 +4967,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('ATK%:$stat3atkpercent'),
+                            Text('${"ATK".tr()}%:$stat3atkpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -5017,7 +5017,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -5045,7 +5045,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('HP%:$stat3hppercent'),
+                            Text('${"HP".tr()}%:$stat3hppercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -5098,7 +5098,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -5126,7 +5126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('DEF%:$stat3defpercent'),
+                            Text('${"DEF".tr()}%:$stat3defpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -5207,7 +5207,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Critical Rate%:$stat3CRpercent'),
+                            Text('${"Critical Rate".tr()}%:$stat3CRpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -5288,7 +5288,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Critical Damage%:$stat3CDpercent'),
+                            Text('${"Critical Damage".tr()}%:$stat3CDpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -5369,7 +5369,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Elemental Mastery:$stat3EM'),
+                            Text('${"Elemental Mastery".tr()}:$stat3EM'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -5445,7 +5445,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Energy Recharge%:$stat3ERpercent'),
+                            Text('${"Energy Recharge".tr()}%:$stat3ERpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -5498,7 +5498,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -5526,7 +5526,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('HP:$stat3hp'),
+                            Text('${"HP".tr()}:$stat3hp'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -5579,7 +5579,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -5607,7 +5607,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('ATK:$stat3atk'),
+                            Text('${"ATK".tr()}:$stat3atk'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -5660,7 +5660,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -5686,7 +5686,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('DEF:$stat3def'),
+                            Text('${"DEF".tr()}:$stat3def'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -5753,14 +5753,14 @@ class _MyHomePageState extends State<MyHomePage> {
           return StatefulBuilder(
             builder: (context, setState) {
               return SimpleDialog(
-                title: Text('Set artifact stats:'),
+                title: Text('Set artifact stats:').tr(),
                 children: <Widget>[
                   SimpleDialogOption(
                     child: ListTile(
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -5788,7 +5788,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('ATK%:$stat4atkpercent'),
+                            Text('${"ATK".tr()}%:$stat4atkpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -5838,7 +5838,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -5866,7 +5866,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('HP%:$stat4hppercent'),
+                            Text('${"HP".tr()}%:$stat4hppercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -5919,7 +5919,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -5947,7 +5947,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('DEF%:$stat4defpercent'),
+                            Text('${"DEF".tr()}%:$stat4defpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -6028,7 +6028,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Critical Rate%:$stat4CRpercent'),
+                            Text('${"Critical Rate".tr()}%:$stat4CRpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -6109,7 +6109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Critical Damage%:$stat4CDpercent'),
+                            Text('${"Critical Damage".tr()}%:$stat4CDpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -6190,7 +6190,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Elemental Mastery:$stat4EM'),
+                            Text('${"Elemental Mastery".tr()}:$stat4EM'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -6266,7 +6266,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Energy Recharge%:$stat4ERpercent'),
+                            Text('${"Energy Recharge".tr()}%:$stat4ERpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -6319,7 +6319,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -6347,7 +6347,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('HP:$stat4hp'),
+                            Text('${"HP".tr()}:$stat4hp'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -6400,7 +6400,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -6428,7 +6428,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('ATK:$stat4atk'),
+                            Text('${"ATK".tr()}:$stat4atk'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -6481,7 +6481,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -6507,7 +6507,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('DEF:$stat4def'),
+                            Text('${"DEF".tr()}:$stat4def'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -6574,14 +6574,14 @@ class _MyHomePageState extends State<MyHomePage> {
           return StatefulBuilder(
             builder: (context, setState) {
               return SimpleDialog(
-                title: Text('Set artifact stats:'),
+                title: Text('Set artifact stats:').tr(),
                 children: <Widget>[
                   SimpleDialogOption(
                     child: ListTile(
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -6609,7 +6609,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('ATK%:$stat5atkpercent'),
+                            Text('${"ATK".tr()}%:$stat5atkpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -6659,7 +6659,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -6687,7 +6687,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('HP%:$stat5hppercent'),
+                            Text('${"HP".tr()}%:$stat5hppercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -6740,7 +6740,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -6768,7 +6768,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('DEF%:$stat5defpercent'),
+                            Text('${"DEF".tr()}%:$stat5defpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -6849,7 +6849,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Critical Rate%:$stat5CRpercent'),
+                            Text('${"Critical Rate".tr()}%:$stat5CRpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -6930,7 +6930,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Critical Damage%:$stat5CDpercent'),
+                            Text('${"Critical Damage".tr()}%:$stat5CDpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -7011,7 +7011,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Elemental Mastery:$stat5EM'),
+                            Text('${"Elemental Mastery".tr()}:$stat5EM'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -7087,7 +7087,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('Energy Recharge%:$stat5ERpercent'),
+                            Text('${"Energy Recharge".tr()}%:$stat5ERpercent'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -7140,7 +7140,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -7168,7 +7168,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('HP:$stat5hp'),
+                            Text('${"HP".tr()}:$stat5hp'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -7221,7 +7221,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -7249,7 +7249,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('ATK:$stat5atk'),
+                            Text('${"ATK".tr()}:$stat5atk'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -7302,7 +7302,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       horizontalTitleGap: -10,
                       contentPadding: EdgeInsets.all(0),
                       leading: Container(
-                        width: 130,
+                        width: 145,
                         child: Row(
                           children: [
                             Checkbox(
@@ -7328,7 +7328,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     }
                                   });
                                 }),
-                            Text('DEF:$stat5def'),
+                            Text('${"DEF".tr()}:$stat5def'),
                             Spacer(),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -8343,11 +8343,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 SelectableText(
-                                  'Lv: $level',
+                                  '${"Lv".tr()}: $level',
                                   style: TextStyle(
                                     //fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                     fontSize: 20,
+                                    height: 1.1,
                                   ),
                                 ),
                                 Slider(
@@ -8370,11 +8371,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 SelectableText(
-                                  'Normal Attack Lv: $natklv',
+                                  '${"Normal Attack Lv".tr()}: $natklv',
                                   style: TextStyle(
                                     //fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                     fontSize: 20,
+                                    height: 1.1,
                                   ),
                                 ),
                                 Slider(
@@ -8397,11 +8399,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 SelectableText(
-                                  'Elemental Skill Lv: $eskilllv',
+                                  '${"Elemental Skill Lv".tr()}: $eskilllv',
                                   style: TextStyle(
                                     //fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                     fontSize: 20,
+                                    height: 1.1,
                                   ),
                                 ),
                                 Slider(
@@ -8424,11 +8427,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 SelectableText(
-                                  'Elemental Burst Lv: $eburstlv',
+                                  '${"Elemental Burst Lv".tr()}: $eburstlv',
                                   style: TextStyle(
                                     //fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                     fontSize: 20,
+                                    height: 1.1,
                                   ),
                                 ),
                                 Slider(
@@ -8451,11 +8455,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 SelectableText(
-                                  'Constellation: $cons',
+                                  '${"Constellation".tr()}: $cons',
                                   style: TextStyle(
                                     //fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                     fontSize: 20,
+                                    height: 1.1,
                                   ),
                                 ),
                                 Slider(
@@ -8531,11 +8536,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   SelectableText(
-                                    'Lv: $weaponlv',
+                                    '${"Lv".tr()}: $weaponlv',
                                     style: TextStyle(
                                       //fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                       fontSize: 20,
+                                      height: 1.1,
                                     ),
                                   ),
                                   Slider(
@@ -8558,11 +8564,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   SelectableText(
-                                    'Refinement: $weaponref',
+                                    '${"Refinement".tr()}: $weaponref',
                                     style: TextStyle(
                                       //fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                       fontSize: 20,
+                                      height: 1.1,
                                     ),
                                   ),
                                   Slider(
@@ -8621,11 +8628,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                         ),
                                       ),
                                       SelectableText(
-                                        '2 set',
+                                        '2 set'.tr(),
                                         style: TextStyle(
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.black,
                                           fontSize: 20,
+                                          height: 1.1,
                                         ),
                                       ),
                                     ],
@@ -8656,11 +8664,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                         ),
                                       ),
                                       SelectableText(
-                                        '2 set',
+                                        '2 set'.tr(),
                                         style: TextStyle(
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.black,
                                           fontSize: 20,
+                                          height: 1.1,
                                         ),
                                       ),
                                     ],
@@ -8704,19 +8713,21 @@ class _MyHomePageState extends State<MyHomePage> {
                                         child: Column(
                                           children: [
                                             SelectableText(
-                                              'Flower:',
+                                              'Flower:'.tr(),
                                               style: TextStyle(
                                                 //fontWeight: FontWeight.bold,
                                                 color: Colors.black,
                                                 fontSize: 15,
+                                                height: 1.1,
                                               ),
                                             ),
                                             SelectableText(
-                                              'HP',
+                                              'HP'.tr(),
                                               style: TextStyle(
                                                 //fontWeight: FontWeight.bold,
                                                 color: Colors.black,
                                                 fontSize: 15,
+                                                height: 1.1,
                                               ),
                                             ),
                                           ],
@@ -8731,11 +8742,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: <Widget>[
                                           SelectableText(
-                                            'Star: $fstar',
+                                            '${"Star".tr()}: $fstar',
                                             style: TextStyle(
                                               //fontWeight: FontWeight.bold,
                                               color: Colors.black,
                                               fontSize: 15,
+                                              height: 1.1,
                                             ),
                                           ),
                                           Container(
@@ -8761,11 +8773,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: <Widget>[
                                           SelectableText(
-                                            'Lv: $flv',
+                                            '${"Lv".tr()}: $flv',
                                             style: TextStyle(
                                               //fontWeight: FontWeight.bold,
                                               color: Colors.black,
                                               fontSize: 15,
+                                              height: 1.1,
                                             ),
                                           ),
                                           Container(
@@ -8812,17 +8825,17 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     !stat1CDpercentOn &&
                                                     !stat1EMOn &&
                                                     !stat1ERpercentOn)
-                                                  Text('Please click to set stats'),
-                                                if (stat1atkpercentOn) Text('ATK%:$stat1atkpercent'),
-                                                if (stat1hppercentOn) Text('HP%:$stat1hppercent'),
-                                                if (stat1defpercentOn) Text('DEF%:$stat1defpercent'),
-                                                if (stat1CRpercentOn) Text('Critial Rate%:$stat1CRpercent'),
-                                                if (stat1CDpercentOn) Text('Critial Damage%:$stat1CDpercent'),
-                                                if (stat1EMOn) Text('Elemental Mastery:$stat1EM'),
-                                                if (stat1ERpercentOn) Text('Energy Recharge%:$stat1ERpercent'),
-                                                if (stat1atkOn) Text('ATK:$stat1atk'),
-                                                if (stat1hpOn) Text('HP:$stat1hp'),
-                                                if (stat1defOn) Text('DEF:$stat1def'),
+                                                  Text('Please click to set stats').tr(),
+                                                if (stat1atkpercentOn) Text('${"ATK".tr()}%:$stat1atkpercent'),
+                                                if (stat1hppercentOn) Text('${"HP".tr()}%:$stat1hppercent'),
+                                                if (stat1defpercentOn) Text('${"DEF".tr()}%:$stat1defpercent'),
+                                                if (stat1CRpercentOn) Text('${"Critical Rate".tr()}%:$stat1CRpercent'),
+                                                if (stat1CDpercentOn) Text('${"Critical Damage".tr()}%:$stat1CDpercent'),
+                                                if (stat1EMOn) Text('${"Elemental Mastery".tr()}:$stat1EM'),
+                                                if (stat1ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat1ERpercent'),
+                                                if (stat1atkOn) Text('${"ATK".tr()}:$stat1atk'),
+                                                if (stat1hpOn) Text('${"HP".tr()}:$stat1hp'),
+                                                if (stat1defOn) Text('${"DEF".tr()}:$stat1def'),
                                               ],
                                             ),
                                             Row(
