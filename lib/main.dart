@@ -9114,16 +9114,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     !stat2EMOn &&
                                                     !stat2ERpercentOn)
                                                   Text('Please click to set stats').tr(),
-                                                if (stat2atkpercentOn) Text('ATK%:$stat2atkpercent'),
-                                                if (stat2hppercentOn) Text('HP%:$stat2hppercent'),
-                                                if (stat2defpercentOn) Text('DEF%:$stat2defpercent'),
-                                                if (stat2CRpercentOn) Text('Critial Rate%:$stat2CRpercent'),
-                                                if (stat2CDpercentOn) Text('Critial Damage%:$stat2CDpercent'),
-                                                if (stat2EMOn) Text('Elemental Mastery:$stat2EM'),
-                                                if (stat2ERpercentOn) Text('Energy Recharge%:$stat2ERpercent'),
-                                                if (stat2atkOn) Text('ATK:$stat2atk'),
-                                                if (stat2hpOn) Text('HP:$stat2hp'),
-                                                if (stat2defOn) Text('DEF:$stat2def'),
+                                                if (stat2atkpercentOn) Text('${"ATK".tr()}%:$stat2atkpercent'),
+                                                if (stat2hppercentOn) Text('${"HP".tr()}%:$stat2hppercent'),
+                                                if (stat2defpercentOn) Text('${"DEF".tr()}%:$stat2defpercent'),
+                                                if (stat2CRpercentOn) Text('${"Critical Rate".tr()}%:$stat2CRpercent'),
+                                                if (stat2CDpercentOn) Text('${"Critical Damage".tr()}%:$stat2CDpercent'),
+                                                if (stat2EMOn) Text('${"Elemental Mastery".tr()}:$stat2EM'),
+                                                if (stat2ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat2ERpercent'),
+                                                if (stat2atkOn) Text('${"ATK".tr()}:$stat2atk'),
+                                                if (stat2hpOn) Text('${"HP".tr()}:$stat2hp'),
+                                                if (stat2defOn) Text('${"DEF".tr()}:$stat2def'),
                                               ],
                                             ),
                                             Row(
@@ -9328,16 +9328,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     !stat3EMOn &&
                                                     !stat3ERpercentOn)
                                                   Text('Please click to set stats').tr(),
-                                                if (stat3atkpercentOn) Text('ATK%:$stat3atkpercent'),
-                                                if (stat3hppercentOn) Text('HP%:$stat3hppercent'),
-                                                if (stat3defpercentOn) Text('DEF%:$stat3defpercent'),
-                                                if (stat3CRpercentOn) Text('Critial Rate%:$stat3CRpercent'),
-                                                if (stat3CDpercentOn) Text('Critial Damage%:$stat3CDpercent'),
-                                                if (stat3EMOn) Text('Elemental Mastery:$stat3EM'),
-                                                if (stat3ERpercentOn) Text('Energy Recharge%:$stat3ERpercent'),
-                                                if (stat3atkOn) Text('ATK:$stat3atk'),
-                                                if (stat3hpOn) Text('HP:$stat3hp'),
-                                                if (stat3defOn) Text('DEF:$stat3def'),
+                                                if (stat3atkpercentOn) Text('${"ATK".tr()}%:$stat3atkpercent'),
+                                                if (stat3hppercentOn) Text('${"HP".tr()}%:$stat3hppercent'),
+                                                if (stat3defpercentOn) Text('${"DEF".tr()}%:$stat3defpercent'),
+                                                if (stat3CRpercentOn) Text('${"Critical Rate".tr()}%:$stat3CRpercent'),
+                                                if (stat3CDpercentOn) Text('${"Critical Damage".tr()}%:$stat3CDpercent'),
+                                                if (stat3EMOn) Text('${"Elemental Mastery".tr()}:$stat3EM'),
+                                                if (stat3ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat3ERpercent'),
+                                                if (stat3atkOn) Text('${"ATK".tr()}:$stat3atk'),
+                                                if (stat3hpOn) Text('${"HP".tr()}:$stat3hp'),
+                                                if (stat3defOn) Text('${"DEF".tr()}:$stat3def'),
                                               ],
                                             ),
                                             Row(
@@ -9578,16 +9578,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     !stat4EMOn &&
                                                     !stat4ERpercentOn)
                                                   Text('Please click to set stats').tr(),
-                                                if (stat4atkpercentOn) Text('ATK%:$stat4atkpercent'),
-                                                if (stat4hppercentOn) Text('HP%:$stat4hppercent'),
-                                                if (stat4defpercentOn) Text('DEF%:$stat4defpercent'),
-                                                if (stat4CRpercentOn) Text('Critial Rate%:$stat4CRpercent'),
-                                                if (stat4CDpercentOn) Text('Critial Damage%:$stat4CDpercent'),
-                                                if (stat4EMOn) Text('Elemental Mastery:$stat4EM'),
-                                                if (stat4ERpercentOn) Text('Energy Recharge%:$stat4ERpercent'),
-                                                if (stat4atkOn) Text('ATK:$stat4atk'),
-                                                if (stat4hpOn) Text('HP:$stat4hp'),
-                                                if (stat4defOn) Text('DEF:$stat4def'),
+                                                if (stat4atkpercentOn) Text('${"ATK".tr()}%:$stat4atkpercent'),
+                                                if (stat4hppercentOn) Text('${"HP".tr()}%:$stat4hppercent'),
+                                                if (stat4defpercentOn) Text('${"DEF".tr()}%:$stat4defpercent'),
+                                                if (stat4CRpercentOn) Text('${"Critical Rate".tr()}%:$stat4CRpercent'),
+                                                if (stat4CDpercentOn) Text('${"Critical Damage".tr()}%:$stat4CDpercent'),
+                                                if (stat4EMOn) Text('${"Elemental Mastery".tr()}:$stat4EM'),
+                                                if (stat4ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat4ERpercent'),
+                                                if (stat4atkOn) Text('${"ATK".tr()}:$stat4atk'),
+                                                if (stat4hpOn) Text('${"HP".tr()}:$stat4hp'),
+                                                if (stat4defOn) Text('${"DEF".tr()}:$stat4def'),
                                               ],
                                             ),
                                             Row(
@@ -9804,16 +9804,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     !stat5EMOn &&
                                                     !stat5ERpercentOn)
                                                   Text('Please click to set stats').tr(),
-                                                if (stat5atkpercentOn) Text('ATK%:$stat5atkpercent'),
-                                                if (stat5hppercentOn) Text('HP%:$stat5hppercent'),
-                                                if (stat5defpercentOn) Text('DEF%:$stat5defpercent'),
-                                                if (stat5CRpercentOn) Text('Critial Rate%:$stat5CRpercent'),
-                                                if (stat5CDpercentOn) Text('Critial Damage%:$stat5CDpercent'),
-                                                if (stat5EMOn) Text('Elemental Mastery:$stat5EM'),
-                                                if (stat5ERpercentOn) Text('Energy Recharge%:$stat5ERpercent'),
-                                                if (stat5atkOn) Text('ATK:$stat5atk'),
-                                                if (stat5hpOn) Text('HP:$stat5hp'),
-                                                if (stat5defOn) Text('DEF:$stat5def'),
+                                                if (stat5atkpercentOn) Text('${"ATK".tr()}%:$stat5atkpercent'),
+                                                if (stat5hppercentOn) Text('${"HP".tr()}%:$stat5hppercent'),
+                                                if (stat5defpercentOn) Text('${"DEF".tr()}%:$stat5defpercent'),
+                                                if (stat5CRpercentOn) Text('${"Critical Rate".tr()}%:$stat5CRpercent'),
+                                                if (stat5CDpercentOn) Text('${"Critical Damage".tr()}%:$stat5CDpercent'),
+                                                if (stat5EMOn) Text('${"Elemental Mastery".tr()}:$stat5EM'),
+                                                if (stat5ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat5ERpercent'),
+                                                if (stat5atkOn) Text('${"ATK".tr()}:$stat5atk'),
+                                                if (stat5hpOn) Text('${"HP".tr()}:$stat5hp'),
+                                                if (stat5defOn) Text('${"DEF".tr()}:$stat5def'),
                                               ],
                                             ),
                                             Row(
@@ -9955,7 +9955,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               if (stat5atkOn == true)
                                                 buildStatRow(Colors.teal[700], 'a5'.tr(), double.parse(stat5atk.toStringAsFixed(1)).toString()),
                                               if (pyro2On == true)
-                                                buildStatRow(Colors.red, '${"2 pyro".tr()}(25%)', (basicatk * 25 / 100).toStringAsFixed(1)),
+                                                buildStatRow(Colors.red, '${"2 Pyro".tr()}(25%)', (basicatk * 25 / 100).toStringAsFixed(1)),
                                               if (gladiator2On == true)
                                                 buildStatRow(Colors.red, '${"Gladiator2".tr()}(18%)', (basicatk * 18 / 100).toStringAsFixed(1)),
                                               if (royalflora4On == true)
@@ -13029,7 +13029,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
                                     if (artifactsetAselect == 'blizzard' || artifactsetBselect == 'blizzard')
                                       FilterChip(
-                                        label: Text('${"2 set".tr()}: ${"Cryo DMG".tr()} +15%'.tr()),
+                                        label: Text('${"2 set".tr()}: ${"Cryo DMG".tr()} +15%'),
                                         selectedColor: Colors.blue[300],
                                         backgroundColor: Colors.blue[200],
                                         selected: blizzardstrayer2On,
@@ -13208,7 +13208,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 title: Column(children: [
                                   Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                     SelectableText(
-                                      'Usual Buffs',
+                                      'Usual Buffs'.tr(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -13220,7 +13220,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 children: <Widget>[
                                   Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                     SelectableText(
-                                      'Elemental Resonance',
+                                      'Elemental Resonance'.tr(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -13232,7 +13232,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     FilterChip(
                                       selectedColor: Colors.red,
                                       backgroundColor: Colors.red[200],
-                                      label: Text('2 Pyro: ATK + 25%'),
+                                      label: Text('${"2 Pyro".tr()}: ${"ATK".tr()} + 25%'),
                                       selected: pyro2On,
                                       onSelected: (bool value) {
                                         setState(() {
@@ -13243,7 +13243,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     FilterChip(
                                       selectedColor: Colors.blue[200],
                                       backgroundColor: Colors.blue[50],
-                                      label: Text('2 Cryo: Crit Rate +15%'),
+                                      label: Text('${"2 Cyro".tr()}: ${"Crit Rate".tr()} +15%'),
                                       selected: cryo2On,
                                       onSelected: (bool value) {
                                         setState(() {
@@ -13255,7 +13255,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   SizedBox(height: 10),
                                   Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                     SelectableText(
-                                      'Character Buffs',
+                                      'Character Buffs'.tr(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -13267,7 +13267,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     FilterChip(
                                       selectedColor: Colors.yellow,
                                       backgroundColor: Colors.yellow[200],
-                                      label: Text('Zhongli(skill):Enemy All res - 20%'),
+                                      label: Text('Zhongli(skill):Enemy All res - 20%'.tr()),
                                       selected: zhonglieOn,
                                       onSelected: (bool value) {
                                         setState(() {
@@ -13278,7 +13278,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     FilterChip(
                                       selectedColor: Colors.grey,
                                       backgroundColor: Colors.grey[200],
-                                      label: Text('Thrilling Tales of Dragon Slayers(R5): ATK +48%'),
+                                      label: Text('Thrilling Tales of Dragon Slayers(R5): ATK +48%'.tr()),
                                       selected: dragonslayerOn,
                                       onSelected: (bool value) {
                                         setState(() {
@@ -13294,7 +13294,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       FilterChip(
                                         selectedColor: Colors.red,
                                         backgroundColor: Colors.red[200],
-                                        label: Text('Bennet(burst)'),
+                                        label: Text('Bennet(burst)'.tr()),
                                         selected: bennetqOn,
                                         onSelected: (bool value) {
                                           setState(() {
@@ -13318,7 +13318,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ],
                                             decoration: InputDecoration(
                                               // prefixIcon: Text("basic atk"),
-                                              labelText: 'Bennet Basic atk:',
+                                              labelText: '${"Bennet Basic atk".tr()}:',
 
                                               contentPadding: EdgeInsets.all(5),
                                               //isDense: true,
@@ -13339,7 +13339,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         width: 10,
                                       ),
                                       SelectableText(
-                                        'Bennet Burst lv:',
+                                        '${"Bennet Burst lv".tr()}:',
                                         style: TextStyle(
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.black,
@@ -13455,7 +13455,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       FilterChip(
                                         selectedColor: Colors.purple[300],
                                         backgroundColor: Colors.purple[200],
-                                        label: Text('Mona(burst)'),
+                                        label: Text('Mona(burst)'.tr()),
                                         selected: monaqOn,
                                         onSelected: (bool value) {
                                           setState(() {
@@ -13467,7 +13467,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         width: 10,
                                       ),
                                       SelectableText(
-                                        'Mona Burst lv:',
+                                        '${"Mona Burst lv".tr()}:',
                                         style: TextStyle(
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.black,
@@ -13587,7 +13587,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 title: Column(children: [
                                   Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                     SelectableText(
-                                      'Manual Adjusts',
+                                      'Manual Adjusts'.tr(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -13603,7 +13603,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       FilterChip(
                                         selectedColor: Colors.red[300],
                                         backgroundColor: Colors.red[200],
-                                        label: Text('ATK'),
+                                        label: Text('ATK'.tr()),
                                         selected: manualatkOn,
                                         onSelected: (bool value) {
                                           setState(() {
@@ -13627,7 +13627,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ],
                                             decoration: InputDecoration(
                                               // prefixIcon: Text("basic atk"),
-                                              labelText: 'Bonus atk:',
+                                              labelText: '${"Bonus atk".tr()}:',
 
                                               contentPadding: EdgeInsets.all(5),
                                               //isDense: true,
@@ -13650,7 +13650,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       FilterChip(
                                         selectedColor: Colors.red[300],
                                         backgroundColor: Colors.red[200],
-                                        label: Text('Crit Rate%'),
+                                        label: Text('${"Crit Rate".tr()}%'),
                                         selected: manualCRpercentOn,
                                         onSelected: (bool value) {
                                           setState(() {
@@ -13674,8 +13674,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ],
                                             decoration: InputDecoration(
                                               // prefixIcon: Text("basic atk"),
-                                              labelText: 'Bonus Crit Rate%:',
-
+                                              labelText: '${"Bonus Crit Rate".tr()}%:',
                                               contentPadding: EdgeInsets.all(5),
                                               //isDense: true,
                                             ),
@@ -13702,7 +13701,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       FilterChip(
                                         selectedColor: Colors.red[300],
                                         backgroundColor: Colors.red[200],
-                                        label: Text('ATK%'),
+                                        label: Text('${"ATK".tr()}%'),
                                         selected: manualatkpercentOn,
                                         onSelected: (bool value) {
                                           setState(() {
@@ -13726,7 +13725,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ],
                                             decoration: InputDecoration(
                                               // prefixIcon: Text("basic atk"),
-                                              labelText: 'Bonus atk%:',
+                                              labelText: '${"Bonus atk".tr()}%:',
 
                                               contentPadding: EdgeInsets.all(5),
                                               //isDense: true,
@@ -13749,7 +13748,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       FilterChip(
                                         selectedColor: Colors.red[300],
                                         backgroundColor: Colors.red[200],
-                                        label: Text('Crit Damage%'),
+                                        label: Text('${"Crit Damage".tr()}%'),
                                         selected: manualCDpercentOn,
                                         onSelected: (bool value) {
                                           setState(() {
@@ -13773,8 +13772,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ],
                                             decoration: InputDecoration(
                                               // prefixIcon: Text("basic atk"),
-                                              labelText: 'Bonus Crit Damage%:',
-
+                                              labelText: '${"Bonus Crit Damage".tr()}%:',
                                               contentPadding: EdgeInsets.all(5),
                                               //isDense: true,
                                             ),
@@ -13801,7 +13799,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       FilterChip(
                                         selectedColor: Colors.red[300],
                                         backgroundColor: Colors.red[200],
-                                        label: Text('EM'),
+                                        label: Text('EM'.tr()),
                                         selected: manualEMOn,
                                         onSelected: (bool value) {
                                           setState(() {
@@ -13825,7 +13823,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ],
                                             decoration: InputDecoration(
                                               // prefixIcon: Text("basic atk"),
-                                              labelText: 'Bonus EM:',
+                                              labelText: '${"Bonus EM".tr()}:',
 
                                               contentPadding: EdgeInsets.all(5),
                                               //isDense: true,
@@ -13848,7 +13846,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       FilterChip(
                                         selectedColor: Colors.red[300],
                                         backgroundColor: Colors.red[200],
-                                        label: Text('Damage Bonus%'),
+                                        label: Text('${"Damage Bonus".tr()}%'),
                                         selected: manualDMGpercentOn,
                                         onSelected: (bool value) {
                                           setState(() {
@@ -13872,7 +13870,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ],
                                             decoration: InputDecoration(
                                               // prefixIcon: Text("basic atk"),
-                                              labelText: 'Damage Bonus%:',
+                                              labelText: '${"Damage Bonus".tr()}%:',
 
                                               contentPadding: EdgeInsets.all(5),
                                               //isDense: true,
@@ -13900,7 +13898,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       FilterChip(
                                         selectedColor: Colors.red[300],
                                         backgroundColor: Colors.red[200],
-                                        label: Text('RES debuff'),
+                                        label: Text('RES debuff'.tr()),
                                         selected: manualresdebuffOn,
                                         onSelected: (bool value) {
                                           setState(() {
@@ -13924,7 +13922,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ],
                                             decoration: InputDecoration(
                                               // prefixIcon: Text("basic atk"),
-                                              labelText: 'Enemy Res Decrease:',
+                                              labelText: '${"Enemy Res Decrease".tr()}:',
 
                                               contentPadding: EdgeInsets.all(5),
                                               //isDense: true,
