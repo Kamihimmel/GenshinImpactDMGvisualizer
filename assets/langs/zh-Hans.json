@@ -37,7 +37,7 @@
     "Blizzard2": "冰风2",
     "Troupe's Dawnlight 2 set": "乐团2",
     "Troupe's Dawnlight 4 set": "乐团4",
-    "Blizzard Strayer 4 set(cryo)":"冰风4冰伤加成",
+    "Blizzard Strayer 4 set(cryo)":"冰风4冰附着加成",
     "Blizzard Strayer 4 set(frozen)":"冰风4冰冻加成",
     "Thundering Fury 2 Set":"如雷2",
     "Thundersoother 4 Set":"平雷4",
@@ -175,5 +175,6 @@
     "Cryo Regisvine":"急冻树",
     "Pyro Regisvine(Stunned)":"爆炎树(硬直)",
     "Cryo Regisvine(Stunned)":"爆炎树(硬直)",
-    "Dvalin":"东风之龙"
+    "Dvalin":"东风之龙",
+    "Usual Buffs":"常用增益"
 }
