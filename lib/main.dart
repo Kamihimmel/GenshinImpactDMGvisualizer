@@ -9974,16 +9974,19 @@ class _MyHomePageState extends State<MyHomePage> {
                                               if (royalflora4On == true)
                                                 buildStatRow(Colors.blue, '${"Noblesse4".tr()}(20%)', (basicatk * 20 / 100).toStringAsFixed(1)),
                                               if (unreturningOn == true)
-                                                buildStatRow(Colors.tealAccent, 'Unreturning(' + (27 + weaponref * 9).toStringAsFixed(1) + '%)',
+                                                buildStatRow(
+                                                    Colors.tealAccent,
+                                                    '${"Unreturning".tr()}(' + (27 + weaponref * 9).toStringAsFixed(1) + '%)',
                                                     (basicatk * (27 + weaponref * 9) / 100).toStringAsFixed(1)),
                                               if (dragonslayerOn)
-                                                buildStatRow(Colors.grey, 'Dragon Slayers(48%)', (basicatk * 48 / 100).toStringAsFixed(1)),
+                                                buildStatRow(Colors.grey, '${"Dragon Slayers".tr()}(48%)', (basicatk * 48 / 100).toStringAsFixed(1)),
                                               if (bennetqOn)
-                                                buildStatRow(Colors.red, 'Bennet(burst)',
+                                                buildStatRow(Colors.red, '${"班尼特".tr()}(burst)',
                                                     (bennetbasicatk * bennetqlvtoratio[bennetqlv] / 100).toStringAsFixed(1)),
-                                              if (manualatkOn) buildStatRow(Colors.red[300], 'Manual:ATK', (manualatk.toStringAsFixed(1))),
+                                              if (manualatkOn)
+                                                buildStatRow(Colors.red[300], '${"Manual".tr()}:${"ATK".tr()}', (manualatk.toStringAsFixed(1))),
                                               if (manualatkpercentOn)
-                                                buildStatRow(Colors.red[300], 'Manual:ATK%($manualatkpercent)',
+                                                buildStatRow(Colors.red[300], '${"Manual".tr()}:${"ATK".tr()}%($manualatkpercent)',
                                                     ((basicatk * manualatkpercent / 100).toStringAsFixed(1))),
                                             ],
                                           ),
@@ -10027,7 +10030,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                               SizedBox(height: 10),
                               SelectableText(
-                                'HP:$lvlhp + ' +
+                                '${"HP".tr()}:$lvlhp + ' +
                                     double.parse(bonusHP.toStringAsFixed(1)).toString() +
                                     ' = ' +
                                     double.parse(allHP.toStringAsFixed(1)).toString(),
@@ -10070,7 +10073,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   Column(
                                                     children: [
                                                       SelectableText(
-                                                        'level',
+                                                        'level'.tr(),
                                                         style: TextStyle(fontSize: 10),
                                                       ),
                                                       SelectableText(
@@ -10092,7 +10095,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'weapon%($weaponHPpercent)',
+                                                          '${"weapon".tr()}%($weaponHPpercent)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10114,7 +10117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a1',
+                                                          'a1'.tr(),
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10136,7 +10139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a1%($stat1hppercent)',
+                                                          '${"a1".tr()}%($stat1hppercent)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10157,7 +10160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   Column(
                                                     children: [
                                                       SelectableText(
-                                                        'a1',
+                                                        'a1'.tr(),
                                                         style: TextStyle(fontSize: 10),
                                                       ),
                                                       SelectableText(
@@ -10179,7 +10182,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a2',
+                                                          'a2'.tr(),
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10201,7 +10204,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a2%($stat2hppercent)',
+                                                          '${"a2".tr()}%($stat2hppercent)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10223,7 +10226,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a3%($a3HPpercentMain)',
+                                                          '${"a3".tr()}%($a3HPpercentMain)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10245,7 +10248,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a3%($stat3hppercent)',
+                                                          '${"a3".tr()}%($stat3hppercent)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10267,7 +10270,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a3',
+                                                          'a3'.tr(),
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10289,7 +10292,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a4%($a4HPpercentMain)',
+                                                          '${"a4".tr()}%($a4HPpercentMain)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10311,7 +10314,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a4%($stat4hppercent)',
+                                                          '${"a4".tr()}%($stat4hppercent)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10333,7 +10336,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a4',
+                                                          'a4'.tr(),
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10355,7 +10358,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a5%($a5HPpercentMain)',
+                                                          '${"a5".tr()}%($a5HPpercentMain)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10377,7 +10380,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a5%($stat5hppercent)',
+                                                          '${"a5".tr()}%($stat5hppercent)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10399,7 +10402,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a5',
+                                                          'a5'.tr(),
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10444,7 +10447,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                               //ANCHOR DEF
                               SelectableText(
-                                'DEF:$lvldef + ' +
+                                '${"DEF".tr()}:$lvldef + ' +
                                     double.parse(bonusdef.toStringAsFixed(1)).toString() +
                                     ' = ' +
                                     double.parse(alldef.toStringAsFixed(1)).toString(),
@@ -10474,7 +10477,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   Column(
                                                     children: [
                                                       SelectableText(
-                                                        'level',
+                                                        'level'.tr(),
                                                         style: TextStyle(fontSize: 10),
                                                       ),
                                                       SelectableText(
@@ -10496,7 +10499,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'weapon%($weapondefpercent)',
+                                                          '${"weapon".tr()}%($weapondefpercent)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10518,7 +10521,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a1',
+                                                          'a1'.tr(),
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10540,7 +10543,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a1%($stat1defpercent)',
+                                                          '${"a1".tr()}%($stat1defpercent)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10562,7 +10565,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a2%($stat2defpercent)',
+                                                          '${"a2".tr()}%($stat2defpercent)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10584,7 +10587,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a3%($a3defpercentMain)',
+                                                          '${"a3".tr()}%($a3defpercentMain)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10606,7 +10609,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a3%($stat3defpercent)',
+                                                          '${"a3".tr()}%($stat3defpercent)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10628,7 +10631,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a3',
+                                                          'a3'.tr(),
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10650,7 +10653,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a4%($a4defpercentMain)',
+                                                          '${"a4".tr()}%($a4defpercentMain)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10672,7 +10675,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a4%($stat4defpercent)',
+                                                          '${"a4".tr()}%($stat4defpercent)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10694,7 +10697,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a4',
+                                                          'a4'.tr(),
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10716,7 +10719,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a5%($a5defpercentMain)',
+                                                          '${"a5".tr()}%($a5defpercentMain)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10738,7 +10741,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a5%($stat5defpercent)',
+                                                          '${"a5".tr()}%($stat5defpercent)',
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10760,7 +10763,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     Column(
                                                       children: [
                                                         SelectableText(
-                                                          'a5',
+                                                          'a5'.tr(),
                                                           style: TextStyle(fontSize: 10),
                                                         ),
                                                         SelectableText(
@@ -10803,7 +10806,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                               //ANCHOR ER
                               SelectableText(
-                                'Energy Recharge:100% + ' +
+                                '${"Energy Recharge".tr()}:100% + ' +
                                     double.parse(bonusER.toStringAsFixed(1)).toString() +
                                     '% = ' +
                                     double.parse(allER.toStringAsFixed(1)).toString() +
@@ -10824,14 +10827,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.start,
                                             children: [
-                                              buildStatRow(Colors.red, 'baseER%', '100'),
-                                              if (weaponERpercent != 0) buildStatRow(Colors.green, 'weapon%', '$weaponERpercent'),
-                                              if (stat1ERpercentOn == true) buildStatRow(Colors.yellow[700], 'a1%', '$stat1ERpercent'),
-                                              if (stat2ERpercentOn == true) buildStatRow(Colors.pink[700], 'a2%', '$stat2ERpercent'),
-                                              if (artifact3mainstatcat == 5) buildStatRow(Colors.blueGrey, 'a3%', '$a3ERpercentMain'),
-                                              if (stat3ERpercentOn == true) buildStatRow(Colors.blueGrey, 'a3%', '$stat3ERpercent'),
-                                              if (stat4ERpercentOn == true) buildStatRow(Colors.purple, 'a4%', '$stat4ERpercent'),
-                                              if (stat5ERpercentOn == true) buildStatRow(Colors.teal, 'a5%', '$stat5ERpercent'),
+                                              buildStatRow(Colors.red, '${"baseER".tr()}%', '100'),
+                                              if (weaponERpercent != 0) buildStatRow(Colors.green, '${"weapon".tr()}%', '$weaponERpercent'),
+                                              if (stat1ERpercentOn == true) buildStatRow(Colors.yellow[700], '${"a1".tr()}%', '$stat1ERpercent'),
+                                              if (stat2ERpercentOn == true) buildStatRow(Colors.pink[700], '${"a2".tr()}%', '$stat2ERpercent'),
+                                              if (artifact3mainstatcat == 5) buildStatRow(Colors.blueGrey, '${"a3".tr()}%', '$a3ERpercentMain'),
+                                              if (stat3ERpercentOn == true) buildStatRow(Colors.blueGrey, '${"a3".tr()}%', '$stat3ERpercent'),
+                                              if (stat4ERpercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%', '$stat4ERpercent'),
+                                              if (stat5ERpercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%', '$stat5ERpercent'),
                                             ],
                                           ),
 
@@ -10970,7 +10973,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               SizedBox(height: 10),
 
                               SelectableText(
-                                'Critical Rate:' +
+                                '${"Critical Rate".tr()}:' +
                                     double.parse(baseCR.toStringAsFixed(1)).toString() +
                                     '% + ' +
                                     double.parse(bonusCR.toStringAsFixed(1)).toString() +
@@ -10993,19 +10996,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.start,
                                             children: [
-                                              buildStatRow(Colors.red, 'character', '$baseCR'),
-                                              if (weaponCR != 0) buildStatRow(Colors.blue[700], 'weapon', '$weaponCR'),
-                                              if (stat1CRpercentOn == true) buildStatRow(Colors.yellow[700], 'a1', '$stat1CRpercent'),
-                                              if (stat2CRpercentOn == true) buildStatRow(Colors.pink[700], 'a2', '$stat2CRpercent'),
-                                              if (stat3CRpercentOn == true) buildStatRow(Colors.blueGrey, 'a3', '$stat3CRpercent'),
-                                              if (stat4CRpercentOn == true) buildStatRow(Colors.purple, 'a4', '$stat4CRpercent'),
-                                              if (artifact5mainstatcat == 5) buildStatRow(Colors.purple, 'a5', '$a5CR'),
-                                              if (stat5CRpercentOn == true) buildStatRow(Colors.teal, 'a5', '$stat5CRpercent'),
-                                              if (undividedHeartOn == true) buildStatRow(Colors.amber, 'Undevided Heart', '20'),
-                                              if (blizzardstrayer41On == true) buildStatRow(Colors.blue[300], 'Blizzard Strayer 4 set(cryo)', '20'),
-                                              if (blizzardstrayer42On == true) buildStatRow(Colors.blue[400], 'Blizzard Strayer 4 set(frozen)', '20'),
-                                              if (cryo2On == true) buildStatRow(Colors.blue[200], '2 Cryo', '15'),
-                                              if (manualCRpercentOn) buildStatRow(Colors.red[300], 'Manual', ((manualCRpercent).toStringAsFixed(1))),
+                                              buildStatRow(Colors.red, 'character'.tr(), '$baseCR'),
+                                              if (weaponCR != 0) buildStatRow(Colors.blue[700], 'weapon'.tr(), '$weaponCR'),
+                                              if (stat1CRpercentOn == true) buildStatRow(Colors.yellow[700], 'a1'.tr(), '$stat1CRpercent'),
+                                              if (stat2CRpercentOn == true) buildStatRow(Colors.pink[700], 'a2'.tr(), '$stat2CRpercent'),
+                                              if (stat3CRpercentOn == true) buildStatRow(Colors.blueGrey, 'a3'.tr(), '$stat3CRpercent'),
+                                              if (stat4CRpercentOn == true) buildStatRow(Colors.purple, 'a4'.tr(), '$stat4CRpercent'),
+                                              if (artifact5mainstatcat == 5) buildStatRow(Colors.purple, 'a5'.tr(), '$a5CR'),
+                                              if (stat5CRpercentOn == true) buildStatRow(Colors.teal, 'a5'.tr(), '$stat5CRpercent'),
+                                              if (undividedHeartOn == true) buildStatRow(Colors.amber, 'Undevided Heart'.tr(), '20'),
+                                              if (blizzardstrayer41On == true)
+                                                buildStatRow(Colors.blue[300], 'Blizzard Strayer 4 set(cryo)'.tr(), '20'),
+                                              if (blizzardstrayer42On == true)
+                                                buildStatRow(Colors.blue[400], 'Blizzard Strayer 4 set(frozen)'.tr(), '20'),
+                                              if (cryo2On == true) buildStatRow(Colors.blue[200], '2 Cryo'.tr(), '15'),
+                                              if (manualCRpercentOn)
+                                                buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualCRpercent).toStringAsFixed(1))),
                                             ],
                                           ),
 
@@ -11178,7 +11184,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               //ANCHOR CD
                               SelectableText(
-                                'Critical Damage:' +
+                                '${"Critical Damage".tr()}:' +
                                     double.parse(baseCD.toStringAsFixed(1)).toString() +
                                     '% + ' +
                                     double.parse(bonusCD.toStringAsFixed(1)).toString() +
@@ -11201,17 +11207,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.start,
                                             children: [
-                                              buildStatRow(Colors.red, 'character', '$baseCD'),
-                                              if (weaponCD != 0) buildStatRow(Colors.blue, 'weapon', '$weaponCD'),
-                                              if (stat1CDpercentOn == true) buildStatRow(Colors.yellow[700], 'a1', '$stat1CDpercent'),
-                                              if (stat2CDpercentOn == true) buildStatRow(Colors.pink[700], 'a2', '$stat2CDpercent'),
-                                              if (stat3CDpercentOn == true) buildStatRow(Colors.blueGrey, 'a3', '$stat3CDpercent'),
-                                              if (stat4CDpercentOn == true) buildStatRow(Colors.blueGrey, 'a4', '$stat4CDpercent'),
-                                              if (artifact5mainstatcat == 6) buildStatRow(Colors.teal, 'a5', '$a5CD'),
-                                              if (stat5CDpercentOn == true) buildStatRow(Colors.teal, 'a5', '$stat5CDpercent'),
+                                              buildStatRow(Colors.red, 'character'.tr(), '$baseCD'),
+                                              if (weaponCD != 0) buildStatRow(Colors.blue, 'weapon'.tr(), '$weaponCD'),
+                                              if (stat1CDpercentOn == true) buildStatRow(Colors.yellow[700], 'a1'.tr(), '$stat1CDpercent'),
+                                              if (stat2CDpercentOn == true) buildStatRow(Colors.pink[700], 'a2'.tr(), '$stat2CDpercent'),
+                                              if (stat3CDpercentOn == true) buildStatRow(Colors.blueGrey, 'a3'.tr(), '$stat3CDpercent'),
+                                              if (stat4CDpercentOn == true) buildStatRow(Colors.blueGrey, 'a4'.tr(), '$stat4CDpercent'),
+                                              if (artifact5mainstatcat == 6) buildStatRow(Colors.teal, 'a5'.tr(), '$a5CD'),
+                                              if (stat5CDpercentOn == true) buildStatRow(Colors.teal, 'a5'.tr(), '$stat5CDpercent'),
                                               if (echoingBalladOn == true)
-                                                buildStatRow(Colors.tealAccent, 'Echoing Ballad1', (15 + weaponref * 5).toString()),
-                                              if (manualCDpercentOn) buildStatRow(Colors.red[300], 'Manual', ((manualCDpercent).toStringAsFixed(1))),
+                                                buildStatRow(Colors.tealAccent, 'Echoing Ballad1'.tr(), (15 + weaponref * 5).toString()),
+                                              if (manualCDpercentOn)
+                                                buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualCDpercent).toStringAsFixed(1))),
                                             ],
                                           ),
 
@@ -11365,7 +11372,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   children: [
                                     if (bonusNormalATKDMGpercent != 0)
                                       SelectableText(
-                                        'Normal Attack Damage:' + double.parse(bonusNormalATKDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                        '${"Normal Attack Damage".tr()}:' +
+                                            double.parse(bonusNormalATKDMGpercent.toStringAsFixed(1)).toString() +
+                                            '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statNormalATKDMG:stats
@@ -11373,9 +11382,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
-                                          if (strongWilled1On) buildStatRow(Colors.purple[300], 'strong Willed1', (9 + weaponref * 3).toString()),
+                                          if (strongWilled1On)
+                                            buildStatRow(Colors.purple[300], 'Strong Willed1'.tr(), (9 + weaponref * 3).toString()),
                                           if (strongWilled2On)
-                                            buildStatRow(Colors.blue[300], 'strong Willed2', ((6 + weaponref * 2) * strongWilled2Times).toString()),
+                                            buildStatRow(
+                                                Colors.blue[300], 'Strong Willed2'.tr(), ((6 + weaponref * 2) * strongWilled2Times).toString()),
                                         ],
                                       ),
                                     //ANCHOR statNormalATKDMG:bar
@@ -11413,7 +11424,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (bonusChargedATKDMGpercent != 0)
                                       SelectableText(
-                                        'Charged Attack Damage:' + double.parse(bonusChargedATKDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                        '${"Charged Attack Damage".tr()}:' +
+                                            double.parse(bonusChargedATKDMGpercent.toStringAsFixed(1)).toString() +
+                                            '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statChargedATKDMG:stats
@@ -11421,10 +11434,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
-                                          if (strongWilled1On) buildStatRow(Colors.purple[300], 'strong Willed1', (9 + weaponref * 3).toString()),
+                                          if (strongWilled1On)
+                                            buildStatRow(Colors.purple[300], 'Strong Willed1'.tr(), (9 + weaponref * 3).toString()),
                                           if (strongWilled2On)
-                                            buildStatRow(Colors.blue[300], 'strong Willed2', ((6 + weaponref * 2) * strongWilled2Times).toString()),
-                                          if (troupesdawnlight4on) buildStatRow(Colors.green[400], "Troupe's Dawnlight 4 set", "35"),
+                                            buildStatRow(
+                                                Colors.blue[300], 'Strong Willed2'.tr(), ((6 + weaponref * 2) * strongWilled2Times).toString()),
+                                          if (troupesdawnlight4on) buildStatRow(Colors.green[400], "Troupe's Dawnlight 4 set".tr(), "35"),
                                         ],
                                       ),
                                     //ANCHOR statChargedATKDMG:bar
@@ -11476,16 +11491,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Physical Damage Title
                                     if (bonusPhysicalDMGpercent != 0)
                                       SelectableText(
-                                        'Physical Damage:' + double.parse(bonusPhysicalDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                        '${"Physical Damage".tr()}:' + double.parse(bonusPhysicalDMGpercent.toStringAsFixed(1)).toString() + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statPhysicalDMG:stats
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        if (levelPhysicalDMGpercent != 0) buildStatRow(Colors.red, 'character', '$levelPhysicalDMGpercent'),
-                                        if (weaponPhysicalDMGpercent != 0) buildStatRow(Colors.green, 'weapon', '$weaponPhysicalDMGpercent'),
-                                        if (artifact4mainstatcat == 5) buildStatRow(Colors.purple, 'a4', '$a4PhysicalDMGpercent'),
+                                        if (levelPhysicalDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelPhysicalDMGpercent'),
+                                        if (weaponPhysicalDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponPhysicalDMGpercent'),
+                                        if (artifact4mainstatcat == 5) buildStatRow(Colors.purple, 'a4'.tr(), '$a4PhysicalDMGpercent'),
                                       ],
                                     ),
                                     //ANCHOR statPhysicalDMG:bar
@@ -11500,16 +11515,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Pyro Damage Title
                                     if (bonusPyroDMGpercent != 0)
                                       SelectableText(
-                                        'Pyro Damage:' + double.parse(bonusPyroDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                        '${"Pyro Damage".tr()}:' + double.parse(bonusPyroDMGpercent.toStringAsFixed(1)).toString() + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statPyroDMG:stats
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        if (levelPyroDMGpercent != 0) buildStatRow(Colors.red, 'character', '$levelPyroDMGpercent'),
-                                        if (weaponPyroDMGpercent != 0) buildStatRow(Colors.green, 'weapon', '$weaponPyroDMGpercent'),
-                                        if (artifact4mainstatcat == 6) buildStatRow(Colors.purple, 'a4', '$a4PyroDMGpercent'),
+                                        if (levelPyroDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelPyroDMGpercent'),
+                                        if (weaponPyroDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponPyroDMGpercent'),
+                                        if (artifact4mainstatcat == 6) buildStatRow(Colors.purple, 'a4'.tr(), '$a4PyroDMGpercent'),
                                       ],
                                     ),
                                     //ANCHOR statPyroDMG:bar
@@ -11524,16 +11539,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Hydro Damage Title
                                     if (bonusHydroDMGpercent != 0)
                                       SelectableText(
-                                        'Hydro Damage:' + double.parse(bonusHydroDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                        '${"Hydro Damage".tr()}:' + double.parse(bonusHydroDMGpercent.toStringAsFixed(1)).toString() + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statHydroDMG:stats
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        if (levelHydroDMGpercent != 0) buildStatRow(Colors.red, 'character', '$levelHydroDMGpercent'),
-                                        if (weaponHydroDMGpercent != 0) buildStatRow(Colors.green, 'weapon', '$weaponHydroDMGpercent'),
-                                        if (artifact4mainstatcat == 7) buildStatRow(Colors.purple, 'a4', '$a4HydroDMGpercent'),
+                                        if (levelHydroDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelHydroDMGpercent'),
+                                        if (weaponHydroDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponHydroDMGpercent'),
+                                        if (artifact4mainstatcat == 7) buildStatRow(Colors.purple, 'a4'.tr(), '$a4HydroDMGpercent'),
                                       ],
                                     ),
                                     //ANCHOR statHydroDMG:bar
@@ -11548,18 +11563,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Cryo Damage Title
                                     if (bonusCryoDMGpercent != 0)
                                       SelectableText(
-                                        'Cryo Damage:' + double.parse(bonusCryoDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                        '${"Cryo Damage".tr()}:' + double.parse(bonusCryoDMGpercent.toStringAsFixed(1)).toString() + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statCryoDMG:stats
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        if (levelCryoDMGpercent != 0) buildStatRow(Colors.red, 'character', '$levelCryoDMGpercent'),
-                                        if (weaponCryoDMGpercent != 0) buildStatRow(Colors.green, 'weapon', '$weaponCryoDMGpercent'),
-                                        if (artifact4mainstatcat == 8) buildStatRow(Colors.purple, 'a4', '$a4CryoDMGpercent'),
-                                        if (blizzardstrayer2On) buildStatRow(Colors.blue[300], 'Blizzard Strayer 2 Set', '15'),
-                                        if (harmonyOn) buildStatRow(Colors.amber, 'Harmony between Heaven and Earth', '20'),
+                                        if (levelCryoDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelCryoDMGpercent'),
+                                        if (weaponCryoDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponCryoDMGpercent'),
+                                        if (artifact4mainstatcat == 8) buildStatRow(Colors.purple, 'a4'.tr(), '$a4CryoDMGpercent'),
+                                        if (blizzardstrayer2On) buildStatRow(Colors.blue[300], 'Blizzard2'.tr(), '15'),
+                                        if (harmonyOn) buildStatRow(Colors.amber, 'Harmony between Heaven and Earth'.tr(), '20'),
                                       ],
                                     ),
                                     //ANCHOR statCryoDMG:bar
@@ -11576,17 +11591,17 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Electro Damage Title
                                     if (bonusElectroDMGpercent != 0)
                                       SelectableText(
-                                        'Electro Damage:' + double.parse(bonusElectroDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                        '${"Electro Damage".tr()}:' + double.parse(bonusElectroDMGpercent.toStringAsFixed(1)).toString() + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statElectroDMG:stats
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        if (levelElectroDMGpercent != 0) buildStatRow(Colors.red, 'character', '$levelElectroDMGpercent'),
-                                        if (weaponElectroDMGpercent != 0) buildStatRow(Colors.green, 'weapon', '$weaponElectroDMGpercent'),
-                                        if (artifact4mainstatcat == 9) buildStatRow(Colors.purple, 'a4', '$a4ElectroDMGpercent'),
-                                        if (thunderbird2On) buildStatRow(Colors.purple[400], 'Thundering Fury 2 Set', '15'),
+                                        if (levelElectroDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelElectroDMGpercent'),
+                                        if (weaponElectroDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponElectroDMGpercent'),
+                                        if (artifact4mainstatcat == 9) buildStatRow(Colors.purple, 'a4'.tr(), '$a4ElectroDMGpercent'),
+                                        if (thunderbird2On) buildStatRow(Colors.purple[400], 'Thundering Fury 2 Set'.tr(), '15'),
                                       ],
                                     ),
                                     //ANCHOR statElectroDMG:bar
@@ -11602,16 +11617,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Anemo Damage Title
                                     if (bonusAnemoDMGpercent != 0)
                                       SelectableText(
-                                        'Anemo Damage:' + double.parse(bonusAnemoDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                        '${"Anemo Damage".tr()}:' + double.parse(bonusAnemoDMGpercent.toStringAsFixed(1)).toString() + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statAnemoDMG:stats
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        if (levelAnemoDMGpercent != 0) buildStatRow(Colors.red, 'character', '$levelAnemoDMGpercent'),
-                                        if (weaponAnemoDMGpercent != 0) buildStatRow(Colors.green, 'weapon', '$weaponAnemoDMGpercent'),
-                                        if (artifact4mainstatcat == 10) buildStatRow(Colors.purple, 'a4', '$a4AnemoDMGpercent'),
+                                        if (levelAnemoDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelAnemoDMGpercent'),
+                                        if (weaponAnemoDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponAnemoDMGpercent'),
+                                        if (artifact4mainstatcat == 10) buildStatRow(Colors.purple, 'a4'.tr(), '$a4AnemoDMGpercent'),
                                       ],
                                     ),
                                     //ANCHOR statAnemoDMG:bar
@@ -11626,16 +11641,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Geo Damage Title
                                     if (bonusGeoDMGpercent != 0)
                                       SelectableText(
-                                        'Geo Damage:' + double.parse(bonusGeoDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                        '${"Geo Damage".tr()}:' + double.parse(bonusGeoDMGpercent.toStringAsFixed(1)).toString() + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statGeoDMG:stats
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        if (levelGeoDMGpercent != 0) buildStatRow(Colors.red, 'character', '$levelGeoDMGpercent'),
-                                        if (weaponGeoDMGpercent != 0) buildStatRow(Colors.green, 'weapon', '$weaponGeoDMGpercent'),
-                                        if (artifact4mainstatcat == 11) buildStatRow(Colors.purple, 'a4', '$a4GeoDMGpercent'),
+                                        if (levelGeoDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelGeoDMGpercent'),
+                                        if (weaponGeoDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponGeoDMGpercent'),
+                                        if (artifact4mainstatcat == 11) buildStatRow(Colors.purple, 'a4'.tr(), '$a4GeoDMGpercent'),
                                       ],
                                     ),
                                     //ANCHOR statGeoDMG:bar
@@ -11651,14 +11666,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Elemental Burst Damage Title
                                     if (bonusBurstDMGpercent != 0)
                                       SelectableText(
-                                        'Elemental Burst Damage:' + double.parse(bonusBurstDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                        '${"Elemental Burst Damage".tr()}:' + double.parse(bonusBurstDMGpercent.toStringAsFixed(1)).toString() + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statBurstDMG:stats
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        if (royalflora2On) buildStatRow(Colors.blue, 'Noblesse Oblige 2 Set', '20'),
+                                        if (royalflora2On) buildStatRow(Colors.blue, 'Noblesse Oblige 2 Set'.tr(), '20'),
                                       ],
                                     ),
                                     //ANCHOR statBurstDMG:bar
@@ -11671,7 +11686,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR  Damage Bonus Title
                                     if (bonusDMGpercent != 0)
                                       SelectableText(
-                                        'Damage Bonus:' + double.parse(bonusDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                        '${"Damage Bonus".tr()}:' + double.parse(bonusDMGpercent.toStringAsFixed(1)).toString() + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statBonusDMG:stats
@@ -11679,9 +11694,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         if (monaqOn)
-                                          buildStatRow(Colors.purple[300], 'Mona(burst)', (monaqlvtoratio[monaqlv] * 1).toStringAsFixed(1)),
-                                        if (thundersoother4On) buildStatRow(Color(0xFF6480FF), 'Thundersoother 4 Set', '35'),
-                                        if (manualDMGpercentOn) buildStatRow(Colors.red[300], 'Manual', ((manualDMGpercent).toStringAsFixed(1))),
+                                          buildStatRow(Colors.purple[300], 'Mona(burst)'.tr(), (monaqlvtoratio[monaqlv] * 1).toStringAsFixed(1)),
+                                        if (thundersoother4On) buildStatRow(Color(0xFF6480FF), 'Thundersoother 4 Set'.tr(), '35'),
+                                        if (manualDMGpercentOn) buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualDMGpercent).toStringAsFixed(1))),
                                       ],
                                     ),
                                     //ANCHOR statBonusDMG:bar
@@ -11715,7 +11730,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                               //ANCHOR EM
                               SelectableText(
-                                'Elemental Mastery:$lvlEM + ' +
+                                '${"Elemental Mastery".tr()}:$lvlEM + ' +
                                     double.parse(bonusEM.toStringAsFixed(1)).toString() +
                                     ' = ' +
                                     double.parse(allEM.toStringAsFixed(1)).toString(),
@@ -11740,7 +11755,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               Column(
                                                 children: [
                                                   SelectableText(
-                                                    'baseEM',
+                                                    'baseEM'.tr(),
                                                     style: TextStyle(fontSize: 10),
                                                   ),
                                                   SelectableText(
@@ -11762,7 +11777,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               Column(
                                                 children: [
                                                   SelectableText(
-                                                    'weapon($weaponEM)',
+                                                    '${"weapon".tr()}($weaponEM)',
                                                     style: TextStyle(fontSize: 10),
                                                   ),
                                                 ],
@@ -11780,7 +11795,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               Column(
                                                 children: [
                                                   SelectableText(
-                                                    'a1($stat1EM)',
+                                                    '${"a1".tr()}($stat1EM)',
                                                     style: TextStyle(fontSize: 10),
                                                   ),
                                                 ],
@@ -11798,7 +11813,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               Column(
                                                 children: [
                                                   SelectableText(
-                                                    'a2($stat2EM)',
+                                                    '${"a2".tr()}($stat2EM)',
                                                     style: TextStyle(fontSize: 10),
                                                   ),
                                                 ],
@@ -11816,7 +11831,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               Column(
                                                 children: [
                                                   SelectableText(
-                                                    'a3($a3EM)',
+                                                    '${"a3".tr()}($a3EM)',
                                                     style: TextStyle(fontSize: 10),
                                                   ),
                                                 ],
@@ -11834,7 +11849,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               Column(
                                                 children: [
                                                   SelectableText(
-                                                    'a3($stat3EM)',
+                                                    '${"a3".tr()}($stat3EM)',
                                                     style: TextStyle(fontSize: 10),
                                                   ),
                                                 ],
@@ -11852,7 +11867,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               Column(
                                                 children: [
                                                   SelectableText(
-                                                    'a4($a4EM)',
+                                                    '${"a4".tr()}($a4EM)',
                                                     style: TextStyle(fontSize: 10),
                                                   ),
                                                 ],
@@ -11870,7 +11885,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               Column(
                                                 children: [
                                                   SelectableText(
-                                                    'a4($stat4EM)',
+                                                    '${"a4".tr()}($stat4EM)',
                                                     style: TextStyle(fontSize: 10),
                                                   ),
                                                 ],
@@ -11888,7 +11903,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               Column(
                                                 children: [
                                                   SelectableText(
-                                                    'a5($a5EM)',
+                                                    '${"a5".tr()}($a5EM)',
                                                     style: TextStyle(fontSize: 10),
                                                   ),
                                                 ],
@@ -11906,7 +11921,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               Column(
                                                 children: [
                                                   SelectableText(
-                                                    'a5($stat5EM)',
+                                                    '${"a5".tr()}($stat5EM)',
                                                     style: TextStyle(fontSize: 10),
                                                   ),
                                                 ],
@@ -11924,7 +11939,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               Column(
                                                 children: [
                                                   SelectableText(
-                                                    "Troupe's Dawnlight 2 set",
+                                                    "Troupe's Dawnlight 2 set".tr(),
                                                     style: TextStyle(fontSize: 10),
                                                   ),
                                                   SelectableText(
@@ -11935,7 +11950,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               ),
                                             ],
                                           ),
-                                        if (manualEMOn) buildStatRow(Colors.red[300], 'Manual', ((manualEM).toStringAsFixed(1))),
+                                        if (manualEMOn) buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualEM).toStringAsFixed(1))),
                                       ],
                                     ),
 
@@ -12090,7 +12105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Vaporize Damage Title
                                     if (vaporizeDMGpercent > 100)
                                       SelectableText(
-                                        'Vaporize Damage Plus:' + (vaporizeDMGpercent - 100).toStringAsFixed(1) + '%',
+                                        '${"Vaporize Damage Plus".tr()}:' + (vaporizeDMGpercent - 100).toStringAsFixed(1) + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statVaporizeDMG:stats
@@ -12098,7 +12113,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         if (allEM != 0)
-                                          buildStatRow(Colors.amber[400], 'EM', (((1 * 25 * allEM / (9 * (allEM + 1400)))) * 100).toStringAsFixed(1)),
+                                          buildStatRow(
+                                              Colors.amber[400], 'EM'.tr(), (((1 * 25 * allEM / (9 * (allEM + 1400)))) * 100).toStringAsFixed(1)),
                                       ],
                                     ),
                                     //ANCHOR statVaporizeDMG:bar
@@ -12111,7 +12127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Melt Damage Title
                                     if (meltDMGpercent > 100)
                                       SelectableText(
-                                        'Melt Damage Plus:' + (meltDMGpercent - 100).toStringAsFixed(1) + '%',
+                                        '${"Melt Damage Plus".tr()}:' + (meltDMGpercent - 100).toStringAsFixed(1) + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statMeltDMG:stats
@@ -12119,7 +12135,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         if (allEM != 0)
-                                          buildStatRow(Colors.amber[400], 'EM', (((1 * 25 * allEM / (9 * (allEM + 1400)))) * 100).toStringAsFixed(1)),
+                                          buildStatRow(
+                                              Colors.amber[400], 'EM'.tr(), (((1 * 25 * allEM / (9 * (allEM + 1400)))) * 100).toStringAsFixed(1)),
                                       ],
                                     ),
                                     //ANCHOR statMeltDMG:bar
@@ -12133,7 +12150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Superconduct Damage Title
                                     if (superconductDMGpercent > 100)
                                       SelectableText(
-                                        'Superconduct Damage Plus:' + (superconductDMGpercent - 100).toStringAsFixed(1) + '%',
+                                        '${"Superconduct Damage Plus".tr()}:' + (superconductDMGpercent - 100).toStringAsFixed(1) + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statSuperconductDMG:stats
@@ -12142,8 +12159,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       children: [
                                         if (allEM != 0)
                                           buildStatRow(
-                                              Colors.amber[400], 'EM', (((2.4 * 25 * allEM / (9 * (allEM + 1400)))) * 100).toStringAsFixed(1)),
-                                        if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set', '40'),
+                                              Colors.amber[400], 'EM'.tr(), (((2.4 * 25 * allEM / (9 * (allEM + 1400)))) * 100).toStringAsFixed(1)),
+                                        if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set'.tr(), '40'),
                                       ],
                                     ),
                                     //ANCHOR statSuperconductDMG:bar
@@ -12157,7 +12174,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Overloaded Damage Title
                                     if (overloadDMGpercent > 100)
                                       SelectableText(
-                                        'Overloaded Damage Plus:' + (overloadDMGpercent - 100).toStringAsFixed(1) + '%',
+                                        '${"Overloaded Damage Plus".tr()}:' + (overloadDMGpercent - 100).toStringAsFixed(1) + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statOverloadedDMG:stats
@@ -12166,8 +12183,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       children: [
                                         if (allEM != 0)
                                           buildStatRow(
-                                              Colors.amber[400], 'EM', (((2.4 * 25 * allEM / (9 * (allEM + 1400)))) * 100).toStringAsFixed(1)),
-                                        if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set', '40'),
+                                              Colors.amber[400], 'EM'.tr(), (((2.4 * 25 * allEM / (9 * (allEM + 1400)))) * 100).toStringAsFixed(1)),
+                                        if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set'.tr(), '40'),
                                       ],
                                     ),
                                     //ANCHOR statOverloadedDMG:bar
@@ -12181,7 +12198,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Electro-Charged Damage Title
                                     if (electrochargedDMGpercent > 100)
                                       SelectableText(
-                                        'Electro-Charge Damage Plus:' + (electrochargedDMGpercent - 100).toStringAsFixed(1) + '%',
+                                        '${"Electro-Charge Damage Plus".tr()}:' + (electrochargedDMGpercent - 100).toStringAsFixed(1) + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statElectro-ChargedDMG:stats
@@ -12190,8 +12207,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       children: [
                                         if (allEM != 0)
                                           buildStatRow(
-                                              Colors.amber[400], 'EM', (((2.4 * 25 * allEM / (9 * (allEM + 1400)))) * 100).toStringAsFixed(1)),
-                                        if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set', '40'),
+                                              Colors.amber[400], 'EM'.tr(), (((2.4 * 25 * allEM / (9 * (allEM + 1400)))) * 100).toStringAsFixed(1)),
+                                        if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set'.tr(), '40'),
                                       ],
                                     ),
                                     //ANCHOR statElectro-ChargedDMG:bar
@@ -12205,7 +12222,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Shattered Damage Title
                                     if (shatteredDMGpercent > 100)
                                       SelectableText(
-                                        'Shattered Damage Plus:' + (shatteredDMGpercent - 100).toStringAsFixed(1) + '%',
+                                        '${"Shattered Damage Plus".tr()}:' + (shatteredDMGpercent - 100).toStringAsFixed(1) + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statShatteredDMG:stats
@@ -12214,7 +12231,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       children: [
                                         if (allEM != 0)
                                           buildStatRow(
-                                              Colors.amber[400], 'EM', (((2.4 * 25 * allEM / (9 * (allEM + 1400)))) * 100).toStringAsFixed(1)),
+                                              Colors.amber[400], 'EM'.tr(), (((2.4 * 25 * allEM / (9 * (allEM + 1400)))) * 100).toStringAsFixed(1)),
                                       ],
                                     ),
                                     //ANCHOR statShatteredDMG:bar
@@ -12227,7 +12244,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     //ANCHOR Swirl Damage Title
                                     if (shatteredDMGpercent > 100)
                                       SelectableText(
-                                        'Swirl Damage Plus:' + (swirlDMGpercent - 100).toStringAsFixed(1) + '%',
+                                        '${"Swirl Damage Plus".tr()}:' + (swirlDMGpercent - 100).toStringAsFixed(1) + '%',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                     //ANCHOR statShatteredDMG:stats
@@ -12236,7 +12253,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       children: [
                                         if (allEM != 0)
                                           buildStatRow(
-                                              Colors.amber[400], 'EM', (((2.4 * 25 * allEM / (9 * (allEM + 1400)))) * 100).toStringAsFixed(1)),
+                                              Colors.amber[400], 'EM'.tr(), (((2.4 * 25 * allEM / (9 * (allEM + 1400)))) * 100).toStringAsFixed(1)),
                                       ],
                                     ),
                                     //ANCHOR statShatteredDMG:bar
@@ -12269,7 +12286,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   SelectableText(
-                                    'Enemytype: ',
+                                    '${"Enemytype".tr()}: ',
                                     style: TextStyle(
                                       //fontWeight: FontWeight.bold,
                                       color: Colors.black,
@@ -12283,234 +12300,228 @@ class _MyHomePageState extends State<MyHomePage> {
                                         items: [
                                           DropdownMenuItem(
                                             child: Text(
-                                              "Hilichurl",
+                                              "Hilichurl".tr(),
                                               style: TextStyle(fontSize: 15),
                                             ),
                                             value: 1,
                                           ),
                                           DropdownMenuItem(
                                             child: Text(
-                                              "Ruin Guard",
+                                              "Ruin Guard".tr(),
                                               style: TextStyle(fontSize: 15),
                                             ),
                                             value: 2,
                                           ),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Treasure Hoarder",
+                                                "Treasure Hoarder".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 3),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Andrius, Dominator of Wolves",
+                                                "Andrius, Dominator of Wolves".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 4),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Pyro Slime",
+                                                "Pyro Slime".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 5),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Hydro Slime",
+                                                "Hydro Slime".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 6),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Dendro Slime",
+                                                "Dendro Slime".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 7),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Electro Slime",
+                                                "Electro Slime".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 8),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Anemo Slime",
+                                                "Anemo Slime".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 9),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Cryo Slime",
+                                                "Cryo Slime".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 10),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Geo Slime",
+                                                "Geo Slime".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 11),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Mitachurl",
+                                                "Mitachurl".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 12),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Pyro Samachurl",
+                                                "Pyro Samachurl".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 13),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Hydro Samachurl",
+                                                "Hydro Samachurl".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 14),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Dendro Samachurl",
+                                                "Dendro Samachurl".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 15),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Anemo Samachurl",
+                                                "Anemo Samachurl".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 16),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Geo Samachurl",
+                                                "Geo Samachurl".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 17),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Stonehide Lawachurl",
+                                                "Stonehide Lawachurl".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 18),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Ruin Hunter",
+                                                "Ruin Hunter".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 19),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Pyro Flower",
+                                                "Pyro Flower".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 20),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Cryo Flower",
+                                                "Cryo Flower".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 21),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Pyro Flower(Stunned)",
+                                                "Pyro Flower(Stunned)".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 22),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Cryo Flower(Stunned)",
+                                                "Cryo Flower(Stunned)".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 23),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Fatui Skirmisher",
+                                                "Fatui Skirmisher".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 24),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Fatui Skirmisher(Shielded)",
+                                                "Fatui Skirmisher(Shielded)".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 25),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Fatui Pyro Agent",
+                                                "Fatui Pyro Agent".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 26),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Fatui Electro Cincin Mage",
+                                                "Fatui Electro Cincin Mage".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 27),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Geovishap Hatchling",
+                                                "Geovishap Hatchling".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 28),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Abyss Mage",
+                                                "Abyss Mage".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 29),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Electro Hypostasis",
+                                                "Electro Hypostasis".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 30),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Anemo Hypostasis",
+                                                "Anemo Hypostasis".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 31),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Geo Hypostasis",
+                                                "Geo Hypostasis".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 32),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Pyro Regisvine",
+                                                "Pyro Regisvine".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 33),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Cryo Regisvine",
+                                                "Cryo Regisvine".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 34),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Pyro Regisvine(Stunned)",
+                                                "Pyro Regisvine(Stunned)".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 35),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Cryo Regisvine(Stunned)",
+                                                "Cryo Regisvine(Stunned)".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 36),
                                           DropdownMenuItem(
                                               child: Text(
-                                                "Dvalin",
+                                                "Dvalin".tr(),
                                                 style: TextStyle(fontSize: 15),
                                               ),
                                               value: 37),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Andrius",
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 38),
                                         ],
                                         onChanged: (value) {
                                           setState(() {
@@ -12526,7 +12537,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Column(
                                     children: [
                                       SelectableText(
-                                        'Physical',
+                                        'Physical'.tr(),
                                         style: TextStyle(
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.black,
@@ -12546,7 +12557,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Column(
                                     children: [
                                       SelectableText(
-                                        'Pyro',
+                                        'Pyro'.tr(),
                                         style: TextStyle(
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.red,
@@ -12566,7 +12577,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Column(
                                     children: [
                                       SelectableText(
-                                        'Hydro',
+                                        'Hydro'.tr(),
                                         style: TextStyle(
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.blue,
@@ -12586,7 +12597,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Column(
                                     children: [
                                       SelectableText(
-                                        'Dendro',
+                                        'Dendro'.tr(),
                                         style: TextStyle(
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.green,
@@ -12606,7 +12617,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Column(
                                     children: [
                                       SelectableText(
-                                        'Electro',
+                                        'Electro'.tr(),
                                         style: TextStyle(
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.purple,
@@ -12626,7 +12637,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Column(
                                     children: [
                                       SelectableText(
-                                        'Anemo',
+                                        'Anemo'.tr(),
                                         style: TextStyle(
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.green[700],
@@ -12646,7 +12657,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Column(
                                     children: [
                                       SelectableText(
-                                        'Cryo',
+                                        'Cryo'.tr(),
                                         style: TextStyle(
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.blue[100],
@@ -12666,7 +12677,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Column(
                                     children: [
                                       SelectableText(
-                                        'Geo',
+                                        'Geo'.tr(),
                                         style: TextStyle(
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.yellow,
@@ -12705,7 +12716,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   SelectableText(
-                                    'EnemyLv: $enemylv',
+                                    '${"EnemyLv".tr()}: $enemylv',
                                     style: TextStyle(
                                       //fontWeight: FontWeight.bold,
                                       color: Colors.black,
@@ -12731,7 +12742,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   SelectableText(
-                                    'EnemyDefenceDebuff%: $enemydefdebuff%',
+                                    '${"EnemyDefenceDebuff".tr()}%: $enemydefdebuff%',
                                     style: TextStyle(
                                       //fontWeight: FontWeight.bold,
                                       color: Colors.black,
@@ -12776,7 +12787,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 title: Column(children: [
                                   Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                     SelectableText(
-                                      'Character',
+                                      'Character'.tr(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -12788,7 +12799,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 children: <Widget>[
                                   Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                     SelectableText(
-                                      'Talents',
+                                      'Talents'.tr(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -12800,7 +12811,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     FilterChip(
                                       selectedColor: Colors.amber,
                                       backgroundColor: Colors.amber[200],
-                                      label: Text('Undivided Heart: CRIT Rate + 20%'),
+                                      label: Text('Undivided Heart: CRIT Rate + 20%'.tr()),
                                       selected: undividedHeartOn,
                                       onSelected: (bool value) {
                                         setState(() {
@@ -12811,7 +12822,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     FilterChip(
                                       selectedColor: Colors.amber,
                                       backgroundColor: Colors.amber[200],
-                                      label: Text('Harmony between Heaven and Earth: Cryo DMG + 20%'),
+                                      label: Text('Harmony between Heaven and Earth: Cryo DMG + 20%'.tr()),
                                       selected: harmonyOn,
                                       onSelected: (bool value) {
                                         setState(() {
@@ -12822,7 +12833,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ]),
                                   Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                     SelectableText(
-                                      'Constellation',
+                                      'Constellation'.tr(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -12832,7 +12843,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ]),
                                   Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
                                     FilterChip(
-                                      label: Text('Constellation1: Enemy Cryo Res -15%'),
+                                      label: Text('Constellation1: Enemy Cryo Res -15%'.tr()),
                                       selected: constellation1On,
                                       onSelected: (bool value) {
                                         setState(() {
@@ -12853,7 +12864,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 title: Column(children: [
                                   Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                     SelectableText(
-                                      'Weapon',
+                                      'Weapon'.tr(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -12865,7 +12876,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 children: <Widget>[
                                   Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                     SelectableText(
-                                      'Weapon bonus',
+                                      'Weapon bonus'.tr(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -12878,7 +12889,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       children: [
                                         Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
                                           FilterChip(
-                                            label: Text('Strong-Willed1: Normal and Charged Attack DMG + ' + (9 + weaponref * 3).toString() + '%'),
+                                            label:
+                                                Text('Strong-Willed1: Normal and Charged Attack DMG + '.tr() + (9 + weaponref * 3).toString() + '%'),
                                             selected: true,
                                             selectedColor: Colors.purple[300],
                                             onSelected: (bool value) {
@@ -12886,9 +12898,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             },
                                           ),
                                           FilterChip(
-                                            label: Text('Strong-Willed2: ' +
+                                            label: Text('Strong-Willed2: '.tr() +
                                                 (6 + weaponref * 2).toString() +
-                                                '% every 0.1s the arrow is in the air for up to 5 times.'),
+                                                '% every 0.1s the arrow is in the air for up to 5 times.'.tr()),
                                             selected: true,
                                             selectedColor: Colors.blue[300],
                                             onSelected: (bool value) {
@@ -12952,7 +12964,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       children: [
                                         Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
                                           FilterChip(
-                                            label: Text('Echoing Ballad1: Crit DMG + ' + (15 + weaponref * 5).toString() + '%'),
+                                            label: Text('Echoing Ballad1: Crit DMG + '.tr() + (15 + weaponref * 5).toString() + '%'),
                                             selected: true,
                                             selectedColor: Colors.tealAccent,
                                             onSelected: (bool value) {
@@ -12961,11 +12973,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ),
                                           SizedBox(height: 10),
                                           FilterChip(
-                                            label: Text('Echoing Ballad2: ' +
+                                            label: Text('Echoing Ballad2: '.tr() +
                                                 (50 + weaponref * 10).toString() +
-                                                '% chance get a 125% Physical ATK AoE DMG every ' +
+                                                '% chance get a 125% Physical ATK AoE DMG every '.tr() +
                                                 (4.5 - weaponref * 0.5).toString() +
-                                                's'),
+                                                's'.tr()),
                                             selected: true,
                                             onSelected: (bool value) {
                                               setState(() {});
@@ -12980,9 +12992,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                       children: [
                                         Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
                                           FilterChip(
-                                            label: Text('Unreturning: Charged Attack hits on weak points + 10% Movement SPD & ' +
+                                            label: Text('Unreturning: Charged Attack hits on weak points + 10% Movement SPD & '.tr() +
                                                 (27 + weaponref * 9).toString() +
-                                                '% ATK for 10s'),
+                                                '% ATK for 10s'.tr()),
                                             selected: unreturningOn,
                                             selectedColor: Colors.tealAccent,
                                             onSelected: (bool value) {
@@ -13007,7 +13019,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 title: Column(children: [
                                   Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                     SelectableText(
-                                      'Artifact',
+                                      'Artifact'.tr(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -13019,7 +13031,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 children: <Widget>[
                                   Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                     SelectableText(
-                                      'Artifact Bonus',
+                                      'Artifact Bonus'.tr(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.black,
@@ -13042,7 +13054,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (artifactsetAselect == 'blizzard' && artifactsetBselect == 'blizzard')
                                       FilterChip(
-                                        label: Text('4 set: Crit Rate +20%(cryo)'),
+                                        label: Text('${"4 set".tr()}: ${"Crit Rate".tr()} +20%(cryo)'),
                                         selectedColor: Colors.blue[300],
                                         backgroundColor: Colors.blue[200],
                                         selected: blizzardstrayer41On,
@@ -13054,7 +13066,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (artifactsetAselect == 'blizzard' && artifactsetBselect == 'blizzard')
                                       FilterChip(
-                                        label: Text('4 set: Crit Rate +20%(frozen)'),
+                                        label: Text('${"4 set".tr()}: ${"Crit Rate".tr()} +20%(${"frozen".tr()})'),
                                         selectedColor: Colors.blue[400],
                                         backgroundColor: Colors.blue[300],
                                         selected: blizzardstrayer42On,
@@ -13066,7 +13078,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (artifactsetAselect == 'troupe' || artifactsetBselect == 'troupe')
                                       FilterChip(
-                                        label: Text('2 set: em +80 '),
+                                        label: Text('${"2 set".tr()}: ${"EM".tr()} +80 '),
                                         selectedColor: Colors.green[400],
                                         backgroundColor: Colors.green[300],
                                         selected: troupesdawnlight2on,
@@ -13078,7 +13090,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (artifactsetAselect == 'troupe' && artifactsetBselect == 'troupe')
                                       FilterChip(
-                                        label: Text('4 set: Charged Atk +35% '),
+                                        label: Text('${"4 set".tr()}: ${"Charged ATK".tr()} +35% '),
                                         selectedColor: Colors.green[400],
                                         backgroundColor: Colors.green[300],
                                         selected: troupesdawnlight4on,
@@ -13090,7 +13102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (artifactsetAselect == 'royal' || artifactsetBselect == 'royal')
                                       FilterChip(
-                                        label: Text('2 set: Elemental Burst DMG +20% '),
+                                        label: Text('${"2 set".tr()}: ${"Elemental Burst DMG".tr()} +20% '),
                                         selectedColor: Colors.blue,
                                         backgroundColor: Colors.blue[200],
                                         selected: royalflora2On,
@@ -13102,7 +13114,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (artifactsetAselect == 'royal' && artifactsetBselect == 'royal')
                                       FilterChip(
-                                        label: Text('4 set: Using an Elemental Burst increases all party members\' ATK by 20% for 12s '),
+                                        label: Text(
+                                            '${"4 set".tr()}: ${"Using an Elemental Burst increases all party members' ATK by 20% for 12s".tr()}'),
                                         selectedColor: Colors.blue,
                                         backgroundColor: Colors.blue[200],
                                         selected: royalflora4On,
@@ -13114,7 +13127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (artifactsetAselect == 'gladiator' || artifactsetBselect == 'gladiator')
                                       FilterChip(
-                                        label: Text('2 set: ATK +18% '),
+                                        label: Text('${"2 set".tr()}: ${"ATK".tr()} +18% '),
                                         selectedColor: Colors.red[400],
                                         backgroundColor: Colors.red[300],
                                         selected: gladiator2On,
@@ -13126,7 +13139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (artifactsetAselect == 'gladiator' && artifactsetBselect == 'gladiator')
                                       FilterChip(
-                                        label: Text('4 set: Increase Normal Attack DMG by 35% (Using sword/claymore/poleram) '),
+                                        label: Text('${"4 set".tr()}: ${"Increase Normal Attack DMG by 35% (Using sword/claymore/poleram)".tr()}'),
                                         selectedColor: Colors.red[400],
                                         backgroundColor: Colors.red[300],
                                         selected: gladiator4On,
@@ -13138,7 +13151,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (artifactsetAselect == 'maiden' || artifactsetBselect == 'maiden')
                                       FilterChip(
-                                        label: Text('2 set: Character Healing Effectiveness +15% '),
+                                        label: Text('${"2 set".tr()}: ${"Character Healing Effectiveness +15%".tr()}'),
                                         selectedColor: Colors.grey,
                                         backgroundColor: Colors.grey,
                                         selected: maiden2On,
@@ -13146,7 +13159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (artifactsetAselect == 'maiden' && artifactsetBselect == 'maiden')
                                       FilterChip(
-                                        label: Text('4 set: Healing Received +20% '),
+                                        label: Text('${"4 set".tr()}: ${"Healing Received +20%".tr()}'),
                                         selectedColor: Colors.grey,
                                         backgroundColor: Colors.grey,
                                         selected: maiden4On,
@@ -13154,7 +13167,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (artifactsetAselect == 'thunderbird' || artifactsetBselect == 'thunderbird')
                                       FilterChip(
-                                        label: Text('2 set: Electro DMG Bonus +15% '),
+                                        label: Text('${"2 set".tr()}: ${"Electro DMG Bonus +15%".tr()}'),
                                         selectedColor: Colors.purple[400],
                                         backgroundColor: Colors.purple[300],
                                         selected: thunderbird2On,
@@ -13166,7 +13179,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (artifactsetAselect == 'thunderbird' && artifactsetBselect == 'thunderbird')
                                       FilterChip(
-                                        label: Text('4 set: Superconduct DMG  +40% '),
+                                        label: Text('${"4 set".tr()}: ${"Superconduct DMG".tr()} + 40% '),
                                         selectedColor: Colors.purple[400],
                                         backgroundColor: Colors.purple[300],
                                         selected: thunderbird4On,
@@ -13178,7 +13191,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (artifactsetAselect == 'thundersoother' || artifactsetBselect == 'thundersoother')
                                       FilterChip(
-                                        label: Text('2 set: Electro RES +40% '),
+                                        label: Text('${"2 set".tr()}: ${"Electro RES".tr()} +40% '),
                                         selectedColor: Colors.grey,
                                         backgroundColor: Colors.grey,
                                         selected: thundersoother2On,
@@ -13186,7 +13199,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     if (artifactsetAselect == 'thundersoother' && artifactsetBselect == 'thundersoother')
                                       FilterChip(
-                                        label: Text('4 set: DMG Against Opponents Affected By Electro +35% '),
+                                        label: Text('${"4 set".tr()}: ${"DMG Against Opponents Affected By Electro +35%".tr()}'),
                                         selectedColor: Color(0xFF6446E6),
                                         backgroundColor: Color(0xFF6480FF),
                                         selected: thundersoother4On,
@@ -14153,7 +14166,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 childrenPadding: EdgeInsets.all(0),
                                 title: builddamagebarwithcrit(
                                     Colors.black,
-                                    'Trail of the Qilin DMG'.tr() + ':($trailoftheqilindmgpercent)',
+                                    'Trail of the Qilin DMG'.tr() + ':($trailoftheqilindmgpercent)%',
                                     Colors.lightBlue[200],
                                     Colors.lightBlue[400],
                                     Colors.lightBlue[600],
