@@ -8291,8 +8291,9 @@ class _MyHomePageState extends State<MyHomePage> {
             //ANCHOR ----CharacterPage----
             ResponsiveGridCol(
               xs: 12,
-              md: 6,
-              lg: 3,
+              md: 12,
+              lg: 6,
+              xl: 3,
               child: Container(
                 height: heightadjust,
                 //color: Colors.lightBlue[50],
@@ -8490,10 +8491,11 @@ class _MyHomePageState extends State<MyHomePage> {
             //ANCHOR ----weapon&artifactPage----
             ResponsiveGridCol(
               xs: 12,
-              md: 6,
-              lg: 3,
+              md: 12,
+              lg: 6,
+              xl: 3,
               child: Container(
-                height: heightadjust,
+                height: (MediaQuery.of(context).size.width > 1200) ? heightadjust : null,
                 color: Colors.lightGreen[50],
                 child: Center(
                   child: SingleChildScrollView(
@@ -9757,10 +9759,11 @@ class _MyHomePageState extends State<MyHomePage> {
             //ANCHOR ----StatPage----
             ResponsiveGridCol(
               xs: 12,
-              md: 6,
-              lg: 3,
+              md: 12,
+              lg: 6,
+              xl: 3,
               child: Container(
-                height: heightadjust,
+                height: (MediaQuery.of(context).size.width > 1200) ? heightadjust : null,
                 color: Colors.yellow[50],
                 child: Center(
                   child: SingleChildScrollView(
@@ -12841,10 +12844,11 @@ class _MyHomePageState extends State<MyHomePage> {
             //ANCHOR ----DamagePage----
             ResponsiveGridCol(
               xs: 12,
-              md: 6,
-              lg: 3,
+              md: 12,
+              lg: 6,
+              xl: 3,
               child: Container(
-                height: heightadjust,
+                height: (MediaQuery.of(context).size.width > 1200) ? heightadjust : null,
                 color: Colors.red[50],
                 child: Center(
                   child: SingleChildScrollView(
