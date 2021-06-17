@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  dynamic_themes: 
   easy_localization: 
   responsive_grid:
   flutter:

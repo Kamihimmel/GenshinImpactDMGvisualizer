@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:dynamic_themes/dynamic_themes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,26 +22,35 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      title: "Genshin Damage Calculator & Visualizer",
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: "Genshin Damage Calculator & Visualizer"),
+    final themeCollection = ThemeCollection(
+      themes: {
+        //ganyu
+        0: ThemeData(primarySwatch: Colors.blue),
+        //yoimiya
+        1: ThemeData(primarySwatch: Colors.red),
+
+        2: ThemeData(primarySwatch: Colors.yellow),
+        3: ThemeData(primarySwatch: Colors.lightGreen),
+        4: ThemeData(primarySwatch: Colors.green),
+        5: ThemeData(primarySwatch: Colors.lightBlue),
+      },
+      fallbackTheme: ThemeData.light(), // optional fallback theme, default value is ThemeData.light()
     );
+
+    return DynamicTheme(
+        themeCollection: themeCollection,
+        defaultThemeId: 0, // optional, default id is 0
+        builder: (context, theme) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            title: "Genshin Damage Calculator & Visualizer",
+            theme: theme,
+            home: MyHomePage(title: "Genshin Damage Calculator & Visualizer"),
+          );
+        });
   }
 }
 
@@ -74,6 +84,22 @@ class _MyHomePageState extends State<MyHomePage> {
   int weaponref = 1;
 
   String fsub1n = 'HP%';
+
+  String currentcharacter = 'ganyu';
+  Map charactertoinfo = {
+    'ganyu': {'iconimage': AssetImage('images/ganyu.png'), 'splashimage': AssetImage('images/2021010519290354247.png'), 'element': 'cryo', 'wtype': 'bow', 'color': 0, 'en': 'Ganyu'},
+    'yoimiya': {'iconimage': AssetImage('images/yoimiya.png'), 'splashimage': AssetImage('images/yoimiyalarge.png'), 'element': 'pyro', 'wtype': 'bow', 'color': 1, 'en': 'Yoimiya'}
+  };
+
+  Map themetocharacter = {
+    0: 'ganyu',
+    1: 'yoimiya',
+  };
+
+  Map elementopng = {
+    'cryo': AssetImage('images/2020060220525531988.png'),
+    'pyro': AssetImage('images/2020031618522830538.png'),
+  };
 
   Map<int, int> cleveltoatk = {1: 26, 10: 26, 20: 68, 30: 68, 40: 135, 50: 173, 60: 217, 70: 256, 80: 295, 90: 335};
 
@@ -3331,7 +3357,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1atkpercent < 34.8) stat1atkpercent = num.parse((stat1atkpercent + 0.1).toStringAsFixed(1));
@@ -3339,7 +3365,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1atkpercent > 0) stat1atkpercent = num.parse((stat1atkpercent - 0.1).toStringAsFixed(1));
@@ -3354,8 +3380,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 34.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat1atkpercent.toString(),
                         value: stat1atkpercent.toDouble(),
                         onChanged: (value) {
@@ -3409,7 +3435,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1hppercent < 34.8) stat1hppercent = num.parse((stat1hppercent + 0.1).toStringAsFixed(1));
@@ -3417,7 +3443,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1hppercent > 0) stat1hppercent = num.parse((stat1hppercent - 0.1).toStringAsFixed(1));
@@ -3432,8 +3458,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 34.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat1hppercent.toString(),
                         value: stat1hppercent.toDouble(),
                         onChanged: (value) {
@@ -3490,7 +3516,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1defpercent < 43.8) stat1defpercent = num.parse((stat1defpercent + 0.1).toStringAsFixed(1));
@@ -3498,7 +3524,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1defpercent > 0) stat1defpercent = num.parse((stat1defpercent - 0.1).toStringAsFixed(1));
@@ -3513,8 +3539,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 43.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat1defpercent.toString(),
                         value: stat1defpercent.toDouble(),
                         onChanged: (value) {
@@ -3571,7 +3597,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1CRpercent < 23.4) stat1CRpercent = num.parse((stat1CRpercent + 0.1).toStringAsFixed(1));
@@ -3579,7 +3605,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1CRpercent > 0) stat1CRpercent = num.parse((stat1CRpercent - 0.1).toStringAsFixed(1));
@@ -3594,8 +3620,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 23.4,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat1CRpercent.toString(),
                         value: stat1CRpercent.toDouble(),
                         onChanged: (value) {
@@ -3652,7 +3678,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1CDpercent < 46.8) stat1CDpercent = num.parse((stat1CDpercent + 0.1).toStringAsFixed(1));
@@ -3660,7 +3686,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1CDpercent > 0) stat1CDpercent = num.parse((stat1CDpercent - 0.1).toStringAsFixed(1));
@@ -3675,8 +3701,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 46.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat1CDpercent.toString(),
                         value: stat1CDpercent.toDouble(),
                         onChanged: (value) {
@@ -3733,7 +3759,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1EM < 138) stat1EM = num.parse((stat1EM + 1).toStringAsFixed(0));
@@ -3741,7 +3767,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1EM > 0) stat1EM = num.parse((stat1EM - 1).toStringAsFixed(0));
@@ -3756,8 +3782,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 138,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat1EM.toString(),
                         value: stat1EM.toDouble(),
                         onChanged: (value) {
@@ -3809,7 +3835,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1ERpercent < 39) stat1ERpercent = num.parse((stat1ERpercent + 0.1).toStringAsFixed(1));
@@ -3817,7 +3843,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1ERpercent > 0) stat1ERpercent = num.parse((stat1ERpercent - 0.1).toStringAsFixed(1));
@@ -3832,8 +3858,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 39,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat1ERpercent.toString(),
                         value: stat1ERpercent.toDouble(),
                         onChanged: (value) {
@@ -3890,7 +3916,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1hp < 1794) stat1hp = num.parse((stat1hp + 1).toStringAsFixed(0));
@@ -3898,7 +3924,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1hp > 0) stat1hp = num.parse((stat1hp - 1).toStringAsFixed(0));
@@ -3913,8 +3939,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 1794,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat1hp.toString(),
                         value: stat1hp.toDouble(),
                         onChanged: (value) {
@@ -3971,7 +3997,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1atk < 114) stat1atk = num.parse((stat1atk + 1).toStringAsFixed(0));
@@ -3979,7 +4005,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1atk > 0) stat1atk = num.parse((stat1atk - 1).toStringAsFixed(0));
@@ -3994,8 +4020,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 114,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat1atk.toString(),
                         value: stat1atk.toDouble(),
                         onChanged: (value) {
@@ -4050,7 +4076,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1def < 138) stat1def = num.parse((stat1def + 1).toStringAsFixed(0));
@@ -4058,7 +4084,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat1def > 0) stat1def = num.parse((stat1def - 1).toStringAsFixed(0));
@@ -4073,8 +4099,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 138,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat1def.toString(),
                         value: stat1def.toDouble(),
                         onChanged: (value) {
@@ -4152,7 +4178,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2atkpercent < 34.8) stat2atkpercent = num.parse((stat2atkpercent + 0.1).toStringAsFixed(1));
@@ -4160,7 +4186,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2atkpercent > 0) stat2atkpercent = num.parse((stat2atkpercent - 0.1).toStringAsFixed(1));
@@ -4175,8 +4201,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 34.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat2atkpercent.toString(),
                         value: stat2atkpercent.toDouble(),
                         onChanged: (value) {
@@ -4230,7 +4256,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2hppercent < 34.8) stat2hppercent = num.parse((stat2hppercent + 0.1).toStringAsFixed(1));
@@ -4238,7 +4264,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2hppercent > 0) stat2hppercent = num.parse((stat2hppercent - 0.1).toStringAsFixed(1));
@@ -4253,8 +4279,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 34.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat2hppercent.toString(),
                         value: stat2hppercent.toDouble(),
                         onChanged: (value) {
@@ -4311,7 +4337,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2defpercent < 43.8) stat2defpercent = num.parse((stat2defpercent + 0.1).toStringAsFixed(1));
@@ -4319,7 +4345,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2defpercent > 0) stat2defpercent = num.parse((stat2defpercent - 0.1).toStringAsFixed(1));
@@ -4334,8 +4360,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 43.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat2defpercent.toString(),
                         value: stat2defpercent.toDouble(),
                         onChanged: (value) {
@@ -4392,7 +4418,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2CRpercent < 23.4) stat2CRpercent = num.parse((stat2CRpercent + 0.1).toStringAsFixed(1));
@@ -4400,7 +4426,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2CRpercent > 0) stat2CRpercent = num.parse((stat2CRpercent - 0.1).toStringAsFixed(1));
@@ -4415,8 +4441,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 23.4,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat2CRpercent.toString(),
                         value: stat2CRpercent.toDouble(),
                         onChanged: (value) {
@@ -4473,7 +4499,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2CDpercent < 46.8) stat2CDpercent = num.parse((stat2CDpercent + 0.1).toStringAsFixed(1));
@@ -4481,7 +4507,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2CDpercent > 0) stat2CDpercent = num.parse((stat2CDpercent - 0.1).toStringAsFixed(1));
@@ -4496,8 +4522,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 46.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat2CDpercent.toString(),
                         value: stat2CDpercent.toDouble(),
                         onChanged: (value) {
@@ -4554,7 +4580,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2EM < 138) stat2EM = num.parse((stat2EM + 1).toStringAsFixed(0));
@@ -4562,7 +4588,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2EM > 0) stat2EM = num.parse((stat2EM - 1).toStringAsFixed(0));
@@ -4577,8 +4603,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 138,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat2EM.toString(),
                         value: stat2EM.toDouble(),
                         onChanged: (value) {
@@ -4630,7 +4656,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2ERpercent < 39) stat2ERpercent = num.parse((stat2ERpercent + 0.1).toStringAsFixed(1));
@@ -4638,7 +4664,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2ERpercent > 0) stat2ERpercent = num.parse((stat2ERpercent - 0.1).toStringAsFixed(1));
@@ -4653,8 +4679,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 39,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat2ERpercent.toString(),
                         value: stat2ERpercent.toDouble(),
                         onChanged: (value) {
@@ -4711,7 +4737,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2hp < 1794) stat2hp = num.parse((stat2hp + 1).toStringAsFixed(0));
@@ -4719,7 +4745,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2hp > 0) stat2hp = num.parse((stat2hp - 1).toStringAsFixed(0));
@@ -4734,8 +4760,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 1794,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat2hp.toString(),
                         value: stat2hp.toDouble(),
                         onChanged: (value) {
@@ -4792,7 +4818,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2atk < 114) stat2atk = num.parse((stat2atk + 1).toStringAsFixed(0));
@@ -4800,7 +4826,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2atk > 0) stat2atk = num.parse((stat2atk - 1).toStringAsFixed(0));
@@ -4815,8 +4841,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 114,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat2atk.toString(),
                         value: stat2atk.toDouble(),
                         onChanged: (value) {
@@ -4871,7 +4897,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2def < 138) stat2def = num.parse((stat2def + 1).toStringAsFixed(0));
@@ -4879,7 +4905,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat2def > 0) stat2def = num.parse((stat2def - 1).toStringAsFixed(0));
@@ -4894,8 +4920,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 138,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat2def.toString(),
                         value: stat2def.toDouble(),
                         onChanged: (value) {
@@ -4973,7 +4999,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3atkpercent < 34.8) stat3atkpercent = num.parse((stat3atkpercent + 0.1).toStringAsFixed(1));
@@ -4981,7 +5007,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3atkpercent > 0) stat3atkpercent = num.parse((stat3atkpercent - 0.1).toStringAsFixed(1));
@@ -4996,8 +5022,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 34.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat3atkpercent.toString(),
                         value: stat3atkpercent.toDouble(),
                         onChanged: (value) {
@@ -5051,7 +5077,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3hppercent < 34.8) stat3hppercent = num.parse((stat3hppercent + 0.1).toStringAsFixed(1));
@@ -5059,7 +5085,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3hppercent > 0) stat3hppercent = num.parse((stat3hppercent - 0.1).toStringAsFixed(1));
@@ -5074,8 +5100,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 34.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat3hppercent.toString(),
                         value: stat3hppercent.toDouble(),
                         onChanged: (value) {
@@ -5132,7 +5158,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3defpercent < 43.8) stat3defpercent = num.parse((stat3defpercent + 0.1).toStringAsFixed(1));
@@ -5140,7 +5166,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3defpercent > 0) stat3defpercent = num.parse((stat3defpercent - 0.1).toStringAsFixed(1));
@@ -5155,8 +5181,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 43.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat3defpercent.toString(),
                         value: stat3defpercent.toDouble(),
                         onChanged: (value) {
@@ -5213,7 +5239,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3CRpercent < 23.4) stat3CRpercent = num.parse((stat3CRpercent + 0.1).toStringAsFixed(1));
@@ -5221,7 +5247,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3CRpercent > 0) stat3CRpercent = num.parse((stat3CRpercent - 0.1).toStringAsFixed(1));
@@ -5236,8 +5262,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 23.4,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat3CRpercent.toString(),
                         value: stat3CRpercent.toDouble(),
                         onChanged: (value) {
@@ -5294,7 +5320,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3CDpercent < 46.8) stat3CDpercent = num.parse((stat3CDpercent + 0.1).toStringAsFixed(1));
@@ -5302,7 +5328,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3CDpercent > 0) stat3CDpercent = num.parse((stat3CDpercent - 0.1).toStringAsFixed(1));
@@ -5317,8 +5343,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 46.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat3CDpercent.toString(),
                         value: stat3CDpercent.toDouble(),
                         onChanged: (value) {
@@ -5375,7 +5401,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3EM < 138) stat3EM = num.parse((stat3EM + 1).toStringAsFixed(0));
@@ -5383,7 +5409,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3EM > 0) stat3EM = num.parse((stat3EM - 1).toStringAsFixed(0));
@@ -5398,8 +5424,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 138,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat3EM.toString(),
                         value: stat3EM.toDouble(),
                         onChanged: (value) {
@@ -5451,7 +5477,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3ERpercent < 39) stat3ERpercent = num.parse((stat3ERpercent + 0.1).toStringAsFixed(1));
@@ -5459,7 +5485,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3ERpercent > 0) stat3ERpercent = num.parse((stat3ERpercent - 0.1).toStringAsFixed(1));
@@ -5474,8 +5500,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 39,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat3ERpercent.toString(),
                         value: stat3ERpercent.toDouble(),
                         onChanged: (value) {
@@ -5532,7 +5558,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3hp < 1794) stat3hp = num.parse((stat3hp + 1).toStringAsFixed(0));
@@ -5540,7 +5566,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3hp > 0) stat3hp = num.parse((stat3hp - 1).toStringAsFixed(0));
@@ -5555,8 +5581,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 1794,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat3hp.toString(),
                         value: stat3hp.toDouble(),
                         onChanged: (value) {
@@ -5613,7 +5639,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3atk < 114) stat3atk = num.parse((stat3atk + 1).toStringAsFixed(0));
@@ -5621,7 +5647,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3atk > 0) stat3atk = num.parse((stat3atk - 1).toStringAsFixed(0));
@@ -5636,8 +5662,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 114,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat3atk.toString(),
                         value: stat3atk.toDouble(),
                         onChanged: (value) {
@@ -5692,7 +5718,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3def < 138) stat3def = num.parse((stat3def + 1).toStringAsFixed(0));
@@ -5700,7 +5726,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat3def > 0) stat3def = num.parse((stat3def - 1).toStringAsFixed(0));
@@ -5715,8 +5741,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 138,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat3def.toString(),
                         value: stat3def.toDouble(),
                         onChanged: (value) {
@@ -5794,7 +5820,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4atkpercent < 34.8) stat4atkpercent = num.parse((stat4atkpercent + 0.1).toStringAsFixed(1));
@@ -5802,7 +5828,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4atkpercent > 0) stat4atkpercent = num.parse((stat4atkpercent - 0.1).toStringAsFixed(1));
@@ -5817,8 +5843,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 34.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat4atkpercent.toString(),
                         value: stat4atkpercent.toDouble(),
                         onChanged: (value) {
@@ -5872,7 +5898,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4hppercent < 34.8) stat4hppercent = num.parse((stat4hppercent + 0.1).toStringAsFixed(1));
@@ -5880,7 +5906,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4hppercent > 0) stat4hppercent = num.parse((stat4hppercent - 0.1).toStringAsFixed(1));
@@ -5895,8 +5921,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 34.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat4hppercent.toString(),
                         value: stat4hppercent.toDouble(),
                         onChanged: (value) {
@@ -5953,7 +5979,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4defpercent < 43.8) stat4defpercent = num.parse((stat4defpercent + 0.1).toStringAsFixed(1));
@@ -5961,7 +5987,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4defpercent > 0) stat4defpercent = num.parse((stat4defpercent - 0.1).toStringAsFixed(1));
@@ -5976,8 +6002,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 43.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat4defpercent.toString(),
                         value: stat4defpercent.toDouble(),
                         onChanged: (value) {
@@ -6034,7 +6060,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4CRpercent < 23.4) stat4CRpercent = num.parse((stat4CRpercent + 0.1).toStringAsFixed(1));
@@ -6042,7 +6068,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4CRpercent > 0) stat4CRpercent = num.parse((stat4CRpercent - 0.1).toStringAsFixed(1));
@@ -6057,8 +6083,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 23.4,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat4CRpercent.toString(),
                         value: stat4CRpercent.toDouble(),
                         onChanged: (value) {
@@ -6115,7 +6141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4CDpercent < 46.8) stat4CDpercent = num.parse((stat4CDpercent + 0.1).toStringAsFixed(1));
@@ -6123,7 +6149,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4CDpercent > 0) stat4CDpercent = num.parse((stat4CDpercent - 0.1).toStringAsFixed(1));
@@ -6138,8 +6164,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 46.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat4CDpercent.toString(),
                         value: stat4CDpercent.toDouble(),
                         onChanged: (value) {
@@ -6196,7 +6222,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4EM < 138) stat4EM = num.parse((stat4EM + 1).toStringAsFixed(0));
@@ -6204,7 +6230,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4EM > 0) stat4EM = num.parse((stat4EM - 1).toStringAsFixed(0));
@@ -6219,8 +6245,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 138,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat4EM.toString(),
                         value: stat4EM.toDouble(),
                         onChanged: (value) {
@@ -6272,7 +6298,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4ERpercent < 39) stat4ERpercent = num.parse((stat4ERpercent + 0.1).toStringAsFixed(1));
@@ -6280,7 +6306,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4ERpercent > 0) stat4ERpercent = num.parse((stat4ERpercent - 0.1).toStringAsFixed(1));
@@ -6295,8 +6321,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 39,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat4ERpercent.toString(),
                         value: stat4ERpercent.toDouble(),
                         onChanged: (value) {
@@ -6353,7 +6379,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4hp < 1794) stat4hp = num.parse((stat4hp + 1).toStringAsFixed(0));
@@ -6361,7 +6387,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4hp > 0) stat4hp = num.parse((stat4hp - 1).toStringAsFixed(0));
@@ -6376,8 +6402,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 1794,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat4hp.toString(),
                         value: stat4hp.toDouble(),
                         onChanged: (value) {
@@ -6434,7 +6460,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4atk < 114) stat4atk = num.parse((stat4atk + 1).toStringAsFixed(0));
@@ -6442,7 +6468,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4atk > 0) stat4atk = num.parse((stat4atk - 1).toStringAsFixed(0));
@@ -6457,8 +6483,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 114,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat4atk.toString(),
                         value: stat4atk.toDouble(),
                         onChanged: (value) {
@@ -6513,7 +6539,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4def < 138) stat4def = num.parse((stat4def + 1).toStringAsFixed(0));
@@ -6521,7 +6547,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat4def > 0) stat4def = num.parse((stat4def - 1).toStringAsFixed(0));
@@ -6536,8 +6562,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 138,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat4def.toString(),
                         value: stat4def.toDouble(),
                         onChanged: (value) {
@@ -6615,7 +6641,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5atkpercent < 34.8) stat5atkpercent = num.parse((stat5atkpercent + 0.1).toStringAsFixed(1));
@@ -6623,7 +6649,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5atkpercent > 0) stat5atkpercent = num.parse((stat5atkpercent - 0.1).toStringAsFixed(1));
@@ -6638,8 +6664,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 34.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat5atkpercent.toString(),
                         value: stat5atkpercent.toDouble(),
                         onChanged: (value) {
@@ -6693,7 +6719,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5hppercent < 34.8) stat5hppercent = num.parse((stat5hppercent + 0.1).toStringAsFixed(1));
@@ -6701,7 +6727,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5hppercent > 0) stat5hppercent = num.parse((stat5hppercent - 0.1).toStringAsFixed(1));
@@ -6716,8 +6742,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 34.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat5hppercent.toString(),
                         value: stat5hppercent.toDouble(),
                         onChanged: (value) {
@@ -6774,7 +6800,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5defpercent < 43.8) stat5defpercent = num.parse((stat5defpercent + 0.1).toStringAsFixed(1));
@@ -6782,7 +6808,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5defpercent > 0) stat5defpercent = num.parse((stat5defpercent - 0.1).toStringAsFixed(1));
@@ -6797,8 +6823,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 43.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat5defpercent.toString(),
                         value: stat5defpercent.toDouble(),
                         onChanged: (value) {
@@ -6855,7 +6881,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5CRpercent < 23.4) stat5CRpercent = num.parse((stat5CRpercent + 0.1).toStringAsFixed(1));
@@ -6863,7 +6889,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5CRpercent > 0) stat5CRpercent = num.parse((stat5CRpercent - 0.1).toStringAsFixed(1));
@@ -6878,8 +6904,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 23.4,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat5CRpercent.toString(),
                         value: stat5CRpercent.toDouble(),
                         onChanged: (value) {
@@ -6936,7 +6962,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5CDpercent < 46.8) stat5CDpercent = num.parse((stat5CDpercent + 0.1).toStringAsFixed(1));
@@ -6944,7 +6970,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5CDpercent > 0) stat5CDpercent = num.parse((stat5CDpercent - 0.1).toStringAsFixed(1));
@@ -6959,8 +6985,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 46.8,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat5CDpercent.toString(),
                         value: stat5CDpercent.toDouble(),
                         onChanged: (value) {
@@ -7017,7 +7043,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5EM < 138) stat5EM = num.parse((stat5EM + 1).toStringAsFixed(0));
@@ -7025,7 +7051,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5EM > 0) stat5EM = num.parse((stat5EM - 1).toStringAsFixed(0));
@@ -7040,8 +7066,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 138,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat5EM.toString(),
                         value: stat5EM.toDouble(),
                         onChanged: (value) {
@@ -7093,7 +7119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5ERpercent < 39) stat5ERpercent = num.parse((stat5ERpercent + 0.1).toStringAsFixed(1));
@@ -7101,7 +7127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5ERpercent > 0) stat5ERpercent = num.parse((stat5ERpercent - 0.1).toStringAsFixed(1));
@@ -7116,8 +7142,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 39,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat5ERpercent.toString(),
                         value: stat5ERpercent.toDouble(),
                         onChanged: (value) {
@@ -7174,7 +7200,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5hp < 1794) stat5hp = num.parse((stat5hp + 1).toStringAsFixed(0));
@@ -7182,7 +7208,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5hp > 0) stat5hp = num.parse((stat5hp - 1).toStringAsFixed(0));
@@ -7197,8 +7223,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 1794,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat5hp.toString(),
                         value: stat5hp.toDouble(),
                         onChanged: (value) {
@@ -7255,7 +7281,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5atk < 114) stat5atk = num.parse((stat5atk + 1).toStringAsFixed(0));
@@ -7263,7 +7289,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5atk > 0) stat5atk = num.parse((stat5atk - 1).toStringAsFixed(0));
@@ -7278,8 +7304,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 114,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat5atk.toString(),
                         value: stat5atk.toDouble(),
                         onChanged: (value) {
@@ -7334,7 +7360,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5def < 138) stat5def = num.parse((stat5def + 1).toStringAsFixed(0));
@@ -7342,7 +7368,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Colors.blue),
+                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
                                       if (stat5def > 0) stat5def = num.parse((stat5def - 1).toStringAsFixed(0));
@@ -7357,8 +7383,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       title: Slider(
                         min: 0,
                         max: 138,
-                        activeColor: Colors.lightBlue,
-                        inactiveColor: Colors.lightBlue[50],
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveColor: Theme.of(context).primaryColorLight,
                         label: stat5def.toString(),
                         value: stat5def.toDouble(),
                         onChanged: (value) {
@@ -7405,6 +7431,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+
+    currentcharacter = themetocharacter[DynamicTheme.of(context).themeId];
 
     //bonusNormalATK
     bonusNormalATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) as double;
@@ -8222,14 +8250,44 @@ class _MyHomePageState extends State<MyHomePage> {
               currentAccountPicture: CircleAvatar(
                 // radius: 72.0,
                 backgroundColor: Colors.white,
-                backgroundImage: AssetImage('images/ganyu.png'),
+                backgroundImage: charactertoinfo[currentcharacter]['iconimage'],
               ),
               accountName: new Container(
                   child: Text(
-                "ganyu".tr(),
+                currentcharacter.tr(),
                 style: TextStyle(color: Colors.white),
               )),
-              accountEmail: Text("Ganyu"),
+              accountEmail: Text(charactertoinfo[currentcharacter]['en']),
+            ),
+            ListTile(
+                title: Text(
+                  "character".tr(),
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                dense: true,
+                tileColor: Colors.grey[400]),
+            ListTile(
+              title: Text('ganyu').tr(),
+              onTap: () {
+                setState(() {
+                  currentcharacter = 'ganyu';
+                  DynamicTheme.of(context).setTheme(0);
+                });
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: Text('yoimiya').tr(),
+              onTap: () {
+                // Update the state of the app.
+                setState(() {
+                  currentcharacter = 'yoimiya';
+                  DynamicTheme.of(context).setTheme(1);
+                });
+
+                // ...
+              },
             ),
             ListTile(
                 title: Text(
@@ -8272,10 +8330,10 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 1), borderRadius: BorderRadius.all(Radius.circular(10))),
               child: Center(
                 child: Text(
-                  "ver " + "ganyu".tr() + " 0.9",
+                  "ver " + currentcharacter.tr() + " 0.9",
                   style: TextStyle(
                     //fontWeight: FontWeight.bold,
-                    color: Colors.blue,
+                    color: Theme.of(context).primaryColor,
                     fontSize: 15,
                   ),
                 ),
@@ -8298,9 +8356,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: heightadjust,
                 //color: Colors.lightBlue[50],
                 decoration: BoxDecoration(
-                  color: Colors.lightBlue[50],
+                  color: Theme.of(context).primaryColorLight,
                   image: DecorationImage(
-                    image: AssetImage('images/2021010519290354247.png'),
+                    image: charactertoinfo[currentcharacter]['splashimage'],
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -8316,11 +8374,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Image(
-                              image: AssetImage('images/2020060220525531988.png'),
+                              image: elementopng[charactertoinfo[currentcharacter]['element']],
                               height: 100,
                             ),
                             SelectableText(
-                              "ganyu".tr(),
+                              currentcharacter.tr(),
                               style: TextStyle(
                                 //fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -8356,8 +8414,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   min: 1,
                                   max: 90,
                                   divisions: 9,
-                                  activeColor: Colors.lightBlue,
-                                  inactiveColor: Colors.lightBlue[50],
+                                  activeColor: Theme.of(context).primaryColor,
+                                  inactiveColor: Theme.of(context).primaryColorLight,
                                   label: level.toString(),
                                   value: level.toDouble(),
                                   onChanged: (value) {
@@ -8384,8 +8442,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   min: 1,
                                   max: 15,
                                   divisions: 14,
-                                  activeColor: Colors.lightBlue,
-                                  inactiveColor: Colors.lightBlue[50],
+                                  activeColor: Theme.of(context).primaryColor,
+                                  inactiveColor: Theme.of(context).primaryColorLight,
                                   label: natklv.toString(),
                                   value: natklv.toDouble(),
                                   onChanged: (value) {
@@ -8412,8 +8470,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   min: 1,
                                   max: 15,
                                   divisions: 14,
-                                  activeColor: Colors.lightBlue,
-                                  inactiveColor: Colors.lightBlue[50],
+                                  activeColor: Theme.of(context).primaryColor,
+                                  inactiveColor: Theme.of(context).primaryColorLight,
                                   label: eskilllv.toString(),
                                   value: eskilllv.toDouble(),
                                   onChanged: (value) {
@@ -8440,8 +8498,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   min: 1,
                                   max: 15,
                                   divisions: 14,
-                                  activeColor: Colors.lightBlue,
-                                  inactiveColor: Colors.lightBlue[50],
+                                  activeColor: Theme.of(context).primaryColor,
+                                  inactiveColor: Theme.of(context).primaryColorLight,
                                   label: eburstlv.toString(),
                                   value: eburstlv.toDouble(),
                                   onChanged: (value) {
@@ -8468,8 +8526,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   min: 0,
                                   max: 6,
                                   divisions: 6,
-                                  activeColor: Colors.lightBlue,
-                                  inactiveColor: Colors.lightBlue[50],
+                                  activeColor: Theme.of(context).primaryColor,
+                                  inactiveColor: Theme.of(context).primaryColorLight,
                                   label: cons.toString(),
                                   value: cons.toDouble(),
                                   onChanged: (value) {
@@ -8550,8 +8608,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     min: 1,
                                     max: 90,
                                     divisions: 18,
-                                    activeColor: Colors.lightBlue,
-                                    inactiveColor: Colors.lightBlue[50],
+                                    activeColor: Theme.of(context).primaryColor,
+                                    inactiveColor: Theme.of(context).primaryColorLight,
                                     label: weaponlv.toString(),
                                     value: weaponlv.toDouble(),
                                     onChanged: (value) {
@@ -8578,8 +8636,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     min: 1,
                                     max: 5,
                                     divisions: 4,
-                                    activeColor: Colors.lightBlue,
-                                    inactiveColor: Colors.lightBlue[50],
+                                    activeColor: Theme.of(context).primaryColor,
+                                    inactiveColor: Theme.of(context).primaryColorLight,
                                     label: weaponref.toString(),
                                     value: weaponref.toDouble(),
                                     onChanged: (value) {
@@ -8758,8 +8816,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               min: 4,
                                               max: 5,
                                               divisions: 1,
-                                              activeColor: Colors.lightBlue,
-                                              inactiveColor: Colors.lightBlue[50],
+                                              activeColor: Theme.of(context).primaryColor,
+                                              inactiveColor: Theme.of(context).primaryColorLight,
                                               label: fstar.toString(),
                                               value: fstar.toDouble(),
                                               onChanged: (value) {
@@ -8789,8 +8847,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               min: 1,
                                               max: 20,
                                               divisions: 5,
-                                              activeColor: Colors.lightBlue,
-                                              inactiveColor: Colors.lightBlue[50],
+                                              activeColor: Theme.of(context).primaryColor,
+                                              inactiveColor: Theme.of(context).primaryColorLight,
                                               label: flv.toString(),
                                               value: flv.toDouble(),
                                               onChanged: (value) {
@@ -8942,8 +9000,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               min: 4,
                                               max: 5,
                                               divisions: 1,
-                                              activeColor: Colors.lightBlue,
-                                              inactiveColor: Colors.lightBlue[50],
+                                              activeColor: Theme.of(context).primaryColor,
+                                              inactiveColor: Theme.of(context).primaryColorLight,
                                               label: pstar.toString(),
                                               value: pstar.toDouble(),
                                               onChanged: (value) {
@@ -8973,8 +9031,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               min: 1,
                                               max: 20,
                                               divisions: 5,
-                                              activeColor: Colors.lightBlue,
-                                              inactiveColor: Colors.lightBlue[50],
+                                              activeColor: Theme.of(context).primaryColor,
+                                              inactiveColor: Theme.of(context).primaryColorLight,
                                               label: plv.toString(),
                                               value: plv.toDouble(),
                                               onChanged: (value) {
@@ -9159,8 +9217,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               min: 4,
                                               max: 5,
                                               divisions: 1,
-                                              activeColor: Colors.lightBlue,
-                                              inactiveColor: Colors.lightBlue[50],
+                                              activeColor: Theme.of(context).primaryColor,
+                                              inactiveColor: Theme.of(context).primaryColorLight,
                                               label: sstar.toString(),
                                               value: sstar.toDouble(),
                                               onChanged: (value) {
@@ -9190,8 +9248,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               min: 1,
                                               max: 20,
                                               divisions: 5,
-                                              activeColor: Colors.lightBlue,
-                                              inactiveColor: Colors.lightBlue[50],
+                                              activeColor: Theme.of(context).primaryColor,
+                                              inactiveColor: Theme.of(context).primaryColorLight,
                                               label: slv.toString(),
                                               value: slv.toDouble(),
                                               onChanged: (value) {
@@ -9412,8 +9470,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               min: 4,
                                               max: 5,
                                               divisions: 1,
-                                              activeColor: Colors.lightBlue,
-                                              inactiveColor: Colors.lightBlue[50],
+                                              activeColor: Theme.of(context).primaryColor,
+                                              inactiveColor: Theme.of(context).primaryColorLight,
                                               label: gstar.toString(),
                                               value: gstar.toDouble(),
                                               onChanged: (value) {
@@ -9443,8 +9501,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               min: 1,
                                               max: 20,
                                               divisions: 5,
-                                              activeColor: Colors.lightBlue,
-                                              inactiveColor: Colors.lightBlue[50],
+                                              activeColor: Theme.of(context).primaryColor,
+                                              inactiveColor: Theme.of(context).primaryColorLight,
                                               label: glv.toString(),
                                               value: glv.toDouble(),
                                               onChanged: (value) {
@@ -9641,8 +9699,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               min: 4,
                                               max: 5,
                                               divisions: 1,
-                                              activeColor: Colors.lightBlue,
-                                              inactiveColor: Colors.lightBlue[50],
+                                              activeColor: Theme.of(context).primaryColor,
+                                              inactiveColor: Theme.of(context).primaryColorLight,
                                               label: cstar.toString(),
                                               value: cstar.toDouble(),
                                               onChanged: (value) {
@@ -9672,8 +9730,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               min: 1,
                                               max: 20,
                                               divisions: 5,
-                                              activeColor: Colors.lightBlue,
-                                              inactiveColor: Colors.lightBlue[50],
+                                              activeColor: Theme.of(context).primaryColor,
+                                              inactiveColor: Theme.of(context).primaryColorLight,
                                               label: clv.toString(),
                                               value: clv.toDouble(),
                                               onChanged: (value) {
@@ -11627,8 +11685,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Slider(
                                     min: 1,
                                     max: 100,
-                                    activeColor: Colors.lightBlue,
-                                    inactiveColor: Colors.lightBlue[50],
+                                    activeColor: Theme.of(context).primaryColor,
+                                    inactiveColor: Theme.of(context).primaryColorLight,
                                     label: enemylv.toString(),
                                     value: enemylv.toDouble(),
                                     onChanged: (value) {
@@ -11653,8 +11711,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Slider(
                                     min: 0,
                                     max: 100,
-                                    activeColor: Colors.lightBlue,
-                                    inactiveColor: Colors.lightBlue[50],
+                                    activeColor: Theme.of(context).primaryColor,
+                                    inactiveColor: Theme.of(context).primaryColorLight,
                                     label: enemydefdebuff.toString(),
                                     value: enemydefdebuff.toDouble(),
                                     onChanged: (value) {
