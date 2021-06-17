@@ -120,7 +120,27 @@ class _MyHomePageState extends State<MyHomePage> {
   Map<int, double> cleveltoGeoDMGpercent = {};
   double levelGeoDMGpercent = 0;
 
-  Map<int, int> weapontoatk = {1: 46, 5: 62, 10: 82, 15: 102, 20: 122, 25: 173, 30: 194, 35: 214, 40: 235, 45: 287, 50: 308, 55: 361, 60: 382, 65: 435, 70: 457, 75: 510, 80: 532, 85: 586, 90: 608};
+  Map<int, int> weapontoatk = {
+    1: 46,
+    5: 62,
+    10: 82,
+    15: 102,
+    20: 122,
+    25: 173,
+    30: 194,
+    35: 214,
+    40: 235,
+    45: 287,
+    50: 308,
+    55: 361,
+    60: 382,
+    65: 435,
+    70: 457,
+    75: 510,
+    80: 532,
+    85: 586,
+    90: 608
+  };
 
   Map<int, double> weapontoatkpercent = {
     1: 10.8,
@@ -713,7 +733,16 @@ class _MyHomePageState extends State<MyHomePage> {
     1: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //1 -> Hilichurl
     2: {'physical': 70, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //2 -> Ruin Guard
     3: {'physical': -20, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //3 -> Treasure Hoarder
-    4: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 999, 'cryo': 999, 'geo': 10}, //4 -> Andrius, Dominator of Wolves
+    4: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 999,
+      'cryo': 999,
+      'geo': 10
+    }, //4 -> Andrius, Dominator of Wolves
     5: {'physical': 10, 'pyro': 999, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //5 -> Pyro Slime
     6: {'physical': 10, 'pyro': 10, 'hydro': 999, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //6 -> Hydro Slime
     7: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 999, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //7 -> Dendro Slime
@@ -734,7 +763,16 @@ class _MyHomePageState extends State<MyHomePage> {
     22: {'physical': 10, 'pyro': 50, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //22-> Pyro Flower(Stunned)
     23: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 50, 'geo': 10}, //23-> Cryo Flower(Stunned)
     24: {'physical': -20, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //24-> Fatui Skirmisher
-    25: {'physical': 80, 'pyro': 110, 'hydro': 110, 'dendro': 110, 'electro': 110, 'anemo': 110, 'cryo': 110, 'geo': 110}, //25-> Fatui Skirmisher(Shielded)
+    25: {
+      'physical': 80,
+      'pyro': 110,
+      'hydro': 110,
+      'dendro': 110,
+      'electro': 110,
+      'anemo': 110,
+      'cryo': 110,
+      'geo': 110
+    }, //25-> Fatui Skirmisher(Shielded)
     26: {'physical': -20, 'pyro': 50, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //26-> Fatui Pyro Agent
     27: {'physical': -20, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 50, 'anemo': 10, 'cryo': 10, 'geo': 10}, //27-> Fatui Electro Cincin Mage
     28: {'physical': 30, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 50}, //28-> Geovishap Hatchling
@@ -1373,7 +1411,27 @@ class _MyHomePageState extends State<MyHomePage> {
     if (weaponselect == "amos") {
       strongWilled1On = true;
       strongWilled2On = true;
-      weapontoatk = {1: 46, 5: 62, 10: 82, 15: 102, 20: 122, 25: 173, 30: 194, 35: 214, 40: 235, 45: 287, 50: 308, 55: 361, 60: 382, 65: 435, 70: 457, 75: 510, 80: 532, 85: 586, 90: 608};
+      weapontoatk = {
+        1: 46,
+        5: 62,
+        10: 82,
+        15: 102,
+        20: 122,
+        25: 173,
+        30: 194,
+        35: 214,
+        40: 235,
+        45: 287,
+        50: 308,
+        55: 361,
+        60: 382,
+        65: 435,
+        70: 457,
+        75: 510,
+        80: 532,
+        85: 586,
+        90: 608
+      };
       weapontoatkpercent = {
         1: 10.8,
         5: 12.5,
@@ -1402,7 +1460,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (weaponselect == "skywardharp") {
       echoingBalladOn = true;
-      weapontoatk = {1: 48, 5: 65, 10: 87, 15: 110, 20: 133, 25: 188, 30: 212, 35: 236, 40: 261, 45: 316, 50: 341, 55: 398, 60: 423, 65: 480, 70: 506, 75: 563, 80: 590, 85: 648, 90: 674};
+      weapontoatk = {
+        1: 48,
+        5: 65,
+        10: 87,
+        15: 110,
+        20: 133,
+        25: 188,
+        30: 212,
+        35: 236,
+        40: 261,
+        45: 316,
+        50: 341,
+        55: 398,
+        60: 423,
+        65: 480,
+        70: 506,
+        75: 563,
+        80: 590,
+        85: 648,
+        90: 674
+      };
       weapontoCRpercent = {
         1: 4.8,
         5: 5.6,
@@ -1430,7 +1508,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (weaponselect == "prototypecrescent") {
       unreturningOn = true;
-      weapontoatk = {1: 42, 5: 56, 10: 74, 15: 91, 20: 109, 25: 152, 30: 170, 35: 187, 40: 205, 45: 248, 50: 266, 55: 306, 60: 327, 65: 370, 70: 388, 75: 431, 80: 449, 85: 492, 90: 510};
+      weapontoatk = {
+        1: 42,
+        5: 56,
+        10: 74,
+        15: 91,
+        20: 109,
+        25: 152,
+        30: 170,
+        35: 187,
+        40: 205,
+        45: 248,
+        50: 266,
+        55: 306,
+        60: 327,
+        65: 370,
+        70: 388,
+        75: 431,
+        80: 449,
+        85: 492,
+        90: 510
+      };
       weapontoatkpercent = {
         1: 9,
         5: 10.5,
@@ -7435,18 +7533,24 @@ class _MyHomePageState extends State<MyHomePage> {
     currentcharacter = themetocharacter[DynamicTheme.of(context).themeId];
 
     //bonusNormalATK
-    bonusNormalATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) as double;
+    bonusNormalATKDMGpercent =
+        (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) as double;
     //bonusChargedATK
-    bonusChargedATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) + (troupesdawnlight4on ? 35 : 0) as double;
+    bonusChargedATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) +
+        (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) +
+        (troupesdawnlight4on ? 35 : 0) as double;
 //bonusBurstATK
     bonusBurstDMGpercent = (royalflora2On ? 20 : 0) as double;
 //bonusDMG
     bonusDMGpercent = (monaqOn ? monaqlvtoratio[monaqlv] : 0) + (thundersoother4On ? 35 : 0) + (manualDMGpercentOn ? manualDMGpercent : 0) as double;
 
     if (strongWilled2Times <= 3) {
-      bloomBonusChargedATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * (strongWilled2Times + 2) : 0) + (troupesdawnlight4on ? 35 : 0) as double;
+      bloomBonusChargedATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) +
+          (strongWilled2On ? (6 + weaponref * 2) * (strongWilled2Times + 2) : 0) +
+          (troupesdawnlight4on ? 35 : 0) as double;
     } else {
-      bloomBonusChargedATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * 5 : 0) + (troupesdawnlight4on ? 35 : 0) as double;
+      bloomBonusChargedATKDMGpercent =
+          (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * 5 : 0) + (troupesdawnlight4on ? 35 : 0) as double;
     }
 
     //ATK params
@@ -8221,8 +8325,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
-    echoingballaddmgnc =
-        allatk * (125 / 100) * (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) * (100 + level) / ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) * enemyPhysicalres;
+    echoingballaddmgnc = allatk *
+        (125 / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPhysicalres;
 
     echoingballaddmgexp = allatk *
         (125 / 100) *
