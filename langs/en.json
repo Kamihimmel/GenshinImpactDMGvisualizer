@@ -1,5 +1,6 @@
 {
     "title": "Genshin Damage Calculator & Visualizer",
+    "yoimiya": "yoimiya",
     "ganyu": "ganyu",
     "Character": "Character",
     "character": "character",
@@ -236,5 +237,11 @@
     "Bonus Crit Damage": "Bonus Crit Damage",
     "Bonus EM": "Bonus EM",
     "RES debuff": "RES debuff",
-    "Enemy Res Decrease": "Enemy Res Decrease"
+    "Enemy Res Decrease": "Enemy Res Decrease",
+    "Tricks of the Trouble-Maker:2% pryo per stack": "Tricks of the Trouble-Maker:2% pryo per stack",
+    "Tricks of the Trouble-Maker": "Tricks of the Trouble-Maker",
+    "Summer Scorch: 1% pyro per stack": "Summer Scorch: 1% pyro per stack",
+    "Summer Scorch": "Summer Scorch",
+    "A Procession of Bonfires: Pyro DMG +25%": "A Procession of Bonfires: Pyro DMG +25%",
+    "A Procession of Bonfires": "A Procession of Bonfires"
 }
