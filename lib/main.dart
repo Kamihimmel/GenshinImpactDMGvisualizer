@@ -1796,6 +1796,9 @@ class _MyHomePageState extends State<MyHomePage> {
   double vaporizeDMGpercent = 0;
   double meltDMGpercent = 0;
 
+  double basicmeltpercent = 0;
+  double basicsuperconductpercent = 0;
+
   double overloadDMG = 0;
   double superconductDMG = 0;
   double electrochargedDMG = 0;
@@ -9216,47 +9219,47 @@ class _MyHomePageState extends State<MyHomePage> {
         break;
     }
 
-    superconductDMGpercent = (1 +
-            (16 * allEM / (allEM + 2000)) +
-            (thunderbird4On == true ? 0.4 : 0)) *
-        100;
+    basicmeltpercent = (1 * 25 * allEM) / (9 * (allEM + 1400));
+    basicsuperconductpercent = (16 * allEM / (allEM + 2000));
+
+    superconductDMGpercent =
+        (1 + basicsuperconductpercent + (thunderbird4On == true ? 0.4 : 0)) *
+            100;
     superconductDMG = electroReactionBaseBYlv[level] *
         1 *
         superconductDMGpercent /
         100 *
         enemyCryores;
 
-    overloadDMGpercent = (1 +
-            (16 * allEM / (allEM + 2000)) +
-            (thunderbird4On == true ? 0.4 : 0)) *
-        100;
+    overloadDMGpercent =
+        (1 + basicsuperconductpercent + (thunderbird4On == true ? 0.4 : 0)) *
+            100;
     overloadDMG = electroReactionBaseBYlv[level] *
         4 *
         overloadDMGpercent /
         100 *
         enemyPyrores;
 
-    electrochargedDMGpercent = (1 +
-            (16 * allEM / (allEM + 2000)) +
-            (thunderbird4On == true ? 0.4 : 0)) *
-        100;
+    electrochargedDMGpercent =
+        (1 + basicsuperconductpercent + (thunderbird4On == true ? 0.4 : 0)) *
+            100;
     electrochargedDMG = electroReactionBaseBYlv[level] *
         2.4 *
         electrochargedDMGpercent /
         100 *
         enemyElectrores;
 
-    shatteredDMGpercent = (1 + (16 * allEM / (allEM + 2000))) * 100;
+    shatteredDMGpercent = (1 + basicsuperconductpercent) * 100;
     shatteredDMG = electroReactionBaseBYlv[level] *
         3 *
         shatteredDMGpercent /
         100 *
         enemyPhysicalres;
 
-    vaporizeDMGpercent = 100 * (1 + (1 * 25 * allEM) / (9 * (allEM + 1400)));
-    meltDMGpercent = 100 * (1 + (1 * 25 * allEM) / (9 * (allEM + 1400)));
+    vaporizeDMGpercent = 100 * (1 + basicmeltpercent);
+    meltDMGpercent = 100 * (1 + basicmeltpercent);
 
-    swirlDMGpercent = (1 + (16 * allEM / (allEM + 2000))) * 100;
+    swirlDMGpercent = (1 + basicsuperconductpercent) * 100;
     swirlDMGonHydro = electroReactionBaseBYlv[level] *
         1.2 *
         swirlDMGpercent /
@@ -13916,13 +13919,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           buildStatRow(
                                               Colors.amber[400],
                                               'EM'.tr(),
-                                              (((1 *
-                                                          25 *
-                                                          allEM /
-                                                          (9 *
-                                                              (allEM +
-                                                                  1400)))) *
-                                                      100)
+                                              (basicmeltpercent * 100)
                                                   .toStringAsFixed(1)),
                                       ],
                                     ),
@@ -13932,13 +13929,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           MainAxisAlignment.start,
                                       children: [
                                         if (allEM != 0)
-                                          buildstatbarpercent(
-                                              Colors.amber[400],
-                                              (((1 *
-                                                      25 *
-                                                      allEM /
-                                                      (9 * (allEM + 1400)))) *
-                                                  100)),
+                                          buildstatbarpercent(Colors.amber[400],
+                                              (basicmeltpercent * 100)),
                                       ],
                                     ),
                                     //ANCHOR Melt Damage Title
@@ -13959,13 +13951,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           buildStatRow(
                                               Colors.amber[400],
                                               'EM'.tr(),
-                                              (((1 *
-                                                          25 *
-                                                          allEM /
-                                                          (9 *
-                                                              (allEM +
-                                                                  1400)))) *
-                                                      100)
+                                              ((basicmeltpercent) * 100)
                                                   .toStringAsFixed(1)),
                                       ],
                                     ),
@@ -13975,13 +13961,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           MainAxisAlignment.start,
                                       children: [
                                         if (allEM != 0)
-                                          buildstatbarpercent(
-                                              Colors.amber[400],
-                                              (((1 *
-                                                      25 *
-                                                      allEM /
-                                                      (9 * (allEM + 1400)))) *
-                                                  100)),
+                                          buildstatbarpercent(Colors.amber[400],
+                                              (basicmeltpercent * 100)),
                                       ],
                                     ),
 
@@ -14003,13 +13984,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           buildStatRow(
                                               Colors.amber[400],
                                               'EM'.tr(),
-                                              (((2.4 *
-                                                          25 *
-                                                          allEM /
-                                                          (9 *
-                                                              (allEM +
-                                                                  1400)))) *
-                                                      100)
+                                              (basicsuperconductpercent * 100)
                                                   .toStringAsFixed(1)),
                                         if (thunderbird4On)
                                           buildStatRow(
@@ -14024,13 +13999,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           MainAxisAlignment.start,
                                       children: [
                                         if (allEM != 0)
-                                          buildstatbarpercent(
-                                              Colors.amber[400],
-                                              (((2.4 *
-                                                      25 *
-                                                      allEM /
-                                                      (9 * (allEM + 1400)))) *
-                                                  100)),
+                                          buildstatbarpercent(Colors.amber[400],
+                                              (basicsuperconductpercent * 100)),
                                         if (thunderbird4On)
                                           buildstatbarpercent(
                                               Colors.purple[400], 40),
@@ -14054,13 +14024,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           buildStatRow(
                                               Colors.amber[400],
                                               'EM'.tr(),
-                                              (((2.4 *
-                                                          25 *
-                                                          allEM /
-                                                          (9 *
-                                                              (allEM +
-                                                                  1400)))) *
-                                                      100)
+                                              (basicsuperconductpercent * 100)
                                                   .toStringAsFixed(1)),
                                         if (thunderbird4On)
                                           buildStatRow(
@@ -14075,13 +14039,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           MainAxisAlignment.start,
                                       children: [
                                         if (allEM != 0)
-                                          buildstatbarpercent(
-                                              Colors.amber[400],
-                                              (((2.4 *
-                                                      25 *
-                                                      allEM /
-                                                      (9 * (allEM + 1400)))) *
-                                                  100)),
+                                          buildstatbarpercent(Colors.amber[400],
+                                              (basicsuperconductpercent * 100)),
                                         if (thunderbird4On)
                                           buildstatbarpercent(
                                               Colors.purple[400], 40),
@@ -14105,13 +14064,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           buildStatRow(
                                               Colors.amber[400],
                                               'EM'.tr(),
-                                              (((2.4 *
-                                                          25 *
-                                                          allEM /
-                                                          (9 *
-                                                              (allEM +
-                                                                  1400)))) *
-                                                      100)
+                                              (basicsuperconductpercent * 100)
                                                   .toStringAsFixed(1)),
                                         if (thunderbird4On)
                                           buildStatRow(
@@ -14126,13 +14079,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           MainAxisAlignment.start,
                                       children: [
                                         if (allEM != 0)
-                                          buildstatbarpercent(
-                                              Colors.amber[400],
-                                              (((2.4 *
-                                                      25 *
-                                                      allEM /
-                                                      (9 * (allEM + 1400)))) *
-                                                  100)),
+                                          buildstatbarpercent(Colors.amber[400],
+                                              (basicsuperconductpercent * 100)),
                                         if (thunderbird4On)
                                           buildstatbarpercent(
                                               Colors.purple[400], 40),
@@ -14156,13 +14104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           buildStatRow(
                                               Colors.amber[400],
                                               'EM'.tr(),
-                                              (((2.4 *
-                                                          25 *
-                                                          allEM /
-                                                          (9 *
-                                                              (allEM +
-                                                                  1400)))) *
-                                                      100)
+                                              (basicsuperconductpercent * 100)
                                                   .toStringAsFixed(1)),
                                       ],
                                     ),
@@ -14172,13 +14114,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           MainAxisAlignment.start,
                                       children: [
                                         if (allEM != 0)
-                                          buildstatbarpercent(
-                                              Colors.amber[400],
-                                              (((2.4 *
-                                                      25 *
-                                                      allEM /
-                                                      (9 * (allEM + 1400)))) *
-                                                  100)),
+                                          buildstatbarpercent(Colors.amber[400],
+                                              (basicsuperconductpercent * 100)),
                                       ],
                                     ),
                                     //ANCHOR Swirl Damage Title
@@ -14199,13 +14136,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           buildStatRow(
                                               Colors.amber[400],
                                               'EM'.tr(),
-                                              (((2.4 *
-                                                          25 *
-                                                          allEM /
-                                                          (9 *
-                                                              (allEM +
-                                                                  1400)))) *
-                                                      100)
+                                              (basicsuperconductpercent * 100)
                                                   .toStringAsFixed(1)),
                                       ],
                                     ),
@@ -14215,13 +14146,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           MainAxisAlignment.start,
                                       children: [
                                         if (allEM != 0)
-                                          buildstatbarpercent(
-                                              Colors.amber[400],
-                                              (((2.4 *
-                                                      25 *
-                                                      allEM /
-                                                      (9 * (allEM + 1400)))) *
-                                                  100)),
+                                          buildstatbarpercent(Colors.amber[400],
+                                              (basicsuperconductpercent * 100)),
                                       ],
                                     ),
                                   ],
@@ -16526,16 +16452,17 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               //ANCHOR Kindling Arrow
                               if (currentcharacter == 'yoimiya')
-                                builddamagebarwithcrit(
-                                    Colors.black,
-                                    'Kindling Arrow'.tr() +
-                                        ':($kindlingdmgpercent% × 3)',
-                                    Colors.red[200],
-                                    Colors.red[400],
-                                    Colors.red[600],
-                                    kindlingarrowdmgnc,
-                                    kindlingarrowdmgexp,
-                                    kindlingarrowdmgc),
+                                SizedBox(height: 10),
+                              builddamagebarwithcrit(
+                                  Colors.black,
+                                  'Kindling Arrow'.tr() +
+                                      ':($kindlingdmgpercent% × 3)',
+                                  Colors.red[200],
+                                  Colors.red[400],
+                                  Colors.red[600],
+                                  kindlingarrowdmgnc,
+                                  kindlingarrowdmgexp,
+                                  kindlingarrowdmgc),
                               //ANCHOR Frostflake Arrow
                               if (currentcharacter == 'ganyu')
                                 ExpansionTile(
