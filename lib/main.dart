@@ -347,6 +347,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   double bonusNormalATKDMGpercent = 0;
   double bonusChargedATKDMGpercent = 0;
+  double bonusPlungeATKDMGpercent = 0;
   double bloomBonusChargedATKDMGpercent = 0;
   double bonusPhysicalDMGpercent = 0;
   double bonusPyroDMGpercent = 0;
@@ -408,7 +409,8 @@ class _MyHomePageState extends State<MyHomePage> {
     'gladiator': AssetImage('images/Item_Gladiator_Nostalgia.png'),
     'maiden': AssetImage('images/Item_Maiden\'s_Distant_Love.png'),
     'thunderbird': AssetImage('images/Item_Thunderbird\'s_Mercy.png'),
-    'thundersoother': AssetImage('images/Item_Thundersoother\'s_Heart.png')
+    'thundersoother': AssetImage('images/Item_Thundersoother\'s_Heart.png'),
+    'reminiscenceofshime': AssetImage('images/Item_Reminiscence_of_Shime.png'),
   };
 
 //ANCHOR artifact1stat
@@ -1471,6 +1473,8 @@ class _MyHomePageState extends State<MyHomePage> {
   bool thunderbird4On = false;
   bool thundersoother2On = false;
   bool thundersoother4On = false;
+  bool reminiscenceofshime2On = false;
+  bool reminiscenceofshime4On = false;
 
   bool strongWilled1On = true;
   bool strongWilled2On = true;
@@ -1647,6 +1651,17 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       thundersoother2On = false;
       thundersoother4On = false;
+    }
+
+    if (artifactsetAselect == 'reminiscenceofshime' && artifactsetBselect == 'reminiscenceofshime') {
+      reminiscenceofshime2On = true;
+      reminiscenceofshime4On = true;
+    } else if (artifactsetAselect == 'reminiscenceofshime' || artifactsetBselect == 'reminiscenceofshime') {
+      reminiscenceofshime2On = true;
+      reminiscenceofshime4On = false;
+    } else {
+      reminiscenceofshime2On = false;
+      reminiscenceofshime4On = false;
     }
   }
 
@@ -3328,6 +3343,57 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                     },
                   ),
+                  SimpleDialogOption(
+                    child: Container(
+                      width: 400,
+                      height: 110,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Card(
+                            elevation: 3,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: InkWell(
+                              splashColor: Colors.blue.withAlpha(30),
+                              child: Container(
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  // color: Colors.lightBlue[50],
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  image: DecorationImage(
+                                    image: AssetImage('images/Item_Reminiscence_of_Shime.png'),
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            'Reminiscence of Shime',
+                            style: TextStyle(
+                              //fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ).tr(),
+                        ],
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        artifactstatcontrol("A", 'reminiscenceofshime');
+                      });
+
+                      Navigator.pop(
+                        context,
+                        "user1",
+                      );
+                    },
+                  ),
                 ],
               );
             },
@@ -3697,6 +3763,57 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () {
                       setState(() {
                         artifactstatcontrol("B", 'thundersoother');
+                      });
+
+                      Navigator.pop(
+                        context,
+                        "user1",
+                      );
+                    },
+                  ),
+                  SimpleDialogOption(
+                    child: Container(
+                      width: 400,
+                      height: 110,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Card(
+                            elevation: 3,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: InkWell(
+                              splashColor: Colors.blue.withAlpha(30),
+                              child: Container(
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  // color: Colors.lightBlue[50],
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  image: DecorationImage(
+                                    image: AssetImage('images/Item_Reminiscence_of_Shime.png'),
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            'Reminiscence of Shime',
+                            style: TextStyle(
+                              //fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ).tr(),
+                        ],
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        artifactstatcontrol("B", 'reminiscenceofshime');
                       });
 
                       Navigator.pop(
@@ -7845,9 +7962,14 @@ class _MyHomePageState extends State<MyHomePage> {
     //bonusNormalATK
     bonusNormalATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) +
         (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) +
+        (reminiscenceofshime4On ? 50 : 0) +
         (rulebythunder2On ? ((rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))) : 0) as double;
     //bonusChargedATK
-    bonusChargedATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) + (troupesdawnlight4on ? 35 : 0) as double;
+    bonusChargedATKDMGpercent =
+        (reminiscenceofshime4On ? 50 : 0) + (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) + (troupesdawnlight4on ? 35 : 0) as double;
+
+    //bonusplungeatk
+    bonusPlungeATKDMGpercent = (reminiscenceofshime4On ? 50 : 0);
 //bonusBurstATK
     bonusBurstDMGpercent = (royalflora2On ? 20 : 0) as double;
 //bonusDMG
@@ -7906,6 +8028,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (unreturningOn ? basicatk * (27 + weaponref * 9) / 100 : 0) +
         (pyro2On ? basicatk * 25 / 100 : 0) +
         (gladiator2On ? basicatk * 18 / 100 : 0) +
+        (reminiscenceofshime2On ? basicatk * 18 / 100 : 0) +
         (royalflora4On ? basicatk * 20 / 100 : 0) +
         (dragonslayerOn ? basicatk * 48 / 100 : 0) +
         (bennetqOn ? bennetbasicatk * bennetqlvtoratio[bennetqlv] / 100 : 0) +
@@ -8512,21 +8635,21 @@ class _MyHomePageState extends State<MyHomePage> {
     plungedmgc = allatk *
         (plungedmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     plungedmgnc = allatk *
         (plungedmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     plungedmgexp = allatk *
         (plungedmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres *
@@ -8535,21 +8658,21 @@ class _MyHomePageState extends State<MyHomePage> {
     lplungedmgc = allatk *
         (lplungedmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     lplungedmgnc = allatk *
         (lplungedmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     lplungedmgexp = allatk *
         (lplungedmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres *
@@ -8558,21 +8681,21 @@ class _MyHomePageState extends State<MyHomePage> {
     hplungedmgc = allatk *
         (hplungedmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hplungedmgnc = allatk *
         (hplungedmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hplungedmgexp = allatk *
         (hplungedmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres *
@@ -10560,13 +10683,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 buildStatRow(Colors.teal, '${"a5".tr()}%($a5atkpercentMain)', double.parse(a5percentatkMain.toStringAsFixed(1)).toString()),
                                               if (stat5atkpercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%($stat5atkpercent)', double.parse(a5percentatk.toStringAsFixed(1)).toString()),
                                               if (stat5atkOn == true) buildStatRow(Colors.teal[700], 'a5'.tr(), double.parse(stat5atk.toStringAsFixed(1)).toString()),
-                                              if (pyro2On == true) buildStatRow(Colors.red, '${"2 Pyro".tr()}(25%)', (basicatk * 25 / 100).toStringAsFixed(1)),
-                                              if (gladiator2On == true) buildStatRow(Colors.red, '${"Gladiator2".tr()}(18%)', (basicatk * 18 / 100).toStringAsFixed(1)),
-                                              if (royalflora4On == true) buildStatRow(Colors.blue, '${"Noblesse4".tr()}(20%)', (basicatk * 20 / 100).toStringAsFixed(1)),
+                                              if (pyro2On == true) buildStatRow(Colors.red, '${"2 Pyro".tr()}%(25)', (basicatk * 25 / 100).toStringAsFixed(1)),
+                                              if (gladiator2On == true) buildStatRow(Colors.red, '${"Gladiator2".tr()}%(18)', (basicatk * 18 / 100).toStringAsFixed(1)),
+                                              if (reminiscenceofshime2On == true) buildStatRow(Colors.red, '${"Reminiscence2".tr()}%(18)', (basicatk * 18 / 100).toStringAsFixed(1)),
+                                              if (royalflora4On == true) buildStatRow(Colors.blue, '${"Noblesse4".tr()}%(20)', (basicatk * 20 / 100).toStringAsFixed(1)),
                                               if (unreturningOn == true)
                                                 buildStatRow(Colors.tealAccent, '${"Unreturning".tr()}%(' + (27 + weaponref * 9).toStringAsFixed(1) + ')',
                                                     (basicatk * (27 + weaponref * 9) / 100).toStringAsFixed(1)),
-                                              if (dragonslayerOn) buildStatRow(Colors.grey, '${"Dragon Slayers".tr()}(48%)', (basicatk * 48 / 100).toStringAsFixed(1)),
+                                              if (dragonslayerOn) buildStatRow(Colors.grey, '${"Dragon Slayers".tr()}%(48)', (basicatk * 48 / 100).toStringAsFixed(1)),
                                               if (bennetqOn) buildStatRow(Colors.red, '${"班尼特".tr()}(burst)', (bennetbasicatk * bennetqlvtoratio[bennetqlv] / 100).toStringAsFixed(1)),
                                               if (manualatkOn) buildStatRow(Colors.red[300], '${"Manual".tr()}:${"ATK".tr()}', (manualatk.toStringAsFixed(1))),
                                               if (manualatkpercentOn)
@@ -10598,6 +10722,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               if (stat5atkOn == true) buildstatbar(Colors.teal[700], stat5atk),
                                               if (pyro2On == true) buildstatbar(Colors.red, (basicatk * 25 / 100)),
                                               if (gladiator2On == true) buildstatbar(Colors.red, (basicatk * 18 / 100)),
+                                              if (reminiscenceofshime2On == true) buildstatbar(Colors.red, (basicatk * 18 / 100)),
                                               if (royalflora4On == true) buildstatbar(Colors.blue, (basicatk * 20 / 100)),
                                               if (unreturningOn == true) buildstatbar(Colors.tealAccent, (basicatk * (27 + weaponref * 9) / 100)),
                                               if (dragonslayerOn) buildstatbar(Colors.grey, (basicatk * 48 / 100)),
@@ -11235,6 +11360,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (rulebythunder2On)
                                             buildStatRow(Colors.amber, 'Rule by Thunder2'.tr(),
                                                 (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30))).toString()),
+                                          if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
                                         ],
                                       ),
                                     //ANCHOR statNormalATKDMG:bar
@@ -11271,6 +11397,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (rulebythunder2On)
                                             buildstatbarpercent(
                                                 Colors.amber, (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))),
+                                          if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
                                         ],
                                       ),
                                     if (bonusChargedATKDMGpercent != 0)
@@ -11286,6 +11413,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (strongWilled1On) buildStatRow(Colors.purple[300], 'Strong Willed1'.tr(), (9 + weaponref * 3).toString()),
                                           if (strongWilled2On) buildStatRow(Colors.blue[300], 'Strong Willed2'.tr(), ((6 + weaponref * 2) * strongWilled2Times).toString()),
                                           if (troupesdawnlight4on) buildStatRow(Colors.green[400], "Troupe's Dawnlight 4 set".tr(), "35"),
+                                          if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
                                         ],
                                       ),
                                     //ANCHOR statChargedATKDMG:bar
@@ -11332,8 +11460,29 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 ),
                                               ],
                                             ),
+                                          if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
                                         ],
                                       ),
+                                    //ANCHOR Plunge Damage Title
+                                    if (bonusPlungeATKDMGpercent != 0)
+                                      SelectableText(
+                                        '${"Plunge Damage".tr()}:' + double.parse(bonusPlungeATKDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                        style: TextStyle(fontSize: 15),
+                                      ),
+                                    //ANCHOR statPlungeDMG:stats
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
+                                      ],
+                                    ),
+                                    //ANCHOR statPlungeDMG:bar
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
+                                      ],
+                                    ),
                                     //ANCHOR Physical Damage Title
                                     if (bonusPhysicalDMGpercent != 0)
                                       SelectableText(
@@ -12968,6 +13117,26 @@ class _MyHomePageState extends State<MyHomePage> {
                                         onSelected: (bool value) {
                                           setState(() {
                                             thundersoother4On = value;
+                                          });
+                                        },
+                                      ),
+                                    if (artifactsetAselect == 'reminiscenceofshime' || artifactsetBselect == 'reminiscenceofshime')
+                                      FilterChip(
+                                        label: Text('${"2 set".tr()}: ${"ATK".tr()} +18% '),
+                                        selectedColor: Colors.red[400],
+                                        backgroundColor: Colors.red[300],
+                                        selected: reminiscenceofshime2On,
+                                        onSelected: (bool value) {},
+                                      ),
+                                    if (artifactsetAselect == 'reminiscenceofshime' && artifactsetBselect == 'reminiscenceofshime')
+                                      FilterChip(
+                                        label: Text('${"4 set".tr()}: ${"Normal/Charged/ Plunging Attack DMG +50%".tr()}'),
+                                        selectedColor: Colors.red[400],
+                                        backgroundColor: Colors.red[300],
+                                        selected: reminiscenceofshime4On,
+                                        onSelected: (bool value) {
+                                          setState(() {
+                                            reminiscenceofshime4On = value;
                                           });
                                         },
                                       ),

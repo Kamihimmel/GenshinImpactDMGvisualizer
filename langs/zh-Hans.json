@@ -123,7 +123,7 @@
     "5-Hit Damage": "五段伤害",
     "6-Hit Damage": "六段伤害",
     "Aim Shoot Damage": "瞄准射击",
-    "Plunge Damage": "下坠期间伤害",
+    "Plunge Damage": "下落攻击伤害",
     "Low Plunge Damage": "低空坠地冲击伤害",
     "High Plunge Damage": "高空坠地冲击伤害",
     "Melt": "融化",
@@ -255,5 +255,9 @@
     "Rule-by-thunder2: Normal ATK DMG +": "飞雷御执2: 普通攻击伤害 +",
     "% Thunder Seal stack lv": "% 飞雷之巴印层数:",
     "Rule by Thunder2": "飞雷御执2",
-    "per loop": "每循环"
+    "per loop": "每循环",
+    "Reminiscence4": "追忆4",
+    "Reminiscence2": "追忆2",
+    "Reminiscence of Shime": "追忆之注连",
+    "Normal/Charged/ Plunging Attack DMG +50%": "普通/重击/下落攻击伤害 +50%"
 }
