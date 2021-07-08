@@ -3886,6 +3886,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1atkpercent < 34.8) stat1atkpercent = num.parse((stat1atkpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -3894,6 +3895,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1atkpercent > 0) stat1atkpercent = num.parse((stat1atkpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -3964,6 +3966,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1hppercent < 34.8) stat1hppercent = num.parse((stat1hppercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -3972,6 +3975,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1hppercent > 0) stat1hppercent = num.parse((stat1hppercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4045,6 +4049,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1defpercent < 43.8) stat1defpercent = num.parse((stat1defpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4053,6 +4058,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1defpercent > 0) stat1defpercent = num.parse((stat1defpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4126,6 +4132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1CRpercent < 23.4) stat1CRpercent = num.parse((stat1CRpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4134,6 +4141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1CRpercent > 0) stat1CRpercent = num.parse((stat1CRpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4207,6 +4215,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1CDpercent < 46.8) stat1CDpercent = num.parse((stat1CDpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4215,6 +4224,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1CDpercent > 0) stat1CDpercent = num.parse((stat1CDpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4364,6 +4374,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1ERpercent < 39) stat1ERpercent = num.parse((stat1ERpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4372,6 +4383,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1ERpercent > 0) stat1ERpercent = num.parse((stat1ERpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4707,6 +4719,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2atkpercent < 34.8) stat2atkpercent = num.parse((stat2atkpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4715,6 +4728,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2atkpercent > 0) stat2atkpercent = num.parse((stat2atkpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4785,6 +4799,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2hppercent < 34.8) stat2hppercent = num.parse((stat2hppercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4793,6 +4808,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2hppercent > 0) stat2hppercent = num.parse((stat2hppercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4866,6 +4882,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2defpercent < 43.8) stat2defpercent = num.parse((stat2defpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4874,6 +4891,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2defpercent > 0) stat2defpercent = num.parse((stat2defpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4947,6 +4965,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2CRpercent < 23.4) stat2CRpercent = num.parse((stat2CRpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -4955,6 +4974,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2CRpercent > 0) stat2CRpercent = num.parse((stat2CRpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -5028,6 +5048,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2CDpercent < 46.8) stat2CDpercent = num.parse((stat2CDpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -5036,6 +5057,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2CDpercent > 0) stat2CDpercent = num.parse((stat2CDpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -5185,6 +5207,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2ERpercent < 39) stat2ERpercent = num.parse((stat2ERpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -5193,6 +5216,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2ERpercent > 0) stat2ERpercent = num.parse((stat2ERpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -5528,6 +5552,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3atkpercent < 34.8) stat3atkpercent = num.parse((stat3atkpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -5536,6 +5561,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3atkpercent > 0) stat3atkpercent = num.parse((stat3atkpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -5606,6 +5632,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3hppercent < 34.8) stat3hppercent = num.parse((stat3hppercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -5614,6 +5641,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3hppercent > 0) stat3hppercent = num.parse((stat3hppercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -5687,6 +5715,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3defpercent < 43.8) stat3defpercent = num.parse((stat3defpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -5695,6 +5724,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3defpercent > 0) stat3defpercent = num.parse((stat3defpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -5768,6 +5798,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3CRpercent < 23.4) stat3CRpercent = num.parse((stat3CRpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -5776,6 +5807,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3CRpercent > 0) stat3CRpercent = num.parse((stat3CRpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -5849,6 +5881,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3CDpercent < 46.8) stat3CDpercent = num.parse((stat3CDpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -5857,6 +5890,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3CDpercent > 0) stat3CDpercent = num.parse((stat3CDpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -6006,6 +6040,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3ERpercent < 39) stat3ERpercent = num.parse((stat3ERpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -6014,6 +6049,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3ERpercent > 0) stat3ERpercent = num.parse((stat3ERpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -6349,6 +6385,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4atkpercent < 34.8) stat4atkpercent = num.parse((stat4atkpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -6357,6 +6394,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4atkpercent > 0) stat4atkpercent = num.parse((stat4atkpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -6427,6 +6465,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4hppercent < 34.8) stat4hppercent = num.parse((stat4hppercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -6435,6 +6474,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4hppercent > 0) stat4hppercent = num.parse((stat4hppercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -6508,6 +6548,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4defpercent < 43.8) stat4defpercent = num.parse((stat4defpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -6516,6 +6557,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4defpercent > 0) stat4defpercent = num.parse((stat4defpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -6589,6 +6631,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4CRpercent < 23.4) stat4CRpercent = num.parse((stat4CRpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -6597,6 +6640,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4CRpercent > 0) stat4CRpercent = num.parse((stat4CRpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -6670,6 +6714,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4CDpercent < 46.8) stat4CDpercent = num.parse((stat4CDpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -6678,6 +6723,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4CDpercent > 0) stat4CDpercent = num.parse((stat4CDpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -6827,6 +6873,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4ERpercent < 39) stat4ERpercent = num.parse((stat4ERpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -6835,6 +6882,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4ERpercent > 0) stat4ERpercent = num.parse((stat4ERpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -7170,6 +7218,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5atkpercent < 34.8) stat5atkpercent = num.parse((stat5atkpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -7178,6 +7227,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5atkpercent > 0) stat5atkpercent = num.parse((stat5atkpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -7248,6 +7298,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5hppercent < 34.8) stat5hppercent = num.parse((stat5hppercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -7256,6 +7307,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5hppercent > 0) stat5hppercent = num.parse((stat5hppercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -7329,6 +7381,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5defpercent < 43.8) stat5defpercent = num.parse((stat5defpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -7337,6 +7390,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5defpercent > 0) stat5defpercent = num.parse((stat5defpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -7410,6 +7464,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5CRpercent < 23.4) stat5CRpercent = num.parse((stat5CRpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -7418,6 +7473,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5CRpercent > 0) stat5CRpercent = num.parse((stat5CRpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -7491,6 +7547,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5CDpercent < 46.8) stat5CDpercent = num.parse((stat5CDpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -7499,6 +7556,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5CDpercent > 0) stat5CDpercent = num.parse((stat5CDpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -7648,6 +7706,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5ERpercent < 39) stat5ERpercent = num.parse((stat5ERpercent + 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
@@ -7656,6 +7715,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5ERpercent > 0) stat5ERpercent = num.parse((stat5ERpercent - 0.1).toStringAsFixed(1));
+                                      _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
