@@ -1311,6 +1311,30 @@ class _MyHomePageState extends State<MyHomePage> {
 
   double kindlingdmgpercent = 0;
 
+  double teikafiredancehit1dmgnc = 0;
+  double teikafiredancehit1dmgexp = 0;
+  double teikafiredancehit1dmgc = 0;
+
+  double teikafiredancehit2dmgnc = 0;
+  double teikafiredancehit2dmgexp = 0;
+  double teikafiredancehit2dmgc = 0;
+
+  double teikafiredancehit3dmgnc = 0;
+  double teikafiredancehit3dmgexp = 0;
+  double teikafiredancehit3dmgc = 0;
+
+  double teikafiredancehit4dmgnc = 0;
+  double teikafiredancehit4dmgexp = 0;
+  double teikafiredancehit4dmgc = 0;
+
+  double teikafiredancehit5dmgnc = 0;
+  double teikafiredancehit5dmgexp = 0;
+  double teikafiredancehit5dmgc = 0;
+
+  double teikafiredanceallhitdmgnc = 0;
+  double teikafiredanceallhitdmgexp = 0;
+  double teikafiredanceallhitdmgc = 0;
+
   double hit1dmgnc = 0;
   double hit1dmgexp = 0;
   double hit1dmgc = 0;
@@ -8675,27 +8699,154 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyPyrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
+    teikafiredancehit1dmgnc = allatk *
+        (hit1dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores;
+
+    teikafiredancehit1dmgexp = allatk *
+        (hit1dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    teikafiredancehit2dmgc = allatk *
+        (hit2dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores;
+
+    teikafiredancehit2dmgnc = allatk *
+        (hit2dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores;
+
+    teikafiredancehit2dmgexp = allatk *
+        (hit2dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    teikafiredancehit3dmgc = allatk *
+        (hit3dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores;
+
+    teikafiredancehit3dmgnc = allatk *
+        (hit3dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores;
+
+    teikafiredancehit3dmgexp = allatk *
+        (hit3dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    teikafiredancehit4dmgc = allatk *
+        (hit4dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores;
+
+    teikafiredancehit4dmgnc = allatk *
+        (hit4dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores;
+
+    teikafiredancehit4dmgexp = allatk *
+        (hit4dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    teikafiredancehit5dmgc = allatk *
+        (hit5dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores;
+
+    teikafiredancehit5dmgnc = allatk *
+        (hit5dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores;
+
+    teikafiredancehit5dmgexp = allatk *
+        (hit5dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    teikafiredanceallhitdmgc = teikafiredancehit1dmgc * 2 + teikafiredancehit2dmgc + teikafiredancehit3dmgc + teikafiredancehit4dmgc * 2 + teikafiredancehit5dmgc;
+
+    teikafiredanceallhitdmgnc = teikafiredancehit1dmgnc * 2 + teikafiredancehit2dmgnc + teikafiredancehit3dmgnc + teikafiredancehit4dmgnc * 2 + teikafiredancehit5dmgnc;
+
+    teikafiredanceallhitdmgexp = teikafiredancehit1dmgexp * 2 + teikafiredancehit2dmgexp + teikafiredancehit3dmgexp + teikafiredancehit4dmgexp * 2 + teikafiredancehit5dmgexp;
+
     ryukinsaxifragedmgc = allatk *
         (ryukinsaxifragedmgpercent / 100) *
         (1 + allCD / 100) *
         (1 + bonusPyroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
-        enemyCryores;
+        enemyPyrores;
 
     ryukinsaxifragedmgnc = allatk *
         (ryukinsaxifragedmgpercent / 100) *
         (1 + bonusPyroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
-        enemyCryores;
+        enemyPyrores;
 
     ryukinsaxifragedmgexp = allatk *
         (ryukinsaxifragedmgpercent / 100) *
         (1 + bonusPyroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
-        enemyCryores *
+        enemyPyrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
     aurousblazedmgc = allatk *
@@ -8704,21 +8855,21 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + bonusPyroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
-        enemyCryores;
+        enemyPyrores;
 
     aurousblazedmgnc = allatk *
         (aurousblazedmgpercent / 100) *
         (1 + bonusPyroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
-        enemyCryores;
+        enemyPyrores;
 
     aurousblazedmgexp = allatk *
         (aurousblazedmgpercent / 100) *
         (1 + bonusPyroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
-        enemyCryores *
+        enemyPyrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
     echoingballaddmgc = allatk *
@@ -13737,9 +13888,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               if (echoingBalladOn)
                                 //ANCHOR Echoing Ballad Physical AoE
-                                SizedBox(height: 10),
-                              builddamagebarwithcrit(Colors.black, 'Echoing Ballad Physical AoE'.tr() + ':(125%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], echoingballaddmgnc,
-                                  echoingballaddmgexp, echoingballaddmgc),
+                                builddamagebarwithcrit(Colors.black, 'Echoing Ballad Physical AoE'.tr() + ':(125%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], echoingballaddmgnc,
+                                    echoingballaddmgexp, echoingballaddmgc),
                             ],
                           ),
                         ),
@@ -13811,32 +13961,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ExpansionTile(
                                   tilePadding: EdgeInsets.all(0),
                                   childrenPadding: EdgeInsets.all(0),
-                                  title: Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                    SelectableText(
-                                      'Teika Fire Dance'.tr() + ':($teikafiredancebonuspercent)%' + 'Normal Attack Damage'.tr(),
-                                      style: TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                        height: 1.1,
-                                      ),
-                                    ),
-                                  ]),
+                                  title: builddamagebarwithcrit(Colors.black, 'Teika Fire Dance'.tr() + "/" + 'per loop'.tr() + ':($teikafiredancebonuspercent)%' + 'Normal Attack Damage'.tr(),
+                                      Colors.red[500], Colors.red[700], Colors.red[900], teikafiredanceallhitdmgnc, teikafiredanceallhitdmgexp, teikafiredanceallhitdmgc),
                                   children: <Widget>[
-                                    builddamagebarwithcrit(Colors.black, '1-Hit Damage'.tr() + ':($hit1dmgpercent% × 2)×$teikafiredancebonuspercent%', Colors.red[500], Colors.red[700],
-                                        Colors.red[900], hit1dmgnc * teikafiredancebonuspercent / 100, hit1dmgexp * teikafiredancebonuspercent / 100, hit1dmgc * teikafiredancebonuspercent / 100),
+                                    builddamagebarwithcrit(Colors.black, '1-Hit Damage'.tr() + ':($hit1dmgpercent% × $teikafiredancebonuspercent% × 2)', Colors.red[500], Colors.red[700],
+                                        Colors.red[900], teikafiredancehit1dmgnc, teikafiredancehit1dmgexp, teikafiredancehit1dmgc),
                                     SizedBox(height: 10),
                                     builddamagebarwithcrit(Colors.black, '2-Hit Damage'.tr() + ':($hit2dmgpercent%)×$teikafiredancebonuspercent%', Colors.red[500], Colors.red[700], Colors.red[900],
-                                        hit2dmgnc * teikafiredancebonuspercent / 100, hit2dmgexp * teikafiredancebonuspercent / 100, hit2dmgc * teikafiredancebonuspercent / 100),
+                                        teikafiredancehit2dmgnc, teikafiredancehit2dmgexp, teikafiredancehit2dmgc),
                                     SizedBox(height: 10),
                                     builddamagebarwithcrit(Colors.black, '3-Hit Damage'.tr() + ':($hit3dmgpercent%)×$teikafiredancebonuspercent%', Colors.red[500], Colors.red[700], Colors.red[900],
-                                        hit3dmgnc * teikafiredancebonuspercent / 100, hit3dmgexp * teikafiredancebonuspercent / 100, hit3dmgc * teikafiredancebonuspercent / 100),
+                                        teikafiredancehit3dmgnc, teikafiredancehit3dmgexp, teikafiredancehit3dmgc),
                                     SizedBox(height: 10),
-                                    builddamagebarwithcrit(Colors.black, '4-Hit Damage'.tr() + ':($hit4dmgpercent% × 2)×$teikafiredancebonuspercent%', Colors.red[500], Colors.red[700],
-                                        Colors.red[900], hit4dmgnc * teikafiredancebonuspercent / 100, hit4dmgexp * teikafiredancebonuspercent / 100, hit4dmgc * teikafiredancebonuspercent / 100),
+                                    builddamagebarwithcrit(Colors.black, '4-Hit Damage'.tr() + ':($hit4dmgpercent% × $teikafiredancebonuspercent% × 2)', Colors.red[500], Colors.red[700],
+                                        Colors.red[900], teikafiredancehit4dmgnc, teikafiredancehit4dmgexp, teikafiredancehit4dmgc),
                                     SizedBox(height: 10),
                                     builddamagebarwithcrit(Colors.black, '5-Hit Damage'.tr() + ':($hit5dmgpercent%)×$teikafiredancebonuspercent%', Colors.red[500], Colors.red[700], Colors.red[900],
-                                        hit5dmgnc * teikafiredancebonuspercent / 100, hit5dmgexp * teikafiredancebonuspercent / 100, hit5dmgc * teikafiredancebonuspercent / 100),
+                                        teikafiredancehit5dmgnc, teikafiredancehit5dmgexp, teikafiredancehit5dmgc),
                                     SizedBox(height: 10),
                                   ],
                                 ),
@@ -13880,14 +14021,49 @@ class _MyHomePageState extends State<MyHomePage> {
                                     childrenPadding: EdgeInsets.all(0),
                                     title: builddamagebarwithcrit(Colors.black, 'Ryukin Saxifrage'.tr() + ':($ryukinsaxifragedmgpercent%)', Colors.red[200], Colors.red[400], Colors.red[600],
                                         ryukinsaxifragedmgnc, ryukinsaxifragedmgexp, ryukinsaxifragedmgc),
-                                    children: <Widget>[]),
+                                    children: <Widget>[
+                                      builddamagebarwithcrit(
+                                          Colors.red,
+                                          'Vaporize'.tr() + ':(' + double.parse((vaporizeDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                          Colors.red[200],
+                                          Colors.red[400],
+                                          Colors.red[600],
+                                          ryukinsaxifragedmgnc * 1.5 * vaporizeDMGpercent / 100,
+                                          ryukinsaxifragedmgexp * 1.5 * vaporizeDMGpercent / 100,
+                                          ryukinsaxifragedmgc * 1.5 * vaporizeDMGpercent / 100),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.red,
+                                          'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 2).toStringAsFixed(1)).toString() + '%)',
+                                          Colors.red[200],
+                                          Colors.red[400],
+                                          Colors.red[600],
+                                          ryukinsaxifragedmgnc * 2 * meltDMGpercent / 100,
+                                          ryukinsaxifragedmgexp * 2 * meltDMGpercent / 100,
+                                          ryukinsaxifragedmgc * 2 * meltDMGpercent / 100),
+                                      SizedBox(height: 10),
+                                    ]),
                               if (currentcharacter == 'yoimiya')
                                 ExpansionTile(
                                     tilePadding: EdgeInsets.all(0),
                                     childrenPadding: EdgeInsets.all(0),
                                     title: builddamagebarwithcrit(Colors.black, 'Aurous Blaze'.tr() + ':($aurousblazedmgpercent%)', Colors.red[200], Colors.red[400], Colors.red[600], aurousblazedmgnc,
                                         aurousblazedmgexp, aurousblazedmgc),
-                                    children: <Widget>[]),
+                                    children: <Widget>[
+                                      builddamagebarwithcrit(
+                                          Colors.red,
+                                          'Vaporize'.tr() + ':(' + double.parse((vaporizeDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                          Colors.red[200],
+                                          Colors.red[400],
+                                          Colors.red[600],
+                                          aurousblazedmgnc * 1.5 * vaporizeDMGpercent / 100,
+                                          aurousblazedmgexp * 1.5 * vaporizeDMGpercent / 100,
+                                          aurousblazedmgc * 1.5 * vaporizeDMGpercent / 100),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(Colors.red, 'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 2).toStringAsFixed(1)).toString() + '%)', Colors.red[200], Colors.red[400],
+                                          Colors.red[600], aurousblazedmgnc * 2 * meltDMGpercent / 100, aurousblazedmgexp * 2 * meltDMGpercent / 100, aurousblazedmgc * 2 * meltDMGpercent / 100),
+                                      SizedBox(height: 10),
+                                    ]),
                             ],
                           ),
                         ),

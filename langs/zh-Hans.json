@@ -127,6 +127,7 @@
     "Low Plunge Damage": "低空坠地冲击伤害",
     "High Plunge Damage": "高空坠地冲击伤害",
     "Melt": "融化",
+    "Vaporize": "蒸发",
     "Frostflake Arrow": "霜华矢命中伤害",
     "Frostflake Bloom": "霜华矢·霜华绽发伤害",
     "Frostflake Arrow All": "霜华矢总伤害",
@@ -253,5 +254,6 @@
     "Rule by thunder1: ATK + ": "飞雷御执1: ATK + ",
     "Rule-by-thunder2: Normal ATK DMG +": "飞雷御执2: 普通攻击伤害 +",
     "% Thunder Seal stack lv": "% 飞雷之巴印层数:",
-    "Rule by Thunder2": "飞雷御执2"
+    "Rule by Thunder2": "飞雷御执2",
+    "per loop":"每循环"
 }
