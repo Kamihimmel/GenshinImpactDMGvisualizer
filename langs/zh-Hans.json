@@ -115,7 +115,7 @@
     "a5": "理之冠",
     "Please click to set stats": "请点击设定副属性",
     "Normal ATK DMG Panel": "普通攻击伤害面板",
-    "Charged Aim Shoot Damage": "一段蓄力瞄准射击",
+    "Charged Aim Shoot Damage": "蓄力瞄准射击",
     "1-Hit Damage": "一段伤害",
     "2-Hit Damage": "二段伤害",
     "3-Hit Damage": "三段伤害",
@@ -255,5 +255,5 @@
     "Rule-by-thunder2: Normal ATK DMG +": "飞雷御执2: 普通攻击伤害 +",
     "% Thunder Seal stack lv": "% 飞雷之巴印层数:",
     "Rule by Thunder2": "飞雷御执2",
-    "per loop":"每循环"
+    "per loop": "每循环"
 }

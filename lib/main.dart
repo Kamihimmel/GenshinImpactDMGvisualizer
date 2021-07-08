@@ -13825,8 +13825,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               //ANCHOR Kindling Arrow
                               if (currentcharacter == 'yoimiya') SizedBox(height: 10),
-                              builddamagebarwithcrit(Colors.black, 'Kindling Arrow'.tr() + ':($kindlingdmgpercent% × 3)', Colors.red[200], Colors.red[400], Colors.red[600], kindlingarrowdmgnc,
-                                  kindlingarrowdmgexp, kindlingarrowdmgc),
+                              if (currentcharacter == 'yoimiya')
+                                builddamagebarwithcrit(Colors.black, 'Kindling Arrow'.tr() + ':($kindlingdmgpercent% × 3)', Colors.red[200], Colors.red[400], Colors.red[600], kindlingarrowdmgnc,
+                                    kindlingarrowdmgexp, kindlingarrowdmgc),
                               SizedBox(height: 10),
                               //ANCHOR Frostflake Arrow
                               if (currentcharacter == 'ganyu')
