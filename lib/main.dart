@@ -6,6 +6,7 @@ import 'package:responsive_grid/responsive_grid.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:dynamic_themes/dynamic_themes.dart';
+import 'package:gestures/gestures.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -95,6 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
     0: 'ganyu',
     1: 'yoimiya',
   };
+
+  bool spoilermode = false;
 
   Map elementopng = {
     'cryo': AssetImage('images/2020060220525531988.png'),
@@ -9119,18 +9122,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 // ...
               },
             ),
-            ListTile(
-              title: Text('yoimiya').tr(),
-              onTap: () {
-                // Update the state of the app.
-                setState(() {
-                  currentcharacter = 'yoimiya';
-                  DynamicTheme.of(context).setTheme(1);
-                });
+            if (spoilermode)
+              ListTile(
+                title: Text('yoimiya').tr(),
+                onTap: () {
+                  // Update the state of the app.
+                  setState(() {
+                    currentcharacter = 'yoimiya';
+                    DynamicTheme.of(context).setTheme(1);
+                  });
 
-                // ...
-              },
-            ),
+                  // ...
+                },
+              ),
             ListTile(
                 title: Text(
                   "Languages".tr(),
@@ -9186,259 +9190,92 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          child: ResponsiveGridRow(children: [
-            //ANCHOR ----CharacterPage----
-            ResponsiveGridCol(
-              xs: 12,
-              md: 12,
-              lg: 6,
-              xl: 3,
-              child: Container(
-                height: heightadjust,
-                //color: Colors.lightBlue[50],
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColorLight,
-                  image: DecorationImage(
-                    image: charactertoinfo[currentcharacter]['splashimage'],
-                    fit: BoxFit.cover,
-                  ),
+        child: CustomGestureDetector(
+          gestures: [
+            GestureLine(AxisDirection.down),
+            GestureLine(AxisDirection.right),
+            GestureLine(AxisDirection.up),
+          ],
+          onGestureEnd: (success) {
+            if (success) {
+              spoilermode = true;
+              print('spoilermode:' + spoilermode.toString());
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                duration: Duration(days: 1),
+                backgroundColor: Colors.red,
+                content: Text('Unreleased Content Mode Activated').tr(),
+                action: SnackBarAction(
+                  textColor: Colors.white,
+                  label: '×',
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    // Some code to undo the change.
+                  },
                 ),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(10.0),
-                        margin: EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(color: Color.fromRGBO(0, 0, 0, 0.3), borderRadius: BorderRadius.all(Radius.circular(10))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Image(
-                              image: elementopng[charactertoinfo[currentcharacter]['element']],
-                              height: 100,
-                            ),
-                            SelectableText(
-                              currentcharacter.tr(),
-                              style: TextStyle(
-                                //fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 40,
-                                height: 1.1,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 200),
-                      Container(
-                        height: 400,
-                        padding: EdgeInsets.all(10.0),
-                        margin: EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SelectableText(
-                                  '${"Lv".tr()}: $level',
-                                  style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 20,
-                                    height: 1.1,
-                                  ),
-                                ),
-                                Slider(
-                                  min: 1,
-                                  max: 90,
-                                  divisions: 9,
-                                  activeColor: Theme.of(context).primaryColor,
-                                  inactiveColor: Theme.of(context).primaryColorLight,
-                                  label: level.toString(),
-                                  value: level.toDouble(),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      level = value.toInt();
-                                    });
-                                  },
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SelectableText(
-                                  '${"Normal Attack Lv".tr()}: $natklv',
-                                  style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 20,
-                                    height: 1.1,
-                                  ),
-                                ),
-                                Slider(
-                                  min: 1,
-                                  max: 15,
-                                  divisions: 14,
-                                  activeColor: Theme.of(context).primaryColor,
-                                  inactiveColor: Theme.of(context).primaryColorLight,
-                                  label: natklv.toString(),
-                                  value: natklv.toDouble(),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      natklv = value.toInt();
-                                    });
-                                  },
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SelectableText(
-                                  '${"Elemental Skill Lv".tr()}: $eskilllv',
-                                  style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 20,
-                                    height: 1.1,
-                                  ),
-                                ),
-                                Slider(
-                                  min: 1,
-                                  max: 15,
-                                  divisions: 14,
-                                  activeColor: Theme.of(context).primaryColor,
-                                  inactiveColor: Theme.of(context).primaryColorLight,
-                                  label: eskilllv.toString(),
-                                  value: eskilllv.toDouble(),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      eskilllv = value.toInt();
-                                    });
-                                  },
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SelectableText(
-                                  '${"Elemental Burst Lv".tr()}: $eburstlv',
-                                  style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 20,
-                                    height: 1.1,
-                                  ),
-                                ),
-                                Slider(
-                                  min: 1,
-                                  max: 15,
-                                  divisions: 14,
-                                  activeColor: Theme.of(context).primaryColor,
-                                  inactiveColor: Theme.of(context).primaryColorLight,
-                                  label: eburstlv.toString(),
-                                  value: eburstlv.toDouble(),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      eburstlv = value.toInt();
-                                    });
-                                  },
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SelectableText(
-                                  '${"Constellation".tr()}: $cons',
-                                  style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 20,
-                                    height: 1.1,
-                                  ),
-                                ),
-                                Slider(
-                                  min: 0,
-                                  max: 6,
-                                  divisions: 6,
-                                  activeColor: Theme.of(context).primaryColor,
-                                  inactiveColor: Theme.of(context).primaryColorLight,
-                                  label: cons.toString(),
-                                  value: cons.toDouble(),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      cons = value.toInt();
-                                    });
-                                  },
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+              ));
+
+              setState(() {});
+            }
+          },
+          child: Container(
+            child: ResponsiveGridRow(children: [
+              //ANCHOR ----CharacterPage----
+              ResponsiveGridCol(
+                xs: 12,
+                md: 12,
+                lg: 6,
+                xl: 3,
+                child: Container(
+                  height: heightadjust,
+                  //color: Colors.lightBlue[50],
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColorLight,
+                    image: DecorationImage(
+                      image: charactertoinfo[currentcharacter]['splashimage'],
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-              ),
-            ),
-            //ANCHOR ----weapon&artifactPage----
-            ResponsiveGridCol(
-              xs: 12,
-              md: 12,
-              lg: 6,
-              xl: 3,
-              child: Container(
-                height: (MediaQuery.of(context).size.width > 1200) ? heightadjust : null,
-                color: Colors.lightGreen[50],
-                child: Center(
-                  child: SingleChildScrollView(
+                  child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
+                      children: [
                         Container(
-                          height: 350,
+                          padding: EdgeInsets.all(10.0),
+                          margin: EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(color: Color.fromRGBO(0, 0, 0, 0.3), borderRadius: BorderRadius.all(Radius.circular(10))),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Image(
+                                image: elementopng[charactertoinfo[currentcharacter]['element']],
+                                height: 100,
+                              ),
+                              SelectableText(
+                                currentcharacter.tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 40,
+                                  height: 1.1,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 200),
+                        Container(
+                          height: 400,
                           padding: EdgeInsets.all(10.0),
                           margin: EdgeInsets.all(10.0),
                           decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
-
-                          //ANCHOR weapon
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Card(
-                                elevation: 3,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: InkWell(
-                                  splashColor: Colors.blue.withAlpha(30),
-                                  onTap: _showSimpleDialogw,
-                                  child: Container(
-                                    width: 200,
-                                    height: 200,
-                                    decoration: BoxDecoration(
-                                      // color: Colors.lightBlue[50],
-                                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                                      image: DecorationImage(
-                                        image: weapontopng[weaponselect],
-                                        fit: BoxFit.contain,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   SelectableText(
-                                    '${"Lv".tr()}: $weaponlv',
+                                    '${"Lv".tr()}: $level',
                                     style: TextStyle(
                                       //fontWeight: FontWeight.bold,
                                       color: Colors.black,
@@ -9449,14 +9286,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Slider(
                                     min: 1,
                                     max: 90,
-                                    divisions: 18,
+                                    divisions: 9,
                                     activeColor: Theme.of(context).primaryColor,
                                     inactiveColor: Theme.of(context).primaryColorLight,
-                                    label: weaponlv.toString(),
-                                    value: weaponlv.toDouble(),
+                                    label: level.toString(),
+                                    value: level.toDouble(),
                                     onChanged: (value) {
                                       setState(() {
-                                        weaponlv = value.toInt();
+                                        level = value.toInt();
                                       });
                                     },
                                   ),
@@ -9466,7 +9303,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   SelectableText(
-                                    '${"Refinement".tr()}: $weaponref',
+                                    '${"Normal Attack Lv".tr()}: $natklv',
                                     style: TextStyle(
                                       //fontWeight: FontWeight.bold,
                                       color: Colors.black,
@@ -9476,3117 +9313,43 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                   Slider(
                                     min: 1,
-                                    max: 5,
-                                    divisions: 4,
+                                    max: 15,
+                                    divisions: 14,
                                     activeColor: Theme.of(context).primaryColor,
                                     inactiveColor: Theme.of(context).primaryColorLight,
-                                    label: weaponref.toString(),
-                                    value: weaponref.toDouble(),
+                                    label: natklv.toString(),
+                                    value: natklv.toDouble(),
                                     onChanged: (value) {
                                       setState(() {
-                                        weaponref = value.toInt();
+                                        natklv = value.toInt();
                                       });
                                     },
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
-                        ),
-                        //ANCHOR artifactset
-                        Container(
-                          height: 800,
-                          padding: EdgeInsets.all(10.0),
-                          margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Card(
-                                        elevation: 3,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
-                                        ),
-                                        child: InkWell(
-                                          splashColor: Colors.blue.withAlpha(30),
-                                          onTap: _showSimpleDialogasA,
-                                          child: Container(
-                                            width: 150,
-                                            height: 150,
-                                            decoration: BoxDecoration(
-                                              // color: Colors.lightBlue[50],
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              image: DecorationImage(
-                                                image: artifactsettopng[artifactsetAselect],
-                                                fit: BoxFit.contain,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SelectableText(
-                                        '2 set'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 20,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Card(
-                                        elevation: 3,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
-                                        ),
-                                        child: InkWell(
-                                          splashColor: Colors.blue.withAlpha(30),
-                                          onTap: _showSimpleDialogasB,
-                                          child: Container(
-                                            width: 150,
-                                            height: 150,
-                                            decoration: BoxDecoration(
-                                              // color: Colors.lightBlue[50],
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              image: DecorationImage(
-                                                image: artifactsettopng[artifactsetBselect],
-                                                fit: BoxFit.contain,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SelectableText(
-                                        '2 set'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 20,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-
-                              //ANCHOR artifact1
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Card(
-                                        elevation: 1,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
-                                        ),
-                                        child: InkWell(
-                                          splashColor: Colors.blue.withAlpha(30),
-                                          onTap: () {
-                                            print('Card tapped.');
-                                          },
-                                          child: Container(
-                                            width: 50,
-                                            height: 50,
-                                            decoration: BoxDecoration(
-                                              // color: Colors.lightBlue[50],
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              image: DecorationImage(
-                                                image: AssetImage('images/Icon_Flower_of_Life.png'),
-                                                fit: BoxFit.contain,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 110,
-                                        child: Column(
-                                          children: [
-                                            SelectableText(
-                                              'Flower:'.tr(),
-                                              style: TextStyle(
-                                                //fontWeight: FontWeight.bold,
-                                                color: Colors.black,
-                                                fontSize: 15,
-                                                height: 1.1,
-                                              ),
-                                            ),
-                                            SelectableText(
-                                              'HP'.tr(),
-                                              style: TextStyle(
-                                                //fontWeight: FontWeight.bold,
-                                                color: Colors.black,
-                                                fontSize: 15,
-                                                height: 1.1,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          SelectableText(
-                                            '${"Star".tr()}: $fstar',
-                                            style: TextStyle(
-                                              //fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              height: 1.1,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 75,
-                                            child: Slider(
-                                              min: 4,
-                                              max: 5,
-                                              divisions: 1,
-                                              activeColor: Theme.of(context).primaryColor,
-                                              inactiveColor: Theme.of(context).primaryColorLight,
-                                              label: fstar.toString(),
-                                              value: fstar.toDouble(),
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  fstar = value.toInt();
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          SelectableText(
-                                            '${"Lv".tr()}: $flv',
-                                            style: TextStyle(
-                                              //fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              height: 1.1,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 75,
-                                            child: Slider(
-                                              min: 1,
-                                              max: 20,
-                                              divisions: 5,
-                                              activeColor: Theme.of(context).primaryColor,
-                                              inactiveColor: Theme.of(context).primaryColorLight,
-                                              label: flv.toString(),
-                                              value: flv.toDouble(),
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  flv = value.toInt();
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Card(
-                                    elevation: 1,
-                                    child: InkWell(
-                                      onTap: _showSimpleDialog,
-                                      child: Container(
-                                        width: 170,
-                                        height: 100,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                if (!stat1atkpercentOn &&
-                                                    !stat1hppercentOn &&
-                                                    !stat1defpercentOn &&
-                                                    !stat1atkOn &&
-                                                    !stat1hpOn &&
-                                                    !stat1defOn &&
-                                                    !stat1CRpercentOn &&
-                                                    !stat1CDpercentOn &&
-                                                    !stat1EMOn &&
-                                                    !stat1ERpercentOn)
-                                                  Text('Please click to set stats').tr(),
-                                                if (stat1atkpercentOn) Text('${"ATK".tr()}%:$stat1atkpercent'),
-                                                if (stat1hppercentOn) Text('${"HP".tr()}%:$stat1hppercent'),
-                                                if (stat1defpercentOn) Text('${"DEF".tr()}%:$stat1defpercent'),
-                                                if (stat1CRpercentOn) Text('${"Critical Rate".tr()}%:$stat1CRpercent'),
-                                                if (stat1CDpercentOn) Text('${"Critical Damage".tr()}%:$stat1CDpercent'),
-                                                if (stat1EMOn) Text('${"Elemental Mastery".tr()}:$stat1EM'),
-                                                if (stat1ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat1ERpercent'),
-                                                if (stat1atkOn) Text('${"ATK".tr()}:$stat1atk'),
-                                                if (stat1hpOn) Text('${"HP".tr()}:$stat1hp'),
-                                                if (stat1defOn) Text('${"DEF".tr()}:$stat1def'),
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Visibility(
-                                                  visible: false,
-                                                  child: SelectableText(
-                                                    _label,
-                                                    style: TextStyle(
-                                                      //fontWeight: FontWeight.bold,
-                                                      color: Colors.black,
-                                                      fontSize: 15,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-//ANCHOR artifact2
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Card(
-                                        elevation: 1,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
-                                        ),
-                                        child: InkWell(
-                                          splashColor: Colors.blue.withAlpha(30),
-                                          onTap: () {
-                                            print('Card tapped.');
-                                          },
-                                          child: Container(
-                                            width: 50,
-                                            height: 50,
-                                            decoration: BoxDecoration(
-                                              // color: Colors.lightBlue[50],
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              image: DecorationImage(
-                                                image: AssetImage('images/Icon_Plume_of_Death.png'),
-                                                fit: BoxFit.contain,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 110.0,
-                                        child: Column(
-                                          children: [
-                                            SelectableText(
-                                              'Plume:'.tr(),
-                                              style: TextStyle(
-                                                //fontWeight: FontWeight.bold,
-                                                color: Colors.black,
-                                                fontSize: 15,
-                                                height: 1.1,
-                                              ),
-                                            ),
-                                            SelectableText(
-                                              'ATK'.tr(),
-                                              style: TextStyle(
-                                                //fontWeight: FontWeight.bold,
-                                                color: Colors.black,
-                                                fontSize: 15,
-                                                height: 1.1,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          SelectableText(
-                                            '${"Star".tr()}: $pstar',
-                                            style: TextStyle(
-                                              //fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              height: 1.1,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 75,
-                                            child: Slider(
-                                              min: 4,
-                                              max: 5,
-                                              divisions: 1,
-                                              activeColor: Theme.of(context).primaryColor,
-                                              inactiveColor: Theme.of(context).primaryColorLight,
-                                              label: pstar.toString(),
-                                              value: pstar.toDouble(),
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  pstar = value.toInt();
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          SelectableText(
-                                            '${"Lv".tr()}: $plv',
-                                            style: TextStyle(
-                                              //fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              height: 1.1,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 75,
-                                            child: Slider(
-                                              min: 1,
-                                              max: 20,
-                                              divisions: 5,
-                                              activeColor: Theme.of(context).primaryColor,
-                                              inactiveColor: Theme.of(context).primaryColorLight,
-                                              label: plv.toString(),
-                                              value: plv.toDouble(),
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  plv = value.toInt();
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Card(
-                                    elevation: 1,
-                                    child: InkWell(
-                                      onTap: _showSimpleDialog2,
-                                      child: Container(
-                                        width: 170,
-                                        height: 100,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                if (!stat2atkpercentOn &&
-                                                    !stat2hppercentOn &&
-                                                    !stat2defpercentOn &&
-                                                    !stat2atkOn &&
-                                                    !stat2hpOn &&
-                                                    !stat2defOn &&
-                                                    !stat2CRpercentOn &&
-                                                    !stat2CDpercentOn &&
-                                                    !stat2EMOn &&
-                                                    !stat2ERpercentOn)
-                                                  Text('Please click to set stats').tr(),
-                                                if (stat2atkpercentOn) Text('${"ATK".tr()}%:$stat2atkpercent'),
-                                                if (stat2hppercentOn) Text('${"HP".tr()}%:$stat2hppercent'),
-                                                if (stat2defpercentOn) Text('${"DEF".tr()}%:$stat2defpercent'),
-                                                if (stat2CRpercentOn) Text('${"Critical Rate".tr()}%:$stat2CRpercent'),
-                                                if (stat2CDpercentOn) Text('${"Critical Damage".tr()}%:$stat2CDpercent'),
-                                                if (stat2EMOn) Text('${"Elemental Mastery".tr()}:$stat2EM'),
-                                                if (stat2ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat2ERpercent'),
-                                                if (stat2atkOn) Text('${"ATK".tr()}:$stat2atk'),
-                                                if (stat2hpOn) Text('${"HP".tr()}:$stat2hp'),
-                                                if (stat2defOn) Text('${"DEF".tr()}:$stat2def'),
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Visibility(
-                                                  visible: false,
-                                                  child: SelectableText(
-                                                    _label,
-                                                    style: TextStyle(
-                                                      //fontWeight: FontWeight.bold,
-                                                      color: Colors.black,
-                                                      fontSize: 15,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-//ANCHOR artifact3
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Card(
-                                        elevation: 1,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
-                                        ),
-                                        child: InkWell(
-                                          splashColor: Colors.blue.withAlpha(30),
-                                          onTap: () {
-                                            print('Card tapped.');
-                                          },
-                                          child: Container(
-                                            width: 50,
-                                            height: 50,
-                                            decoration: BoxDecoration(
-                                              // color: Colors.lightBlue[50],
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              image: DecorationImage(
-                                                image: AssetImage('images/Icon_Sands_of_Eon.png'),
-                                                fit: BoxFit.contain,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Column(
-                                        children: [
-                                          SelectableText(
-                                            'Sands:'.tr(),
-                                            style: TextStyle(
-                                              //fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              height: 1.1,
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 50.0,
-                                            width: 110.0,
-                                            child: DropdownButton(
-                                                value: artifact3mainstatcat,
-                                                items: [
-                                                  DropdownMenuItem(
-                                                    child: Text(
-                                                      "${"HP".tr()}%",
-                                                      style: TextStyle(fontSize: 15),
-                                                    ),
-                                                    value: 1,
-                                                  ),
-                                                  DropdownMenuItem(
-                                                    child: Text(
-                                                      "${"ATK".tr()}%",
-                                                      style: TextStyle(fontSize: 15),
-                                                    ),
-                                                    value: 2,
-                                                  ),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "${"DEF".tr()}%",
-                                                        style: TextStyle(fontSize: 15),
-                                                      ),
-                                                      value: 3),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "Elemental Mastery".tr(),
-                                                        style: TextStyle(fontSize: 10),
-                                                      ),
-                                                      value: 4),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "${"Energy Recharge".tr()}%",
-                                                        style: TextStyle(fontSize: 10),
-                                                      ),
-                                                      value: 5)
-                                                ],
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    artifact3mainstatcat = value;
-                                                  });
-                                                }),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          SelectableText(
-                                            '${"Star".tr()}: $sstar',
-                                            style: TextStyle(
-                                              //fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              height: 1.1,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 75,
-                                            child: Slider(
-                                              min: 4,
-                                              max: 5,
-                                              divisions: 1,
-                                              activeColor: Theme.of(context).primaryColor,
-                                              inactiveColor: Theme.of(context).primaryColorLight,
-                                              label: sstar.toString(),
-                                              value: sstar.toDouble(),
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  sstar = value.toInt();
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          SelectableText(
-                                            '${"Lv".tr()}: $slv',
-                                            style: TextStyle(
-                                              //fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              height: 1.1,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 75,
-                                            child: Slider(
-                                              min: 1,
-                                              max: 20,
-                                              divisions: 5,
-                                              activeColor: Theme.of(context).primaryColor,
-                                              inactiveColor: Theme.of(context).primaryColorLight,
-                                              label: slv.toString(),
-                                              value: slv.toDouble(),
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  slv = value.toInt();
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Card(
-                                    elevation: 1,
-                                    child: InkWell(
-                                      onTap: _showSimpleDialog3,
-                                      child: Container(
-                                        width: 170,
-                                        height: 100,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                if (!stat3atkpercentOn &&
-                                                    !stat3hppercentOn &&
-                                                    !stat3defpercentOn &&
-                                                    !stat3atkOn &&
-                                                    !stat3hpOn &&
-                                                    !stat3defOn &&
-                                                    !stat3CRpercentOn &&
-                                                    !stat3CDpercentOn &&
-                                                    !stat3EMOn &&
-                                                    !stat3ERpercentOn)
-                                                  Text('Please click to set stats').tr(),
-                                                if (stat3atkpercentOn) Text('${"ATK".tr()}%:$stat3atkpercent'),
-                                                if (stat3hppercentOn) Text('${"HP".tr()}%:$stat3hppercent'),
-                                                if (stat3defpercentOn) Text('${"DEF".tr()}%:$stat3defpercent'),
-                                                if (stat3CRpercentOn) Text('${"Critical Rate".tr()}%:$stat3CRpercent'),
-                                                if (stat3CDpercentOn) Text('${"Critical Damage".tr()}%:$stat3CDpercent'),
-                                                if (stat3EMOn) Text('${"Elemental Mastery".tr()}:$stat3EM'),
-                                                if (stat3ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat3ERpercent'),
-                                                if (stat3atkOn) Text('${"ATK".tr()}:$stat3atk'),
-                                                if (stat3hpOn) Text('${"HP".tr()}:$stat3hp'),
-                                                if (stat3defOn) Text('${"DEF".tr()}:$stat3def'),
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Visibility(
-                                                  visible: false,
-                                                  child: SelectableText(
-                                                    _label,
-                                                    style: TextStyle(
-                                                      //fontWeight: FontWeight.bold,
-                                                      color: Colors.black,
-                                                      fontSize: 15,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-//ANCHOR artifact4
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Card(
-                                        elevation: 1,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
-                                        ),
-                                        child: InkWell(
-                                          splashColor: Colors.blue.withAlpha(30),
-                                          onTap: () {
-                                            print('Card tapped.');
-                                          },
-                                          child: Container(
-                                            width: 50,
-                                            height: 50,
-                                            decoration: BoxDecoration(
-                                              // color: Colors.lightBlue[50],
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              image: DecorationImage(
-                                                image: AssetImage('images/Icon_Goblet_of_Eonothem.png'),
-                                                fit: BoxFit.contain,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Column(
-                                        children: [
-                                          SelectableText(
-                                            'Goblet:'.tr(),
-                                            style: TextStyle(
-                                              //fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              height: 1.1,
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 50.0,
-                                            width: 110.0,
-                                            child: DropdownButton(
-                                                value: artifact4mainstatcat,
-                                                items: [
-                                                  DropdownMenuItem(
-                                                    child: Text(
-                                                      "${"HP".tr()}%",
-                                                      style: TextStyle(fontSize: 15),
-                                                    ),
-                                                    value: 1,
-                                                  ),
-                                                  DropdownMenuItem(
-                                                    child: Text(
-                                                      "${"ATK".tr()}%",
-                                                      style: TextStyle(fontSize: 15),
-                                                    ),
-                                                    value: 2,
-                                                  ),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "${"DEF".tr()}%",
-                                                        style: TextStyle(fontSize: 15),
-                                                      ),
-                                                      value: 3),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "Elemental Mastery".tr(),
-                                                        style: TextStyle(fontSize: 10),
-                                                      ),
-                                                      value: 4),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "${"Physical Damage".tr()}%",
-                                                        style: TextStyle(fontSize: 10),
-                                                      ),
-                                                      value: 5),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "${"Pyro Damage".tr()}%",
-                                                        style: TextStyle(fontSize: 10),
-                                                      ),
-                                                      value: 6),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "${"Hydro Damage".tr()}%",
-                                                        style: TextStyle(fontSize: 10),
-                                                      ),
-                                                      value: 7),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "${"Cryo Damage".tr()}%",
-                                                        style: TextStyle(fontSize: 10),
-                                                      ),
-                                                      value: 8),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "${"Electro Damage".tr()}%",
-                                                        style: TextStyle(fontSize: 10),
-                                                      ),
-                                                      value: 9),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "${"Anemo Damage".tr()}%",
-                                                        style: TextStyle(fontSize: 10),
-                                                      ),
-                                                      value: 10),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "${"Geo Damage".tr()}%",
-                                                        style: TextStyle(fontSize: 10),
-                                                      ),
-                                                      value: 11),
-                                                ],
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    artifact4mainstatcat = value;
-                                                  });
-                                                }),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          SelectableText(
-                                            '${"Star".tr()}: $gstar',
-                                            style: TextStyle(
-                                              //fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              height: 1.1,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 75,
-                                            child: Slider(
-                                              min: 4,
-                                              max: 5,
-                                              divisions: 1,
-                                              activeColor: Theme.of(context).primaryColor,
-                                              inactiveColor: Theme.of(context).primaryColorLight,
-                                              label: gstar.toString(),
-                                              value: gstar.toDouble(),
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  gstar = value.toInt();
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          SelectableText(
-                                            '${"Lv".tr()}: $glv',
-                                            style: TextStyle(
-                                              //fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              height: 1.1,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 75,
-                                            child: Slider(
-                                              min: 1,
-                                              max: 20,
-                                              divisions: 5,
-                                              activeColor: Theme.of(context).primaryColor,
-                                              inactiveColor: Theme.of(context).primaryColorLight,
-                                              label: glv.toString(),
-                                              value: glv.toDouble(),
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  glv = value.toInt();
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Card(
-                                    elevation: 1,
-                                    child: InkWell(
-                                      onTap: _showSimpleDialog4,
-                                      child: Container(
-                                        width: 170,
-                                        height: 100,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                if (!stat4atkpercentOn &&
-                                                    !stat4hppercentOn &&
-                                                    !stat4defpercentOn &&
-                                                    !stat4atkOn &&
-                                                    !stat4hpOn &&
-                                                    !stat4defOn &&
-                                                    !stat4CRpercentOn &&
-                                                    !stat4CDpercentOn &&
-                                                    !stat4EMOn &&
-                                                    !stat4ERpercentOn)
-                                                  Text('Please click to set stats').tr(),
-                                                if (stat4atkpercentOn) Text('${"ATK".tr()}%:$stat4atkpercent'),
-                                                if (stat4hppercentOn) Text('${"HP".tr()}%:$stat4hppercent'),
-                                                if (stat4defpercentOn) Text('${"DEF".tr()}%:$stat4defpercent'),
-                                                if (stat4CRpercentOn) Text('${"Critical Rate".tr()}%:$stat4CRpercent'),
-                                                if (stat4CDpercentOn) Text('${"Critical Damage".tr()}%:$stat4CDpercent'),
-                                                if (stat4EMOn) Text('${"Elemental Mastery".tr()}:$stat4EM'),
-                                                if (stat4ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat4ERpercent'),
-                                                if (stat4atkOn) Text('${"ATK".tr()}:$stat4atk'),
-                                                if (stat4hpOn) Text('${"HP".tr()}:$stat4hp'),
-                                                if (stat4defOn) Text('${"DEF".tr()}:$stat4def'),
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Visibility(
-                                                  visible: false,
-                                                  child: SelectableText(
-                                                    _label,
-                                                    style: TextStyle(
-                                                      //fontWeight: FontWeight.bold,
-                                                      color: Colors.black,
-                                                      fontSize: 15,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-//ANCHOR artifact5
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Card(
-                                        elevation: 1,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
-                                        ),
-                                        child: InkWell(
-                                          splashColor: Colors.blue.withAlpha(30),
-                                          onTap: () {
-                                            print('Card tapped.');
-                                          },
-                                          child: Container(
-                                            width: 50,
-                                            height: 50,
-                                            decoration: BoxDecoration(
-                                              // color: Colors.lightBlue[50],
-                                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                                              image: DecorationImage(
-                                                image: AssetImage('images/Icon_Circlet_of_Logos.png'),
-                                                fit: BoxFit.contain,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Column(
-                                        children: [
-                                          SelectableText(
-                                            'Circlet:'.tr(),
-                                            style: TextStyle(
-                                              //fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              height: 1.1,
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 50.0,
-                                            width: 110.0,
-                                            child: DropdownButton(
-                                                value: artifact5mainstatcat,
-                                                items: [
-                                                  DropdownMenuItem(
-                                                    child: Text(
-                                                      "${"HP".tr()}%",
-                                                      style: TextStyle(fontSize: 15),
-                                                    ),
-                                                    value: 1,
-                                                  ),
-                                                  DropdownMenuItem(
-                                                    child: Text(
-                                                      "${"ATK".tr()}%",
-                                                      style: TextStyle(fontSize: 15),
-                                                    ),
-                                                    value: 2,
-                                                  ),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "${"DEF".tr()}%",
-                                                        style: TextStyle(fontSize: 15),
-                                                      ),
-                                                      value: 3),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "Elemental Mastery".tr(),
-                                                        style: TextStyle(fontSize: 10),
-                                                      ),
-                                                      value: 4),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "${"Critical Rate".tr()}%",
-                                                        style: TextStyle(fontSize: 10),
-                                                      ),
-                                                      value: 5),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "${"Critical Damage".tr()}%",
-                                                        style: TextStyle(fontSize: 10),
-                                                      ),
-                                                      value: 6),
-                                                  DropdownMenuItem(
-                                                      child: Text(
-                                                        "${"Healing Bonus".tr()}%",
-                                                        style: TextStyle(fontSize: 10),
-                                                      ),
-                                                      value: 7),
-                                                ],
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    artifact5mainstatcat = value;
-                                                  });
-                                                }),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          SelectableText(
-                                            '${"Star".tr()}: $cstar',
-                                            style: TextStyle(
-                                              //fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              height: 1.1,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 75,
-                                            child: Slider(
-                                              min: 4,
-                                              max: 5,
-                                              divisions: 1,
-                                              activeColor: Theme.of(context).primaryColor,
-                                              inactiveColor: Theme.of(context).primaryColorLight,
-                                              label: cstar.toString(),
-                                              value: cstar.toDouble(),
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  cstar = value.toInt();
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          SelectableText(
-                                            '${"Lv".tr()}: $clv',
-                                            style: TextStyle(
-                                              //fontWeight: FontWeight.bold,
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              height: 1.1,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 75,
-                                            child: Slider(
-                                              min: 1,
-                                              max: 20,
-                                              divisions: 5,
-                                              activeColor: Theme.of(context).primaryColor,
-                                              inactiveColor: Theme.of(context).primaryColorLight,
-                                              label: clv.toString(),
-                                              value: clv.toDouble(),
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  clv = value.toInt();
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Card(
-                                    elevation: 1,
-                                    child: InkWell(
-                                      onTap: _showSimpleDialog5,
-                                      child: Container(
-                                        width: 170,
-                                        height: 100,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                if (!stat5atkpercentOn &&
-                                                    !stat5hppercentOn &&
-                                                    !stat5defpercentOn &&
-                                                    !stat5atkOn &&
-                                                    !stat5hpOn &&
-                                                    !stat5defOn &&
-                                                    !stat5CRpercentOn &&
-                                                    !stat5CDpercentOn &&
-                                                    !stat5EMOn &&
-                                                    !stat5ERpercentOn)
-                                                  Text('Please click to set stats').tr(),
-                                                if (stat5atkpercentOn) Text('${"ATK".tr()}%:$stat5atkpercent'),
-                                                if (stat5hppercentOn) Text('${"HP".tr()}%:$stat5hppercent'),
-                                                if (stat5defpercentOn) Text('${"DEF".tr()}%:$stat5defpercent'),
-                                                if (stat5CRpercentOn) Text('${"Critical Rate".tr()}%:$stat5CRpercent'),
-                                                if (stat5CDpercentOn) Text('${"Critical Damage".tr()}%:$stat5CDpercent'),
-                                                if (stat5EMOn) Text('${"Elemental Mastery".tr()}:$stat5EM'),
-                                                if (stat5ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat5ERpercent'),
-                                                if (stat5atkOn) Text('${"ATK".tr()}:$stat5atk'),
-                                                if (stat5hpOn) Text('${"HP".tr()}:$stat5hp'),
-                                                if (stat5defOn) Text('${"DEF".tr()}:$stat5def'),
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Visibility(
-                                                  visible: false,
-                                                  child: SelectableText(
-                                                    _label,
-                                                    style: TextStyle(
-                                                      //fontWeight: FontWeight.bold,
-                                                      color: Colors.black,
-                                                      fontSize: 15,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            //ANCHOR ----StatPage----
-            ResponsiveGridCol(
-              xs: 12,
-              md: 12,
-              lg: 6,
-              xl: 3,
-              child: Container(
-                height: (MediaQuery.of(context).size.width > 1200) ? heightadjust : null,
-                color: Colors.yellow[50],
-                child: Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        //ANCHOR ***BasicPanel***
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
-                          child: Column(
-                            children: [
-                              SelectableText(
-                                'Basic Panel'.tr(),
-                                style: TextStyle(fontSize: 20),
-                              ),
-
-                              //ANCHOR ATK
-
-                              SizedBox(height: 10),
-                              SelectableText(
-                                '${"ATK".tr()}:$basicatk + ' + double.parse(bonusatk.toStringAsFixed(1)).toString() + ' = ' + double.parse(allatk.toStringAsFixed(1)).toString(),
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child:
-                                    //level:Colors.red
-                                    //weapon:Colors.blue
-                                    //weapon%:Colors.green
-                                    //a1:Colors.yellow
-                                    //a1%:Colors.yellow[700]
-                                    //a2:Colors.pink
-                                    //a2%:Colors.pink[700]
-                                    //a3%:Colors.blueGrey
-                                    //a3:Colors.blueGrey[700]
-                                    //a4%:Colors.purple
-                                    //a4:Colors.purple[700]
-                                    //a5%:Colors.teal
-                                    //a5:Colors.teal[700]
-                                    //pyro2On:Colors.red
-                                    //gladiator2On:Colors.purple
-                                    //royalflora4On:Colors.purple
-
-                                    FractionallySizedBox(
-                                  widthFactor: 1.0,
-                                  child: Scrollbar(
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          //ANCHOR statATK:stats
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              buildStatRow(Colors.red, 'level'.tr(), '$levelatk'),
-                                              buildStatRow(Colors.blue, 'weapon'.tr(), '$weaponatk'),
-                                              if (weaponatkpercent != 0)
-                                                buildStatRow(Colors.green, '${"weapon".tr()}%($weaponatkpercent)', double.parse(weaponatkpercentstat.toStringAsFixed(1)).toString()),
-                                              if (stat1atkOn == true) buildStatRow(Colors.red, 'a1'.tr(), double.parse(stat1atk.toStringAsFixed(1)).toString()),
-                                              if (stat1atkpercentOn == true)
-                                                buildStatRow(Colors.yellow[700], '${"a1".tr()}%($stat1atkpercent)', double.parse(a1percentatk.toStringAsFixed(1)).toString()),
-                                              buildStatRow(Colors.pink, 'a2'.tr(), a2atk.toString()),
-                                              if (stat2atkpercentOn == true)
-                                                buildStatRow(Colors.pink[700], '${"a2".tr()}%($stat2atkpercent)', double.parse(a2percentatk.toStringAsFixed(1)).toString()),
-                                              if (artifact3mainstatcat == 2)
-                                                buildStatRow(Colors.blueGrey, '${"a3".tr()}%($a3atkpercentMain)', double.parse(a3percentatkMain.toStringAsFixed(1)).toString()),
-                                              if (stat3atkpercentOn == true) buildStatRow(Colors.blueGrey, '${"a3".tr()}%($stat3atkpercent)', double.parse(a3percentatk.toStringAsFixed(1)).toString()),
-                                              if (stat3atkOn == true) buildStatRow(Colors.blueGrey[700], 'a3'.tr(), double.parse(stat3atk.toStringAsFixed(1)).toString()),
-                                              if (artifact4mainstatcat == 2)
-                                                buildStatRow(Colors.purple, '${"a4".tr()}%($a4atkpercentMain)', double.parse(a4percentatkMain.toStringAsFixed(1)).toString()),
-                                              if (stat4atkpercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%($stat4atkpercent)', double.parse(a4percentatk.toStringAsFixed(1)).toString()),
-                                              if (stat4atkOn == true) buildStatRow(Colors.purple[700], 'a4'.tr(), double.parse(stat4atk.toStringAsFixed(1)).toString()),
-                                              if (artifact5mainstatcat == 2)
-                                                buildStatRow(Colors.teal, '${"a5".tr()}%($a5atkpercentMain)', double.parse(a5percentatkMain.toStringAsFixed(1)).toString()),
-                                              if (stat5atkpercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%($stat5atkpercent)', double.parse(a5percentatk.toStringAsFixed(1)).toString()),
-                                              if (stat5atkOn == true) buildStatRow(Colors.teal[700], 'a5'.tr(), double.parse(stat5atk.toStringAsFixed(1)).toString()),
-                                              if (pyro2On == true) buildStatRow(Colors.red, '${"2 Pyro".tr()}%(25)', (basicatk * 25 / 100).toStringAsFixed(1)),
-                                              if (gladiator2On == true) buildStatRow(Colors.red, '${"Gladiator2".tr()}%(18)', (basicatk * 18 / 100).toStringAsFixed(1)),
-                                              if (reminiscenceofshime2On == true) buildStatRow(Colors.red, '${"Reminiscence2".tr()}%(18)', (basicatk * 18 / 100).toStringAsFixed(1)),
-                                              if (royalflora4On == true) buildStatRow(Colors.blue, '${"Noblesse4".tr()}%(20)', (basicatk * 20 / 100).toStringAsFixed(1)),
-                                              if (unreturningOn == true)
-                                                buildStatRow(Colors.tealAccent, '${"Unreturning".tr()}%(' + (27 + weaponref * 9).toStringAsFixed(1) + ')',
-                                                    (basicatk * (27 + weaponref * 9) / 100).toStringAsFixed(1)),
-                                              if (dragonslayerOn) buildStatRow(Colors.grey, '${"Dragon Slayers".tr()}%(48)', (basicatk * 48 / 100).toStringAsFixed(1)),
-                                              if (bennetqOn) buildStatRow(Colors.red, '${"班尼特".tr()}(burst)', (bennetbasicatk * bennetqlvtoratio[bennetqlv] / 100).toStringAsFixed(1)),
-                                              if (manualatkOn) buildStatRow(Colors.red[300], '${"Manual".tr()}:${"ATK".tr()}', (manualatk.toStringAsFixed(1))),
-                                              if (manualatkpercentOn)
-                                                buildStatRow(Colors.red[300], '${"Manual".tr()}:${"ATK".tr()}%($manualatkpercent)', ((basicatk * manualatkpercent / 100).toStringAsFixed(1))),
-                                              if (rulebythunder1On)
-                                                buildStatRow(Colors.purple, '${"Rule by Thunder1".tr()}%(' + (15 + weaponref * 5).toStringAsFixed(1) + ')',
-                                                    (basicatk * (15 + weaponref * 5) / 100).toStringAsFixed(1)),
-                                            ],
-                                          ),
-                                          //ANCHOR statATK:bar
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              buildstatbar(Colors.red, levelatk),
-                                              buildstatbar(Colors.blue, weaponatk),
-                                              buildstatbar(Colors.green, weaponatkpercentstat),
-                                              if (stat1atkOn == true) buildstatbar(Colors.yellow, stat1atk),
-                                              if (stat1atkpercentOn == true) buildstatbar(Colors.yellow[700], a1percentatk),
-                                              buildstatbar(Colors.pink, a2atk),
-                                              if (stat2atkpercentOn == true) buildstatbar(Colors.pink[700], a2percentatk),
-                                              if (artifact3mainstatcat == 2) buildstatbar(Colors.blueGrey, a3percentatkMain),
-                                              if (stat3atkpercentOn == true) buildstatbar(Colors.blueGrey, a3percentatk),
-                                              if (stat3atkOn == true) buildstatbar(Colors.blueGrey[700], stat3atk),
-                                              if (artifact4mainstatcat == 2) buildstatbar(Colors.purple, a4percentatkMain),
-                                              if (stat4atkpercentOn == true) buildstatbar(Colors.purple, a4percentatk),
-                                              if (stat4atkOn == true) buildstatbar(Colors.purple[700], stat4atk),
-                                              if (artifact5mainstatcat == 2) buildstatbar(Colors.teal, a5percentatkMain),
-                                              if (stat5atkpercentOn == true) buildstatbar(Colors.teal, a5percentatk),
-                                              if (stat5atkOn == true) buildstatbar(Colors.teal[700], stat5atk),
-                                              if (pyro2On == true) buildstatbar(Colors.red, (basicatk * 25 / 100)),
-                                              if (gladiator2On == true) buildstatbar(Colors.red, (basicatk * 18 / 100)),
-                                              if (reminiscenceofshime2On == true) buildstatbar(Colors.red, (basicatk * 18 / 100)),
-                                              if (royalflora4On == true) buildstatbar(Colors.blue, (basicatk * 20 / 100)),
-                                              if (unreturningOn == true) buildstatbar(Colors.tealAccent, (basicatk * (27 + weaponref * 9) / 100)),
-                                              if (dragonslayerOn) buildstatbar(Colors.grey, (basicatk * 48 / 100)),
-                                              if (bennetqOn) buildstatbar(Colors.red, (bennetbasicatk * bennetqlvtoratio[bennetqlv] / 100)),
-                                              if (manualatkOn) buildstatbar(Colors.red[300], (manualatk)),
-                                              if (manualatkpercentOn) buildstatbar(Colors.red[300], (basicatk * manualatkpercent / 100)),
-                                              if (rulebythunder1On == true) buildstatbar(Colors.purple, (basicatk * (15 + weaponref * 5) / 100)),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              //ANCHOR HP
-
-                              SizedBox(height: 10),
-                              SelectableText(
-                                '${"HP".tr()}:$lvlhp + ' + double.parse(bonusHP.toStringAsFixed(1)).toString() + ' = ' + double.parse(allHP.toStringAsFixed(1)).toString(),
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: FractionallySizedBox(
-                                  widthFactor: 1.0,
-                                  child: Scrollbar(
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          //ANCHOR statHP:stats
-                                          //level:Colors.red
-                                          //weapon:Colors.blue
-                                          //weapon%:Colors.green
-                                          //a1:Colors.yellow
-                                          //a1%:Colors.yellow[700]
-                                          //a2:Colors.pink
-                                          //a2%:Colors.pink[700]
-                                          //a3%:Colors.blueGrey
-                                          //a3:Colors.blueGrey[700]
-                                          //a4%:Colors.purple
-                                          //a4:Colors.purple[700]
-                                          //a5%:Colors.teal
-                                          //a5:Colors.teal[700]
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              buildStatRow(Colors.red, 'level'.tr(), '$lvlhp'),
-                                              if (weaponHPpercentstat > 0)
-                                                buildStatRow(Colors.green, '${"weapon".tr()}%($weaponHPpercent)', double.parse(weaponHPpercentstat.toStringAsFixed(1)).toString()),
-                                              if (stat1hpOn == true) buildStatRow(Colors.yellow, 'a1'.tr(), double.parse(stat1hp.toStringAsFixed(1)).toString()),
-                                              if (stat1hppercentOn == true) buildStatRow(Colors.yellow[700], '${"a1".tr()}%($stat1hppercent)', double.parse(a1percenthp.toStringAsFixed(1)).toString()),
-                                              buildStatRow(Colors.yellow, 'a1'.tr(), a1hp.toString()),
-                                              if (stat2hpOn == true) buildStatRow(Colors.pink[700], 'a2'.tr(), double.parse(stat2hp.toStringAsFixed(1)).toString()),
-                                              if (stat2hppercentOn == true) buildStatRow(Colors.pink, '${"a2".tr()}%($stat2hppercent)', double.parse(a2percenthp.toStringAsFixed(1)).toString()),
-                                              if (artifact3mainstatcat == 1)
-                                                buildStatRow(Colors.blueGrey, '${"a3".tr()}%($a3HPpercentMain)', double.parse(a3percentHPMain.toStringAsFixed(1)).toString()),
-                                              if (stat3hppercentOn == true) buildStatRow(Colors.blueGrey, '${"a3".tr()}%($stat3hppercent)', double.parse(a3percentHP.toStringAsFixed(1)).toString()),
-                                              if (stat3hpOn == true) buildStatRow(Colors.blueGrey[700], 'a3'.tr(), double.parse(stat3hp.toStringAsFixed(1)).toString()),
-                                              if (artifact4mainstatcat == 1)
-                                                buildStatRow(Colors.purple, '${"a4".tr()}%($a4HPpercentMain)', double.parse(a4percentHPMain.toStringAsFixed(1)).toString()),
-                                              if (stat4hppercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%($stat4hppercent)', double.parse(a4percentHP.toStringAsFixed(1)).toString()),
-                                              if (stat4hpOn == true) buildStatRow(Colors.purple[700], 'a4'.tr(), double.parse(stat4hp.toStringAsFixed(1)).toString()),
-                                              if (artifact5mainstatcat == 1) buildStatRow(Colors.teal, '${"a5".tr()}%($a5HPpercentMain)', double.parse(a5percentHPMain.toStringAsFixed(1)).toString()),
-                                              if (stat5hppercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%($stat5hppercent)', double.parse(a5percentHP.toStringAsFixed(1)).toString()),
-                                              if (stat5hpOn == true) buildStatRow(Colors.teal[700], 'a5'.tr(), double.parse(stat5hp.toStringAsFixed(1)).toString()),
-                                            ],
-                                          ),
-
-                                          //ANCHOR statHP:bar
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              buildstatbarhp(Colors.red, lvlhp),
-                                              if (weaponHPpercent != 0) buildstatbarhp(Colors.blue, weaponHPpercentstat),
-                                              if (stat1hpOn == true) buildstatbarhp(Colors.yellow, stat1hp),
-                                              if (stat1hppercentOn == true) buildstatbarhp(Colors.yellow[700], a1percenthp),
-                                              buildstatbarhp(Colors.yellow, a1hp),
-                                              if (stat2hpOn == true) buildstatbarhp(Colors.pink, stat2hp),
-                                              if (stat2hppercentOn == true) buildstatbarhp(Colors.pink[700], a2percenthp),
-                                              if (artifact3mainstatcat == 1) buildstatbarhp(Colors.blueGrey, a3percentHPMain),
-                                              if (stat3hppercentOn == true) buildstatbarhp(Colors.blueGrey, a3percentHP),
-                                              if (stat3hpOn == true) buildstatbarhp(Colors.blueGrey[700], stat3hp),
-                                              if (artifact4mainstatcat == 1) buildstatbarhp(Colors.purple, a4percentHPMain),
-                                              if (stat4hppercentOn == true) buildstatbarhp(Colors.purple, a4percentHP),
-                                              if (stat4hpOn == true) buildstatbarhp(Colors.purple[700], stat4hp),
-                                              if (artifact5mainstatcat == 1) buildstatbarhp(Colors.teal, a5percentHPMain),
-                                              if (stat5hppercentOn == true) buildstatbarhp(Colors.teal, a5percentHP),
-                                              if (stat5hpOn == true) buildstatbarhp(Colors.teal[700], stat5hp),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                              //ANCHOR DEF
-                              SelectableText(
-                                '${"DEF".tr()}:$lvldef + ' + double.parse(bonusdef.toStringAsFixed(1)).toString() + ' = ' + double.parse(alldef.toStringAsFixed(1)).toString(),
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: FractionallySizedBox(
-                                  widthFactor: 1.0,
-                                  child: Scrollbar(
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          //ANCHOR statDEF:stats
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              buildStatRow(Colors.red, 'level'.tr(), '$lvldef'),
-                                              if (weapondefpercentstat != 0)
-                                                buildStatRow(Colors.green, '${"weapon".tr()}%($weapondefpercent)', double.parse(weapondefpercentstat.toStringAsFixed(1)).toString()),
-                                              if (stat1defOn == true) buildStatRow(Colors.yellow, 'a1'.tr(), double.parse(stat1def.toStringAsFixed(1)).toString()),
-                                              if (stat1defpercentOn == true)
-                                                buildStatRow(Colors.yellow[700], '${"a1".tr()}%($stat1defpercent)', double.parse(a1percentdef.toStringAsFixed(1)).toString()),
-                                              if (stat2defOn == true) buildStatRow(Colors.pink, 'a2'.tr(), double.parse(stat2def.toStringAsFixed(1)).toString()),
-                                              if (stat2defpercentOn == true)
-                                                buildStatRow(Colors.pink[700], '${"a2".tr()}%($stat2defpercent)', double.parse(a2percentdef.toStringAsFixed(1)).toString()),
-                                              if (artifact3mainstatcat == 3)
-                                                buildStatRow(Colors.blueGrey, '${"a3".tr()}%($a3defpercentMain)', double.parse(a3percentdefMain.toStringAsFixed(1)).toString()),
-                                              if (stat3defpercentOn == true) buildStatRow(Colors.blueGrey, '${"a3".tr()}%($stat3defpercent)', double.parse(a3percentHP.toStringAsFixed(1)).toString()),
-                                              if (stat3defOn == true) buildStatRow(Colors.blueGrey[700], 'a3'.tr(), double.parse(stat3def.toStringAsFixed(1)).toString()),
-                                              if (artifact4mainstatcat == 3)
-                                                buildStatRow(Colors.purple, '${"a4".tr()}%($a4defpercentMain)', double.parse(a4percentdefMain.toStringAsFixed(1)).toString()),
-                                              if (stat4defpercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%($stat4defpercent)', double.parse(a4percentdef.toStringAsFixed(1)).toString()),
-                                              if (stat4defOn == true) buildStatRow(Colors.purple[700], 'a4'.tr(), double.parse(stat4def.toStringAsFixed(1)).toString()),
-                                              if (artifact5mainstatcat == 3)
-                                                buildStatRow(Colors.teal, '${"a5".tr()}%($a5defpercentMain)', double.parse(a5percentdefMain.toStringAsFixed(1)).toString()),
-                                              if (stat5defpercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%($stat5defpercent)', double.parse(a5percentdef.toStringAsFixed(1)).toString()),
-                                              if (stat5defOn == true) buildStatRow(Colors.teal[700], 'a5'.tr(), double.parse(stat5def.toStringAsFixed(1)).toString()),
-                                            ],
-                                          ),
-
-                                          //ANCHOR statDEF:bar
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              buildstatbar(Colors.red, lvldef),
-                                              if (weapondefpercentstat != 0) buildstatbar(Colors.blue, weapondefpercentstat),
-                                              if (stat1defOn == true) buildstatbar(Colors.yellow, stat1def),
-                                              if (stat1defpercentOn == true) buildstatbar(Colors.yellow[700], a1percentdef),
-                                              if (stat2defpercentOn == true) buildstatbar(Colors.pink[700], a2percentdef),
-                                              if (artifact3mainstatcat == 3) buildstatbar(Colors.blueGrey, a3percentdefMain),
-                                              if (stat3defpercentOn == true) buildstatbar(Colors.blueGrey, a3percentdef),
-                                              if (stat3defOn == true) buildstatbar(Colors.blueGrey[700], stat3def),
-                                              if (artifact4mainstatcat == 3) buildstatbar(Colors.purple, a4percentdefMain),
-                                              if (stat4defpercentOn == true) buildstatbar(Colors.purple, a4percentdef),
-                                              if (stat4defOn == true) buildstatbar(Colors.purple[700], stat4def),
-                                              if (artifact5mainstatcat == 3) buildstatbar(Colors.teal, a5percentdefMain),
-                                              if (stat5defpercentOn == true) buildstatbar(Colors.teal, a5percentdef),
-                                              if (stat5defOn == true) buildstatbar(Colors.teal[700], stat5def),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                              //ANCHOR ER
-                              SelectableText(
-                                '${"Energy Recharge".tr()}:100% + ' + double.parse(bonusER.toStringAsFixed(1)).toString() + '% = ' + double.parse(allER.toStringAsFixed(1)).toString() + '%',
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: FractionallySizedBox(
-                                  widthFactor: 1.0,
-                                  child: Scrollbar(
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          //ANCHOR statER:stats
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              buildStatRow(Colors.red, '${"baseER".tr()}%', '100'),
-                                              if (weaponERpercent != 0) buildStatRow(Colors.green, '${"weapon".tr()}%', '$weaponERpercent'),
-                                              if (stat1ERpercentOn == true) buildStatRow(Colors.yellow[700], '${"a1".tr()}%', '$stat1ERpercent'),
-                                              if (stat2ERpercentOn == true) buildStatRow(Colors.pink[700], '${"a2".tr()}%', '$stat2ERpercent'),
-                                              if (artifact3mainstatcat == 5) buildStatRow(Colors.blueGrey, '${"a3".tr()}%', '$a3ERpercentMain'),
-                                              if (stat3ERpercentOn == true) buildStatRow(Colors.blueGrey, '${"a3".tr()}%', '$stat3ERpercent'),
-                                              if (stat4ERpercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%', '$stat4ERpercent'),
-                                              if (stat5ERpercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%', '$stat5ERpercent'),
-                                            ],
-                                          ),
-
-                                          //ANCHOR statER:bar
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              buildstatbarpercent(Colors.red, 50),
-                                              if (weaponERpercent != 0) buildstatbarpercent(Colors.blue, weaponERpercent),
-                                              if (stat1ERpercentOn == true) buildstatbarpercent(Colors.yellow[700], stat1ERpercent),
-                                              if (stat2ERpercentOn == true) buildstatbarpercent(Colors.pink[700], stat2ERpercent),
-                                              if (artifact3mainstatcat == 5) buildstatbarpercent(Colors.blueGrey, a3ERpercentMain),
-                                              if (stat3ERpercentOn == true) buildstatbarpercent(Colors.blueGrey, stat3ERpercent),
-                                              if (stat4ERpercentOn == true) buildstatbarpercent(Colors.purple, stat4ERpercent),
-                                              if (stat5ERpercentOn == true) buildstatbarpercent(Colors.teal, stat5ERpercent),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        //ANCHOR ***CritPanel***
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
-                          child: Column(
-                            //ANCHOR CR
-
-                            children: [
-                              SelectableText(
-                                'Crit Panel'.tr(),
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              SizedBox(height: 10),
-
-                              SelectableText(
-                                '${"Critical Rate".tr()}:' +
-                                    double.parse(baseCR.toStringAsFixed(1)).toString() +
-                                    '% + ' +
-                                    double.parse(bonusCR.toStringAsFixed(1)).toString() +
-                                    '% = ' +
-                                    double.parse(allCR.toStringAsFixed(1)).toString() +
-                                    '%',
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: FractionallySizedBox(
-                                  widthFactor: 1.0,
-                                  child: Scrollbar(
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          //ANCHOR statCR:stats
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              buildStatRow(Colors.red, 'character'.tr(), '$baseCR'),
-                                              if (weaponCR != 0) buildStatRow(Colors.blue[700], 'weapon'.tr(), '$weaponCR'),
-                                              if (stat1CRpercentOn == true) buildStatRow(Colors.yellow[700], 'a1'.tr(), '$stat1CRpercent'),
-                                              if (stat2CRpercentOn == true) buildStatRow(Colors.pink[700], 'a2'.tr(), '$stat2CRpercent'),
-                                              if (stat3CRpercentOn == true) buildStatRow(Colors.blueGrey, 'a3'.tr(), '$stat3CRpercent'),
-                                              if (stat4CRpercentOn == true) buildStatRow(Colors.purple, 'a4'.tr(), '$stat4CRpercent'),
-                                              if (artifact5mainstatcat == 5) buildStatRow(Colors.purple, 'a5'.tr(), '$a5CR'),
-                                              if (stat5CRpercentOn == true) buildStatRow(Colors.teal, 'a5'.tr(), '$stat5CRpercent'),
-                                              if (undividedHeartOn == true) buildStatRow(Colors.amber, 'Undevided Heart'.tr(), '20'),
-                                              if (blizzardstrayer41On == true) buildStatRow(Colors.blue[300], 'Blizzard Strayer 4 set(cryo)'.tr(), '20'),
-                                              if (blizzardstrayer42On == true) buildStatRow(Colors.blue[400], 'Blizzard Strayer 4 set(frozen)'.tr(), '20'),
-                                              if (cryo2On == true) buildStatRow(Colors.blue[200], '2 Cryo'.tr(), '15'),
-                                              if (manualCRpercentOn) buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualCRpercent).toStringAsFixed(1))),
-                                            ],
-                                          ),
-
-                                          //ANCHOR statCR:bar
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  AnimatedContainer(curve: Curves.easeIn, duration: Duration(milliseconds: 500), width: baseCR * 2, height: 20, color: Colors.red),
-                                                ],
-                                              ),
-                                              if (weaponCR != 0)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: weaponCR * 2,
-                                                      height: 20,
-                                                      color: Colors.blue[700],
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (stat1CRpercentOn == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: stat1CRpercent * 2,
-                                                      height: 20,
-                                                      color: Colors.yellow[700],
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (stat2CRpercentOn == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: stat2CRpercent * 2,
-                                                      height: 20,
-                                                      color: Colors.pink[700],
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (stat3CRpercentOn == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: stat3CRpercent * 2,
-                                                      height: 20,
-                                                      color: Colors.blueGrey,
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (stat4CRpercentOn == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: stat4CRpercent * 2,
-                                                      height: 20,
-                                                      color: Colors.purple,
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (artifact5mainstatcat == 5)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: a5CR * 2,
-                                                      height: 20,
-                                                      color: Colors.teal,
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (stat5CRpercentOn == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: stat5CRpercent * 2,
-                                                      height: 20,
-                                                      color: Colors.teal,
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (undividedHeartOn == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: 40,
-                                                      height: 20,
-                                                      color: Colors.amber,
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (blizzardstrayer41On == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: 40,
-                                                      height: 20,
-                                                      color: Colors.blue[300],
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (blizzardstrayer42On == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: 40,
-                                                      height: 20,
-                                                      color: Colors.blue[400],
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (cryo2On == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: 30,
-                                                      height: 20,
-                                                      color: Colors.blue[200],
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (manualCRpercentOn) buildstatbarpercent(Colors.red[300], manualCRpercent),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              //ANCHOR CD
-                              SelectableText(
-                                '${"Critical Damage".tr()}:' +
-                                    double.parse(baseCD.toStringAsFixed(1)).toString() +
-                                    '% + ' +
-                                    double.parse(bonusCD.toStringAsFixed(1)).toString() +
-                                    '% = ' +
-                                    double.parse(allCD.toStringAsFixed(1)).toString() +
-                                    '%',
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: FractionallySizedBox(
-                                  widthFactor: 1.0,
-                                  child: Scrollbar(
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          //ANCHOR statCD:stats
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              buildStatRow(Colors.red, 'character'.tr(), '$baseCD'),
-                                              if (weaponCD != 0) buildStatRow(Colors.blue, 'weapon'.tr(), '$weaponCD'),
-                                              if (stat1CDpercentOn == true) buildStatRow(Colors.yellow[700], 'a1'.tr(), '$stat1CDpercent'),
-                                              if (stat2CDpercentOn == true) buildStatRow(Colors.pink[700], 'a2'.tr(), '$stat2CDpercent'),
-                                              if (stat3CDpercentOn == true) buildStatRow(Colors.blueGrey, 'a3'.tr(), '$stat3CDpercent'),
-                                              if (stat4CDpercentOn == true) buildStatRow(Colors.blueGrey, 'a4'.tr(), '$stat4CDpercent'),
-                                              if (artifact5mainstatcat == 6) buildStatRow(Colors.teal, 'a5'.tr(), '$a5CD'),
-                                              if (stat5CDpercentOn == true) buildStatRow(Colors.teal, 'a5'.tr(), '$stat5CDpercent'),
-                                              if (echoingBalladOn == true) buildStatRow(Colors.tealAccent, 'Echoing Ballad1'.tr(), (15 + weaponref * 5).toString()),
-                                              if (manualCDpercentOn) buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualCDpercent).toStringAsFixed(1))),
-                                            ],
-                                          ),
-
-                                          //ANCHOR statCD:bar
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              if ((baseCD - weaponCD) != 0)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(curve: Curves.easeIn, duration: Duration(milliseconds: 500), width: baseCD * 2, height: 20, color: Colors.red),
-                                                  ],
-                                                ),
-                                              if (weaponCD != 0)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: weaponCD * 2,
-                                                      height: 20,
-                                                      color: Colors.blue,
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (stat1CDpercentOn == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: stat1CDpercent * 2,
-                                                      height: 20,
-                                                      color: Colors.yellow[700],
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (stat2CDpercentOn == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: stat2CDpercent * 2,
-                                                      height: 20,
-                                                      color: Colors.pink[700],
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (stat3CDpercentOn == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: stat3CDpercent * 2,
-                                                      height: 20,
-                                                      color: Colors.blueGrey,
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (stat4CDpercentOn == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: stat4CDpercent * 2,
-                                                      height: 20,
-                                                      color: Colors.purple,
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (artifact5mainstatcat == 6)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: a5CD * 2,
-                                                      height: 20,
-                                                      color: Colors.teal,
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (stat5CDpercentOn == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: stat5CDpercent * 2,
-                                                      height: 20,
-                                                      color: Colors.teal,
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (echoingBalladOn == true)
-                                                Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    AnimatedContainer(
-                                                      curve: Curves.easeIn,
-                                                      duration: Duration(milliseconds: 500),
-                                                      width: (15 + weaponref * 5) * 2 as double,
-                                                      height: 20,
-                                                      color: Colors.tealAccent,
-                                                    ),
-                                                  ],
-                                                ),
-                                              if (manualCDpercentOn) buildstatbarpercent(Colors.red[300], manualCDpercent),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        //ANCHOR ***Damageplus Panel***
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
-                          child: Column(
-                            children: [
-                              SelectableText(
-                                'Damageplus Panel'.tr(),
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              SizedBox(height: 10),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Column(
-                                  children: [
-                                    if (bonusNormalATKDMGpercent != 0)
-                                      SelectableText(
-                                        '${"Normal Attack Damage".tr()}:' + double.parse(bonusNormalATKDMGpercent.toStringAsFixed(1)).toString() + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statNormalATKDMG:stats
-                                    if (bonusNormalATKDMGpercent != 0)
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          if (strongWilled1On) buildStatRow(Colors.purple[300], 'Strong Willed1'.tr(), (9 + weaponref * 3).toString()),
-                                          if (strongWilled2On) buildStatRow(Colors.blue[300], 'Strong Willed2'.tr(), ((6 + weaponref * 2) * strongWilled2Times).toString()),
-                                          if (rulebythunder2On)
-                                            buildStatRow(Colors.amber, 'Rule by Thunder2'.tr(),
-                                                (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30))).toString()),
-                                          if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
-                                        ],
-                                      ),
-                                    //ANCHOR statNormalATKDMG:bar
-                                    if (bonusNormalATKDMGpercent != 0)
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          if (strongWilled1On)
-                                            Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                AnimatedContainer(
-                                                  curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
-                                                  width: (9 + weaponref * 3) * 2 as double,
-                                                  height: 20,
-                                                  color: Colors.purple[300],
-                                                ),
-                                              ],
-                                            ),
-                                          if (strongWilled2On)
-                                            Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                AnimatedContainer(
-                                                  curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
-                                                  width: ((6 + weaponref * 2) * strongWilled2Times) * 2 * 2 as double,
-                                                  height: 20,
-                                                  color: Colors.blue[300],
-                                                ),
-                                              ],
-                                            ),
-                                          if (rulebythunder2On)
-                                            buildstatbarpercent(
-                                                Colors.amber, (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))),
-                                          if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
-                                        ],
-                                      ),
-                                    if (bonusChargedATKDMGpercent != 0)
-                                      SelectableText(
-                                        '${"Charged Attack Damage".tr()}:' + double.parse(bonusChargedATKDMGpercent.toStringAsFixed(1)).toString() + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statChargedATKDMG:stats
-                                    if (bonusChargedATKDMGpercent != 0)
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          if (strongWilled1On) buildStatRow(Colors.purple[300], 'Strong Willed1'.tr(), (9 + weaponref * 3).toString()),
-                                          if (strongWilled2On) buildStatRow(Colors.blue[300], 'Strong Willed2'.tr(), ((6 + weaponref * 2) * strongWilled2Times).toString()),
-                                          if (troupesdawnlight4on) buildStatRow(Colors.green[400], "Troupe's Dawnlight 4 set".tr(), "35"),
-                                          if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
-                                        ],
-                                      ),
-                                    //ANCHOR statChargedATKDMG:bar
-                                    if (bonusChargedATKDMGpercent != 0)
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          if (strongWilled1On)
-                                            Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                AnimatedContainer(
-                                                  curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
-                                                  width: (9 + weaponref * 3) * 2 as double,
-                                                  height: 20,
-                                                  color: Colors.purple[300],
-                                                ),
-                                              ],
-                                            ),
-                                          if (strongWilled2On)
-                                            Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                AnimatedContainer(
-                                                  curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
-                                                  width: ((6 + weaponref * 2) * strongWilled2Times) * 2 * 2 as double,
-                                                  height: 20,
-                                                  color: Colors.blue[300],
-                                                ),
-                                              ],
-                                            ),
-                                          if (troupesdawnlight4on)
-                                            Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                AnimatedContainer(
-                                                  curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
-                                                  width: 35 * 2 as double,
-                                                  height: 20,
-                                                  color: Colors.green[400],
-                                                ),
-                                              ],
-                                            ),
-                                          if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
-                                        ],
-                                      ),
-                                    //ANCHOR Plunge Damage Title
-                                    if (bonusPlungeATKDMGpercent != 0)
-                                      SelectableText(
-                                        '${"Plunge Damage".tr()}:' + double.parse(bonusPlungeATKDMGpercent.toStringAsFixed(1)).toString() + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statPlungeDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
-                                      ],
-                                    ),
-                                    //ANCHOR statPlungeDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
-                                      ],
-                                    ),
-                                    //ANCHOR Physical Damage Title
-                                    if (bonusPhysicalDMGpercent != 0)
-                                      SelectableText(
-                                        '${"Physical Damage".tr()}:' + double.parse(bonusPhysicalDMGpercent.toStringAsFixed(1)).toString() + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statPhysicalDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (levelPhysicalDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelPhysicalDMGpercent'),
-                                        if (weaponPhysicalDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponPhysicalDMGpercent'),
-                                        if (artifact4mainstatcat == 5) buildStatRow(Colors.purple, 'a4'.tr(), '$a4PhysicalDMGpercent'),
-                                      ],
-                                    ),
-                                    //ANCHOR statPhysicalDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (levelPhysicalDMGpercent != 0) buildstatbarpercent(Colors.red, levelPhysicalDMGpercent),
-                                        if (weaponPhysicalDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponPhysicalDMGpercent),
-                                        if (artifact4mainstatcat == 5) buildstatbarpercent(Colors.purple, a4PhysicalDMGpercent),
-                                      ],
-                                    ),
-                                    //ANCHOR Pyro Damage Title
-                                    if (bonusPyroDMGpercent != 0)
-                                      SelectableText(
-                                        '${"Pyro Damage".tr()}:' + double.parse(bonusPyroDMGpercent.toStringAsFixed(1)).toString() + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statPyroDMG:stats
-                                    if (bonusPyroDMGpercent != 0)
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          if (levelPyroDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelPyroDMGpercent'),
-                                          if (weaponPyroDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponPyroDMGpercent'),
-                                          if (artifact4mainstatcat == 6) buildStatRow(Colors.purple, 'a4'.tr(), '$a4PyroDMGpercent'),
-                                          if (troublemakerstack != 0) buildStatRow(Colors.red, 'Tricks of the Trouble-Maker'.tr(), (troublemakerstack * 2).toString()),
-                                          if (summerscorchOn) buildStatRow(Colors.red[400], 'Summer Scorch'.tr(), '$troublemakerstack'),
-                                          if (yoimiyaconstellation2On) buildStatRow(Colors.amber, 'A Procession of Bonfires'.tr(), '25'),
-                                        ],
-                                      ),
-                                    //ANCHOR statPyroDMG:bar
-                                    if (bonusPyroDMGpercent != 0)
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          if (levelPyroDMGpercent != 0) buildstatbarpercent(Colors.red, levelPyroDMGpercent),
-                                          if (weaponPyroDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponPyroDMGpercent),
-                                          if (artifact4mainstatcat == 6) buildstatbarpercent(Colors.purple, a4PyroDMGpercent),
-                                          if (troublemakerstack != 0) buildstatbarpercent(Colors.red, troublemakerstack * 2),
-                                          if (summerscorchOn) buildstatbarpercent(Colors.red[400], troublemakerstack),
-                                          if (yoimiyaconstellation2On) buildstatbarpercent(Colors.amber, 25),
-                                        ],
-                                      ),
-                                    //ANCHOR Hydro Damage Title
-                                    if (bonusHydroDMGpercent != 0)
-                                      SelectableText(
-                                        '${"Hydro Damage".tr()}:' + double.parse(bonusHydroDMGpercent.toStringAsFixed(1)).toString() + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statHydroDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (levelHydroDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelHydroDMGpercent'),
-                                        if (weaponHydroDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponHydroDMGpercent'),
-                                        if (artifact4mainstatcat == 7) buildStatRow(Colors.purple, 'a4'.tr(), '$a4HydroDMGpercent'),
-                                      ],
-                                    ),
-                                    //ANCHOR statHydroDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (levelHydroDMGpercent != 0) buildstatbarpercent(Colors.red, levelHydroDMGpercent),
-                                        if (weaponHydroDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponHydroDMGpercent),
-                                        if (artifact4mainstatcat == 7) buildstatbarpercent(Colors.purple, a4HydroDMGpercent),
-                                      ],
-                                    ),
-                                    //ANCHOR Cryo Damage Title
-                                    if (bonusCryoDMGpercent != 0)
-                                      SelectableText(
-                                        '${"Cryo Damage".tr()}:' + double.parse(bonusCryoDMGpercent.toStringAsFixed(1)).toString() + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statCryoDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (levelCryoDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelCryoDMGpercent'),
-                                        if (weaponCryoDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponCryoDMGpercent'),
-                                        if (artifact4mainstatcat == 8) buildStatRow(Colors.purple, 'a4'.tr(), '$a4CryoDMGpercent'),
-                                        if (blizzardstrayer2On) buildStatRow(Colors.blue[300], 'Blizzard2'.tr(), '15'),
-                                        if (harmonyOn) buildStatRow(Colors.amber, 'Harmony between Heaven and Earth'.tr(), '20'),
-                                      ],
-                                    ),
-                                    //ANCHOR statCryoDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (levelCryoDMGpercent != 0) buildstatbarpercent(Colors.red, levelCryoDMGpercent),
-                                        if (weaponCryoDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponCryoDMGpercent),
-                                        if (artifact4mainstatcat == 8) buildstatbarpercent(Colors.purple, a4CryoDMGpercent),
-                                        if (blizzardstrayer2On) buildstatbarpercent(Colors.blue[300], 15),
-                                        if (harmonyOn) buildstatbarpercent(Colors.amber, 20),
-                                      ],
-                                    ),
-                                    //ANCHOR Electro Damage Title
-                                    if (bonusElectroDMGpercent != 0)
-                                      SelectableText(
-                                        '${"Electro Damage".tr()}:' + double.parse(bonusElectroDMGpercent.toStringAsFixed(1)).toString() + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statElectroDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (levelElectroDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelElectroDMGpercent'),
-                                        if (weaponElectroDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponElectroDMGpercent'),
-                                        if (artifact4mainstatcat == 9) buildStatRow(Colors.purple, 'a4'.tr(), '$a4ElectroDMGpercent'),
-                                        if (thunderbird2On) buildStatRow(Colors.purple[400], 'Thundering Fury 2 Set'.tr(), '15'),
-                                      ],
-                                    ),
-                                    //ANCHOR statElectroDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (levelElectroDMGpercent != 0) buildstatbarpercent(Colors.red, levelElectroDMGpercent),
-                                        if (weaponElectroDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponElectroDMGpercent),
-                                        if (artifact4mainstatcat == 9) buildstatbarpercent(Colors.purple, a4ElectroDMGpercent),
-                                        if (thunderbird2On) buildstatbarpercent(Colors.purple[400], 15)
-                                      ],
-                                    ),
-                                    //ANCHOR Anemo Damage Title
-                                    if (bonusAnemoDMGpercent != 0)
-                                      SelectableText(
-                                        '${"Anemo Damage".tr()}:' + double.parse(bonusAnemoDMGpercent.toStringAsFixed(1)).toString() + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statAnemoDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (levelAnemoDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelAnemoDMGpercent'),
-                                        if (weaponAnemoDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponAnemoDMGpercent'),
-                                        if (artifact4mainstatcat == 10) buildStatRow(Colors.purple, 'a4'.tr(), '$a4AnemoDMGpercent'),
-                                      ],
-                                    ),
-                                    //ANCHOR statAnemoDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (levelAnemoDMGpercent != 0) buildstatbarpercent(Colors.red, levelAnemoDMGpercent),
-                                        if (weaponAnemoDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponAnemoDMGpercent),
-                                        if (artifact4mainstatcat == 10) buildstatbarpercent(Colors.purple, a4AnemoDMGpercent),
-                                      ],
-                                    ),
-                                    //ANCHOR Geo Damage Title
-                                    if (bonusGeoDMGpercent != 0)
-                                      SelectableText(
-                                        '${"Geo Damage".tr()}:' + double.parse(bonusGeoDMGpercent.toStringAsFixed(1)).toString() + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statGeoDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (levelGeoDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelGeoDMGpercent'),
-                                        if (weaponGeoDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponGeoDMGpercent'),
-                                        if (artifact4mainstatcat == 11) buildStatRow(Colors.purple, 'a4'.tr(), '$a4GeoDMGpercent'),
-                                      ],
-                                    ),
-                                    //ANCHOR statGeoDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (levelGeoDMGpercent != 0) buildstatbarpercent(Colors.red, levelGeoDMGpercent),
-                                        if (weaponGeoDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponGeoDMGpercent),
-                                        if (artifact4mainstatcat == 11) buildstatbarpercent(Colors.purple, a4GeoDMGpercent),
-                                      ],
-                                    ),
-
-                                    //ANCHOR Elemental Burst Damage Title
-                                    if (bonusBurstDMGpercent != 0)
-                                      SelectableText(
-                                        '${"Elemental Burst Damage".tr()}:' + double.parse(bonusBurstDMGpercent.toStringAsFixed(1)).toString() + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statBurstDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (royalflora2On) buildStatRow(Colors.blue, 'Noblesse Oblige 2 Set'.tr(), '20'),
-                                      ],
-                                    ),
-                                    //ANCHOR statBurstDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (royalflora2On) buildstatbarpercent(Colors.blue, 20),
-                                      ],
-                                    ),
-                                    //ANCHOR  Damage Bonus Title
-                                    if (bonusDMGpercent != 0)
-                                      SelectableText(
-                                        '${"Damage Bonus".tr()}:' + double.parse(bonusDMGpercent.toStringAsFixed(1)).toString() + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statBonusDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (monaqOn) buildStatRow(Colors.purple[300], 'Mona(burst)'.tr(), (monaqlvtoratio[monaqlv] * 1).toStringAsFixed(1)),
-                                        if (thundersoother4On) buildStatRow(Color(0xFF6480FF), 'Thundersoother 4 Set'.tr(), '35'),
-                                        if (manualDMGpercentOn) buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualDMGpercent).toStringAsFixed(1))),
-                                      ],
-                                    ),
-                                    //ANCHOR statBonusDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (monaqOn) buildstatbarpercent(Colors.purple[300], (monaqlvtoratio[monaqlv] * 1)),
-                                        if (thundersoother4On) buildstatbarpercent(Color(0xFF6480FF), 35),
-                                        if (manualDMGpercentOn) buildstatbarpercent(Colors.red[300], manualDMGpercent),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        //ANCHOR ***Reaction Panel***
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
-                          child: Column(
-                            children: [
-                              SelectableText(
-                                'Reaction Panel'.tr(),
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              SizedBox(height: 10),
-
-                              //ANCHOR EM
-                              SelectableText(
-                                '${"Elemental Mastery".tr()}:$lvlEM + ' + double.parse(bonusEM.toStringAsFixed(1)).toString() + ' = ' + double.parse(allEM.toStringAsFixed(1)).toString(),
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Column(
-                                  children: [
-                                    //ANCHOR statEM:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (lvlEM != 0) buildStatRow(Colors.red, 'baseEM'.tr(), '$lvlEM'),
-                                        if (weaponEM != 0) buildStatRow(Colors.red, "weapon".tr(), '$weaponEM'),
-                                        if (stat1EMOn == true) buildStatRow(Colors.yellow, "a1".tr(), '$stat1EM'),
-                                        if (stat2EMOn == true) buildStatRow(Colors.pink, "a2".tr(), '$stat2EM'),
-                                        if (artifact3mainstatcat == 4) buildStatRow(Colors.blueGrey, "a3".tr(), '$a3EM'),
-                                        if (stat3EMOn == true) buildStatRow(Colors.blueGrey, "a3".tr(), '$stat3EM'),
-                                        if (artifact4mainstatcat == 4) buildStatRow(Colors.purple, "a4".tr(), '$a4EM'),
-                                        if (stat4EMOn == true) buildStatRow(Colors.purple, "a4".tr(), '$stat4EM'),
-                                        if (artifact5mainstatcat == 4) buildStatRow(Colors.teal, "a5".tr(), '$a5EM'),
-                                        if (stat5EMOn == true) buildStatRow(Colors.teal, "a5".tr(), '$stat5EM'),
-                                        if (troupesdawnlight2on) buildStatRow(Colors.teal, "Troupe's Dawnlight 2 set".tr(), '80'),
-                                        if (manualEMOn) buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualEM).toStringAsFixed(1))),
-                                      ],
-                                    ),
-
-                                    //ANCHOR statEM:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            AnimatedContainer(curve: Curves.easeIn, duration: Duration(milliseconds: 500), width: lvlEM / 7, height: 20, color: Colors.red),
-                                          ],
-                                        ),
-                                        if (weaponEM != 0)
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              AnimatedContainer(
-                                                curve: Curves.easeIn,
-                                                duration: Duration(milliseconds: 500),
-                                                width: weaponEM / 7,
-                                                height: 20,
-                                                color: Colors.blue,
-                                              ),
-                                            ],
-                                          ),
-                                        if (stat1EMOn == true)
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              AnimatedContainer(
-                                                curve: Curves.easeIn,
-                                                duration: Duration(milliseconds: 500),
-                                                width: stat1EM / 7,
-                                                height: 20,
-                                                color: Colors.yellow,
-                                              ),
-                                            ],
-                                          ),
-                                        if (stat2EMOn == true)
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              AnimatedContainer(
-                                                curve: Curves.easeIn,
-                                                duration: Duration(milliseconds: 500),
-                                                width: stat2EM / 7,
-                                                height: 20,
-                                                color: Colors.pink,
-                                              ),
-                                            ],
-                                          ),
-                                        if (artifact3mainstatcat == 4)
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              AnimatedContainer(
-                                                curve: Curves.easeIn,
-                                                duration: Duration(milliseconds: 500),
-                                                width: a3EM / 7,
-                                                height: 20,
-                                                color: Colors.blueGrey,
-                                              ),
-                                            ],
-                                          ),
-                                        if (stat3EMOn == true)
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              AnimatedContainer(
-                                                curve: Curves.easeIn,
-                                                duration: Duration(milliseconds: 500),
-                                                width: stat3EM / 7,
-                                                height: 20,
-                                                color: Colors.blueGrey,
-                                              ),
-                                            ],
-                                          ),
-                                        if (artifact4mainstatcat == 4)
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              AnimatedContainer(
-                                                curve: Curves.easeIn,
-                                                duration: Duration(milliseconds: 500),
-                                                width: a4EM / 7,
-                                                height: 20,
-                                                color: Colors.purple,
-                                              ),
-                                            ],
-                                          ),
-                                        if (stat4EMOn == true)
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              AnimatedContainer(
-                                                curve: Curves.easeIn,
-                                                duration: Duration(milliseconds: 500),
-                                                width: stat4EM / 7,
-                                                height: 20,
-                                                color: Colors.purple,
-                                              ),
-                                            ],
-                                          ),
-                                        if (artifact5mainstatcat == 4)
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              AnimatedContainer(
-                                                curve: Curves.easeIn,
-                                                duration: Duration(milliseconds: 500),
-                                                width: a5EM / 7,
-                                                height: 20,
-                                                color: Colors.teal,
-                                              ),
-                                            ],
-                                          ),
-                                        if (stat5EMOn == true)
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              AnimatedContainer(
-                                                curve: Curves.easeIn,
-                                                duration: Duration(milliseconds: 500),
-                                                width: stat5EM / 7,
-                                                height: 20,
-                                                color: Colors.teal,
-                                              ),
-                                            ],
-                                          ),
-                                        if (troupesdawnlight2on)
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              AnimatedContainer(
-                                                curve: Curves.easeIn,
-                                                duration: Duration(milliseconds: 500),
-                                                width: 80 / 7,
-                                                height: 20,
-                                                color: Colors.green[400],
-                                              ),
-                                            ],
-                                          ),
-                                        if (manualEMOn) buildstatbar(Colors.red[300], manualEM),
-                                      ],
-                                    ),
-                                    //ANCHOR Vaporize Damage Title
-                                    if (vaporizeDMGpercent > 100)
-                                      SelectableText(
-                                        '${"Vaporize Damage Plus".tr()}:' + (vaporizeDMGpercent - 100).toStringAsFixed(1) + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statVaporizeDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicmeltpercent * 100).toStringAsFixed(1)),
-                                      ],
-                                    ),
-                                    //ANCHOR statVaporizeDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicmeltpercent * 100 / 5)),
-                                      ],
-                                    ),
-                                    //ANCHOR Melt Damage Title
-                                    if (meltDMGpercent > 100)
-                                      SelectableText(
-                                        '${"Melt Damage Plus".tr()}:' + (meltDMGpercent - 100).toStringAsFixed(1) + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statMeltDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), ((basicmeltpercent) * 100).toStringAsFixed(1)),
-                                      ],
-                                    ),
-                                    //ANCHOR statMeltDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicmeltpercent * 100 / 5)),
-                                      ],
-                                    ),
-
-                                    //ANCHOR Superconduct Damage Title
-                                    if (superconductDMGpercent > 100)
-                                      SelectableText(
-                                        '${"Superconduct Damage Plus".tr()}:' + (superconductDMGpercent - 100).toStringAsFixed(1) + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statSuperconductDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
-                                        if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set'.tr(), '40'),
-                                      ],
-                                    ),
-                                    //ANCHOR statSuperconductDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
-                                        if (thunderbird4On) buildstatbarpercent(Colors.purple[400], 40 / 5),
-                                      ],
-                                    ),
-                                    //ANCHOR Overloaded Damage Title
-                                    if (overloadDMGpercent > 100)
-                                      SelectableText(
-                                        '${"Overloaded Damage Plus".tr()}:' + (overloadDMGpercent - 100).toStringAsFixed(1) + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statOverloadedDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
-                                        if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set'.tr(), '40'),
-                                      ],
-                                    ),
-                                    //ANCHOR statOverloadedDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
-                                        if (thunderbird4On) buildstatbarpercent(Colors.purple[400], 40 / 5),
-                                      ],
-                                    ),
-                                    //ANCHOR Electro-Charged Damage Title
-                                    if (electrochargedDMGpercent > 100)
-                                      SelectableText(
-                                        '${"Electro-Charge Damage Plus".tr()}:' + (electrochargedDMGpercent - 100).toStringAsFixed(1) + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statElectro-ChargedDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
-                                        if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set'.tr(), '40'),
-                                      ],
-                                    ),
-                                    //ANCHOR statElectro-ChargedDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
-                                        if (thunderbird4On) buildstatbarpercent(Colors.purple[400], 40 / 5),
-                                      ],
-                                    ),
-                                    //ANCHOR Shattered Damage Title
-                                    if (shatteredDMGpercent > 100)
-                                      SelectableText(
-                                        '${"Shattered Damage Plus".tr()}:' + (shatteredDMGpercent - 100).toStringAsFixed(1) + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statShatteredDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
-                                      ],
-                                    ),
-                                    //ANCHOR statShatteredDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
-                                      ],
-                                    ),
-                                    //ANCHOR Swirl Damage Title
-                                    if (shatteredDMGpercent > 100)
-                                      SelectableText(
-                                        '${"Swirl Damage Plus".tr()}:' + (swirlDMGpercent - 100).toStringAsFixed(1) + '%',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    //ANCHOR statSwirlDMG:stats
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
-                                      ],
-                                    ),
-                                    //ANCHOR statSwirlDMG:bar
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        //ANCHOR ***EnemyResistance Panel***
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
-                          child: Column(
-                            children: [
-                              SelectableText(
-                                'EnemyResistance Panel'.tr(),
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   SelectableText(
-                                    '${"Enemytype".tr()}: ',
+                                    '${"Elemental Skill Lv".tr()}: $eskilllv',
                                     style: TextStyle(
                                       //fontWeight: FontWeight.bold,
                                       color: Colors.black,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 50.0,
-                                    child: DropdownButton(
-                                        value: enemytype,
-                                        items: [
-                                          DropdownMenuItem(
-                                            child: Text(
-                                              "Hilichurl".tr(),
-                                              style: TextStyle(fontSize: 15),
-                                            ),
-                                            value: 1,
-                                          ),
-                                          DropdownMenuItem(
-                                            child: Text(
-                                              "Ruin Guard".tr(),
-                                              style: TextStyle(fontSize: 15),
-                                            ),
-                                            value: 2,
-                                          ),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Treasure Hoarder".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 3),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Andrius, Dominator of Wolves".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 4),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Pyro Slime".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 5),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Hydro Slime".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 6),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Dendro Slime".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 7),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Electro Slime".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 8),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Anemo Slime".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 9),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Cryo Slime".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 10),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Geo Slime".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 11),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Mitachurl".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 12),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Pyro Samachurl".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 13),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Hydro Samachurl".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 14),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Dendro Samachurl".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 15),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Anemo Samachurl".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 16),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Geo Samachurl".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 17),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Stonehide Lawachurl".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 18),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Ruin Hunter".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 19),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Pyro Flower".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 20),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Cryo Flower".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 21),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Pyro Flower(Stunned)".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 22),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Cryo Flower(Stunned)".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 23),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Fatui Skirmisher".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 24),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Fatui Skirmisher(Shielded)".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 25),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Fatui Pyro Agent".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 26),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Fatui Electro Cincin Mage".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 27),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Geovishap Hatchling".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 28),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Abyss Mage".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 29),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Electro Hypostasis".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 30),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Anemo Hypostasis".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 31),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Geo Hypostasis".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 32),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Pyro Regisvine".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 33),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Cryo Regisvine".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 34),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Pyro Regisvine(Stunned)".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 35),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Cryo Regisvine(Stunned)".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 36),
-                                          DropdownMenuItem(
-                                              child: Text(
-                                                "Dvalin".tr(),
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                              value: 37),
-                                        ],
-                                        onChanged: (value) {
-                                          setState(() {
-                                            enemytype = value;
-                                          });
-                                        }),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Column(
-                                    children: [
-                                      SelectableText(
-                                        'Physical'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                      SelectableText(
-                                        '$enemyPhysicalresv',
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 30,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      SelectableText(
-                                        'Pyro'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.red,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                      SelectableText(
-                                        '$enemyPyroresv',
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 30,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      SelectableText(
-                                        'Hydro'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.blue,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                      SelectableText(
-                                        '$enemyHydroresv',
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 30,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      SelectableText(
-                                        'Dendro'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.green,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                      SelectableText(
-                                        '$enemyDendroresv',
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 30,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      SelectableText(
-                                        'Electro'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.purple,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                      SelectableText(
-                                        '$enemyElectroresv',
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 30,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      SelectableText(
-                                        'Anemo'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.green[700],
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                      SelectableText(
-                                        '$enemyAnemoresv',
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 30,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      SelectableText(
-                                        'Cryo'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.blue[100],
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                      SelectableText(
-                                        '$enemyCryoresv',
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 30,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      SelectableText(
-                                        'Geo'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.yellow,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                      SelectableText(
-                                        '$enemyGeoresv',
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 30,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        //ANCHOR ***EnemyDefence Panel***
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
-                          child: Column(
-                            children: [
-                              SelectableText(
-                                'EnemyDefence Panel'.tr(),
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  SelectableText(
-                                    '${"EnemyLv".tr()}: $enemylv',
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 15,
+                                      fontSize: 20,
                                       height: 1.1,
                                     ),
                                   ),
                                   Slider(
                                     min: 1,
-                                    max: 100,
+                                    max: 15,
+                                    divisions: 14,
                                     activeColor: Theme.of(context).primaryColor,
                                     inactiveColor: Theme.of(context).primaryColorLight,
-                                    label: enemylv.toString(),
-                                    value: enemylv.toDouble(),
+                                    label: eskilllv.toString(),
+                                    value: eskilllv.toDouble(),
                                     onChanged: (value) {
                                       setState(() {
-                                        enemylv = value.toInt();
+                                        eskilllv = value.toInt();
                                       });
                                     },
                                   ),
@@ -12596,1340 +9359,56 @@ class _MyHomePageState extends State<MyHomePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   SelectableText(
-                                    '${"EnemyDefenceDebuff".tr()}%: $enemydefdebuff%',
+                                    '${"Elemental Burst Lv".tr()}: $eburstlv',
                                     style: TextStyle(
                                       //fontWeight: FontWeight.bold,
                                       color: Colors.black,
-                                      fontSize: 15,
+                                      fontSize: 20,
                                       height: 1.1,
                                     ),
                                   ),
                                   Slider(
-                                    min: 0,
-                                    max: 100,
+                                    min: 1,
+                                    max: 15,
+                                    divisions: 14,
                                     activeColor: Theme.of(context).primaryColor,
                                     inactiveColor: Theme.of(context).primaryColorLight,
-                                    label: enemydefdebuff.toString(),
-                                    value: enemydefdebuff.toDouble(),
+                                    label: eburstlv.toString(),
+                                    value: eburstlv.toDouble(),
                                     onChanged: (value) {
                                       setState(() {
-                                        enemydefdebuff = value.toInt();
+                                        eburstlv = value.toInt();
                                       });
                                     },
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
-                        ),
-                        //ANCHOR ***Options Panel***
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
-                          child: Column(
-                            children: [
-                              SelectableText(
-                                'Options Panel'.tr(),
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              SizedBox(height: 10),
-                              //ANCHOR CharacterOptions
-                              ExpansionTile(
-                                tilePadding: EdgeInsets.all(0),
-                                childrenPadding: EdgeInsets.all(0),
-                                initiallyExpanded: true,
-                                title: Column(children: [
-                                  Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                    SelectableText(
-                                      'Character'.tr(),
-                                      style: TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                  ]),
-                                ]),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                    SelectableText(
-                                      'Talents'.tr(),
-                                      style: TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                      ),
+                                  SelectableText(
+                                    '${"Constellation".tr()}: $cons',
+                                    style: TextStyle(
+                                      //fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      height: 1.1,
                                     ),
-                                  ]),
-                                  //ANCHOR CharacterOptions:ganyuskill
-                                  if (currentcharacter == 'ganyu')
-                                    Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                      //       buildfilterchip('Undivided Heart: CRIT Rate + 20%'.tr(), undividedHeartOn, Colors.amber, Colors.amber[200]),
-
-                                      FilterChip(
-                                        selectedColor: Colors.amber,
-                                        backgroundColor: Colors.amber[200],
-                                        label: Text('Undivided Heart: CRIT Rate + 20%'.tr()),
-                                        selected: undividedHeartOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            undividedHeartOn = value;
-                                          });
-                                        },
-                                      ),
-
-                                      FilterChip(
-                                        selectedColor: Colors.amber,
-                                        backgroundColor: Colors.amber[200],
-                                        label: Text('Harmony between Heaven and Earth: Cryo DMG + 20%'.tr()),
-                                        selected: harmonyOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            harmonyOn = value;
-                                          });
-                                        },
-                                      ),
-                                    ]),
-                                  //ANCHOR CharacterOptions:yoimiyaskill
-                                  if (currentcharacter == 'yoimiya')
-                                    Wrap(spacing: 10, runSpacing: 10, crossAxisAlignment: WrapCrossAlignment.center, children: <Widget>[
-                                      SelectableText(
-                                        'Tricks of the Trouble-Maker:2% pryo per stack'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 150,
-                                        child: Slider(
-                                          min: 0,
-                                          max: 10,
-                                          divisions: 10,
-                                          activeColor: Colors.red,
-                                          inactiveColor: Colors.red[200],
-                                          label: troublemakerstack.toString(),
-                                          value: troublemakerstack.toDouble(),
-                                          onChanged: (value) {
-                                            setState(() {
-                                              troublemakerstack = value.toInt();
-                                            });
-                                          },
-                                        ),
-                                      ),
-                                      FilterChip(
-                                        selectedColor: Colors.red,
-                                        backgroundColor: Colors.red[200],
-                                        label: Text('Summer Scorch: 1% pyro per stack'.tr()),
-                                        selected: summerscorchOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            summerscorchOn = value;
-                                          });
-                                        },
-                                      ),
-                                    ]),
-                                  Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                    SelectableText(
-                                      'Constellation'.tr(),
-                                      style: TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                  ]),
-                                  if (currentcharacter == 'ganyu')
-                                    Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                      FilterChip(
-                                        label: Text('Constellation1: Enemy Cryo Res -15%'.tr()),
-                                        selected: ganyuconstellation1On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            ganyuconstellation1On = value;
-                                          });
-                                        },
-                                      ),
-                                    ]),
-                                  if (currentcharacter == 'yoimiya')
-                                    Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                      FilterChip(
-                                        label: Text('A Procession of Bonfires: Pyro DMG +25%'.tr()),
-                                        selected: yoimiyaconstellation2On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            yoimiyaconstellation2On = value;
-                                          });
-                                        },
-                                      ),
-                                    ]),
-                                  SizedBox(height: 10),
-                                ],
-                              ),
-                              //ANCHOR WeaponOptions
-
-                              ExpansionTile(
-                                tilePadding: EdgeInsets.all(0),
-                                initiallyExpanded: true,
-                                childrenPadding: EdgeInsets.all(0),
-                                title: Column(children: [
-                                  Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                    SelectableText(
-                                      'Weapon'.tr(),
-                                      style: TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                        height: 1.1,
-                                      ),
-                                    ),
-                                  ]),
-                                ]),
-                                children: <Widget>[
-                                  Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                    SelectableText(
-                                      'Weapon bonus'.tr(),
-                                      style: TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                        height: 1.1,
-                                      ),
-                                    ),
-                                  ]),
-                                  if (strongWilled1On)
-                                    Column(
-                                      children: [
-                                        Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                          FilterChip(
-                                            label: Text('Strong-Willed1: Normal and Charged Attack DMG + '.tr() + (9 + weaponref * 3).toString() + '%'),
-                                            selected: true,
-                                            selectedColor: Colors.purple[300],
-                                            onSelected: (bool value) {
-                                              setState(() {});
-                                            },
-                                          ),
-                                          FilterChip(
-                                            label: Text('Strong-Willed2: '.tr() + (6 + weaponref * 2).toString() + '% every 0.1s the arrow is in the air for up to 5 times.'.tr()),
-                                            selected: true,
-                                            selectedColor: Colors.blue[300],
-                                            onSelected: (bool value) {
-                                              setState(() {});
-                                            },
-                                          ),
-                                        ]),
-                                        SizedBox(height: 10),
-                                        Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                          ChoiceChip(
-                                            label: Text('0.1s'),
-                                            selected: (strongWilled2Times == 1),
-                                            onSelected: (bool value) {
-                                              setState(() {
-                                                strongWilled2Times = 1;
-                                              });
-                                            },
-                                          ),
-                                          ChoiceChip(
-                                            label: Text('0.2s'),
-                                            selected: (strongWilled2Times == 2),
-                                            onSelected: (bool value) {
-                                              setState(() {
-                                                strongWilled2Times = 2;
-                                              });
-                                            },
-                                          ),
-                                          ChoiceChip(
-                                            label: Text('0.3s'),
-                                            selected: (strongWilled2Times == 3),
-                                            onSelected: (bool value) {
-                                              setState(() {
-                                                strongWilled2Times = 3;
-                                              });
-                                            },
-                                          ),
-                                          ChoiceChip(
-                                            label: Text('0.4s'),
-                                            selected: (strongWilled2Times == 4),
-                                            onSelected: (bool value) {
-                                              setState(() {
-                                                strongWilled2Times = 4;
-                                              });
-                                            },
-                                          ),
-                                          ChoiceChip(
-                                            label: Text('0.5s'),
-                                            selected: (strongWilled2Times == 5),
-                                            onSelected: (bool value) {
-                                              setState(() {
-                                                strongWilled2Times = 5;
-                                              });
-                                            },
-                                          ),
-                                        ]),
-                                        SizedBox(height: 10),
-                                      ],
-                                    ),
-                                  if (echoingBalladOn)
-                                    Column(
-                                      children: [
-                                        Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                          FilterChip(
-                                            label: Text('Echoing Ballad1: Crit DMG + '.tr() + (15 + weaponref * 5).toString() + '%'),
-                                            selected: true,
-                                            selectedColor: Colors.tealAccent,
-                                            onSelected: (bool value) {
-                                              setState(() {});
-                                            },
-                                          ),
-                                          SizedBox(height: 10),
-                                          FilterChip(
-                                            label: Text('Echoing Ballad2: '.tr() +
-                                                (50 + weaponref * 10).toString() +
-                                                '% chance get a 125% Physical ATK AoE DMG every '.tr() +
-                                                (4.5 - weaponref * 0.5).toString() +
-                                                's'.tr()),
-                                            selected: true,
-                                            onSelected: (bool value) {
-                                              setState(() {});
-                                            },
-                                          ),
-                                        ]),
-                                        SizedBox(height: 10),
-                                      ],
-                                    ),
-                                  if (weaponselect == 'prototypecrescent')
-                                    Column(
-                                      children: [
-                                        Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                          FilterChip(
-                                            label: Text('Unreturning: Charged Attack hits on weak points + 10% Movement SPD & '.tr() + (27 + weaponref * 9).toString() + '% ATK for 10s'.tr()),
-                                            selected: unreturningOn,
-                                            selectedColor: Colors.tealAccent,
-                                            onSelected: (bool value) {
-                                              setState(() {
-                                                unreturningOn = value;
-                                              });
-                                            },
-                                          ),
-                                        ]),
-                                        SizedBox(height: 10),
-                                      ],
-                                    ),
-                                  if (rulebythunder1On)
-                                    Column(
-                                      children: [
-                                        Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                          FilterChip(
-                                            label: Text('Rule by thunder1: ATK + '.tr() + (15 + weaponref * 5).toString() + '%'),
-                                            selected: true,
-                                            selectedColor: Colors.purple[300],
-                                            onSelected: (bool value) {
-                                              setState(() {});
-                                            },
-                                          ),
-                                          FilterChip(
-                                            label: Text('Rule-by-thunder2: Normal ATK DMG +'.tr() +
-                                                (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30))).toString() +
-                                                '% Thunder Seal stack lv'.tr() +
-                                                rulebythunder2Times.toString()),
-                                            selected: rulebythunder2On,
-                                            selectedColor: Colors.amber,
-                                            onSelected: (bool value) {
-                                              setState(() {
-                                                rulebythunder2On = value;
-                                              });
-                                            },
-                                          ),
-                                        ]),
-                                        SizedBox(height: 10),
-                                        Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                          ChoiceChip(
-                                            label: Text('1'),
-                                            selected: (rulebythunder2Times == 1),
-                                            onSelected: (bool value) {
-                                              setState(() {
-                                                rulebythunder2Times = 1;
-                                              });
-                                            },
-                                          ),
-                                          ChoiceChip(
-                                            label: Text('2'),
-                                            selected: (rulebythunder2Times == 2),
-                                            onSelected: (bool value) {
-                                              setState(() {
-                                                rulebythunder2Times = 2;
-                                              });
-                                            },
-                                          ),
-                                          ChoiceChip(
-                                            label: Text('3'),
-                                            selected: (rulebythunder2Times == 3),
-                                            onSelected: (bool value) {
-                                              setState(() {
-                                                rulebythunder2Times = 3;
-                                              });
-                                            },
-                                          ),
-                                        ]),
-                                        SizedBox(height: 10),
-                                      ],
-                                    ),
-                                ],
-                              ),
-
-                              //ANCHOR ArifactOptions
-
-                              ExpansionTile(
-                                tilePadding: EdgeInsets.all(0),
-                                initiallyExpanded: true,
-                                childrenPadding: EdgeInsets.all(0),
-                                title: Column(children: [
-                                  Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                    SelectableText(
-                                      'Artifact'.tr(),
-                                      style: TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                        height: 1.1,
-                                      ),
-                                    ),
-                                  ]),
-                                ]),
-                                children: <Widget>[
-                                  Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                    SelectableText(
-                                      'Artifact Bonus'.tr(),
-                                      style: TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                        height: 1.1,
-                                      ),
-                                    ),
-                                  ]),
-                                  SizedBox(height: 10),
-                                  Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                    if (artifactsetAselect == 'blizzard' || artifactsetBselect == 'blizzard')
-                                      FilterChip(
-                                        label: Text('${"2 set".tr()}: ${"Cryo DMG".tr()} +15%'),
-                                        selectedColor: Colors.blue[300],
-                                        backgroundColor: Colors.blue[200],
-                                        selected: blizzardstrayer2On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            blizzardstrayer2On = value;
-                                          });
-                                        },
-                                      ),
-                                    if (artifactsetAselect == 'blizzard' && artifactsetBselect == 'blizzard')
-                                      FilterChip(
-                                        label: Text('${"4 set".tr()}: ${"Crit Rate".tr()} +20%(cryo)'),
-                                        selectedColor: Colors.blue[300],
-                                        backgroundColor: Colors.blue[200],
-                                        selected: blizzardstrayer41On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            blizzardstrayer41On = value;
-                                          });
-                                        },
-                                      ),
-                                    if (artifactsetAselect == 'blizzard' && artifactsetBselect == 'blizzard')
-                                      FilterChip(
-                                        label: Text('${"4 set".tr()}: ${"Crit Rate".tr()} +20%(${"frozen".tr()})'),
-                                        selectedColor: Colors.blue[400],
-                                        backgroundColor: Colors.blue[300],
-                                        selected: blizzardstrayer42On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            blizzardstrayer42On = value;
-                                          });
-                                        },
-                                      ),
-                                    if (artifactsetAselect == 'troupe' || artifactsetBselect == 'troupe')
-                                      FilterChip(
-                                        label: Text('${"2 set".tr()}: ${"EM".tr()} +80 '),
-                                        selectedColor: Colors.green[400],
-                                        backgroundColor: Colors.green[300],
-                                        selected: troupesdawnlight2on,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            troupesdawnlight2on = value;
-                                          });
-                                        },
-                                      ),
-                                    if (artifactsetAselect == 'troupe' && artifactsetBselect == 'troupe')
-                                      FilterChip(
-                                        label: Text('${"4 set".tr()}: ${"Charged ATK".tr()} +35% '),
-                                        selectedColor: Colors.green[400],
-                                        backgroundColor: Colors.green[300],
-                                        selected: troupesdawnlight4on,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            troupesdawnlight4on = value;
-                                          });
-                                        },
-                                      ),
-                                    if (artifactsetAselect == 'royal' || artifactsetBselect == 'royal')
-                                      FilterChip(
-                                        label: Text('${"2 set".tr()}: ${"Elemental Burst DMG".tr()} +20% '),
-                                        selectedColor: Colors.blue,
-                                        backgroundColor: Colors.blue[200],
-                                        selected: royalflora2On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            royalflora2On = value;
-                                          });
-                                        },
-                                      ),
-                                    if (artifactsetAselect == 'royal' && artifactsetBselect == 'royal')
-                                      FilterChip(
-                                        label: Text('${"4 set".tr()}: ${"Using an Elemental Burst increases all party members' ATK by 20% for 12s".tr()}'),
-                                        selectedColor: Colors.blue,
-                                        backgroundColor: Colors.blue[200],
-                                        selected: royalflora4On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            royalflora4On = value;
-                                          });
-                                        },
-                                      ),
-                                    if (artifactsetAselect == 'gladiator' || artifactsetBselect == 'gladiator')
-                                      FilterChip(
-                                        label: Text('${"2 set".tr()}: ${"ATK".tr()} +18% '),
-                                        selectedColor: Colors.red[400],
-                                        backgroundColor: Colors.red[300],
-                                        selected: gladiator2On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            gladiator2On = value;
-                                          });
-                                        },
-                                      ),
-                                    if (artifactsetAselect == 'gladiator' && artifactsetBselect == 'gladiator')
-                                      FilterChip(
-                                        label: Text('${"4 set".tr()}: ${"Increase Normal Attack DMG by 35% (Using sword/claymore/poleram)".tr()}'),
-                                        selectedColor: Colors.red[400],
-                                        backgroundColor: Colors.red[300],
-                                        selected: gladiator4On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            gladiator4On = value;
-                                          });
-                                        },
-                                      ),
-                                    if (artifactsetAselect == 'maiden' || artifactsetBselect == 'maiden')
-                                      FilterChip(
-                                        label: Text('${"2 set".tr()}: ${"Character Healing Effectiveness +15%".tr()}'),
-                                        selectedColor: Colors.grey,
-                                        backgroundColor: Colors.grey,
-                                        selected: maiden2On,
-                                        onSelected: (bool value) {},
-                                      ),
-                                    if (artifactsetAselect == 'maiden' && artifactsetBselect == 'maiden')
-                                      FilterChip(
-                                        label: Text('${"4 set".tr()}: ${"Healing Received +20%".tr()}'),
-                                        selectedColor: Colors.grey,
-                                        backgroundColor: Colors.grey,
-                                        selected: maiden4On,
-                                        onSelected: (bool value) {},
-                                      ),
-                                    if (artifactsetAselect == 'thunderbird' || artifactsetBselect == 'thunderbird')
-                                      FilterChip(
-                                        label: Text('${"2 set".tr()}: ${"Electro DMG Bonus +15%".tr()}'),
-                                        selectedColor: Colors.purple[400],
-                                        backgroundColor: Colors.purple[300],
-                                        selected: thunderbird2On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            thunderbird2On = value;
-                                          });
-                                        },
-                                      ),
-                                    if (artifactsetAselect == 'thunderbird' && artifactsetBselect == 'thunderbird')
-                                      FilterChip(
-                                        label: Text('${"4 set".tr()}: ${"Superconduct DMG".tr()} + 40% '),
-                                        selectedColor: Colors.purple[400],
-                                        backgroundColor: Colors.purple[300],
-                                        selected: thunderbird4On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            thunderbird4On = value;
-                                          });
-                                        },
-                                      ),
-                                    if (artifactsetAselect == 'thundersoother' || artifactsetBselect == 'thundersoother')
-                                      FilterChip(
-                                        label: Text('${"2 set".tr()}: ${"Electro RES".tr()} +40% '),
-                                        selectedColor: Colors.grey,
-                                        backgroundColor: Colors.grey,
-                                        selected: thundersoother2On,
-                                        onSelected: (bool value) {},
-                                      ),
-                                    if (artifactsetAselect == 'thundersoother' && artifactsetBselect == 'thundersoother')
-                                      FilterChip(
-                                        label: Text('${"4 set".tr()}: ${"DMG Against Opponents Affected By Electro +35%".tr()}'),
-                                        selectedColor: Color(0xFF6446E6),
-                                        backgroundColor: Color(0xFF6480FF),
-                                        selected: thundersoother4On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            thundersoother4On = value;
-                                          });
-                                        },
-                                      ),
-                                    if (artifactsetAselect == 'reminiscenceofshime' || artifactsetBselect == 'reminiscenceofshime')
-                                      FilterChip(
-                                        label: Text('${"2 set".tr()}: ${"ATK".tr()} +18% '),
-                                        selectedColor: Colors.red[400],
-                                        backgroundColor: Colors.red[300],
-                                        selected: reminiscenceofshime2On,
-                                        onSelected: (bool value) {},
-                                      ),
-                                    if (artifactsetAselect == 'reminiscenceofshime' && artifactsetBselect == 'reminiscenceofshime')
-                                      FilterChip(
-                                        label: Text('${"4 set".tr()}: ${"Normal/Charged/ Plunging Attack DMG +50%".tr()}'),
-                                        selectedColor: Colors.red[400],
-                                        backgroundColor: Colors.red[300],
-                                        selected: reminiscenceofshime4On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            reminiscenceofshime4On = value;
-                                          });
-                                        },
-                                      ),
-                                  ]),
-                                  SizedBox(height: 10),
-                                ],
-                              ),
-
-                              //ANCHOR UsualOptions
-                              ExpansionTile(
-                                tilePadding: EdgeInsets.all(0),
-                                childrenPadding: EdgeInsets.all(0),
-                                title: Column(children: [
-                                  Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                    SelectableText(
-                                      'Usual Buffs'.tr(),
-                                      style: TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                        height: 1.1,
-                                      ),
-                                    ),
-                                  ]),
-                                ]),
-                                children: <Widget>[
-                                  Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                    SelectableText(
-                                      'Elemental Resonance'.tr(),
-                                      style: TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                        height: 1.1,
-                                      ),
-                                    ),
-                                  ]),
-                                  Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                    FilterChip(
-                                      selectedColor: Colors.red,
-                                      backgroundColor: Colors.red[200],
-                                      label: Text('${"2 Pyro".tr()}: ${"ATK".tr()} + 25%'),
-                                      selected: pyro2On,
-                                      onSelected: (bool value) {
-                                        setState(() {
-                                          pyro2On = value;
-                                        });
-                                      },
-                                    ),
-                                    FilterChip(
-                                      selectedColor: Colors.blue[200],
-                                      backgroundColor: Colors.blue[50],
-                                      label: Text('${"2 Cyro".tr()}: ${"Crit Rate".tr()} +15%'),
-                                      selected: cryo2On,
-                                      onSelected: (bool value) {
-                                        setState(() {
-                                          cryo2On = value;
-                                        });
-                                      },
-                                    ),
-                                  ]),
-                                  SizedBox(height: 10),
-                                  Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                    SelectableText(
-                                      'Character Buffs'.tr(),
-                                      style: TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                  ]),
-                                  Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                    FilterChip(
-                                      selectedColor: Colors.yellow,
-                                      backgroundColor: Colors.yellow[200],
-                                      label: Text('Zhongli(skill):Enemy All res - 20%'.tr()),
-                                      selected: zhonglieOn,
-                                      onSelected: (bool value) {
-                                        setState(() {
-                                          zhonglieOn = value;
-                                        });
-                                      },
-                                    ),
-                                    FilterChip(
-                                      selectedColor: Colors.grey,
-                                      backgroundColor: Colors.grey[200],
-                                      label: Text('Thrilling Tales of Dragon Slayers(R5): ATK +48%'.tr()),
-                                      selected: dragonslayerOn,
-                                      onSelected: (bool value) {
-                                        setState(() {
-                                          dragonslayerOn = value;
-                                        });
-                                      },
-                                    ),
-                                  ]),
-                                  SizedBox(height: 10),
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      FilterChip(
-                                        selectedColor: Colors.red,
-                                        backgroundColor: Colors.red[200],
-                                        label: Text('Bennet(burst)'.tr()),
-                                        selected: bennetqOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            bennetqOn = value;
-                                          });
-                                        },
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                        width: 100,
-                                        height: 50,
-                                        alignment: Alignment.center,
-                                        child: TextFormField(
-                                            textAlignVertical: TextAlignVertical.center,
-                                            keyboardType: TextInputType.number,
-                                            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
-                                            decoration: InputDecoration(
-                                              // prefixIcon: Text("basic atk"),
-                                              labelText: '${"Bennet Basic atk".tr()}:',
-
-                                              contentPadding: EdgeInsets.all(5),
-                                              //isDense: true,
-                                            ),
-                                            //maxLength: 4,
-                                            style: TextStyle(
-                                              fontSize: 15.0,
-                                            ),
-                                            initialValue: "500",
-                                            // onSaved: (input) => bennetbasicatk = num.tryParse(input),
-                                            onChanged: (value) {
-                                              setState(() {
-                                                bennetbasicatk = num.tryParse(value) ?? 0;
-                                              });
-                                            }),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      SelectableText(
-                                        '${"Bennet Burst lv".tr()}:',
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                        //height: 50.0,
-                                        width: 50.0,
-                                        child: DropdownButton(
-                                            //isExpanded: true,
-                                            value: bennetqlv,
-                                            iconSize: 20,
-                                            items: [
-                                              DropdownMenuItem(
-                                                child: Text(
-                                                  "1",
-                                                  style: TextStyle(fontSize: 15),
-                                                ),
-                                                value: 1,
-                                              ),
-                                              DropdownMenuItem(
-                                                child: Text(
-                                                  "2",
-                                                  style: TextStyle(fontSize: 15),
-                                                ),
-                                                value: 2,
-                                              ),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "3",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 3),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "4",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 4),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "5",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 5),
-                                              DropdownMenuItem(
-                                                child: Text(
-                                                  "6",
-                                                  style: TextStyle(fontSize: 15),
-                                                ),
-                                                value: 6,
-                                              ),
-                                              DropdownMenuItem(
-                                                child: Text(
-                                                  "7",
-                                                  style: TextStyle(fontSize: 15),
-                                                ),
-                                                value: 7,
-                                              ),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "8",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 8),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "9",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 9),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "10",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 10),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "11",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 11),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "12",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 12),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "13",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 13),
-                                            ],
-                                            onChanged: (value) {
-                                              setState(() {
-                                                bennetqlv = value;
-                                              });
-                                            }),
-                                      ),
-                                    ],
                                   ),
-                                  SizedBox(height: 10),
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      FilterChip(
-                                        selectedColor: Colors.purple[300],
-                                        backgroundColor: Colors.purple[200],
-                                        label: Text('Mona(burst)'.tr()),
-                                        selected: monaqOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            monaqOn = value;
-                                          });
-                                        },
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      SelectableText(
-                                        '${"Mona Burst lv".tr()}:',
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                        //height: 50.0,
-                                        width: 50.0,
-                                        child: DropdownButton(
-                                            //isExpanded: true,
-                                            value: monaqlv,
-                                            iconSize: 20,
-                                            items: [
-                                              DropdownMenuItem(
-                                                child: Text(
-                                                  "1",
-                                                  style: TextStyle(fontSize: 15),
-                                                ),
-                                                value: 1,
-                                              ),
-                                              DropdownMenuItem(
-                                                child: Text(
-                                                  "2",
-                                                  style: TextStyle(fontSize: 15),
-                                                ),
-                                                value: 2,
-                                              ),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "3",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 3),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "4",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 4),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "5",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 5),
-                                              DropdownMenuItem(
-                                                child: Text(
-                                                  "6",
-                                                  style: TextStyle(fontSize: 15),
-                                                ),
-                                                value: 6,
-                                              ),
-                                              DropdownMenuItem(
-                                                child: Text(
-                                                  "7",
-                                                  style: TextStyle(fontSize: 15),
-                                                ),
-                                                value: 7,
-                                              ),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "8",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 8),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "9",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 9),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "10",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 10),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "11",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 11),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "12",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 12),
-                                              DropdownMenuItem(
-                                                  child: Text(
-                                                    "13",
-                                                    style: TextStyle(fontSize: 15),
-                                                  ),
-                                                  value: 13),
-                                            ],
-                                            onChanged: (value) {
-                                              setState(() {
-                                                monaqlv = value;
-                                              });
-                                            }),
-                                      ),
-                                    ],
+                                  Slider(
+                                    min: 0,
+                                    max: 6,
+                                    divisions: 6,
+                                    activeColor: Theme.of(context).primaryColor,
+                                    inactiveColor: Theme.of(context).primaryColorLight,
+                                    label: cons.toString(),
+                                    value: cons.toDouble(),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        cons = value.toInt();
+                                      });
+                                    },
                                   ),
-                                  SizedBox(height: 10),
-                                ],
-                              ),
-
-                              //ANCHOR Manual Adjusts
-                              ExpansionTile(
-                                tilePadding: EdgeInsets.all(0),
-                                childrenPadding: EdgeInsets.all(0),
-                                title: Column(children: [
-                                  Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                    SelectableText(
-                                      'Manual Adjusts'.tr(),
-                                      style: TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                        height: 1.1,
-                                      ),
-                                    ),
-                                  ]),
-                                ]),
-                                children: <Widget>[
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      FilterChip(
-                                        selectedColor: Colors.red[300],
-                                        backgroundColor: Colors.red[200],
-                                        label: Text('ATK'.tr()),
-                                        selected: manualatkOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            manualatkOn = value;
-                                          });
-                                        },
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                        width: 100,
-                                        height: 50,
-                                        alignment: Alignment.center,
-                                        child: TextFormField(
-                                            textAlignVertical: TextAlignVertical.center,
-                                            keyboardType: TextInputType.number,
-                                            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(4)],
-                                            decoration: InputDecoration(
-                                              // prefixIcon: Text("basic atk"),
-                                              labelText: '${"Bonus atk".tr()}:',
-
-                                              contentPadding: EdgeInsets.all(5),
-                                              //isDense: true,
-                                            ),
-                                            //maxLength: 4,
-                                            style: TextStyle(
-                                              fontSize: 15.0,
-                                            ),
-                                            initialValue: "0",
-                                            // onSaved: (input) => bennetbasicatk = num.tryParse(input),
-                                            onChanged: (value) {
-                                              setState(() {
-                                                manualatk = num.tryParse(value) ?? 0;
-                                              });
-                                            }),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      FilterChip(
-                                        selectedColor: Colors.red[300],
-                                        backgroundColor: Colors.red[200],
-                                        label: Text('${"Crit Rate".tr()}%'),
-                                        selected: manualCRpercentOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            manualCRpercentOn = value;
-                                          });
-                                        },
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                        width: 100,
-                                        height: 50,
-                                        alignment: Alignment.center,
-                                        child: TextFormField(
-                                            textAlignVertical: TextAlignVertical.center,
-                                            keyboardType: TextInputType.number,
-                                            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(2)],
-                                            decoration: InputDecoration(
-                                              // prefixIcon: Text("basic atk"),
-                                              labelText: '${"Bonus Crit Rate".tr()}%:',
-                                              contentPadding: EdgeInsets.all(5),
-                                              //isDense: true,
-                                            ),
-                                            //maxLength: 4,
-                                            style: TextStyle(
-                                              fontSize: 15.0,
-                                            ),
-                                            initialValue: "0",
-                                            // onSaved: (input) => bennetbasicatk = num.tryParse(input),
-                                            onChanged: (value) {
-                                              setState(() {
-                                                manualCRpercent = num.tryParse(value) ?? 0;
-                                              });
-                                            }),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      FilterChip(
-                                        selectedColor: Colors.red[300],
-                                        backgroundColor: Colors.red[200],
-                                        label: Text('${"ATK".tr()}%'),
-                                        selected: manualatkpercentOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            manualatkpercentOn = value;
-                                          });
-                                        },
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                        width: 100,
-                                        height: 50,
-                                        alignment: Alignment.center,
-                                        child: TextFormField(
-                                            textAlignVertical: TextAlignVertical.center,
-                                            keyboardType: TextInputType.number,
-                                            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
-                                            decoration: InputDecoration(
-                                              // prefixIcon: Text("basic atk"),
-                                              labelText: '${"Bonus atk".tr()}%:',
-
-                                              contentPadding: EdgeInsets.all(5),
-                                              //isDense: true,
-                                            ),
-                                            //maxLength: 4,
-                                            style: TextStyle(
-                                              fontSize: 15.0,
-                                            ),
-                                            initialValue: "0",
-                                            // onSaved: (input) => bennetbasicatk = num.tryParse(input),
-                                            onChanged: (value) {
-                                              setState(() {
-                                                manualatkpercent = num.tryParse(value) ?? 0;
-                                              });
-                                            }),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      FilterChip(
-                                        selectedColor: Colors.red[300],
-                                        backgroundColor: Colors.red[200],
-                                        label: Text('${"Crit Damage".tr()}%'),
-                                        selected: manualCDpercentOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            manualCDpercentOn = value;
-                                          });
-                                        },
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                        width: 120,
-                                        height: 50,
-                                        alignment: Alignment.center,
-                                        child: TextFormField(
-                                            textAlignVertical: TextAlignVertical.center,
-                                            keyboardType: TextInputType.number,
-                                            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
-                                            decoration: InputDecoration(
-                                              // prefixIcon: Text("basic atk"),
-                                              labelText: '${"Bonus Crit Damage".tr()}%:',
-                                              contentPadding: EdgeInsets.all(5),
-                                              //isDense: true,
-                                            ),
-                                            //maxLength: 4,
-                                            style: TextStyle(
-                                              fontSize: 15.0,
-                                            ),
-                                            initialValue: "0",
-                                            // onSaved: (input) => bennetbasicatk = num.tryParse(input),
-                                            onChanged: (value) {
-                                              setState(() {
-                                                manualCDpercent = num.tryParse(value) ?? 0;
-                                              });
-                                            }),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      FilterChip(
-                                        selectedColor: Colors.red[300],
-                                        backgroundColor: Colors.red[200],
-                                        label: Text('EM'.tr()),
-                                        selected: manualEMOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            manualEMOn = value;
-                                          });
-                                        },
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                        width: 100,
-                                        height: 50,
-                                        alignment: Alignment.center,
-                                        child: TextFormField(
-                                            textAlignVertical: TextAlignVertical.center,
-                                            keyboardType: TextInputType.number,
-                                            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
-                                            decoration: InputDecoration(
-                                              // prefixIcon: Text("basic atk"),
-                                              labelText: '${"Bonus EM".tr()}:',
-
-                                              contentPadding: EdgeInsets.all(5),
-                                              //isDense: true,
-                                            ),
-                                            //maxLength: 4,
-                                            style: TextStyle(
-                                              fontSize: 15.0,
-                                            ),
-                                            initialValue: "0",
-                                            // onSaved: (input) => bennetbasicatk = num.tryParse(input),
-                                            onChanged: (value) {
-                                              setState(() {
-                                                manualEM = num.tryParse(value) ?? 0;
-                                              });
-                                            }),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      FilterChip(
-                                        selectedColor: Colors.red[300],
-                                        backgroundColor: Colors.red[200],
-                                        label: Text('${"Damage Bonus".tr()}%'),
-                                        selected: manualDMGpercentOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            manualDMGpercentOn = value;
-                                          });
-                                        },
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                        width: 100,
-                                        height: 50,
-                                        alignment: Alignment.center,
-                                        child: TextFormField(
-                                            textAlignVertical: TextAlignVertical.center,
-                                            keyboardType: TextInputType.number,
-                                            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
-                                            decoration: InputDecoration(
-                                              // prefixIcon: Text("basic atk"),
-                                              labelText: '${"Damage Bonus".tr()}%:',
-
-                                              contentPadding: EdgeInsets.all(5),
-                                              //isDense: true,
-                                            ),
-                                            //maxLength: 4,
-                                            style: TextStyle(
-                                              fontSize: 15.0,
-                                            ),
-                                            initialValue: "0",
-                                            // onSaved: (input) => bennetbasicatk = num.tryParse(input),
-                                            onChanged: (value) {
-                                              setState(() {
-                                                manualDMGpercent = num.tryParse(value) ?? 0;
-                                              });
-                                            }),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      FilterChip(
-                                        selectedColor: Colors.red[300],
-                                        backgroundColor: Colors.red[200],
-                                        label: Text('RES debuff'.tr()),
-                                        selected: manualresdebuffOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            manualresdebuffOn = value;
-                                          });
-                                        },
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                        width: 120,
-                                        height: 50,
-                                        alignment: Alignment.center,
-                                        child: TextFormField(
-                                            textAlignVertical: TextAlignVertical.center,
-                                            keyboardType: TextInputType.number,
-                                            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(2)],
-                                            decoration: InputDecoration(
-                                              // prefixIcon: Text("basic atk"),
-                                              labelText: '${"Enemy Res Decrease".tr()}:',
-
-                                              contentPadding: EdgeInsets.all(5),
-                                              //isDense: true,
-                                            ),
-                                            //maxLength: 4,
-                                            style: TextStyle(
-                                              fontSize: 15.0,
-                                            ),
-                                            initialValue: "0",
-                                            // onSaved: (input) => bennetbasicatk = num.tryParse(input),
-                                            onChanged: (value) {
-                                              setState(() {
-                                                manualresdebuff = num.tryParse(value) ?? 0;
-                                              });
-                                            }),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 10),
                                 ],
                               ),
                             ],
@@ -13940,215 +9419,4971 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-            ),
-            //ANCHOR ----DamagePage----
-            ResponsiveGridCol(
-              xs: 12,
-              md: 12,
-              lg: 6,
-              xl: 3,
-              child: Container(
-                height: (MediaQuery.of(context).size.width > 1200) ? heightadjust : null,
-                color: Colors.red[50],
-                child: Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
-                          child: Column(
-                            children: [
-                              SelectableText(
-                                'Normal ATK DMG Panel'.tr(),
-                                style: TextStyle(fontSize: 20, height: 1.1),
-                              ),
-                              SizedBox(height: 10),
-                              //ANCHOR Charged Aim Shoot Damage
-                              if (currentcharacter == 'ganyu')
-                                ExpansionTile(
-                                  tilePadding: EdgeInsets.all(0),
-                                  childrenPadding: EdgeInsets.all(0),
-                                  title: builddamagebarwithcrit(Colors.black, 'Charged Aim Shoot Damage'.tr() + ':($ganyucaimdmgpercent%)', Colors.lightBlue[200], Colors.lightBlue[400],
-                                      Colors.lightBlue[600], ganyucaimdmgnc, ganyucaimdmgexp, ganyucaimdmgc),
-                                  children: <Widget>[
-                                    builddamagebarwithcrit(
-                                        Colors.black, '1-Hit Damage'.tr() + ':($hit1dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit1dmgnc, hit1dmgexp, hit1dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(
-                                        Colors.black, '2-Hit Damage'.tr() + ':($hit2dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit2dmgnc, hit2dmgexp, hit2dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(
-                                        Colors.black, '3-Hit Damage'.tr() + ':($hit3dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit3dmgnc, hit3dmgexp, hit3dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(
-                                        Colors.black, '4-Hit Damage'.tr() + ':($hit4dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit4dmgnc, hit4dmgexp, hit4dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(
-                                        Colors.black, '5-Hit Damage'.tr() + ':($hit5dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit5dmgnc, hit5dmgexp, hit5dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(
-                                        Colors.black, '6-Hit Damage'.tr() + ':($hit6dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit6dmgnc, hit6dmgexp, hit6dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(
-                                        Colors.black, 'Aim Shoot Damage'.tr() + ':($aimdmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], aimdmgnc, aimdmgexp, aimdmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(
-                                        Colors.black, 'Plunge Damage'.tr() + ':($plungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], plungedmgnc, plungedmgexp, plungedmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(Colors.black, 'Low Plunge Damage'.tr() + ':($lplungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], lplungedmgnc,
-                                        lplungedmgexp, lplungedmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(Colors.black, 'High Plunge Damage'.tr() + ':($hplungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hplungedmgnc,
-                                        hplungedmgexp, hplungedmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(
-                                        Colors.red,
-                                        'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
-                                        Colors.lightBlue[200],
-                                        Colors.lightBlue[400],
-                                        Colors.lightBlue[600],
-                                        ganyucaimdmgnc * 1.5 * meltDMGpercent / 100,
-                                        ganyucaimdmgexp * 1.5 * meltDMGpercent / 100,
-                                        ganyucaimdmgc * 1.5 * meltDMGpercent / 100),
-                                    SizedBox(height: 10),
-                                  ],
-                                ),
-                              if (currentcharacter == 'yoimiya')
-                                ExpansionTile(
-                                  tilePadding: EdgeInsets.all(0),
-                                  childrenPadding: EdgeInsets.all(0),
-                                  title: builddamagebarwithcrit(Colors.black, 'Charged Aim Shoot Damage'.tr() + ':($yoimiyacaimdmgpercent%)', Colors.red[200], Colors.red[400], Colors.red[600],
-                                      yoimiyacaimdmgnc, yoimiyacaimdmgexp, yoimiyacaimdmgc),
-                                  children: <Widget>[
-                                    builddamagebarwithcrit(
-                                        Colors.black, '1-Hit Damage'.tr() + ':($hit1dmgpercent% × 2)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit1dmgnc, hit1dmgexp, hit1dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(
-                                        Colors.black, '2-Hit Damage'.tr() + ':($hit2dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit2dmgnc, hit2dmgexp, hit2dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(
-                                        Colors.black, '3-Hit Damage'.tr() + ':($hit3dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit3dmgnc, hit3dmgexp, hit3dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(
-                                        Colors.black, '4-Hit Damage'.tr() + ':($hit4dmgpercent% × 2)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit4dmgnc, hit4dmgexp, hit4dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(
-                                        Colors.black, '5-Hit Damage'.tr() + ':($hit5dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit5dmgnc, hit5dmgexp, hit5dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(
-                                        Colors.black, 'Aim Shoot Damage'.tr() + ':($aimdmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], aimdmgnc, aimdmgexp, aimdmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(
-                                        Colors.black, 'Plunge Damage'.tr() + ':($plungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], plungedmgnc, plungedmgexp, plungedmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(Colors.black, 'Low Plunge Damage'.tr() + ':($lplungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], lplungedmgnc,
-                                        lplungedmgexp, lplungedmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(Colors.black, 'High Plunge Damage'.tr() + ':($hplungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hplungedmgnc,
-                                        hplungedmgexp, hplungedmgc),
-                                    SizedBox(height: 10),
-                                  ],
-                                ),
-                              //ANCHOR Kindling Arrow
-                              if (currentcharacter == 'yoimiya') SizedBox(height: 10),
-                              if (currentcharacter == 'yoimiya')
-                                builddamagebarwithcrit(Colors.black, 'Kindling Arrow'.tr() + ':($kindlingdmgpercent% × 3)', Colors.red[200], Colors.red[400], Colors.red[600], kindlingarrowdmgnc,
-                                    kindlingarrowdmgexp, kindlingarrowdmgc),
-                              SizedBox(height: 10),
-                              //ANCHOR Frostflake Arrow
-                              if (currentcharacter == 'ganyu')
-                                ExpansionTile(
-                                    tilePadding: EdgeInsets.all(0),
-                                    childrenPadding: EdgeInsets.all(0),
-                                    title: builddamagebarwithcrit(Colors.black, 'Frostflake Arrow'.tr() + ':($frostflakedmgpercent%)', Colors.lightBlue[200], Colors.lightBlue[400],
-                                        Colors.lightBlue[600], frostflakedmgnc, frostflakedmgexp, frostflakedmgc),
-                                    children: <Widget>[
-                                      builddamagebarwithcrit(
-                                          Colors.red,
-                                          'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
-                                          Colors.lightBlue[200],
-                                          Colors.lightBlue[400],
-                                          Colors.lightBlue[600],
-                                          frostflakedmgnc * 1.5 * meltDMGpercent / 100,
-                                          frostflakedmgexp * 1.5 * meltDMGpercent / 100,
-                                          frostflakedmgc * 1.5 * meltDMGpercent / 100),
-                                      SizedBox(height: 10),
-                                    ]),
-                              //ANCHOR Frostflake Arrow Bloom
-                              if (currentcharacter == 'ganyu')
-                                ExpansionTile(
-                                    tilePadding: EdgeInsets.all(0),
-                                    childrenPadding: EdgeInsets.all(0),
-                                    title: builddamagebarwithcrit(Colors.black, 'Frostflake Bloom'.tr() + ':($frostflakebloomdmgpercent%)', Colors.lightBlue[200], Colors.lightBlue[400],
-                                        Colors.lightBlue[600], frostflakebloomdmgnc, frostflakebloomdmgexp, frostflakebloomdmgc),
-                                    children: <Widget>[
-                                      builddamagebarwithcrit(
-                                          Colors.red,
-                                          'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
-                                          Colors.lightBlue[200],
-                                          Colors.lightBlue[400],
-                                          Colors.lightBlue[600],
-                                          frostflakebloomdmgnc * 1.5 * meltDMGpercent / 100,
-                                          frostflakebloomdmgexp * 1.5 * meltDMGpercent / 100,
-                                          frostflakebloomdmgc * 1.5 * meltDMGpercent / 100),
-                                      SizedBox(height: 10),
-                                    ]),
-                              //ANCHOR Frostflake All
-                              if (currentcharacter == 'ganyu')
-                                ExpansionTile(
-                                  tilePadding: EdgeInsets.all(0),
-                                  childrenPadding: EdgeInsets.all(0),
-                                  title: builddamagebarwithcrit(Colors.black, 'Frostflake Arrow All'.tr(), Colors.lightBlue[200], Colors.lightBlue[400], Colors.lightBlue[600], frostflakealldmgnc,
-                                      frostflakealldmgexp, frostflakealldmgc),
-                                  children: <Widget>[
-                                    builddamagebarwithcrit(
-                                        Colors.red,
-                                        'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
-                                        Colors.lightBlue[200],
-                                        Colors.lightBlue[400],
-                                        Colors.lightBlue[600],
-                                        frostflakealldmgnc * 1.5 * meltDMGpercent / 100,
-                                        frostflakealldmgexp * 1.5 * meltDMGpercent / 100,
-                                        frostflakealldmgc * 1.5 * meltDMGpercent / 100),
-                                    SizedBox(height: 10),
-                                  ],
-                                ),
-                              if (echoingBalladOn)
-                                //ANCHOR Echoing Ballad Physical AoE
-                                builddamagebarwithcrit(Colors.black, 'Echoing Ballad Physical AoE'.tr() + ':(125%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], echoingballaddmgnc,
-                                    echoingballaddmgexp, echoingballaddmgc),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
-                          child: Column(
-                            children: [
-                              SelectableText(
-                                'Elemental Skill Panel'.tr(),
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              SizedBox(height: 10),
+              //ANCHOR ----weapon&artifactPage----
+              ResponsiveGridCol(
+                xs: 12,
+                md: 12,
+                lg: 6,
+                xl: 3,
+                child: Container(
+                  height: (MediaQuery.of(context).size.width > 1200) ? heightadjust : null,
+                  color: Colors.lightGreen[50],
+                  child: Center(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            height: 350,
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
 
-                              //ANCHOR Trail of the Qilin HP
-                              if (currentcharacter == 'ganyu')
+                            //ANCHOR weapon
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Card(
+                                  elevation: 3,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: InkWell(
+                                    splashColor: Colors.blue.withAlpha(30),
+                                    onTap: _showSimpleDialogw,
+                                    child: Container(
+                                      width: 200,
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                        // color: Colors.lightBlue[50],
+                                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                                        image: DecorationImage(
+                                          image: weapontopng[weaponselect],
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    SelectableText(
+                                      '${"Lv".tr()}: $weaponlv',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                        height: 1.1,
+                                      ),
+                                    ),
+                                    Slider(
+                                      min: 1,
+                                      max: 90,
+                                      divisions: 18,
+                                      activeColor: Theme.of(context).primaryColor,
+                                      inactiveColor: Theme.of(context).primaryColorLight,
+                                      label: weaponlv.toString(),
+                                      value: weaponlv.toDouble(),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          weaponlv = value.toInt();
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    SelectableText(
+                                      '${"Refinement".tr()}: $weaponref',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                        height: 1.1,
+                                      ),
+                                    ),
+                                    Slider(
+                                      min: 1,
+                                      max: 5,
+                                      divisions: 4,
+                                      activeColor: Theme.of(context).primaryColor,
+                                      inactiveColor: Theme.of(context).primaryColorLight,
+                                      label: weaponref.toString(),
+                                      value: weaponref.toDouble(),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          weaponref = value.toInt();
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          //ANCHOR artifactset
+                          Container(
+                            height: 800,
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Card(
+                                          elevation: 3,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                          child: InkWell(
+                                            splashColor: Colors.blue.withAlpha(30),
+                                            onTap: _showSimpleDialogasA,
+                                            child: Container(
+                                              width: 150,
+                                              height: 150,
+                                              decoration: BoxDecoration(
+                                                // color: Colors.lightBlue[50],
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                image: DecorationImage(
+                                                  image: artifactsettopng[artifactsetAselect],
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SelectableText(
+                                          '2 set'.tr(),
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 20,
+                                            height: 1.1,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Card(
+                                          elevation: 3,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                          child: InkWell(
+                                            splashColor: Colors.blue.withAlpha(30),
+                                            onTap: _showSimpleDialogasB,
+                                            child: Container(
+                                              width: 150,
+                                              height: 150,
+                                              decoration: BoxDecoration(
+                                                // color: Colors.lightBlue[50],
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                image: DecorationImage(
+                                                  image: artifactsettopng[artifactsetBselect],
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SelectableText(
+                                          '2 set'.tr(),
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 20,
+                                            height: 1.1,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+
+                                //ANCHOR artifact1
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Card(
+                                          elevation: 1,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                          child: InkWell(
+                                            splashColor: Colors.blue.withAlpha(30),
+                                            onTap: () {
+                                              print('Card tapped.');
+                                            },
+                                            child: Container(
+                                              width: 50,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                // color: Colors.lightBlue[50],
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                image: DecorationImage(
+                                                  image: AssetImage('images/Icon_Flower_of_Life.png'),
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          width: 110,
+                                          child: Column(
+                                            children: [
+                                              SelectableText(
+                                                'Flower:'.tr(),
+                                                style: TextStyle(
+                                                  //fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
+                                                  fontSize: 15,
+                                                  height: 1.1,
+                                                ),
+                                              ),
+                                              SelectableText(
+                                                'HP'.tr(),
+                                                style: TextStyle(
+                                                  //fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
+                                                  fontSize: 15,
+                                                  height: 1.1,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            SelectableText(
+                                              '${"Star".tr()}: $fstar',
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                height: 1.1,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 75,
+                                              child: Slider(
+                                                min: 4,
+                                                max: 5,
+                                                divisions: 1,
+                                                activeColor: Theme.of(context).primaryColor,
+                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                label: fstar.toString(),
+                                                value: fstar.toDouble(),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    fstar = value.toInt();
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            SelectableText(
+                                              '${"Lv".tr()}: $flv',
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                height: 1.1,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 75,
+                                              child: Slider(
+                                                min: 1,
+                                                max: 20,
+                                                divisions: 5,
+                                                activeColor: Theme.of(context).primaryColor,
+                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                label: flv.toString(),
+                                                value: flv.toDouble(),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    flv = value.toInt();
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Card(
+                                      elevation: 1,
+                                      child: InkWell(
+                                        onTap: _showSimpleDialog,
+                                        child: Container(
+                                          width: 170,
+                                          height: 100,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  if (!stat1atkpercentOn &&
+                                                      !stat1hppercentOn &&
+                                                      !stat1defpercentOn &&
+                                                      !stat1atkOn &&
+                                                      !stat1hpOn &&
+                                                      !stat1defOn &&
+                                                      !stat1CRpercentOn &&
+                                                      !stat1CDpercentOn &&
+                                                      !stat1EMOn &&
+                                                      !stat1ERpercentOn)
+                                                    Text('Please click to set stats').tr(),
+                                                  if (stat1atkpercentOn) Text('${"ATK".tr()}%:$stat1atkpercent'),
+                                                  if (stat1hppercentOn) Text('${"HP".tr()}%:$stat1hppercent'),
+                                                  if (stat1defpercentOn) Text('${"DEF".tr()}%:$stat1defpercent'),
+                                                  if (stat1CRpercentOn) Text('${"Critical Rate".tr()}%:$stat1CRpercent'),
+                                                  if (stat1CDpercentOn) Text('${"Critical Damage".tr()}%:$stat1CDpercent'),
+                                                  if (stat1EMOn) Text('${"Elemental Mastery".tr()}:$stat1EM'),
+                                                  if (stat1ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat1ERpercent'),
+                                                  if (stat1atkOn) Text('${"ATK".tr()}:$stat1atk'),
+                                                  if (stat1hpOn) Text('${"HP".tr()}:$stat1hp'),
+                                                  if (stat1defOn) Text('${"DEF".tr()}:$stat1def'),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  Visibility(
+                                                    visible: false,
+                                                    child: SelectableText(
+                                                      _label,
+                                                      style: TextStyle(
+                                                        //fontWeight: FontWeight.bold,
+                                                        color: Colors.black,
+                                                        fontSize: 15,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                //ANCHOR artifact2
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Card(
+                                          elevation: 1,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                          child: InkWell(
+                                            splashColor: Colors.blue.withAlpha(30),
+                                            onTap: () {
+                                              print('Card tapped.');
+                                            },
+                                            child: Container(
+                                              width: 50,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                // color: Colors.lightBlue[50],
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                image: DecorationImage(
+                                                  image: AssetImage('images/Icon_Plume_of_Death.png'),
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          width: 110.0,
+                                          child: Column(
+                                            children: [
+                                              SelectableText(
+                                                'Plume:'.tr(),
+                                                style: TextStyle(
+                                                  //fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
+                                                  fontSize: 15,
+                                                  height: 1.1,
+                                                ),
+                                              ),
+                                              SelectableText(
+                                                'ATK'.tr(),
+                                                style: TextStyle(
+                                                  //fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
+                                                  fontSize: 15,
+                                                  height: 1.1,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            SelectableText(
+                                              '${"Star".tr()}: $pstar',
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                height: 1.1,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 75,
+                                              child: Slider(
+                                                min: 4,
+                                                max: 5,
+                                                divisions: 1,
+                                                activeColor: Theme.of(context).primaryColor,
+                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                label: pstar.toString(),
+                                                value: pstar.toDouble(),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    pstar = value.toInt();
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            SelectableText(
+                                              '${"Lv".tr()}: $plv',
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                height: 1.1,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 75,
+                                              child: Slider(
+                                                min: 1,
+                                                max: 20,
+                                                divisions: 5,
+                                                activeColor: Theme.of(context).primaryColor,
+                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                label: plv.toString(),
+                                                value: plv.toDouble(),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    plv = value.toInt();
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Card(
+                                      elevation: 1,
+                                      child: InkWell(
+                                        onTap: _showSimpleDialog2,
+                                        child: Container(
+                                          width: 170,
+                                          height: 100,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  if (!stat2atkpercentOn &&
+                                                      !stat2hppercentOn &&
+                                                      !stat2defpercentOn &&
+                                                      !stat2atkOn &&
+                                                      !stat2hpOn &&
+                                                      !stat2defOn &&
+                                                      !stat2CRpercentOn &&
+                                                      !stat2CDpercentOn &&
+                                                      !stat2EMOn &&
+                                                      !stat2ERpercentOn)
+                                                    Text('Please click to set stats').tr(),
+                                                  if (stat2atkpercentOn) Text('${"ATK".tr()}%:$stat2atkpercent'),
+                                                  if (stat2hppercentOn) Text('${"HP".tr()}%:$stat2hppercent'),
+                                                  if (stat2defpercentOn) Text('${"DEF".tr()}%:$stat2defpercent'),
+                                                  if (stat2CRpercentOn) Text('${"Critical Rate".tr()}%:$stat2CRpercent'),
+                                                  if (stat2CDpercentOn) Text('${"Critical Damage".tr()}%:$stat2CDpercent'),
+                                                  if (stat2EMOn) Text('${"Elemental Mastery".tr()}:$stat2EM'),
+                                                  if (stat2ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat2ERpercent'),
+                                                  if (stat2atkOn) Text('${"ATK".tr()}:$stat2atk'),
+                                                  if (stat2hpOn) Text('${"HP".tr()}:$stat2hp'),
+                                                  if (stat2defOn) Text('${"DEF".tr()}:$stat2def'),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  Visibility(
+                                                    visible: false,
+                                                    child: SelectableText(
+                                                      _label,
+                                                      style: TextStyle(
+                                                        //fontWeight: FontWeight.bold,
+                                                        color: Colors.black,
+                                                        fontSize: 15,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                //ANCHOR artifact3
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Card(
+                                          elevation: 1,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                          child: InkWell(
+                                            splashColor: Colors.blue.withAlpha(30),
+                                            onTap: () {
+                                              print('Card tapped.');
+                                            },
+                                            child: Container(
+                                              width: 50,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                // color: Colors.lightBlue[50],
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                image: DecorationImage(
+                                                  image: AssetImage('images/Icon_Sands_of_Eon.png'),
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Column(
+                                          children: [
+                                            SelectableText(
+                                              'Sands:'.tr(),
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                height: 1.1,
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 50.0,
+                                              width: 110.0,
+                                              child: DropdownButton(
+                                                  value: artifact3mainstatcat,
+                                                  items: [
+                                                    DropdownMenuItem(
+                                                      child: Text(
+                                                        "${"HP".tr()}%",
+                                                        style: TextStyle(fontSize: 15),
+                                                      ),
+                                                      value: 1,
+                                                    ),
+                                                    DropdownMenuItem(
+                                                      child: Text(
+                                                        "${"ATK".tr()}%",
+                                                        style: TextStyle(fontSize: 15),
+                                                      ),
+                                                      value: 2,
+                                                    ),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "${"DEF".tr()}%",
+                                                          style: TextStyle(fontSize: 15),
+                                                        ),
+                                                        value: 3),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "Elemental Mastery".tr(),
+                                                          style: TextStyle(fontSize: 10),
+                                                        ),
+                                                        value: 4),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "${"Energy Recharge".tr()}%",
+                                                          style: TextStyle(fontSize: 10),
+                                                        ),
+                                                        value: 5)
+                                                  ],
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      artifact3mainstatcat = value;
+                                                    });
+                                                  }),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            SelectableText(
+                                              '${"Star".tr()}: $sstar',
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                height: 1.1,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 75,
+                                              child: Slider(
+                                                min: 4,
+                                                max: 5,
+                                                divisions: 1,
+                                                activeColor: Theme.of(context).primaryColor,
+                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                label: sstar.toString(),
+                                                value: sstar.toDouble(),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    sstar = value.toInt();
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            SelectableText(
+                                              '${"Lv".tr()}: $slv',
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                height: 1.1,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 75,
+                                              child: Slider(
+                                                min: 1,
+                                                max: 20,
+                                                divisions: 5,
+                                                activeColor: Theme.of(context).primaryColor,
+                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                label: slv.toString(),
+                                                value: slv.toDouble(),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    slv = value.toInt();
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Card(
+                                      elevation: 1,
+                                      child: InkWell(
+                                        onTap: _showSimpleDialog3,
+                                        child: Container(
+                                          width: 170,
+                                          height: 100,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  if (!stat3atkpercentOn &&
+                                                      !stat3hppercentOn &&
+                                                      !stat3defpercentOn &&
+                                                      !stat3atkOn &&
+                                                      !stat3hpOn &&
+                                                      !stat3defOn &&
+                                                      !stat3CRpercentOn &&
+                                                      !stat3CDpercentOn &&
+                                                      !stat3EMOn &&
+                                                      !stat3ERpercentOn)
+                                                    Text('Please click to set stats').tr(),
+                                                  if (stat3atkpercentOn) Text('${"ATK".tr()}%:$stat3atkpercent'),
+                                                  if (stat3hppercentOn) Text('${"HP".tr()}%:$stat3hppercent'),
+                                                  if (stat3defpercentOn) Text('${"DEF".tr()}%:$stat3defpercent'),
+                                                  if (stat3CRpercentOn) Text('${"Critical Rate".tr()}%:$stat3CRpercent'),
+                                                  if (stat3CDpercentOn) Text('${"Critical Damage".tr()}%:$stat3CDpercent'),
+                                                  if (stat3EMOn) Text('${"Elemental Mastery".tr()}:$stat3EM'),
+                                                  if (stat3ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat3ERpercent'),
+                                                  if (stat3atkOn) Text('${"ATK".tr()}:$stat3atk'),
+                                                  if (stat3hpOn) Text('${"HP".tr()}:$stat3hp'),
+                                                  if (stat3defOn) Text('${"DEF".tr()}:$stat3def'),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  Visibility(
+                                                    visible: false,
+                                                    child: SelectableText(
+                                                      _label,
+                                                      style: TextStyle(
+                                                        //fontWeight: FontWeight.bold,
+                                                        color: Colors.black,
+                                                        fontSize: 15,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                //ANCHOR artifact4
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Card(
+                                          elevation: 1,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                          child: InkWell(
+                                            splashColor: Colors.blue.withAlpha(30),
+                                            onTap: () {
+                                              print('Card tapped.');
+                                            },
+                                            child: Container(
+                                              width: 50,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                // color: Colors.lightBlue[50],
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                image: DecorationImage(
+                                                  image: AssetImage('images/Icon_Goblet_of_Eonothem.png'),
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Column(
+                                          children: [
+                                            SelectableText(
+                                              'Goblet:'.tr(),
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                height: 1.1,
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 50.0,
+                                              width: 110.0,
+                                              child: DropdownButton(
+                                                  value: artifact4mainstatcat,
+                                                  items: [
+                                                    DropdownMenuItem(
+                                                      child: Text(
+                                                        "${"HP".tr()}%",
+                                                        style: TextStyle(fontSize: 15),
+                                                      ),
+                                                      value: 1,
+                                                    ),
+                                                    DropdownMenuItem(
+                                                      child: Text(
+                                                        "${"ATK".tr()}%",
+                                                        style: TextStyle(fontSize: 15),
+                                                      ),
+                                                      value: 2,
+                                                    ),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "${"DEF".tr()}%",
+                                                          style: TextStyle(fontSize: 15),
+                                                        ),
+                                                        value: 3),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "Elemental Mastery".tr(),
+                                                          style: TextStyle(fontSize: 10),
+                                                        ),
+                                                        value: 4),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "${"Physical Damage".tr()}%",
+                                                          style: TextStyle(fontSize: 10),
+                                                        ),
+                                                        value: 5),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "${"Pyro Damage".tr()}%",
+                                                          style: TextStyle(fontSize: 10),
+                                                        ),
+                                                        value: 6),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "${"Hydro Damage".tr()}%",
+                                                          style: TextStyle(fontSize: 10),
+                                                        ),
+                                                        value: 7),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "${"Cryo Damage".tr()}%",
+                                                          style: TextStyle(fontSize: 10),
+                                                        ),
+                                                        value: 8),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "${"Electro Damage".tr()}%",
+                                                          style: TextStyle(fontSize: 10),
+                                                        ),
+                                                        value: 9),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "${"Anemo Damage".tr()}%",
+                                                          style: TextStyle(fontSize: 10),
+                                                        ),
+                                                        value: 10),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "${"Geo Damage".tr()}%",
+                                                          style: TextStyle(fontSize: 10),
+                                                        ),
+                                                        value: 11),
+                                                  ],
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      artifact4mainstatcat = value;
+                                                    });
+                                                  }),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            SelectableText(
+                                              '${"Star".tr()}: $gstar',
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                height: 1.1,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 75,
+                                              child: Slider(
+                                                min: 4,
+                                                max: 5,
+                                                divisions: 1,
+                                                activeColor: Theme.of(context).primaryColor,
+                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                label: gstar.toString(),
+                                                value: gstar.toDouble(),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    gstar = value.toInt();
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            SelectableText(
+                                              '${"Lv".tr()}: $glv',
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                height: 1.1,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 75,
+                                              child: Slider(
+                                                min: 1,
+                                                max: 20,
+                                                divisions: 5,
+                                                activeColor: Theme.of(context).primaryColor,
+                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                label: glv.toString(),
+                                                value: glv.toDouble(),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    glv = value.toInt();
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Card(
+                                      elevation: 1,
+                                      child: InkWell(
+                                        onTap: _showSimpleDialog4,
+                                        child: Container(
+                                          width: 170,
+                                          height: 100,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  if (!stat4atkpercentOn &&
+                                                      !stat4hppercentOn &&
+                                                      !stat4defpercentOn &&
+                                                      !stat4atkOn &&
+                                                      !stat4hpOn &&
+                                                      !stat4defOn &&
+                                                      !stat4CRpercentOn &&
+                                                      !stat4CDpercentOn &&
+                                                      !stat4EMOn &&
+                                                      !stat4ERpercentOn)
+                                                    Text('Please click to set stats').tr(),
+                                                  if (stat4atkpercentOn) Text('${"ATK".tr()}%:$stat4atkpercent'),
+                                                  if (stat4hppercentOn) Text('${"HP".tr()}%:$stat4hppercent'),
+                                                  if (stat4defpercentOn) Text('${"DEF".tr()}%:$stat4defpercent'),
+                                                  if (stat4CRpercentOn) Text('${"Critical Rate".tr()}%:$stat4CRpercent'),
+                                                  if (stat4CDpercentOn) Text('${"Critical Damage".tr()}%:$stat4CDpercent'),
+                                                  if (stat4EMOn) Text('${"Elemental Mastery".tr()}:$stat4EM'),
+                                                  if (stat4ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat4ERpercent'),
+                                                  if (stat4atkOn) Text('${"ATK".tr()}:$stat4atk'),
+                                                  if (stat4hpOn) Text('${"HP".tr()}:$stat4hp'),
+                                                  if (stat4defOn) Text('${"DEF".tr()}:$stat4def'),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  Visibility(
+                                                    visible: false,
+                                                    child: SelectableText(
+                                                      _label,
+                                                      style: TextStyle(
+                                                        //fontWeight: FontWeight.bold,
+                                                        color: Colors.black,
+                                                        fontSize: 15,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                //ANCHOR artifact5
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Card(
+                                          elevation: 1,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                          child: InkWell(
+                                            splashColor: Colors.blue.withAlpha(30),
+                                            onTap: () {
+                                              print('Card tapped.');
+                                            },
+                                            child: Container(
+                                              width: 50,
+                                              height: 50,
+                                              decoration: BoxDecoration(
+                                                // color: Colors.lightBlue[50],
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                image: DecorationImage(
+                                                  image: AssetImage('images/Icon_Circlet_of_Logos.png'),
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Column(
+                                          children: [
+                                            SelectableText(
+                                              'Circlet:'.tr(),
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                height: 1.1,
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 50.0,
+                                              width: 110.0,
+                                              child: DropdownButton(
+                                                  value: artifact5mainstatcat,
+                                                  items: [
+                                                    DropdownMenuItem(
+                                                      child: Text(
+                                                        "${"HP".tr()}%",
+                                                        style: TextStyle(fontSize: 15),
+                                                      ),
+                                                      value: 1,
+                                                    ),
+                                                    DropdownMenuItem(
+                                                      child: Text(
+                                                        "${"ATK".tr()}%",
+                                                        style: TextStyle(fontSize: 15),
+                                                      ),
+                                                      value: 2,
+                                                    ),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "${"DEF".tr()}%",
+                                                          style: TextStyle(fontSize: 15),
+                                                        ),
+                                                        value: 3),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "Elemental Mastery".tr(),
+                                                          style: TextStyle(fontSize: 10),
+                                                        ),
+                                                        value: 4),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "${"Critical Rate".tr()}%",
+                                                          style: TextStyle(fontSize: 10),
+                                                        ),
+                                                        value: 5),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "${"Critical Damage".tr()}%",
+                                                          style: TextStyle(fontSize: 10),
+                                                        ),
+                                                        value: 6),
+                                                    DropdownMenuItem(
+                                                        child: Text(
+                                                          "${"Healing Bonus".tr()}%",
+                                                          style: TextStyle(fontSize: 10),
+                                                        ),
+                                                        value: 7),
+                                                  ],
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      artifact5mainstatcat = value;
+                                                    });
+                                                  }),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            SelectableText(
+                                              '${"Star".tr()}: $cstar',
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                height: 1.1,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 75,
+                                              child: Slider(
+                                                min: 4,
+                                                max: 5,
+                                                divisions: 1,
+                                                activeColor: Theme.of(context).primaryColor,
+                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                label: cstar.toString(),
+                                                value: cstar.toDouble(),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    cstar = value.toInt();
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            SelectableText(
+                                              '${"Lv".tr()}: $clv',
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                height: 1.1,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 75,
+                                              child: Slider(
+                                                min: 1,
+                                                max: 20,
+                                                divisions: 5,
+                                                activeColor: Theme.of(context).primaryColor,
+                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                label: clv.toString(),
+                                                value: clv.toDouble(),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    clv = value.toInt();
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Card(
+                                      elevation: 1,
+                                      child: InkWell(
+                                        onTap: _showSimpleDialog5,
+                                        child: Container(
+                                          width: 170,
+                                          height: 100,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  if (!stat5atkpercentOn &&
+                                                      !stat5hppercentOn &&
+                                                      !stat5defpercentOn &&
+                                                      !stat5atkOn &&
+                                                      !stat5hpOn &&
+                                                      !stat5defOn &&
+                                                      !stat5CRpercentOn &&
+                                                      !stat5CDpercentOn &&
+                                                      !stat5EMOn &&
+                                                      !stat5ERpercentOn)
+                                                    Text('Please click to set stats').tr(),
+                                                  if (stat5atkpercentOn) Text('${"ATK".tr()}%:$stat5atkpercent'),
+                                                  if (stat5hppercentOn) Text('${"HP".tr()}%:$stat5hppercent'),
+                                                  if (stat5defpercentOn) Text('${"DEF".tr()}%:$stat5defpercent'),
+                                                  if (stat5CRpercentOn) Text('${"Critical Rate".tr()}%:$stat5CRpercent'),
+                                                  if (stat5CDpercentOn) Text('${"Critical Damage".tr()}%:$stat5CDpercent'),
+                                                  if (stat5EMOn) Text('${"Elemental Mastery".tr()}:$stat5EM'),
+                                                  if (stat5ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat5ERpercent'),
+                                                  if (stat5atkOn) Text('${"ATK".tr()}:$stat5atk'),
+                                                  if (stat5hpOn) Text('${"HP".tr()}:$stat5hp'),
+                                                  if (stat5defOn) Text('${"DEF".tr()}:$stat5def'),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  Visibility(
+                                                    visible: false,
+                                                    child: SelectableText(
+                                                      _label,
+                                                      style: TextStyle(
+                                                        //fontWeight: FontWeight.bold,
+                                                        color: Colors.black,
+                                                        fontSize: 15,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              //ANCHOR ----StatPage----
+              ResponsiveGridCol(
+                xs: 12,
+                md: 12,
+                lg: 6,
+                xl: 3,
+                child: Container(
+                  height: (MediaQuery.of(context).size.width > 1200) ? heightadjust : null,
+                  color: Colors.yellow[50],
+                  child: Center(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          //ANCHOR ***BasicPanel***
+                          Container(
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                              children: [
+                                SelectableText(
+                                  'Basic Panel'.tr(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+
+                                //ANCHOR ATK
+
+                                SizedBox(height: 10),
+                                SelectableText(
+                                  '${"ATK".tr()}:$basicatk + ' + double.parse(bonusatk.toStringAsFixed(1)).toString() + ' = ' + double.parse(allatk.toStringAsFixed(1)).toString(),
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child:
+                                      //level:Colors.red
+                                      //weapon:Colors.blue
+                                      //weapon%:Colors.green
+                                      //a1:Colors.yellow
+                                      //a1%:Colors.yellow[700]
+                                      //a2:Colors.pink
+                                      //a2%:Colors.pink[700]
+                                      //a3%:Colors.blueGrey
+                                      //a3:Colors.blueGrey[700]
+                                      //a4%:Colors.purple
+                                      //a4:Colors.purple[700]
+                                      //a5%:Colors.teal
+                                      //a5:Colors.teal[700]
+                                      //pyro2On:Colors.red
+                                      //gladiator2On:Colors.purple
+                                      //royalflora4On:Colors.purple
+
+                                      FractionallySizedBox(
+                                    widthFactor: 1.0,
+                                    child: Scrollbar(
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            //ANCHOR statATK:stats
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                buildStatRow(Colors.red, 'level'.tr(), '$levelatk'),
+                                                buildStatRow(Colors.blue, 'weapon'.tr(), '$weaponatk'),
+                                                if (weaponatkpercent != 0)
+                                                  buildStatRow(Colors.green, '${"weapon".tr()}%($weaponatkpercent)', double.parse(weaponatkpercentstat.toStringAsFixed(1)).toString()),
+                                                if (stat1atkOn == true) buildStatRow(Colors.red, 'a1'.tr(), double.parse(stat1atk.toStringAsFixed(1)).toString()),
+                                                if (stat1atkpercentOn == true)
+                                                  buildStatRow(Colors.yellow[700], '${"a1".tr()}%($stat1atkpercent)', double.parse(a1percentatk.toStringAsFixed(1)).toString()),
+                                                buildStatRow(Colors.pink, 'a2'.tr(), a2atk.toString()),
+                                                if (stat2atkpercentOn == true)
+                                                  buildStatRow(Colors.pink[700], '${"a2".tr()}%($stat2atkpercent)', double.parse(a2percentatk.toStringAsFixed(1)).toString()),
+                                                if (artifact3mainstatcat == 2)
+                                                  buildStatRow(Colors.blueGrey, '${"a3".tr()}%($a3atkpercentMain)', double.parse(a3percentatkMain.toStringAsFixed(1)).toString()),
+                                                if (stat3atkpercentOn == true)
+                                                  buildStatRow(Colors.blueGrey, '${"a3".tr()}%($stat3atkpercent)', double.parse(a3percentatk.toStringAsFixed(1)).toString()),
+                                                if (stat3atkOn == true) buildStatRow(Colors.blueGrey[700], 'a3'.tr(), double.parse(stat3atk.toStringAsFixed(1)).toString()),
+                                                if (artifact4mainstatcat == 2)
+                                                  buildStatRow(Colors.purple, '${"a4".tr()}%($a4atkpercentMain)', double.parse(a4percentatkMain.toStringAsFixed(1)).toString()),
+                                                if (stat4atkpercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%($stat4atkpercent)', double.parse(a4percentatk.toStringAsFixed(1)).toString()),
+                                                if (stat4atkOn == true) buildStatRow(Colors.purple[700], 'a4'.tr(), double.parse(stat4atk.toStringAsFixed(1)).toString()),
+                                                if (artifact5mainstatcat == 2)
+                                                  buildStatRow(Colors.teal, '${"a5".tr()}%($a5atkpercentMain)', double.parse(a5percentatkMain.toStringAsFixed(1)).toString()),
+                                                if (stat5atkpercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%($stat5atkpercent)', double.parse(a5percentatk.toStringAsFixed(1)).toString()),
+                                                if (stat5atkOn == true) buildStatRow(Colors.teal[700], 'a5'.tr(), double.parse(stat5atk.toStringAsFixed(1)).toString()),
+                                                if (pyro2On == true) buildStatRow(Colors.red, '${"2 Pyro".tr()}%(25)', (basicatk * 25 / 100).toStringAsFixed(1)),
+                                                if (gladiator2On == true) buildStatRow(Colors.red, '${"Gladiator2".tr()}%(18)', (basicatk * 18 / 100).toStringAsFixed(1)),
+                                                if (reminiscenceofshime2On == true) buildStatRow(Colors.red, '${"Reminiscence2".tr()}%(18)', (basicatk * 18 / 100).toStringAsFixed(1)),
+                                                if (royalflora4On == true) buildStatRow(Colors.blue, '${"Noblesse4".tr()}%(20)', (basicatk * 20 / 100).toStringAsFixed(1)),
+                                                if (unreturningOn == true)
+                                                  buildStatRow(Colors.tealAccent, '${"Unreturning".tr()}%(' + (27 + weaponref * 9).toStringAsFixed(1) + ')',
+                                                      (basicatk * (27 + weaponref * 9) / 100).toStringAsFixed(1)),
+                                                if (dragonslayerOn) buildStatRow(Colors.grey, '${"Dragon Slayers".tr()}%(48)', (basicatk * 48 / 100).toStringAsFixed(1)),
+                                                if (bennetqOn) buildStatRow(Colors.red, '${"班尼特".tr()}(burst)', (bennetbasicatk * bennetqlvtoratio[bennetqlv] / 100).toStringAsFixed(1)),
+                                                if (manualatkOn) buildStatRow(Colors.red[300], '${"Manual".tr()}:${"ATK".tr()}', (manualatk.toStringAsFixed(1))),
+                                                if (manualatkpercentOn)
+                                                  buildStatRow(Colors.red[300], '${"Manual".tr()}:${"ATK".tr()}%($manualatkpercent)', ((basicatk * manualatkpercent / 100).toStringAsFixed(1))),
+                                                if (rulebythunder1On)
+                                                  buildStatRow(Colors.purple, '${"Rule by Thunder1".tr()}%(' + (15 + weaponref * 5).toStringAsFixed(1) + ')',
+                                                      (basicatk * (15 + weaponref * 5) / 100).toStringAsFixed(1)),
+                                              ],
+                                            ),
+                                            //ANCHOR statATK:bar
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                buildstatbar(Colors.red, levelatk),
+                                                buildstatbar(Colors.blue, weaponatk),
+                                                buildstatbar(Colors.green, weaponatkpercentstat),
+                                                if (stat1atkOn == true) buildstatbar(Colors.yellow, stat1atk),
+                                                if (stat1atkpercentOn == true) buildstatbar(Colors.yellow[700], a1percentatk),
+                                                buildstatbar(Colors.pink, a2atk),
+                                                if (stat2atkpercentOn == true) buildstatbar(Colors.pink[700], a2percentatk),
+                                                if (artifact3mainstatcat == 2) buildstatbar(Colors.blueGrey, a3percentatkMain),
+                                                if (stat3atkpercentOn == true) buildstatbar(Colors.blueGrey, a3percentatk),
+                                                if (stat3atkOn == true) buildstatbar(Colors.blueGrey[700], stat3atk),
+                                                if (artifact4mainstatcat == 2) buildstatbar(Colors.purple, a4percentatkMain),
+                                                if (stat4atkpercentOn == true) buildstatbar(Colors.purple, a4percentatk),
+                                                if (stat4atkOn == true) buildstatbar(Colors.purple[700], stat4atk),
+                                                if (artifact5mainstatcat == 2) buildstatbar(Colors.teal, a5percentatkMain),
+                                                if (stat5atkpercentOn == true) buildstatbar(Colors.teal, a5percentatk),
+                                                if (stat5atkOn == true) buildstatbar(Colors.teal[700], stat5atk),
+                                                if (pyro2On == true) buildstatbar(Colors.red, (basicatk * 25 / 100)),
+                                                if (gladiator2On == true) buildstatbar(Colors.red, (basicatk * 18 / 100)),
+                                                if (reminiscenceofshime2On == true) buildstatbar(Colors.red, (basicatk * 18 / 100)),
+                                                if (royalflora4On == true) buildstatbar(Colors.blue, (basicatk * 20 / 100)),
+                                                if (unreturningOn == true) buildstatbar(Colors.tealAccent, (basicatk * (27 + weaponref * 9) / 100)),
+                                                if (dragonslayerOn) buildstatbar(Colors.grey, (basicatk * 48 / 100)),
+                                                if (bennetqOn) buildstatbar(Colors.red, (bennetbasicatk * bennetqlvtoratio[bennetqlv] / 100)),
+                                                if (manualatkOn) buildstatbar(Colors.red[300], (manualatk)),
+                                                if (manualatkpercentOn) buildstatbar(Colors.red[300], (basicatk * manualatkpercent / 100)),
+                                                if (rulebythunder1On == true) buildstatbar(Colors.purple, (basicatk * (15 + weaponref * 5) / 100)),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                //ANCHOR HP
+
+                                SizedBox(height: 10),
+                                SelectableText(
+                                  '${"HP".tr()}:$lvlhp + ' + double.parse(bonusHP.toStringAsFixed(1)).toString() + ' = ' + double.parse(allHP.toStringAsFixed(1)).toString(),
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: FractionallySizedBox(
+                                    widthFactor: 1.0,
+                                    child: Scrollbar(
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            //ANCHOR statHP:stats
+                                            //level:Colors.red
+                                            //weapon:Colors.blue
+                                            //weapon%:Colors.green
+                                            //a1:Colors.yellow
+                                            //a1%:Colors.yellow[700]
+                                            //a2:Colors.pink
+                                            //a2%:Colors.pink[700]
+                                            //a3%:Colors.blueGrey
+                                            //a3:Colors.blueGrey[700]
+                                            //a4%:Colors.purple
+                                            //a4:Colors.purple[700]
+                                            //a5%:Colors.teal
+                                            //a5:Colors.teal[700]
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                buildStatRow(Colors.red, 'level'.tr(), '$lvlhp'),
+                                                if (weaponHPpercentstat > 0)
+                                                  buildStatRow(Colors.green, '${"weapon".tr()}%($weaponHPpercent)', double.parse(weaponHPpercentstat.toStringAsFixed(1)).toString()),
+                                                if (stat1hpOn == true) buildStatRow(Colors.yellow, 'a1'.tr(), double.parse(stat1hp.toStringAsFixed(1)).toString()),
+                                                if (stat1hppercentOn == true)
+                                                  buildStatRow(Colors.yellow[700], '${"a1".tr()}%($stat1hppercent)', double.parse(a1percenthp.toStringAsFixed(1)).toString()),
+                                                buildStatRow(Colors.yellow, 'a1'.tr(), a1hp.toString()),
+                                                if (stat2hpOn == true) buildStatRow(Colors.pink[700], 'a2'.tr(), double.parse(stat2hp.toStringAsFixed(1)).toString()),
+                                                if (stat2hppercentOn == true) buildStatRow(Colors.pink, '${"a2".tr()}%($stat2hppercent)', double.parse(a2percenthp.toStringAsFixed(1)).toString()),
+                                                if (artifact3mainstatcat == 1)
+                                                  buildStatRow(Colors.blueGrey, '${"a3".tr()}%($a3HPpercentMain)', double.parse(a3percentHPMain.toStringAsFixed(1)).toString()),
+                                                if (stat3hppercentOn == true) buildStatRow(Colors.blueGrey, '${"a3".tr()}%($stat3hppercent)', double.parse(a3percentHP.toStringAsFixed(1)).toString()),
+                                                if (stat3hpOn == true) buildStatRow(Colors.blueGrey[700], 'a3'.tr(), double.parse(stat3hp.toStringAsFixed(1)).toString()),
+                                                if (artifact4mainstatcat == 1)
+                                                  buildStatRow(Colors.purple, '${"a4".tr()}%($a4HPpercentMain)', double.parse(a4percentHPMain.toStringAsFixed(1)).toString()),
+                                                if (stat4hppercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%($stat4hppercent)', double.parse(a4percentHP.toStringAsFixed(1)).toString()),
+                                                if (stat4hpOn == true) buildStatRow(Colors.purple[700], 'a4'.tr(), double.parse(stat4hp.toStringAsFixed(1)).toString()),
+                                                if (artifact5mainstatcat == 1)
+                                                  buildStatRow(Colors.teal, '${"a5".tr()}%($a5HPpercentMain)', double.parse(a5percentHPMain.toStringAsFixed(1)).toString()),
+                                                if (stat5hppercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%($stat5hppercent)', double.parse(a5percentHP.toStringAsFixed(1)).toString()),
+                                                if (stat5hpOn == true) buildStatRow(Colors.teal[700], 'a5'.tr(), double.parse(stat5hp.toStringAsFixed(1)).toString()),
+                                              ],
+                                            ),
+
+                                            //ANCHOR statHP:bar
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                buildstatbarhp(Colors.red, lvlhp),
+                                                if (weaponHPpercent != 0) buildstatbarhp(Colors.blue, weaponHPpercentstat),
+                                                if (stat1hpOn == true) buildstatbarhp(Colors.yellow, stat1hp),
+                                                if (stat1hppercentOn == true) buildstatbarhp(Colors.yellow[700], a1percenthp),
+                                                buildstatbarhp(Colors.yellow, a1hp),
+                                                if (stat2hpOn == true) buildstatbarhp(Colors.pink, stat2hp),
+                                                if (stat2hppercentOn == true) buildstatbarhp(Colors.pink[700], a2percenthp),
+                                                if (artifact3mainstatcat == 1) buildstatbarhp(Colors.blueGrey, a3percentHPMain),
+                                                if (stat3hppercentOn == true) buildstatbarhp(Colors.blueGrey, a3percentHP),
+                                                if (stat3hpOn == true) buildstatbarhp(Colors.blueGrey[700], stat3hp),
+                                                if (artifact4mainstatcat == 1) buildstatbarhp(Colors.purple, a4percentHPMain),
+                                                if (stat4hppercentOn == true) buildstatbarhp(Colors.purple, a4percentHP),
+                                                if (stat4hpOn == true) buildstatbarhp(Colors.purple[700], stat4hp),
+                                                if (artifact5mainstatcat == 1) buildstatbarhp(Colors.teal, a5percentHPMain),
+                                                if (stat5hppercentOn == true) buildstatbarhp(Colors.teal, a5percentHP),
+                                                if (stat5hpOn == true) buildstatbarhp(Colors.teal[700], stat5hp),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                //ANCHOR DEF
+                                SelectableText(
+                                  '${"DEF".tr()}:$lvldef + ' + double.parse(bonusdef.toStringAsFixed(1)).toString() + ' = ' + double.parse(alldef.toStringAsFixed(1)).toString(),
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: FractionallySizedBox(
+                                    widthFactor: 1.0,
+                                    child: Scrollbar(
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            //ANCHOR statDEF:stats
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                buildStatRow(Colors.red, 'level'.tr(), '$lvldef'),
+                                                if (weapondefpercentstat != 0)
+                                                  buildStatRow(Colors.green, '${"weapon".tr()}%($weapondefpercent)', double.parse(weapondefpercentstat.toStringAsFixed(1)).toString()),
+                                                if (stat1defOn == true) buildStatRow(Colors.yellow, 'a1'.tr(), double.parse(stat1def.toStringAsFixed(1)).toString()),
+                                                if (stat1defpercentOn == true)
+                                                  buildStatRow(Colors.yellow[700], '${"a1".tr()}%($stat1defpercent)', double.parse(a1percentdef.toStringAsFixed(1)).toString()),
+                                                if (stat2defOn == true) buildStatRow(Colors.pink, 'a2'.tr(), double.parse(stat2def.toStringAsFixed(1)).toString()),
+                                                if (stat2defpercentOn == true)
+                                                  buildStatRow(Colors.pink[700], '${"a2".tr()}%($stat2defpercent)', double.parse(a2percentdef.toStringAsFixed(1)).toString()),
+                                                if (artifact3mainstatcat == 3)
+                                                  buildStatRow(Colors.blueGrey, '${"a3".tr()}%($a3defpercentMain)', double.parse(a3percentdefMain.toStringAsFixed(1)).toString()),
+                                                if (stat3defpercentOn == true)
+                                                  buildStatRow(Colors.blueGrey, '${"a3".tr()}%($stat3defpercent)', double.parse(a3percentHP.toStringAsFixed(1)).toString()),
+                                                if (stat3defOn == true) buildStatRow(Colors.blueGrey[700], 'a3'.tr(), double.parse(stat3def.toStringAsFixed(1)).toString()),
+                                                if (artifact4mainstatcat == 3)
+                                                  buildStatRow(Colors.purple, '${"a4".tr()}%($a4defpercentMain)', double.parse(a4percentdefMain.toStringAsFixed(1)).toString()),
+                                                if (stat4defpercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%($stat4defpercent)', double.parse(a4percentdef.toStringAsFixed(1)).toString()),
+                                                if (stat4defOn == true) buildStatRow(Colors.purple[700], 'a4'.tr(), double.parse(stat4def.toStringAsFixed(1)).toString()),
+                                                if (artifact5mainstatcat == 3)
+                                                  buildStatRow(Colors.teal, '${"a5".tr()}%($a5defpercentMain)', double.parse(a5percentdefMain.toStringAsFixed(1)).toString()),
+                                                if (stat5defpercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%($stat5defpercent)', double.parse(a5percentdef.toStringAsFixed(1)).toString()),
+                                                if (stat5defOn == true) buildStatRow(Colors.teal[700], 'a5'.tr(), double.parse(stat5def.toStringAsFixed(1)).toString()),
+                                              ],
+                                            ),
+
+                                            //ANCHOR statDEF:bar
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                buildstatbar(Colors.red, lvldef),
+                                                if (weapondefpercentstat != 0) buildstatbar(Colors.blue, weapondefpercentstat),
+                                                if (stat1defOn == true) buildstatbar(Colors.yellow, stat1def),
+                                                if (stat1defpercentOn == true) buildstatbar(Colors.yellow[700], a1percentdef),
+                                                if (stat2defpercentOn == true) buildstatbar(Colors.pink[700], a2percentdef),
+                                                if (artifact3mainstatcat == 3) buildstatbar(Colors.blueGrey, a3percentdefMain),
+                                                if (stat3defpercentOn == true) buildstatbar(Colors.blueGrey, a3percentdef),
+                                                if (stat3defOn == true) buildstatbar(Colors.blueGrey[700], stat3def),
+                                                if (artifact4mainstatcat == 3) buildstatbar(Colors.purple, a4percentdefMain),
+                                                if (stat4defpercentOn == true) buildstatbar(Colors.purple, a4percentdef),
+                                                if (stat4defOn == true) buildstatbar(Colors.purple[700], stat4def),
+                                                if (artifact5mainstatcat == 3) buildstatbar(Colors.teal, a5percentdefMain),
+                                                if (stat5defpercentOn == true) buildstatbar(Colors.teal, a5percentdef),
+                                                if (stat5defOn == true) buildstatbar(Colors.teal[700], stat5def),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                //ANCHOR ER
+                                SelectableText(
+                                  '${"Energy Recharge".tr()}:100% + ' + double.parse(bonusER.toStringAsFixed(1)).toString() + '% = ' + double.parse(allER.toStringAsFixed(1)).toString() + '%',
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: FractionallySizedBox(
+                                    widthFactor: 1.0,
+                                    child: Scrollbar(
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            //ANCHOR statER:stats
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                buildStatRow(Colors.red, '${"baseER".tr()}%', '100'),
+                                                if (weaponERpercent != 0) buildStatRow(Colors.green, '${"weapon".tr()}%', '$weaponERpercent'),
+                                                if (stat1ERpercentOn == true) buildStatRow(Colors.yellow[700], '${"a1".tr()}%', '$stat1ERpercent'),
+                                                if (stat2ERpercentOn == true) buildStatRow(Colors.pink[700], '${"a2".tr()}%', '$stat2ERpercent'),
+                                                if (artifact3mainstatcat == 5) buildStatRow(Colors.blueGrey, '${"a3".tr()}%', '$a3ERpercentMain'),
+                                                if (stat3ERpercentOn == true) buildStatRow(Colors.blueGrey, '${"a3".tr()}%', '$stat3ERpercent'),
+                                                if (stat4ERpercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%', '$stat4ERpercent'),
+                                                if (stat5ERpercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%', '$stat5ERpercent'),
+                                              ],
+                                            ),
+
+                                            //ANCHOR statER:bar
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                buildstatbarpercent(Colors.red, 50),
+                                                if (weaponERpercent != 0) buildstatbarpercent(Colors.blue, weaponERpercent),
+                                                if (stat1ERpercentOn == true) buildstatbarpercent(Colors.yellow[700], stat1ERpercent),
+                                                if (stat2ERpercentOn == true) buildstatbarpercent(Colors.pink[700], stat2ERpercent),
+                                                if (artifact3mainstatcat == 5) buildstatbarpercent(Colors.blueGrey, a3ERpercentMain),
+                                                if (stat3ERpercentOn == true) buildstatbarpercent(Colors.blueGrey, stat3ERpercent),
+                                                if (stat4ERpercentOn == true) buildstatbarpercent(Colors.purple, stat4ERpercent),
+                                                if (stat5ERpercentOn == true) buildstatbarpercent(Colors.teal, stat5ERpercent),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          //ANCHOR ***CritPanel***
+                          Container(
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                              //ANCHOR CR
+
+                              children: [
+                                SelectableText(
+                                  'Crit Panel'.tr(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                SizedBox(height: 10),
+
+                                SelectableText(
+                                  '${"Critical Rate".tr()}:' +
+                                      double.parse(baseCR.toStringAsFixed(1)).toString() +
+                                      '% + ' +
+                                      double.parse(bonusCR.toStringAsFixed(1)).toString() +
+                                      '% = ' +
+                                      double.parse(allCR.toStringAsFixed(1)).toString() +
+                                      '%',
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: FractionallySizedBox(
+                                    widthFactor: 1.0,
+                                    child: Scrollbar(
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            //ANCHOR statCR:stats
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                buildStatRow(Colors.red, 'character'.tr(), '$baseCR'),
+                                                if (weaponCR != 0) buildStatRow(Colors.blue[700], 'weapon'.tr(), '$weaponCR'),
+                                                if (stat1CRpercentOn == true) buildStatRow(Colors.yellow[700], 'a1'.tr(), '$stat1CRpercent'),
+                                                if (stat2CRpercentOn == true) buildStatRow(Colors.pink[700], 'a2'.tr(), '$stat2CRpercent'),
+                                                if (stat3CRpercentOn == true) buildStatRow(Colors.blueGrey, 'a3'.tr(), '$stat3CRpercent'),
+                                                if (stat4CRpercentOn == true) buildStatRow(Colors.purple, 'a4'.tr(), '$stat4CRpercent'),
+                                                if (artifact5mainstatcat == 5) buildStatRow(Colors.purple, 'a5'.tr(), '$a5CR'),
+                                                if (stat5CRpercentOn == true) buildStatRow(Colors.teal, 'a5'.tr(), '$stat5CRpercent'),
+                                                if (undividedHeartOn == true) buildStatRow(Colors.amber, 'Undevided Heart'.tr(), '20'),
+                                                if (blizzardstrayer41On == true) buildStatRow(Colors.blue[300], 'Blizzard Strayer 4 set(cryo)'.tr(), '20'),
+                                                if (blizzardstrayer42On == true) buildStatRow(Colors.blue[400], 'Blizzard Strayer 4 set(frozen)'.tr(), '20'),
+                                                if (cryo2On == true) buildStatRow(Colors.blue[200], '2 Cryo'.tr(), '15'),
+                                                if (manualCRpercentOn) buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualCRpercent).toStringAsFixed(1))),
+                                              ],
+                                            ),
+
+                                            //ANCHOR statCR:bar
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    AnimatedContainer(curve: Curves.easeIn, duration: Duration(milliseconds: 500), width: baseCR * 2, height: 20, color: Colors.red),
+                                                  ],
+                                                ),
+                                                if (weaponCR != 0)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: weaponCR * 2,
+                                                        height: 20,
+                                                        color: Colors.blue[700],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (stat1CRpercentOn == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: stat1CRpercent * 2,
+                                                        height: 20,
+                                                        color: Colors.yellow[700],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (stat2CRpercentOn == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: stat2CRpercent * 2,
+                                                        height: 20,
+                                                        color: Colors.pink[700],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (stat3CRpercentOn == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: stat3CRpercent * 2,
+                                                        height: 20,
+                                                        color: Colors.blueGrey,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (stat4CRpercentOn == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: stat4CRpercent * 2,
+                                                        height: 20,
+                                                        color: Colors.purple,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (artifact5mainstatcat == 5)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: a5CR * 2,
+                                                        height: 20,
+                                                        color: Colors.teal,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (stat5CRpercentOn == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: stat5CRpercent * 2,
+                                                        height: 20,
+                                                        color: Colors.teal,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (undividedHeartOn == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: 40,
+                                                        height: 20,
+                                                        color: Colors.amber,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (blizzardstrayer41On == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: 40,
+                                                        height: 20,
+                                                        color: Colors.blue[300],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (blizzardstrayer42On == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: 40,
+                                                        height: 20,
+                                                        color: Colors.blue[400],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (cryo2On == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: 30,
+                                                        height: 20,
+                                                        color: Colors.blue[200],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (manualCRpercentOn) buildstatbarpercent(Colors.red[300], manualCRpercent),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                //ANCHOR CD
+                                SelectableText(
+                                  '${"Critical Damage".tr()}:' +
+                                      double.parse(baseCD.toStringAsFixed(1)).toString() +
+                                      '% + ' +
+                                      double.parse(bonusCD.toStringAsFixed(1)).toString() +
+                                      '% = ' +
+                                      double.parse(allCD.toStringAsFixed(1)).toString() +
+                                      '%',
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: FractionallySizedBox(
+                                    widthFactor: 1.0,
+                                    child: Scrollbar(
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            //ANCHOR statCD:stats
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                buildStatRow(Colors.red, 'character'.tr(), '$baseCD'),
+                                                if (weaponCD != 0) buildStatRow(Colors.blue, 'weapon'.tr(), '$weaponCD'),
+                                                if (stat1CDpercentOn == true) buildStatRow(Colors.yellow[700], 'a1'.tr(), '$stat1CDpercent'),
+                                                if (stat2CDpercentOn == true) buildStatRow(Colors.pink[700], 'a2'.tr(), '$stat2CDpercent'),
+                                                if (stat3CDpercentOn == true) buildStatRow(Colors.blueGrey, 'a3'.tr(), '$stat3CDpercent'),
+                                                if (stat4CDpercentOn == true) buildStatRow(Colors.blueGrey, 'a4'.tr(), '$stat4CDpercent'),
+                                                if (artifact5mainstatcat == 6) buildStatRow(Colors.teal, 'a5'.tr(), '$a5CD'),
+                                                if (stat5CDpercentOn == true) buildStatRow(Colors.teal, 'a5'.tr(), '$stat5CDpercent'),
+                                                if (echoingBalladOn == true) buildStatRow(Colors.tealAccent, 'Echoing Ballad1'.tr(), (15 + weaponref * 5).toString()),
+                                                if (manualCDpercentOn) buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualCDpercent).toStringAsFixed(1))),
+                                              ],
+                                            ),
+
+                                            //ANCHOR statCD:bar
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                if ((baseCD - weaponCD) != 0)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(curve: Curves.easeIn, duration: Duration(milliseconds: 500), width: baseCD * 2, height: 20, color: Colors.red),
+                                                    ],
+                                                  ),
+                                                if (weaponCD != 0)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: weaponCD * 2,
+                                                        height: 20,
+                                                        color: Colors.blue,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (stat1CDpercentOn == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: stat1CDpercent * 2,
+                                                        height: 20,
+                                                        color: Colors.yellow[700],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (stat2CDpercentOn == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: stat2CDpercent * 2,
+                                                        height: 20,
+                                                        color: Colors.pink[700],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (stat3CDpercentOn == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: stat3CDpercent * 2,
+                                                        height: 20,
+                                                        color: Colors.blueGrey,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (stat4CDpercentOn == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: stat4CDpercent * 2,
+                                                        height: 20,
+                                                        color: Colors.purple,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (artifact5mainstatcat == 6)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: a5CD * 2,
+                                                        height: 20,
+                                                        color: Colors.teal,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (stat5CDpercentOn == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: stat5CDpercent * 2,
+                                                        height: 20,
+                                                        color: Colors.teal,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (echoingBalladOn == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: (15 + weaponref * 5) * 2 as double,
+                                                        height: 20,
+                                                        color: Colors.tealAccent,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (manualCDpercentOn) buildstatbarpercent(Colors.red[300], manualCDpercent),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          //ANCHOR ***Damageplus Panel***
+                          Container(
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                              children: [
+                                SelectableText(
+                                  'Damageplus Panel'.tr(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                SizedBox(height: 10),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    children: [
+                                      if (bonusNormalATKDMGpercent != 0)
+                                        SelectableText(
+                                          '${"Normal Attack Damage".tr()}:' + double.parse(bonusNormalATKDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statNormalATKDMG:stats
+                                      if (bonusNormalATKDMGpercent != 0)
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            if (strongWilled1On) buildStatRow(Colors.purple[300], 'Strong Willed1'.tr(), (9 + weaponref * 3).toString()),
+                                            if (strongWilled2On) buildStatRow(Colors.blue[300], 'Strong Willed2'.tr(), ((6 + weaponref * 2) * strongWilled2Times).toString()),
+                                            if (rulebythunder2On)
+                                              buildStatRow(Colors.amber, 'Rule by Thunder2'.tr(),
+                                                  (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30))).toString()),
+                                            if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
+                                          ],
+                                        ),
+                                      //ANCHOR statNormalATKDMG:bar
+                                      if (bonusNormalATKDMGpercent != 0)
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            if (strongWilled1On)
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  AnimatedContainer(
+                                                    curve: Curves.easeIn,
+                                                    duration: Duration(milliseconds: 500),
+                                                    width: (9 + weaponref * 3) * 2 as double,
+                                                    height: 20,
+                                                    color: Colors.purple[300],
+                                                  ),
+                                                ],
+                                              ),
+                                            if (strongWilled2On)
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  AnimatedContainer(
+                                                    curve: Curves.easeIn,
+                                                    duration: Duration(milliseconds: 500),
+                                                    width: ((6 + weaponref * 2) * strongWilled2Times) * 2 * 2 as double,
+                                                    height: 20,
+                                                    color: Colors.blue[300],
+                                                  ),
+                                                ],
+                                              ),
+                                            if (rulebythunder2On)
+                                              buildstatbarpercent(
+                                                  Colors.amber, (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))),
+                                            if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
+                                          ],
+                                        ),
+                                      if (bonusChargedATKDMGpercent != 0)
+                                        SelectableText(
+                                          '${"Charged Attack Damage".tr()}:' + double.parse(bonusChargedATKDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statChargedATKDMG:stats
+                                      if (bonusChargedATKDMGpercent != 0)
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            if (strongWilled1On) buildStatRow(Colors.purple[300], 'Strong Willed1'.tr(), (9 + weaponref * 3).toString()),
+                                            if (strongWilled2On) buildStatRow(Colors.blue[300], 'Strong Willed2'.tr(), ((6 + weaponref * 2) * strongWilled2Times).toString()),
+                                            if (troupesdawnlight4on) buildStatRow(Colors.green[400], "Troupe's Dawnlight 4 set".tr(), "35"),
+                                            if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
+                                          ],
+                                        ),
+                                      //ANCHOR statChargedATKDMG:bar
+                                      if (bonusChargedATKDMGpercent != 0)
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            if (strongWilled1On)
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  AnimatedContainer(
+                                                    curve: Curves.easeIn,
+                                                    duration: Duration(milliseconds: 500),
+                                                    width: (9 + weaponref * 3) * 2 as double,
+                                                    height: 20,
+                                                    color: Colors.purple[300],
+                                                  ),
+                                                ],
+                                              ),
+                                            if (strongWilled2On)
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  AnimatedContainer(
+                                                    curve: Curves.easeIn,
+                                                    duration: Duration(milliseconds: 500),
+                                                    width: ((6 + weaponref * 2) * strongWilled2Times) * 2 * 2 as double,
+                                                    height: 20,
+                                                    color: Colors.blue[300],
+                                                  ),
+                                                ],
+                                              ),
+                                            if (troupesdawnlight4on)
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  AnimatedContainer(
+                                                    curve: Curves.easeIn,
+                                                    duration: Duration(milliseconds: 500),
+                                                    width: 35 * 2 as double,
+                                                    height: 20,
+                                                    color: Colors.green[400],
+                                                  ),
+                                                ],
+                                              ),
+                                            if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
+                                          ],
+                                        ),
+                                      //ANCHOR Plunge Damage Title
+                                      if (bonusPlungeATKDMGpercent != 0)
+                                        SelectableText(
+                                          '${"Plunge Damage".tr()}:' + double.parse(bonusPlungeATKDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statPlungeDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
+                                        ],
+                                      ),
+                                      //ANCHOR statPlungeDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
+                                        ],
+                                      ),
+                                      //ANCHOR Physical Damage Title
+                                      if (bonusPhysicalDMGpercent != 0)
+                                        SelectableText(
+                                          '${"Physical Damage".tr()}:' + double.parse(bonusPhysicalDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statPhysicalDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (levelPhysicalDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelPhysicalDMGpercent'),
+                                          if (weaponPhysicalDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponPhysicalDMGpercent'),
+                                          if (artifact4mainstatcat == 5) buildStatRow(Colors.purple, 'a4'.tr(), '$a4PhysicalDMGpercent'),
+                                        ],
+                                      ),
+                                      //ANCHOR statPhysicalDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (levelPhysicalDMGpercent != 0) buildstatbarpercent(Colors.red, levelPhysicalDMGpercent),
+                                          if (weaponPhysicalDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponPhysicalDMGpercent),
+                                          if (artifact4mainstatcat == 5) buildstatbarpercent(Colors.purple, a4PhysicalDMGpercent),
+                                        ],
+                                      ),
+                                      //ANCHOR Pyro Damage Title
+                                      if (bonusPyroDMGpercent != 0)
+                                        SelectableText(
+                                          '${"Pyro Damage".tr()}:' + double.parse(bonusPyroDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statPyroDMG:stats
+                                      if (bonusPyroDMGpercent != 0)
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            if (levelPyroDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelPyroDMGpercent'),
+                                            if (weaponPyroDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponPyroDMGpercent'),
+                                            if (artifact4mainstatcat == 6) buildStatRow(Colors.purple, 'a4'.tr(), '$a4PyroDMGpercent'),
+                                            if (troublemakerstack != 0) buildStatRow(Colors.red, 'Tricks of the Trouble-Maker'.tr(), (troublemakerstack * 2).toString()),
+                                            if (summerscorchOn) buildStatRow(Colors.red[400], 'Summer Scorch'.tr(), '$troublemakerstack'),
+                                            if (yoimiyaconstellation2On) buildStatRow(Colors.amber, 'A Procession of Bonfires'.tr(), '25'),
+                                          ],
+                                        ),
+                                      //ANCHOR statPyroDMG:bar
+                                      if (bonusPyroDMGpercent != 0)
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            if (levelPyroDMGpercent != 0) buildstatbarpercent(Colors.red, levelPyroDMGpercent),
+                                            if (weaponPyroDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponPyroDMGpercent),
+                                            if (artifact4mainstatcat == 6) buildstatbarpercent(Colors.purple, a4PyroDMGpercent),
+                                            if (troublemakerstack != 0) buildstatbarpercent(Colors.red, troublemakerstack * 2),
+                                            if (summerscorchOn) buildstatbarpercent(Colors.red[400], troublemakerstack),
+                                            if (yoimiyaconstellation2On) buildstatbarpercent(Colors.amber, 25),
+                                          ],
+                                        ),
+                                      //ANCHOR Hydro Damage Title
+                                      if (bonusHydroDMGpercent != 0)
+                                        SelectableText(
+                                          '${"Hydro Damage".tr()}:' + double.parse(bonusHydroDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statHydroDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (levelHydroDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelHydroDMGpercent'),
+                                          if (weaponHydroDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponHydroDMGpercent'),
+                                          if (artifact4mainstatcat == 7) buildStatRow(Colors.purple, 'a4'.tr(), '$a4HydroDMGpercent'),
+                                        ],
+                                      ),
+                                      //ANCHOR statHydroDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (levelHydroDMGpercent != 0) buildstatbarpercent(Colors.red, levelHydroDMGpercent),
+                                          if (weaponHydroDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponHydroDMGpercent),
+                                          if (artifact4mainstatcat == 7) buildstatbarpercent(Colors.purple, a4HydroDMGpercent),
+                                        ],
+                                      ),
+                                      //ANCHOR Cryo Damage Title
+                                      if (bonusCryoDMGpercent != 0)
+                                        SelectableText(
+                                          '${"Cryo Damage".tr()}:' + double.parse(bonusCryoDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statCryoDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (levelCryoDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelCryoDMGpercent'),
+                                          if (weaponCryoDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponCryoDMGpercent'),
+                                          if (artifact4mainstatcat == 8) buildStatRow(Colors.purple, 'a4'.tr(), '$a4CryoDMGpercent'),
+                                          if (blizzardstrayer2On) buildStatRow(Colors.blue[300], 'Blizzard2'.tr(), '15'),
+                                          if (harmonyOn) buildStatRow(Colors.amber, 'Harmony between Heaven and Earth'.tr(), '20'),
+                                        ],
+                                      ),
+                                      //ANCHOR statCryoDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (levelCryoDMGpercent != 0) buildstatbarpercent(Colors.red, levelCryoDMGpercent),
+                                          if (weaponCryoDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponCryoDMGpercent),
+                                          if (artifact4mainstatcat == 8) buildstatbarpercent(Colors.purple, a4CryoDMGpercent),
+                                          if (blizzardstrayer2On) buildstatbarpercent(Colors.blue[300], 15),
+                                          if (harmonyOn) buildstatbarpercent(Colors.amber, 20),
+                                        ],
+                                      ),
+                                      //ANCHOR Electro Damage Title
+                                      if (bonusElectroDMGpercent != 0)
+                                        SelectableText(
+                                          '${"Electro Damage".tr()}:' + double.parse(bonusElectroDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statElectroDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (levelElectroDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelElectroDMGpercent'),
+                                          if (weaponElectroDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponElectroDMGpercent'),
+                                          if (artifact4mainstatcat == 9) buildStatRow(Colors.purple, 'a4'.tr(), '$a4ElectroDMGpercent'),
+                                          if (thunderbird2On) buildStatRow(Colors.purple[400], 'Thundering Fury 2 Set'.tr(), '15'),
+                                        ],
+                                      ),
+                                      //ANCHOR statElectroDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (levelElectroDMGpercent != 0) buildstatbarpercent(Colors.red, levelElectroDMGpercent),
+                                          if (weaponElectroDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponElectroDMGpercent),
+                                          if (artifact4mainstatcat == 9) buildstatbarpercent(Colors.purple, a4ElectroDMGpercent),
+                                          if (thunderbird2On) buildstatbarpercent(Colors.purple[400], 15)
+                                        ],
+                                      ),
+                                      //ANCHOR Anemo Damage Title
+                                      if (bonusAnemoDMGpercent != 0)
+                                        SelectableText(
+                                          '${"Anemo Damage".tr()}:' + double.parse(bonusAnemoDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statAnemoDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (levelAnemoDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelAnemoDMGpercent'),
+                                          if (weaponAnemoDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponAnemoDMGpercent'),
+                                          if (artifact4mainstatcat == 10) buildStatRow(Colors.purple, 'a4'.tr(), '$a4AnemoDMGpercent'),
+                                        ],
+                                      ),
+                                      //ANCHOR statAnemoDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (levelAnemoDMGpercent != 0) buildstatbarpercent(Colors.red, levelAnemoDMGpercent),
+                                          if (weaponAnemoDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponAnemoDMGpercent),
+                                          if (artifact4mainstatcat == 10) buildstatbarpercent(Colors.purple, a4AnemoDMGpercent),
+                                        ],
+                                      ),
+                                      //ANCHOR Geo Damage Title
+                                      if (bonusGeoDMGpercent != 0)
+                                        SelectableText(
+                                          '${"Geo Damage".tr()}:' + double.parse(bonusGeoDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statGeoDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (levelGeoDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelGeoDMGpercent'),
+                                          if (weaponGeoDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponGeoDMGpercent'),
+                                          if (artifact4mainstatcat == 11) buildStatRow(Colors.purple, 'a4'.tr(), '$a4GeoDMGpercent'),
+                                        ],
+                                      ),
+                                      //ANCHOR statGeoDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (levelGeoDMGpercent != 0) buildstatbarpercent(Colors.red, levelGeoDMGpercent),
+                                          if (weaponGeoDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponGeoDMGpercent),
+                                          if (artifact4mainstatcat == 11) buildstatbarpercent(Colors.purple, a4GeoDMGpercent),
+                                        ],
+                                      ),
+
+                                      //ANCHOR Elemental Burst Damage Title
+                                      if (bonusBurstDMGpercent != 0)
+                                        SelectableText(
+                                          '${"Elemental Burst Damage".tr()}:' + double.parse(bonusBurstDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statBurstDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (royalflora2On) buildStatRow(Colors.blue, 'Noblesse Oblige 2 Set'.tr(), '20'),
+                                        ],
+                                      ),
+                                      //ANCHOR statBurstDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (royalflora2On) buildstatbarpercent(Colors.blue, 20),
+                                        ],
+                                      ),
+                                      //ANCHOR  Damage Bonus Title
+                                      if (bonusDMGpercent != 0)
+                                        SelectableText(
+                                          '${"Damage Bonus".tr()}:' + double.parse(bonusDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statBonusDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (monaqOn) buildStatRow(Colors.purple[300], 'Mona(burst)'.tr(), (monaqlvtoratio[monaqlv] * 1).toStringAsFixed(1)),
+                                          if (thundersoother4On) buildStatRow(Color(0xFF6480FF), 'Thundersoother 4 Set'.tr(), '35'),
+                                          if (manualDMGpercentOn) buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualDMGpercent).toStringAsFixed(1))),
+                                        ],
+                                      ),
+                                      //ANCHOR statBonusDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (monaqOn) buildstatbarpercent(Colors.purple[300], (monaqlvtoratio[monaqlv] * 1)),
+                                          if (thundersoother4On) buildstatbarpercent(Color(0xFF6480FF), 35),
+                                          if (manualDMGpercentOn) buildstatbarpercent(Colors.red[300], manualDMGpercent),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          //ANCHOR ***Reaction Panel***
+                          Container(
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                              children: [
+                                SelectableText(
+                                  'Reaction Panel'.tr(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                SizedBox(height: 10),
+
+                                //ANCHOR EM
+                                SelectableText(
+                                  '${"Elemental Mastery".tr()}:$lvlEM + ' + double.parse(bonusEM.toStringAsFixed(1)).toString() + ' = ' + double.parse(allEM.toStringAsFixed(1)).toString(),
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    children: [
+                                      //ANCHOR statEM:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (lvlEM != 0) buildStatRow(Colors.red, 'baseEM'.tr(), '$lvlEM'),
+                                          if (weaponEM != 0) buildStatRow(Colors.red, "weapon".tr(), '$weaponEM'),
+                                          if (stat1EMOn == true) buildStatRow(Colors.yellow, "a1".tr(), '$stat1EM'),
+                                          if (stat2EMOn == true) buildStatRow(Colors.pink, "a2".tr(), '$stat2EM'),
+                                          if (artifact3mainstatcat == 4) buildStatRow(Colors.blueGrey, "a3".tr(), '$a3EM'),
+                                          if (stat3EMOn == true) buildStatRow(Colors.blueGrey, "a3".tr(), '$stat3EM'),
+                                          if (artifact4mainstatcat == 4) buildStatRow(Colors.purple, "a4".tr(), '$a4EM'),
+                                          if (stat4EMOn == true) buildStatRow(Colors.purple, "a4".tr(), '$stat4EM'),
+                                          if (artifact5mainstatcat == 4) buildStatRow(Colors.teal, "a5".tr(), '$a5EM'),
+                                          if (stat5EMOn == true) buildStatRow(Colors.teal, "a5".tr(), '$stat5EM'),
+                                          if (troupesdawnlight2on) buildStatRow(Colors.teal, "Troupe's Dawnlight 2 set".tr(), '80'),
+                                          if (manualEMOn) buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualEM).toStringAsFixed(1))),
+                                        ],
+                                      ),
+
+                                      //ANCHOR statEM:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              AnimatedContainer(curve: Curves.easeIn, duration: Duration(milliseconds: 500), width: lvlEM / 7, height: 20, color: Colors.red),
+                                            ],
+                                          ),
+                                          if (weaponEM != 0)
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                AnimatedContainer(
+                                                  curve: Curves.easeIn,
+                                                  duration: Duration(milliseconds: 500),
+                                                  width: weaponEM / 7,
+                                                  height: 20,
+                                                  color: Colors.blue,
+                                                ),
+                                              ],
+                                            ),
+                                          if (stat1EMOn == true)
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                AnimatedContainer(
+                                                  curve: Curves.easeIn,
+                                                  duration: Duration(milliseconds: 500),
+                                                  width: stat1EM / 7,
+                                                  height: 20,
+                                                  color: Colors.yellow,
+                                                ),
+                                              ],
+                                            ),
+                                          if (stat2EMOn == true)
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                AnimatedContainer(
+                                                  curve: Curves.easeIn,
+                                                  duration: Duration(milliseconds: 500),
+                                                  width: stat2EM / 7,
+                                                  height: 20,
+                                                  color: Colors.pink,
+                                                ),
+                                              ],
+                                            ),
+                                          if (artifact3mainstatcat == 4)
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                AnimatedContainer(
+                                                  curve: Curves.easeIn,
+                                                  duration: Duration(milliseconds: 500),
+                                                  width: a3EM / 7,
+                                                  height: 20,
+                                                  color: Colors.blueGrey,
+                                                ),
+                                              ],
+                                            ),
+                                          if (stat3EMOn == true)
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                AnimatedContainer(
+                                                  curve: Curves.easeIn,
+                                                  duration: Duration(milliseconds: 500),
+                                                  width: stat3EM / 7,
+                                                  height: 20,
+                                                  color: Colors.blueGrey,
+                                                ),
+                                              ],
+                                            ),
+                                          if (artifact4mainstatcat == 4)
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                AnimatedContainer(
+                                                  curve: Curves.easeIn,
+                                                  duration: Duration(milliseconds: 500),
+                                                  width: a4EM / 7,
+                                                  height: 20,
+                                                  color: Colors.purple,
+                                                ),
+                                              ],
+                                            ),
+                                          if (stat4EMOn == true)
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                AnimatedContainer(
+                                                  curve: Curves.easeIn,
+                                                  duration: Duration(milliseconds: 500),
+                                                  width: stat4EM / 7,
+                                                  height: 20,
+                                                  color: Colors.purple,
+                                                ),
+                                              ],
+                                            ),
+                                          if (artifact5mainstatcat == 4)
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                AnimatedContainer(
+                                                  curve: Curves.easeIn,
+                                                  duration: Duration(milliseconds: 500),
+                                                  width: a5EM / 7,
+                                                  height: 20,
+                                                  color: Colors.teal,
+                                                ),
+                                              ],
+                                            ),
+                                          if (stat5EMOn == true)
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                AnimatedContainer(
+                                                  curve: Curves.easeIn,
+                                                  duration: Duration(milliseconds: 500),
+                                                  width: stat5EM / 7,
+                                                  height: 20,
+                                                  color: Colors.teal,
+                                                ),
+                                              ],
+                                            ),
+                                          if (troupesdawnlight2on)
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                AnimatedContainer(
+                                                  curve: Curves.easeIn,
+                                                  duration: Duration(milliseconds: 500),
+                                                  width: 80 / 7,
+                                                  height: 20,
+                                                  color: Colors.green[400],
+                                                ),
+                                              ],
+                                            ),
+                                          if (manualEMOn) buildstatbar(Colors.red[300], manualEM),
+                                        ],
+                                      ),
+                                      //ANCHOR Vaporize Damage Title
+                                      if (vaporizeDMGpercent > 100)
+                                        SelectableText(
+                                          '${"Vaporize Damage Plus".tr()}:' + (vaporizeDMGpercent - 100).toStringAsFixed(1) + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statVaporizeDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicmeltpercent * 100).toStringAsFixed(1)),
+                                        ],
+                                      ),
+                                      //ANCHOR statVaporizeDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicmeltpercent * 100 / 5)),
+                                        ],
+                                      ),
+                                      //ANCHOR Melt Damage Title
+                                      if (meltDMGpercent > 100)
+                                        SelectableText(
+                                          '${"Melt Damage Plus".tr()}:' + (meltDMGpercent - 100).toStringAsFixed(1) + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statMeltDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), ((basicmeltpercent) * 100).toStringAsFixed(1)),
+                                        ],
+                                      ),
+                                      //ANCHOR statMeltDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicmeltpercent * 100 / 5)),
+                                        ],
+                                      ),
+
+                                      //ANCHOR Superconduct Damage Title
+                                      if (superconductDMGpercent > 100)
+                                        SelectableText(
+                                          '${"Superconduct Damage Plus".tr()}:' + (superconductDMGpercent - 100).toStringAsFixed(1) + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statSuperconductDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
+                                          if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set'.tr(), '40'),
+                                        ],
+                                      ),
+                                      //ANCHOR statSuperconductDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
+                                          if (thunderbird4On) buildstatbarpercent(Colors.purple[400], 40 / 5),
+                                        ],
+                                      ),
+                                      //ANCHOR Overloaded Damage Title
+                                      if (overloadDMGpercent > 100)
+                                        SelectableText(
+                                          '${"Overloaded Damage Plus".tr()}:' + (overloadDMGpercent - 100).toStringAsFixed(1) + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statOverloadedDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
+                                          if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set'.tr(), '40'),
+                                        ],
+                                      ),
+                                      //ANCHOR statOverloadedDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
+                                          if (thunderbird4On) buildstatbarpercent(Colors.purple[400], 40 / 5),
+                                        ],
+                                      ),
+                                      //ANCHOR Electro-Charged Damage Title
+                                      if (electrochargedDMGpercent > 100)
+                                        SelectableText(
+                                          '${"Electro-Charge Damage Plus".tr()}:' + (electrochargedDMGpercent - 100).toStringAsFixed(1) + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statElectro-ChargedDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
+                                          if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set'.tr(), '40'),
+                                        ],
+                                      ),
+                                      //ANCHOR statElectro-ChargedDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
+                                          if (thunderbird4On) buildstatbarpercent(Colors.purple[400], 40 / 5),
+                                        ],
+                                      ),
+                                      //ANCHOR Shattered Damage Title
+                                      if (shatteredDMGpercent > 100)
+                                        SelectableText(
+                                          '${"Shattered Damage Plus".tr()}:' + (shatteredDMGpercent - 100).toStringAsFixed(1) + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statShatteredDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
+                                        ],
+                                      ),
+                                      //ANCHOR statShatteredDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
+                                        ],
+                                      ),
+                                      //ANCHOR Swirl Damage Title
+                                      if (shatteredDMGpercent > 100)
+                                        SelectableText(
+                                          '${"Swirl Damage Plus".tr()}:' + (swirlDMGpercent - 100).toStringAsFixed(1) + '%',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      //ANCHOR statSwirlDMG:stats
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
+                                        ],
+                                      ),
+                                      //ANCHOR statSwirlDMG:bar
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          //ANCHOR ***EnemyResistance Panel***
+                          Container(
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                              children: [
+                                SelectableText(
+                                  'EnemyResistance Panel'.tr(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    SelectableText(
+                                      '${"Enemytype".tr()}: ',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 50.0,
+                                      child: DropdownButton(
+                                          value: enemytype,
+                                          items: [
+                                            DropdownMenuItem(
+                                              child: Text(
+                                                "Hilichurl".tr(),
+                                                style: TextStyle(fontSize: 15),
+                                              ),
+                                              value: 1,
+                                            ),
+                                            DropdownMenuItem(
+                                              child: Text(
+                                                "Ruin Guard".tr(),
+                                                style: TextStyle(fontSize: 15),
+                                              ),
+                                              value: 2,
+                                            ),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Treasure Hoarder".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 3),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Andrius, Dominator of Wolves".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 4),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Pyro Slime".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 5),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Hydro Slime".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 6),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Dendro Slime".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 7),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Electro Slime".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 8),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Anemo Slime".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 9),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Cryo Slime".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 10),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Geo Slime".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 11),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Mitachurl".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 12),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Pyro Samachurl".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 13),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Hydro Samachurl".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 14),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Dendro Samachurl".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 15),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Anemo Samachurl".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 16),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Geo Samachurl".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 17),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Stonehide Lawachurl".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 18),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Ruin Hunter".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 19),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Pyro Flower".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 20),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Cryo Flower".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 21),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Pyro Flower(Stunned)".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 22),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Cryo Flower(Stunned)".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 23),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Fatui Skirmisher".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 24),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Fatui Skirmisher(Shielded)".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 25),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Fatui Pyro Agent".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 26),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Fatui Electro Cincin Mage".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 27),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Geovishap Hatchling".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 28),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Abyss Mage".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 29),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Electro Hypostasis".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 30),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Anemo Hypostasis".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 31),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Geo Hypostasis".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 32),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Pyro Regisvine".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 33),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Cryo Regisvine".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 34),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Pyro Regisvine(Stunned)".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 35),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Cryo Regisvine(Stunned)".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 36),
+                                            DropdownMenuItem(
+                                                child: Text(
+                                                  "Dvalin".tr(),
+                                                  style: TextStyle(fontSize: 15),
+                                                ),
+                                                value: 37),
+                                          ],
+                                          onChanged: (value) {
+                                            setState(() {
+                                              enemytype = value;
+                                            });
+                                          }),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    Column(
+                                      children: [
+                                        SelectableText(
+                                          'Physical'.tr(),
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 15,
+                                            height: 1.1,
+                                          ),
+                                        ),
+                                        SelectableText(
+                                          '$enemyPhysicalresv',
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        SelectableText(
+                                          'Pyro'.tr(),
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.red,
+                                            fontSize: 15,
+                                            height: 1.1,
+                                          ),
+                                        ),
+                                        SelectableText(
+                                          '$enemyPyroresv',
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        SelectableText(
+                                          'Hydro'.tr(),
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.blue,
+                                            fontSize: 15,
+                                            height: 1.1,
+                                          ),
+                                        ),
+                                        SelectableText(
+                                          '$enemyHydroresv',
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        SelectableText(
+                                          'Dendro'.tr(),
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.green,
+                                            fontSize: 15,
+                                            height: 1.1,
+                                          ),
+                                        ),
+                                        SelectableText(
+                                          '$enemyDendroresv',
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        SelectableText(
+                                          'Electro'.tr(),
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.purple,
+                                            fontSize: 15,
+                                            height: 1.1,
+                                          ),
+                                        ),
+                                        SelectableText(
+                                          '$enemyElectroresv',
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        SelectableText(
+                                          'Anemo'.tr(),
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.green[700],
+                                            fontSize: 15,
+                                            height: 1.1,
+                                          ),
+                                        ),
+                                        SelectableText(
+                                          '$enemyAnemoresv',
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        SelectableText(
+                                          'Cryo'.tr(),
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.blue[100],
+                                            fontSize: 15,
+                                            height: 1.1,
+                                          ),
+                                        ),
+                                        SelectableText(
+                                          '$enemyCryoresv',
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        SelectableText(
+                                          'Geo'.tr(),
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.yellow,
+                                            fontSize: 15,
+                                            height: 1.1,
+                                          ),
+                                        ),
+                                        SelectableText(
+                                          '$enemyGeoresv',
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          //ANCHOR ***EnemyDefence Panel***
+                          Container(
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                              children: [
+                                SelectableText(
+                                  'EnemyDefence Panel'.tr(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    SelectableText(
+                                      '${"EnemyLv".tr()}: $enemylv',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        height: 1.1,
+                                      ),
+                                    ),
+                                    Slider(
+                                      min: 1,
+                                      max: 100,
+                                      activeColor: Theme.of(context).primaryColor,
+                                      inactiveColor: Theme.of(context).primaryColorLight,
+                                      label: enemylv.toString(),
+                                      value: enemylv.toDouble(),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          enemylv = value.toInt();
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    SelectableText(
+                                      '${"EnemyDefenceDebuff".tr()}%: $enemydefdebuff%',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        height: 1.1,
+                                      ),
+                                    ),
+                                    Slider(
+                                      min: 0,
+                                      max: 100,
+                                      activeColor: Theme.of(context).primaryColor,
+                                      inactiveColor: Theme.of(context).primaryColorLight,
+                                      label: enemydefdebuff.toString(),
+                                      value: enemydefdebuff.toDouble(),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          enemydefdebuff = value.toInt();
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          //ANCHOR ***Options Panel***
+                          Container(
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                              children: [
+                                SelectableText(
+                                  'Options Panel'.tr(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                SizedBox(height: 10),
+                                //ANCHOR CharacterOptions
+                                ExpansionTile(
+                                  tilePadding: EdgeInsets.all(0),
+                                  childrenPadding: EdgeInsets.all(0),
+                                  initiallyExpanded: true,
+                                  title: Column(children: [
+                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                                      SelectableText(
+                                        'Character'.tr(),
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ]),
+                                  ]),
+                                  children: <Widget>[
+                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                                      SelectableText(
+                                        'Talents'.tr(),
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ]),
+                                    //ANCHOR CharacterOptions:ganyuskill
+                                    if (currentcharacter == 'ganyu')
+                                      Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                        //       buildfilterchip('Undivided Heart: CRIT Rate + 20%'.tr(), undividedHeartOn, Colors.amber, Colors.amber[200]),
+
+                                        FilterChip(
+                                          selectedColor: Colors.amber,
+                                          backgroundColor: Colors.amber[200],
+                                          label: Text('Undivided Heart: CRIT Rate + 20%'.tr()),
+                                          selected: undividedHeartOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              undividedHeartOn = value;
+                                            });
+                                          },
+                                        ),
+
+                                        FilterChip(
+                                          selectedColor: Colors.amber,
+                                          backgroundColor: Colors.amber[200],
+                                          label: Text('Harmony between Heaven and Earth: Cryo DMG + 20%'.tr()),
+                                          selected: harmonyOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              harmonyOn = value;
+                                            });
+                                          },
+                                        ),
+                                      ]),
+                                    //ANCHOR CharacterOptions:yoimiyaskill
+                                    if (currentcharacter == 'yoimiya')
+                                      Wrap(spacing: 10, runSpacing: 10, crossAxisAlignment: WrapCrossAlignment.center, children: <Widget>[
+                                        SelectableText(
+                                          'Tricks of the Trouble-Maker:2% pryo per stack'.tr(),
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                        Container(
+                                          width: 150,
+                                          child: Slider(
+                                            min: 0,
+                                            max: 10,
+                                            divisions: 10,
+                                            activeColor: Colors.red,
+                                            inactiveColor: Colors.red[200],
+                                            label: troublemakerstack.toString(),
+                                            value: troublemakerstack.toDouble(),
+                                            onChanged: (value) {
+                                              setState(() {
+                                                troublemakerstack = value.toInt();
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                        FilterChip(
+                                          selectedColor: Colors.red,
+                                          backgroundColor: Colors.red[200],
+                                          label: Text('Summer Scorch: 1% pyro per stack'.tr()),
+                                          selected: summerscorchOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              summerscorchOn = value;
+                                            });
+                                          },
+                                        ),
+                                      ]),
+                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                                      SelectableText(
+                                        'Constellation'.tr(),
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ]),
+                                    if (currentcharacter == 'ganyu')
+                                      Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                        FilterChip(
+                                          label: Text('Constellation1: Enemy Cryo Res -15%'.tr()),
+                                          selected: ganyuconstellation1On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              ganyuconstellation1On = value;
+                                            });
+                                          },
+                                        ),
+                                      ]),
+                                    if (currentcharacter == 'yoimiya')
+                                      Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                        FilterChip(
+                                          label: Text('A Procession of Bonfires: Pyro DMG +25%'.tr()),
+                                          selected: yoimiyaconstellation2On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              yoimiyaconstellation2On = value;
+                                            });
+                                          },
+                                        ),
+                                      ]),
+                                    SizedBox(height: 10),
+                                  ],
+                                ),
+                                //ANCHOR WeaponOptions
+
+                                ExpansionTile(
+                                  tilePadding: EdgeInsets.all(0),
+                                  initiallyExpanded: true,
+                                  childrenPadding: EdgeInsets.all(0),
+                                  title: Column(children: [
+                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                                      SelectableText(
+                                        'Weapon'.tr(),
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          height: 1.1,
+                                        ),
+                                      ),
+                                    ]),
+                                  ]),
+                                  children: <Widget>[
+                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                                      SelectableText(
+                                        'Weapon bonus'.tr(),
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          height: 1.1,
+                                        ),
+                                      ),
+                                    ]),
+                                    if (strongWilled1On)
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label: Text('Strong-Willed1: Normal and Charged Attack DMG + '.tr() + (9 + weaponref * 3).toString() + '%'),
+                                              selected: true,
+                                              selectedColor: Colors.purple[300],
+                                              onSelected: (bool value) {
+                                                setState(() {});
+                                              },
+                                            ),
+                                            FilterChip(
+                                              label: Text('Strong-Willed2: '.tr() + (6 + weaponref * 2).toString() + '% every 0.1s the arrow is in the air for up to 5 times.'.tr()),
+                                              selected: true,
+                                              selectedColor: Colors.blue[300],
+                                              onSelected: (bool value) {
+                                                setState(() {});
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            ChoiceChip(
+                                              label: Text('0.1s'),
+                                              selected: (strongWilled2Times == 1),
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  strongWilled2Times = 1;
+                                                });
+                                              },
+                                            ),
+                                            ChoiceChip(
+                                              label: Text('0.2s'),
+                                              selected: (strongWilled2Times == 2),
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  strongWilled2Times = 2;
+                                                });
+                                              },
+                                            ),
+                                            ChoiceChip(
+                                              label: Text('0.3s'),
+                                              selected: (strongWilled2Times == 3),
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  strongWilled2Times = 3;
+                                                });
+                                              },
+                                            ),
+                                            ChoiceChip(
+                                              label: Text('0.4s'),
+                                              selected: (strongWilled2Times == 4),
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  strongWilled2Times = 4;
+                                                });
+                                              },
+                                            ),
+                                            ChoiceChip(
+                                              label: Text('0.5s'),
+                                              selected: (strongWilled2Times == 5),
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  strongWilled2Times = 5;
+                                                });
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                    if (echoingBalladOn)
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label: Text('Echoing Ballad1: Crit DMG + '.tr() + (15 + weaponref * 5).toString() + '%'),
+                                              selected: true,
+                                              selectedColor: Colors.tealAccent,
+                                              onSelected: (bool value) {
+                                                setState(() {});
+                                              },
+                                            ),
+                                            SizedBox(height: 10),
+                                            FilterChip(
+                                              label: Text('Echoing Ballad2: '.tr() +
+                                                  (50 + weaponref * 10).toString() +
+                                                  '% chance get a 125% Physical ATK AoE DMG every '.tr() +
+                                                  (4.5 - weaponref * 0.5).toString() +
+                                                  's'.tr()),
+                                              selected: true,
+                                              onSelected: (bool value) {
+                                                setState(() {});
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                    if (weaponselect == 'prototypecrescent')
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label: Text('Unreturning: Charged Attack hits on weak points + 10% Movement SPD & '.tr() + (27 + weaponref * 9).toString() + '% ATK for 10s'.tr()),
+                                              selected: unreturningOn,
+                                              selectedColor: Colors.tealAccent,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  unreturningOn = value;
+                                                });
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                    if (rulebythunder1On)
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label: Text('Rule by thunder1: ATK + '.tr() + (15 + weaponref * 5).toString() + '%'),
+                                              selected: true,
+                                              selectedColor: Colors.purple[300],
+                                              onSelected: (bool value) {
+                                                setState(() {});
+                                              },
+                                            ),
+                                            FilterChip(
+                                              label: Text('Rule-by-thunder2: Normal ATK DMG +'.tr() +
+                                                  (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30))).toString() +
+                                                  '% Thunder Seal stack lv'.tr() +
+                                                  rulebythunder2Times.toString()),
+                                              selected: rulebythunder2On,
+                                              selectedColor: Colors.amber,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  rulebythunder2On = value;
+                                                });
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            ChoiceChip(
+                                              label: Text('1'),
+                                              selected: (rulebythunder2Times == 1),
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  rulebythunder2Times = 1;
+                                                });
+                                              },
+                                            ),
+                                            ChoiceChip(
+                                              label: Text('2'),
+                                              selected: (rulebythunder2Times == 2),
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  rulebythunder2Times = 2;
+                                                });
+                                              },
+                                            ),
+                                            ChoiceChip(
+                                              label: Text('3'),
+                                              selected: (rulebythunder2Times == 3),
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  rulebythunder2Times = 3;
+                                                });
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                  ],
+                                ),
+
+                                //ANCHOR ArifactOptions
+
+                                ExpansionTile(
+                                  tilePadding: EdgeInsets.all(0),
+                                  initiallyExpanded: true,
+                                  childrenPadding: EdgeInsets.all(0),
+                                  title: Column(children: [
+                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                                      SelectableText(
+                                        'Artifact'.tr(),
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          height: 1.1,
+                                        ),
+                                      ),
+                                    ]),
+                                  ]),
+                                  children: <Widget>[
+                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                                      SelectableText(
+                                        'Artifact Bonus'.tr(),
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          height: 1.1,
+                                        ),
+                                      ),
+                                    ]),
+                                    SizedBox(height: 10),
+                                    Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                      if (artifactsetAselect == 'blizzard' || artifactsetBselect == 'blizzard')
+                                        FilterChip(
+                                          label: Text('${"2 set".tr()}: ${"Cryo DMG".tr()} +15%'),
+                                          selectedColor: Colors.blue[300],
+                                          backgroundColor: Colors.blue[200],
+                                          selected: blizzardstrayer2On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              blizzardstrayer2On = value;
+                                            });
+                                          },
+                                        ),
+                                      if (artifactsetAselect == 'blizzard' && artifactsetBselect == 'blizzard')
+                                        FilterChip(
+                                          label: Text('${"4 set".tr()}: ${"Crit Rate".tr()} +20%(cryo)'),
+                                          selectedColor: Colors.blue[300],
+                                          backgroundColor: Colors.blue[200],
+                                          selected: blizzardstrayer41On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              blizzardstrayer41On = value;
+                                            });
+                                          },
+                                        ),
+                                      if (artifactsetAselect == 'blizzard' && artifactsetBselect == 'blizzard')
+                                        FilterChip(
+                                          label: Text('${"4 set".tr()}: ${"Crit Rate".tr()} +20%(${"frozen".tr()})'),
+                                          selectedColor: Colors.blue[400],
+                                          backgroundColor: Colors.blue[300],
+                                          selected: blizzardstrayer42On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              blizzardstrayer42On = value;
+                                            });
+                                          },
+                                        ),
+                                      if (artifactsetAselect == 'troupe' || artifactsetBselect == 'troupe')
+                                        FilterChip(
+                                          label: Text('${"2 set".tr()}: ${"EM".tr()} +80 '),
+                                          selectedColor: Colors.green[400],
+                                          backgroundColor: Colors.green[300],
+                                          selected: troupesdawnlight2on,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              troupesdawnlight2on = value;
+                                            });
+                                          },
+                                        ),
+                                      if (artifactsetAselect == 'troupe' && artifactsetBselect == 'troupe')
+                                        FilterChip(
+                                          label: Text('${"4 set".tr()}: ${"Charged ATK".tr()} +35% '),
+                                          selectedColor: Colors.green[400],
+                                          backgroundColor: Colors.green[300],
+                                          selected: troupesdawnlight4on,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              troupesdawnlight4on = value;
+                                            });
+                                          },
+                                        ),
+                                      if (artifactsetAselect == 'royal' || artifactsetBselect == 'royal')
+                                        FilterChip(
+                                          label: Text('${"2 set".tr()}: ${"Elemental Burst DMG".tr()} +20% '),
+                                          selectedColor: Colors.blue,
+                                          backgroundColor: Colors.blue[200],
+                                          selected: royalflora2On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              royalflora2On = value;
+                                            });
+                                          },
+                                        ),
+                                      if (artifactsetAselect == 'royal' && artifactsetBselect == 'royal')
+                                        FilterChip(
+                                          label: Text('${"4 set".tr()}: ${"Using an Elemental Burst increases all party members' ATK by 20% for 12s".tr()}'),
+                                          selectedColor: Colors.blue,
+                                          backgroundColor: Colors.blue[200],
+                                          selected: royalflora4On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              royalflora4On = value;
+                                            });
+                                          },
+                                        ),
+                                      if (artifactsetAselect == 'gladiator' || artifactsetBselect == 'gladiator')
+                                        FilterChip(
+                                          label: Text('${"2 set".tr()}: ${"ATK".tr()} +18% '),
+                                          selectedColor: Colors.red[400],
+                                          backgroundColor: Colors.red[300],
+                                          selected: gladiator2On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              gladiator2On = value;
+                                            });
+                                          },
+                                        ),
+                                      if (artifactsetAselect == 'gladiator' && artifactsetBselect == 'gladiator')
+                                        FilterChip(
+                                          label: Text('${"4 set".tr()}: ${"Increase Normal Attack DMG by 35% (Using sword/claymore/poleram)".tr()}'),
+                                          selectedColor: Colors.red[400],
+                                          backgroundColor: Colors.red[300],
+                                          selected: gladiator4On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              gladiator4On = value;
+                                            });
+                                          },
+                                        ),
+                                      if (artifactsetAselect == 'maiden' || artifactsetBselect == 'maiden')
+                                        FilterChip(
+                                          label: Text('${"2 set".tr()}: ${"Character Healing Effectiveness +15%".tr()}'),
+                                          selectedColor: Colors.grey,
+                                          backgroundColor: Colors.grey,
+                                          selected: maiden2On,
+                                          onSelected: (bool value) {},
+                                        ),
+                                      if (artifactsetAselect == 'maiden' && artifactsetBselect == 'maiden')
+                                        FilterChip(
+                                          label: Text('${"4 set".tr()}: ${"Healing Received +20%".tr()}'),
+                                          selectedColor: Colors.grey,
+                                          backgroundColor: Colors.grey,
+                                          selected: maiden4On,
+                                          onSelected: (bool value) {},
+                                        ),
+                                      if (artifactsetAselect == 'thunderbird' || artifactsetBselect == 'thunderbird')
+                                        FilterChip(
+                                          label: Text('${"2 set".tr()}: ${"Electro DMG Bonus +15%".tr()}'),
+                                          selectedColor: Colors.purple[400],
+                                          backgroundColor: Colors.purple[300],
+                                          selected: thunderbird2On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              thunderbird2On = value;
+                                            });
+                                          },
+                                        ),
+                                      if (artifactsetAselect == 'thunderbird' && artifactsetBselect == 'thunderbird')
+                                        FilterChip(
+                                          label: Text('${"4 set".tr()}: ${"Superconduct DMG".tr()} + 40% '),
+                                          selectedColor: Colors.purple[400],
+                                          backgroundColor: Colors.purple[300],
+                                          selected: thunderbird4On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              thunderbird4On = value;
+                                            });
+                                          },
+                                        ),
+                                      if (artifactsetAselect == 'thundersoother' || artifactsetBselect == 'thundersoother')
+                                        FilterChip(
+                                          label: Text('${"2 set".tr()}: ${"Electro RES".tr()} +40% '),
+                                          selectedColor: Colors.grey,
+                                          backgroundColor: Colors.grey,
+                                          selected: thundersoother2On,
+                                          onSelected: (bool value) {},
+                                        ),
+                                      if (artifactsetAselect == 'thundersoother' && artifactsetBselect == 'thundersoother')
+                                        FilterChip(
+                                          label: Text('${"4 set".tr()}: ${"DMG Against Opponents Affected By Electro +35%".tr()}'),
+                                          selectedColor: Color(0xFF6446E6),
+                                          backgroundColor: Color(0xFF6480FF),
+                                          selected: thundersoother4On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              thundersoother4On = value;
+                                            });
+                                          },
+                                        ),
+                                      if (artifactsetAselect == 'reminiscenceofshime' || artifactsetBselect == 'reminiscenceofshime')
+                                        FilterChip(
+                                          label: Text('${"2 set".tr()}: ${"ATK".tr()} +18% '),
+                                          selectedColor: Colors.red[400],
+                                          backgroundColor: Colors.red[300],
+                                          selected: reminiscenceofshime2On,
+                                          onSelected: (bool value) {},
+                                        ),
+                                      if (artifactsetAselect == 'reminiscenceofshime' && artifactsetBselect == 'reminiscenceofshime')
+                                        FilterChip(
+                                          label: Text('${"4 set".tr()}: ${"Normal/Charged/ Plunging Attack DMG +50%".tr()}'),
+                                          selectedColor: Colors.red[400],
+                                          backgroundColor: Colors.red[300],
+                                          selected: reminiscenceofshime4On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              reminiscenceofshime4On = value;
+                                            });
+                                          },
+                                        ),
+                                    ]),
+                                    SizedBox(height: 10),
+                                  ],
+                                ),
+
+                                //ANCHOR UsualOptions
+                                ExpansionTile(
+                                  tilePadding: EdgeInsets.all(0),
+                                  childrenPadding: EdgeInsets.all(0),
+                                  title: Column(children: [
+                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                                      SelectableText(
+                                        'Usual Buffs'.tr(),
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          height: 1.1,
+                                        ),
+                                      ),
+                                    ]),
+                                  ]),
+                                  children: <Widget>[
+                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                                      SelectableText(
+                                        'Elemental Resonance'.tr(),
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          height: 1.1,
+                                        ),
+                                      ),
+                                    ]),
+                                    Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                      FilterChip(
+                                        selectedColor: Colors.red,
+                                        backgroundColor: Colors.red[200],
+                                        label: Text('${"2 Pyro".tr()}: ${"ATK".tr()} + 25%'),
+                                        selected: pyro2On,
+                                        onSelected: (bool value) {
+                                          setState(() {
+                                            pyro2On = value;
+                                          });
+                                        },
+                                      ),
+                                      FilterChip(
+                                        selectedColor: Colors.blue[200],
+                                        backgroundColor: Colors.blue[50],
+                                        label: Text('${"2 Cyro".tr()}: ${"Crit Rate".tr()} +15%'),
+                                        selected: cryo2On,
+                                        onSelected: (bool value) {
+                                          setState(() {
+                                            cryo2On = value;
+                                          });
+                                        },
+                                      ),
+                                    ]),
+                                    SizedBox(height: 10),
+                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                                      SelectableText(
+                                        'Character Buffs'.tr(),
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ]),
+                                    Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                      FilterChip(
+                                        selectedColor: Colors.yellow,
+                                        backgroundColor: Colors.yellow[200],
+                                        label: Text('Zhongli(skill):Enemy All res - 20%'.tr()),
+                                        selected: zhonglieOn,
+                                        onSelected: (bool value) {
+                                          setState(() {
+                                            zhonglieOn = value;
+                                          });
+                                        },
+                                      ),
+                                      FilterChip(
+                                        selectedColor: Colors.grey,
+                                        backgroundColor: Colors.grey[200],
+                                        label: Text('Thrilling Tales of Dragon Slayers(R5): ATK +48%'.tr()),
+                                        selected: dragonslayerOn,
+                                        onSelected: (bool value) {
+                                          setState(() {
+                                            dragonslayerOn = value;
+                                          });
+                                        },
+                                      ),
+                                    ]),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        FilterChip(
+                                          selectedColor: Colors.red,
+                                          backgroundColor: Colors.red[200],
+                                          label: Text('Bennet(burst)'.tr()),
+                                          selected: bennetqOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              bennetqOn = value;
+                                            });
+                                          },
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          height: 50,
+                                          alignment: Alignment.center,
+                                          child: TextFormField(
+                                              textAlignVertical: TextAlignVertical.center,
+                                              keyboardType: TextInputType.number,
+                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
+                                              decoration: InputDecoration(
+                                                // prefixIcon: Text("basic atk"),
+                                                labelText: '${"Bennet Basic atk".tr()}:',
+
+                                                contentPadding: EdgeInsets.all(5),
+                                                //isDense: true,
+                                              ),
+                                              //maxLength: 4,
+                                              style: TextStyle(
+                                                fontSize: 15.0,
+                                              ),
+                                              initialValue: "500",
+                                              // onSaved: (input) => bennetbasicatk = num.tryParse(input),
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  bennetbasicatk = num.tryParse(value) ?? 0;
+                                                });
+                                              }),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        SelectableText(
+                                          '${"Bennet Burst lv".tr()}:',
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 15,
+                                            height: 1.1,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          //height: 50.0,
+                                          width: 50.0,
+                                          child: DropdownButton(
+                                              //isExpanded: true,
+                                              value: bennetqlv,
+                                              iconSize: 20,
+                                              items: [
+                                                DropdownMenuItem(
+                                                  child: Text(
+                                                    "1",
+                                                    style: TextStyle(fontSize: 15),
+                                                  ),
+                                                  value: 1,
+                                                ),
+                                                DropdownMenuItem(
+                                                  child: Text(
+                                                    "2",
+                                                    style: TextStyle(fontSize: 15),
+                                                  ),
+                                                  value: 2,
+                                                ),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "3",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 3),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "4",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 4),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "5",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 5),
+                                                DropdownMenuItem(
+                                                  child: Text(
+                                                    "6",
+                                                    style: TextStyle(fontSize: 15),
+                                                  ),
+                                                  value: 6,
+                                                ),
+                                                DropdownMenuItem(
+                                                  child: Text(
+                                                    "7",
+                                                    style: TextStyle(fontSize: 15),
+                                                  ),
+                                                  value: 7,
+                                                ),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "8",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 8),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "9",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 9),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "10",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 10),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "11",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 11),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "12",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 12),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "13",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 13),
+                                              ],
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  bennetqlv = value;
+                                                });
+                                              }),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        FilterChip(
+                                          selectedColor: Colors.purple[300],
+                                          backgroundColor: Colors.purple[200],
+                                          label: Text('Mona(burst)'.tr()),
+                                          selected: monaqOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              monaqOn = value;
+                                            });
+                                          },
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        SelectableText(
+                                          '${"Mona Burst lv".tr()}:',
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 15,
+                                            height: 1.1,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          //height: 50.0,
+                                          width: 50.0,
+                                          child: DropdownButton(
+                                              //isExpanded: true,
+                                              value: monaqlv,
+                                              iconSize: 20,
+                                              items: [
+                                                DropdownMenuItem(
+                                                  child: Text(
+                                                    "1",
+                                                    style: TextStyle(fontSize: 15),
+                                                  ),
+                                                  value: 1,
+                                                ),
+                                                DropdownMenuItem(
+                                                  child: Text(
+                                                    "2",
+                                                    style: TextStyle(fontSize: 15),
+                                                  ),
+                                                  value: 2,
+                                                ),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "3",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 3),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "4",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 4),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "5",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 5),
+                                                DropdownMenuItem(
+                                                  child: Text(
+                                                    "6",
+                                                    style: TextStyle(fontSize: 15),
+                                                  ),
+                                                  value: 6,
+                                                ),
+                                                DropdownMenuItem(
+                                                  child: Text(
+                                                    "7",
+                                                    style: TextStyle(fontSize: 15),
+                                                  ),
+                                                  value: 7,
+                                                ),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "8",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 8),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "9",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 9),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "10",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 10),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "11",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 11),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "12",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 12),
+                                                DropdownMenuItem(
+                                                    child: Text(
+                                                      "13",
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                    value: 13),
+                                              ],
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  monaqlv = value;
+                                                });
+                                              }),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10),
+                                  ],
+                                ),
+
+                                //ANCHOR Manual Adjusts
+                                ExpansionTile(
+                                  tilePadding: EdgeInsets.all(0),
+                                  childrenPadding: EdgeInsets.all(0),
+                                  title: Column(children: [
+                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                                      SelectableText(
+                                        'Manual Adjusts'.tr(),
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          height: 1.1,
+                                        ),
+                                      ),
+                                    ]),
+                                  ]),
+                                  children: <Widget>[
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        FilterChip(
+                                          selectedColor: Colors.red[300],
+                                          backgroundColor: Colors.red[200],
+                                          label: Text('ATK'.tr()),
+                                          selected: manualatkOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              manualatkOn = value;
+                                            });
+                                          },
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          height: 50,
+                                          alignment: Alignment.center,
+                                          child: TextFormField(
+                                              textAlignVertical: TextAlignVertical.center,
+                                              keyboardType: TextInputType.number,
+                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(4)],
+                                              decoration: InputDecoration(
+                                                // prefixIcon: Text("basic atk"),
+                                                labelText: '${"Bonus atk".tr()}:',
+
+                                                contentPadding: EdgeInsets.all(5),
+                                                //isDense: true,
+                                              ),
+                                              //maxLength: 4,
+                                              style: TextStyle(
+                                                fontSize: 15.0,
+                                              ),
+                                              initialValue: "0",
+                                              // onSaved: (input) => bennetbasicatk = num.tryParse(input),
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  manualatk = num.tryParse(value) ?? 0;
+                                                });
+                                              }),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        FilterChip(
+                                          selectedColor: Colors.red[300],
+                                          backgroundColor: Colors.red[200],
+                                          label: Text('${"Crit Rate".tr()}%'),
+                                          selected: manualCRpercentOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              manualCRpercentOn = value;
+                                            });
+                                          },
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          height: 50,
+                                          alignment: Alignment.center,
+                                          child: TextFormField(
+                                              textAlignVertical: TextAlignVertical.center,
+                                              keyboardType: TextInputType.number,
+                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(2)],
+                                              decoration: InputDecoration(
+                                                // prefixIcon: Text("basic atk"),
+                                                labelText: '${"Bonus Crit Rate".tr()}%:',
+                                                contentPadding: EdgeInsets.all(5),
+                                                //isDense: true,
+                                              ),
+                                              //maxLength: 4,
+                                              style: TextStyle(
+                                                fontSize: 15.0,
+                                              ),
+                                              initialValue: "0",
+                                              // onSaved: (input) => bennetbasicatk = num.tryParse(input),
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  manualCRpercent = num.tryParse(value) ?? 0;
+                                                });
+                                              }),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        FilterChip(
+                                          selectedColor: Colors.red[300],
+                                          backgroundColor: Colors.red[200],
+                                          label: Text('${"ATK".tr()}%'),
+                                          selected: manualatkpercentOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              manualatkpercentOn = value;
+                                            });
+                                          },
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          height: 50,
+                                          alignment: Alignment.center,
+                                          child: TextFormField(
+                                              textAlignVertical: TextAlignVertical.center,
+                                              keyboardType: TextInputType.number,
+                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
+                                              decoration: InputDecoration(
+                                                // prefixIcon: Text("basic atk"),
+                                                labelText: '${"Bonus atk".tr()}%:',
+
+                                                contentPadding: EdgeInsets.all(5),
+                                                //isDense: true,
+                                              ),
+                                              //maxLength: 4,
+                                              style: TextStyle(
+                                                fontSize: 15.0,
+                                              ),
+                                              initialValue: "0",
+                                              // onSaved: (input) => bennetbasicatk = num.tryParse(input),
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  manualatkpercent = num.tryParse(value) ?? 0;
+                                                });
+                                              }),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        FilterChip(
+                                          selectedColor: Colors.red[300],
+                                          backgroundColor: Colors.red[200],
+                                          label: Text('${"Crit Damage".tr()}%'),
+                                          selected: manualCDpercentOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              manualCDpercentOn = value;
+                                            });
+                                          },
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          width: 120,
+                                          height: 50,
+                                          alignment: Alignment.center,
+                                          child: TextFormField(
+                                              textAlignVertical: TextAlignVertical.center,
+                                              keyboardType: TextInputType.number,
+                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
+                                              decoration: InputDecoration(
+                                                // prefixIcon: Text("basic atk"),
+                                                labelText: '${"Bonus Crit Damage".tr()}%:',
+                                                contentPadding: EdgeInsets.all(5),
+                                                //isDense: true,
+                                              ),
+                                              //maxLength: 4,
+                                              style: TextStyle(
+                                                fontSize: 15.0,
+                                              ),
+                                              initialValue: "0",
+                                              // onSaved: (input) => bennetbasicatk = num.tryParse(input),
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  manualCDpercent = num.tryParse(value) ?? 0;
+                                                });
+                                              }),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        FilterChip(
+                                          selectedColor: Colors.red[300],
+                                          backgroundColor: Colors.red[200],
+                                          label: Text('EM'.tr()),
+                                          selected: manualEMOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              manualEMOn = value;
+                                            });
+                                          },
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          height: 50,
+                                          alignment: Alignment.center,
+                                          child: TextFormField(
+                                              textAlignVertical: TextAlignVertical.center,
+                                              keyboardType: TextInputType.number,
+                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
+                                              decoration: InputDecoration(
+                                                // prefixIcon: Text("basic atk"),
+                                                labelText: '${"Bonus EM".tr()}:',
+
+                                                contentPadding: EdgeInsets.all(5),
+                                                //isDense: true,
+                                              ),
+                                              //maxLength: 4,
+                                              style: TextStyle(
+                                                fontSize: 15.0,
+                                              ),
+                                              initialValue: "0",
+                                              // onSaved: (input) => bennetbasicatk = num.tryParse(input),
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  manualEM = num.tryParse(value) ?? 0;
+                                                });
+                                              }),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        FilterChip(
+                                          selectedColor: Colors.red[300],
+                                          backgroundColor: Colors.red[200],
+                                          label: Text('${"Damage Bonus".tr()}%'),
+                                          selected: manualDMGpercentOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              manualDMGpercentOn = value;
+                                            });
+                                          },
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          height: 50,
+                                          alignment: Alignment.center,
+                                          child: TextFormField(
+                                              textAlignVertical: TextAlignVertical.center,
+                                              keyboardType: TextInputType.number,
+                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
+                                              decoration: InputDecoration(
+                                                // prefixIcon: Text("basic atk"),
+                                                labelText: '${"Damage Bonus".tr()}%:',
+
+                                                contentPadding: EdgeInsets.all(5),
+                                                //isDense: true,
+                                              ),
+                                              //maxLength: 4,
+                                              style: TextStyle(
+                                                fontSize: 15.0,
+                                              ),
+                                              initialValue: "0",
+                                              // onSaved: (input) => bennetbasicatk = num.tryParse(input),
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  manualDMGpercent = num.tryParse(value) ?? 0;
+                                                });
+                                              }),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        FilterChip(
+                                          selectedColor: Colors.red[300],
+                                          backgroundColor: Colors.red[200],
+                                          label: Text('RES debuff'.tr()),
+                                          selected: manualresdebuffOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              manualresdebuffOn = value;
+                                            });
+                                          },
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                          width: 120,
+                                          height: 50,
+                                          alignment: Alignment.center,
+                                          child: TextFormField(
+                                              textAlignVertical: TextAlignVertical.center,
+                                              keyboardType: TextInputType.number,
+                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(2)],
+                                              decoration: InputDecoration(
+                                                // prefixIcon: Text("basic atk"),
+                                                labelText: '${"Enemy Res Decrease".tr()}:',
+
+                                                contentPadding: EdgeInsets.all(5),
+                                                //isDense: true,
+                                              ),
+                                              //maxLength: 4,
+                                              style: TextStyle(
+                                                fontSize: 15.0,
+                                              ),
+                                              initialValue: "0",
+                                              // onSaved: (input) => bennetbasicatk = num.tryParse(input),
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  manualresdebuff = num.tryParse(value) ?? 0;
+                                                });
+                                              }),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              //ANCHOR ----DamagePage----
+              ResponsiveGridCol(
+                xs: 12,
+                md: 12,
+                lg: 6,
+                xl: 3,
+                child: Container(
+                  height: (MediaQuery.of(context).size.width > 1200) ? heightadjust : null,
+                  color: Colors.red[50],
+                  child: Center(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                              children: [
+                                SelectableText(
+                                  'Normal ATK DMG Panel'.tr(),
+                                  style: TextStyle(fontSize: 20, height: 1.1),
+                                ),
+                                SizedBox(height: 10),
+                                //ANCHOR Charged Aim Shoot Damage
+                                if (currentcharacter == 'ganyu')
+                                  ExpansionTile(
+                                    tilePadding: EdgeInsets.all(0),
+                                    childrenPadding: EdgeInsets.all(0),
+                                    title: builddamagebarwithcrit(Colors.black, 'Charged Aim Shoot Damage'.tr() + ':($ganyucaimdmgpercent%)', Colors.lightBlue[200], Colors.lightBlue[400],
+                                        Colors.lightBlue[600], ganyucaimdmgnc, ganyucaimdmgexp, ganyucaimdmgc),
+                                    children: <Widget>[
+                                      builddamagebarwithcrit(
+                                          Colors.black, '1-Hit Damage'.tr() + ':($hit1dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit1dmgnc, hit1dmgexp, hit1dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, '2-Hit Damage'.tr() + ':($hit2dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit2dmgnc, hit2dmgexp, hit2dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, '3-Hit Damage'.tr() + ':($hit3dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit3dmgnc, hit3dmgexp, hit3dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, '4-Hit Damage'.tr() + ':($hit4dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit4dmgnc, hit4dmgexp, hit4dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, '5-Hit Damage'.tr() + ':($hit5dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit5dmgnc, hit5dmgexp, hit5dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, '6-Hit Damage'.tr() + ':($hit6dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit6dmgnc, hit6dmgexp, hit6dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, 'Aim Shoot Damage'.tr() + ':($aimdmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], aimdmgnc, aimdmgexp, aimdmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, 'Plunge Damage'.tr() + ':($plungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], plungedmgnc, plungedmgexp, plungedmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(Colors.black, 'Low Plunge Damage'.tr() + ':($lplungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], lplungedmgnc,
+                                          lplungedmgexp, lplungedmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(Colors.black, 'High Plunge Damage'.tr() + ':($hplungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hplungedmgnc,
+                                          hplungedmgexp, hplungedmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.red,
+                                          'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          ganyucaimdmgnc * 1.5 * meltDMGpercent / 100,
+                                          ganyucaimdmgexp * 1.5 * meltDMGpercent / 100,
+                                          ganyucaimdmgc * 1.5 * meltDMGpercent / 100),
+                                      SizedBox(height: 10),
+                                    ],
+                                  ),
+                                if (currentcharacter == 'yoimiya')
+                                  ExpansionTile(
+                                    tilePadding: EdgeInsets.all(0),
+                                    childrenPadding: EdgeInsets.all(0),
+                                    title: builddamagebarwithcrit(Colors.black, 'Charged Aim Shoot Damage'.tr() + ':($yoimiyacaimdmgpercent%)', Colors.red[200], Colors.red[400], Colors.red[600],
+                                        yoimiyacaimdmgnc, yoimiyacaimdmgexp, yoimiyacaimdmgc),
+                                    children: <Widget>[
+                                      builddamagebarwithcrit(
+                                          Colors.black, '1-Hit Damage'.tr() + ':($hit1dmgpercent% × 2)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit1dmgnc, hit1dmgexp, hit1dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, '2-Hit Damage'.tr() + ':($hit2dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit2dmgnc, hit2dmgexp, hit2dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, '3-Hit Damage'.tr() + ':($hit3dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit3dmgnc, hit3dmgexp, hit3dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, '4-Hit Damage'.tr() + ':($hit4dmgpercent% × 2)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit4dmgnc, hit4dmgexp, hit4dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, '5-Hit Damage'.tr() + ':($hit5dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit5dmgnc, hit5dmgexp, hit5dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, 'Aim Shoot Damage'.tr() + ':($aimdmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], aimdmgnc, aimdmgexp, aimdmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, 'Plunge Damage'.tr() + ':($plungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], plungedmgnc, plungedmgexp, plungedmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(Colors.black, 'Low Plunge Damage'.tr() + ':($lplungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], lplungedmgnc,
+                                          lplungedmgexp, lplungedmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(Colors.black, 'High Plunge Damage'.tr() + ':($hplungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hplungedmgnc,
+                                          hplungedmgexp, hplungedmgc),
+                                      SizedBox(height: 10),
+                                    ],
+                                  ),
+                                //ANCHOR Kindling Arrow
+                                if (currentcharacter == 'yoimiya') SizedBox(height: 10),
+                                if (currentcharacter == 'yoimiya')
+                                  builddamagebarwithcrit(Colors.black, 'Kindling Arrow'.tr() + ':($kindlingdmgpercent% × 3)', Colors.red[200], Colors.red[400], Colors.red[600], kindlingarrowdmgnc,
+                                      kindlingarrowdmgexp, kindlingarrowdmgc),
+                                SizedBox(height: 10),
+                                //ANCHOR Frostflake Arrow
+                                if (currentcharacter == 'ganyu')
+                                  ExpansionTile(
+                                      tilePadding: EdgeInsets.all(0),
+                                      childrenPadding: EdgeInsets.all(0),
+                                      title: builddamagebarwithcrit(Colors.black, 'Frostflake Arrow'.tr() + ':($frostflakedmgpercent%)', Colors.lightBlue[200], Colors.lightBlue[400],
+                                          Colors.lightBlue[600], frostflakedmgnc, frostflakedmgexp, frostflakedmgc),
+                                      children: <Widget>[
+                                        builddamagebarwithcrit(
+                                            Colors.red,
+                                            'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                            Colors.lightBlue[200],
+                                            Colors.lightBlue[400],
+                                            Colors.lightBlue[600],
+                                            frostflakedmgnc * 1.5 * meltDMGpercent / 100,
+                                            frostflakedmgexp * 1.5 * meltDMGpercent / 100,
+                                            frostflakedmgc * 1.5 * meltDMGpercent / 100),
+                                        SizedBox(height: 10),
+                                      ]),
+                                //ANCHOR Frostflake Arrow Bloom
+                                if (currentcharacter == 'ganyu')
+                                  ExpansionTile(
+                                      tilePadding: EdgeInsets.all(0),
+                                      childrenPadding: EdgeInsets.all(0),
+                                      title: builddamagebarwithcrit(Colors.black, 'Frostflake Bloom'.tr() + ':($frostflakebloomdmgpercent%)', Colors.lightBlue[200], Colors.lightBlue[400],
+                                          Colors.lightBlue[600], frostflakebloomdmgnc, frostflakebloomdmgexp, frostflakebloomdmgc),
+                                      children: <Widget>[
+                                        builddamagebarwithcrit(
+                                            Colors.red,
+                                            'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                            Colors.lightBlue[200],
+                                            Colors.lightBlue[400],
+                                            Colors.lightBlue[600],
+                                            frostflakebloomdmgnc * 1.5 * meltDMGpercent / 100,
+                                            frostflakebloomdmgexp * 1.5 * meltDMGpercent / 100,
+                                            frostflakebloomdmgc * 1.5 * meltDMGpercent / 100),
+                                        SizedBox(height: 10),
+                                      ]),
+                                //ANCHOR Frostflake All
+                                if (currentcharacter == 'ganyu')
+                                  ExpansionTile(
+                                    tilePadding: EdgeInsets.all(0),
+                                    childrenPadding: EdgeInsets.all(0),
+                                    title: builddamagebarwithcrit(Colors.black, 'Frostflake Arrow All'.tr(), Colors.lightBlue[200], Colors.lightBlue[400], Colors.lightBlue[600], frostflakealldmgnc,
+                                        frostflakealldmgexp, frostflakealldmgc),
+                                    children: <Widget>[
+                                      builddamagebarwithcrit(
+                                          Colors.red,
+                                          'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          frostflakealldmgnc * 1.5 * meltDMGpercent / 100,
+                                          frostflakealldmgexp * 1.5 * meltDMGpercent / 100,
+                                          frostflakealldmgc * 1.5 * meltDMGpercent / 100),
+                                      SizedBox(height: 10),
+                                    ],
+                                  ),
+                                if (echoingBalladOn)
+                                  //ANCHOR Echoing Ballad Physical AoE
+                                  builddamagebarwithcrit(Colors.black, 'Echoing Ballad Physical AoE'.tr() + ':(125%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], echoingballaddmgnc,
+                                      echoingballaddmgexp, echoingballaddmgc),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                              children: [
+                                SelectableText(
+                                  'Elemental Skill Panel'.tr(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                SizedBox(height: 10),
+
+                                //ANCHOR Trail of the Qilin HP
+                                if (currentcharacter == 'ganyu')
+                                  Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                                    SelectableText(
+                                      'Trail of the Qilin HP'.tr() + ':($trailoftheqilinhp)',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        height: 1.1,
+                                      ),
+                                    ),
+                                  ]),
+                                if (currentcharacter == 'ganyu')
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Stack(
+                                        alignment: Alignment.topLeft,
+                                        children: [
+                                          AnimatedContainer(
+                                            curve: Curves.easeIn,
+                                            duration: Duration(milliseconds: 500),
+                                            width: trailoftheqilinhp / 500,
+                                            height: 20,
+                                            color: Colors.grey[900],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                SizedBox(height: 10),
+                                //ANCHOR Trail of the Qilin DMG
+                                if (currentcharacter == 'ganyu')
+                                  ExpansionTile(
+                                    tilePadding: EdgeInsets.all(0),
+                                    childrenPadding: EdgeInsets.all(0),
+                                    title: builddamagebarwithcrit(Colors.black, 'Trail of the Qilin DMG'.tr() + ':($trailoftheqilindmgpercent)%', Colors.lightBlue[200], Colors.lightBlue[400],
+                                        Colors.lightBlue[600], trailoftheqilindmgnc, trailoftheqilindmgexp, trailoftheqilindmgc),
+                                    children: <Widget>[
+                                      builddamagebarwithcrit(
+                                          Colors.red,
+                                          'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          trailoftheqilindmgnc * 1.5 * meltDMGpercent / 100,
+                                          trailoftheqilindmgexp * 1.5 * meltDMGpercent / 100,
+                                          trailoftheqilindmgc * 1.5 * meltDMGpercent / 100),
+                                      SizedBox(height: 10),
+                                    ],
+                                  ),
+                                if (currentcharacter == 'yoimiya')
+                                  ExpansionTile(
+                                    tilePadding: EdgeInsets.all(0),
+                                    childrenPadding: EdgeInsets.all(0),
+                                    title: builddamagebarwithcrit(Colors.black, 'Teika Fire Dance'.tr() + "/" + 'per loop'.tr() + ':($teikafiredancebonuspercent)%' + 'Normal Attack Damage'.tr(),
+                                        Colors.red[500], Colors.red[700], Colors.red[900], teikafiredanceallhitdmgnc, teikafiredanceallhitdmgexp, teikafiredanceallhitdmgc),
+                                    children: <Widget>[
+                                      builddamagebarwithcrit(Colors.black, '1-Hit Damage'.tr() + ':($hit1dmgpercent% × $teikafiredancebonuspercent% × 2)', Colors.red[500], Colors.red[700],
+                                          Colors.red[900], teikafiredancehit1dmgnc, teikafiredancehit1dmgexp, teikafiredancehit1dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(Colors.black, '2-Hit Damage'.tr() + ':($hit2dmgpercent%)×$teikafiredancebonuspercent%', Colors.red[500], Colors.red[700], Colors.red[900],
+                                          teikafiredancehit2dmgnc, teikafiredancehit2dmgexp, teikafiredancehit2dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(Colors.black, '3-Hit Damage'.tr() + ':($hit3dmgpercent%)×$teikafiredancebonuspercent%', Colors.red[500], Colors.red[700], Colors.red[900],
+                                          teikafiredancehit3dmgnc, teikafiredancehit3dmgexp, teikafiredancehit3dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(Colors.black, '4-Hit Damage'.tr() + ':($hit4dmgpercent% × $teikafiredancebonuspercent% × 2)', Colors.red[500], Colors.red[700],
+                                          Colors.red[900], teikafiredancehit4dmgnc, teikafiredancehit4dmgexp, teikafiredancehit4dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(Colors.black, '5-Hit Damage'.tr() + ':($hit5dmgpercent%)×$teikafiredancebonuspercent%', Colors.red[500], Colors.red[700], Colors.red[900],
+                                          teikafiredancehit5dmgnc, teikafiredancehit5dmgexp, teikafiredancehit5dmgc),
+                                      SizedBox(height: 10),
+                                    ],
+                                  ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                              children: [
+                                SelectableText(
+                                  'Elemental Burst Panel'.tr(),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                SizedBox(height: 10),
+                                //ANCHOR Celestial Shower DMG
+                                if (currentcharacter == 'ganyu')
+                                  ExpansionTile(
+                                      tilePadding: EdgeInsets.all(0),
+                                      childrenPadding: EdgeInsets.all(0),
+                                      title: builddamagebarwithcrit(Colors.black, 'Celestial Shower/per Ice Shard'.tr() + ':($celestialshowerdmgpercent%)', Colors.lightBlue[200],
+                                          Colors.lightBlue[400], Colors.lightBlue[600], celestialshowerdmgnc, celestialshowerdmgexp, celestialshowerdmgc),
+                                      children: <Widget>[
+                                        builddamagebarwithcrit(
+                                            Colors.red,
+                                            'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                            Colors.lightBlue[200],
+                                            Colors.lightBlue[400],
+                                            Colors.lightBlue[600],
+                                            celestialshowerdmgnc * 1.5 * meltDMGpercent / 100,
+                                            celestialshowerdmgexp * 1.5 * meltDMGpercent / 100,
+                                            celestialshowerdmgc * 1.5 * meltDMGpercent / 100),
+                                        SizedBox(height: 10),
+                                      ]),
+                                //ANCHOR Ryukin Saxifrage DMG
+                                if (currentcharacter == 'yoimiya')
+                                  ExpansionTile(
+                                      tilePadding: EdgeInsets.all(0),
+                                      childrenPadding: EdgeInsets.all(0),
+                                      title: builddamagebarwithcrit(Colors.black, 'Ryukin Saxifrage'.tr() + ':($ryukinsaxifragedmgpercent%)', Colors.red[200], Colors.red[400], Colors.red[600],
+                                          ryukinsaxifragedmgnc, ryukinsaxifragedmgexp, ryukinsaxifragedmgc),
+                                      children: <Widget>[
+                                        builddamagebarwithcrit(
+                                            Colors.red,
+                                            'Vaporize'.tr() + ':(' + double.parse((vaporizeDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                            Colors.red[200],
+                                            Colors.red[400],
+                                            Colors.red[600],
+                                            ryukinsaxifragedmgnc * 1.5 * vaporizeDMGpercent / 100,
+                                            ryukinsaxifragedmgexp * 1.5 * vaporizeDMGpercent / 100,
+                                            ryukinsaxifragedmgc * 1.5 * vaporizeDMGpercent / 100),
+                                        SizedBox(height: 10),
+                                        builddamagebarwithcrit(
+                                            Colors.red,
+                                            'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 2).toStringAsFixed(1)).toString() + '%)',
+                                            Colors.red[200],
+                                            Colors.red[400],
+                                            Colors.red[600],
+                                            ryukinsaxifragedmgnc * 2 * meltDMGpercent / 100,
+                                            ryukinsaxifragedmgexp * 2 * meltDMGpercent / 100,
+                                            ryukinsaxifragedmgc * 2 * meltDMGpercent / 100),
+                                        SizedBox(height: 10),
+                                      ]),
+                                if (currentcharacter == 'yoimiya')
+                                  ExpansionTile(
+                                      tilePadding: EdgeInsets.all(0),
+                                      childrenPadding: EdgeInsets.all(0),
+                                      title: builddamagebarwithcrit(Colors.black, 'Aurous Blaze'.tr() + ':($aurousblazedmgpercent%)', Colors.red[200], Colors.red[400], Colors.red[600],
+                                          aurousblazedmgnc, aurousblazedmgexp, aurousblazedmgc),
+                                      children: <Widget>[
+                                        builddamagebarwithcrit(
+                                            Colors.red,
+                                            'Vaporize'.tr() + ':(' + double.parse((vaporizeDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                            Colors.red[200],
+                                            Colors.red[400],
+                                            Colors.red[600],
+                                            aurousblazedmgnc * 1.5 * vaporizeDMGpercent / 100,
+                                            aurousblazedmgexp * 1.5 * vaporizeDMGpercent / 100,
+                                            aurousblazedmgc * 1.5 * vaporizeDMGpercent / 100),
+                                        SizedBox(height: 10),
+                                        builddamagebarwithcrit(
+                                            Colors.red,
+                                            'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 2).toStringAsFixed(1)).toString() + '%)',
+                                            Colors.red[200],
+                                            Colors.red[400],
+                                            Colors.red[600],
+                                            aurousblazedmgnc * 2 * meltDMGpercent / 100,
+                                            aurousblazedmgexp * 2 * meltDMGpercent / 100,
+                                            aurousblazedmgc * 2 * meltDMGpercent / 100),
+                                        SizedBox(height: 10),
+                                      ]),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            child: Column(
+                              children: [
+                                SelectableText(
+                                  'Elemental Reactions Panel'.tr(),
+                                  style: TextStyle(fontSize: 20, height: 1.1),
+                                ),
+                                SizedBox(height: 10),
+                                //ANCHOR Superconduct DMG
                                 Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                   SelectableText(
-                                    'Trail of the Qilin HP'.tr() + ':($trailoftheqilinhp)',
+                                    'Superconduct'.tr() + ':(' + superconductDMGpercent.toStringAsFixed(1) + '%)',
                                     style: TextStyle(
                                       //fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                       fontSize: 15,
                                       height: 1.1,
                                     ),
-                                  ),
+                                  )
                                 ]),
-                              if (currentcharacter == 'ganyu')
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    SelectableText(
+                                      'DMG'.tr() + ':',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        height: 1.1,
+                                      ),
+                                    ),
+                                    SelectableText(
+                                      double.parse(superconductDMG.toStringAsFixed(1)).toString(),
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.lightBlue[400],
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
@@ -14158,618 +14393,426 @@ class _MyHomePageState extends State<MyHomePage> {
                                         AnimatedContainer(
                                           curve: Curves.easeIn,
                                           duration: Duration(milliseconds: 500),
-                                          width: trailoftheqilinhp / 500,
+                                          width: superconductDMG / 50,
                                           height: 20,
-                                          color: Colors.grey[900],
+                                          color: Colors.lightBlue[400],
                                         ),
                                       ],
                                     ),
                                   ],
                                 ),
-                              SizedBox(height: 10),
-                              //ANCHOR Trail of the Qilin DMG
-                              if (currentcharacter == 'ganyu')
-                                ExpansionTile(
-                                  tilePadding: EdgeInsets.all(0),
-                                  childrenPadding: EdgeInsets.all(0),
-                                  title: builddamagebarwithcrit(Colors.black, 'Trail of the Qilin DMG'.tr() + ':($trailoftheqilindmgpercent)%', Colors.lightBlue[200], Colors.lightBlue[400],
-                                      Colors.lightBlue[600], trailoftheqilindmgnc, trailoftheqilindmgexp, trailoftheqilindmgc),
-                                  children: <Widget>[
-                                    builddamagebarwithcrit(
-                                        Colors.red,
-                                        'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
-                                        Colors.lightBlue[200],
-                                        Colors.lightBlue[400],
-                                        Colors.lightBlue[600],
-                                        trailoftheqilindmgnc * 1.5 * meltDMGpercent / 100,
-                                        trailoftheqilindmgexp * 1.5 * meltDMGpercent / 100,
-                                        trailoftheqilindmgc * 1.5 * meltDMGpercent / 100),
-                                    SizedBox(height: 10),
-                                  ],
-                                ),
-                              if (currentcharacter == 'yoimiya')
-                                ExpansionTile(
-                                  tilePadding: EdgeInsets.all(0),
-                                  childrenPadding: EdgeInsets.all(0),
-                                  title: builddamagebarwithcrit(Colors.black, 'Teika Fire Dance'.tr() + "/" + 'per loop'.tr() + ':($teikafiredancebonuspercent)%' + 'Normal Attack Damage'.tr(),
-                                      Colors.red[500], Colors.red[700], Colors.red[900], teikafiredanceallhitdmgnc, teikafiredanceallhitdmgexp, teikafiredanceallhitdmgc),
-                                  children: <Widget>[
-                                    builddamagebarwithcrit(Colors.black, '1-Hit Damage'.tr() + ':($hit1dmgpercent% × $teikafiredancebonuspercent% × 2)', Colors.red[500], Colors.red[700],
-                                        Colors.red[900], teikafiredancehit1dmgnc, teikafiredancehit1dmgexp, teikafiredancehit1dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(Colors.black, '2-Hit Damage'.tr() + ':($hit2dmgpercent%)×$teikafiredancebonuspercent%', Colors.red[500], Colors.red[700], Colors.red[900],
-                                        teikafiredancehit2dmgnc, teikafiredancehit2dmgexp, teikafiredancehit2dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(Colors.black, '3-Hit Damage'.tr() + ':($hit3dmgpercent%)×$teikafiredancebonuspercent%', Colors.red[500], Colors.red[700], Colors.red[900],
-                                        teikafiredancehit3dmgnc, teikafiredancehit3dmgexp, teikafiredancehit3dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(Colors.black, '4-Hit Damage'.tr() + ':($hit4dmgpercent% × $teikafiredancebonuspercent% × 2)', Colors.red[500], Colors.red[700],
-                                        Colors.red[900], teikafiredancehit4dmgnc, teikafiredancehit4dmgexp, teikafiredancehit4dmgc),
-                                    SizedBox(height: 10),
-                                    builddamagebarwithcrit(Colors.black, '5-Hit Damage'.tr() + ':($hit5dmgpercent%)×$teikafiredancebonuspercent%', Colors.red[500], Colors.red[700], Colors.red[900],
-                                        teikafiredancehit5dmgnc, teikafiredancehit5dmgexp, teikafiredancehit5dmgc),
-                                    SizedBox(height: 10),
-                                  ],
-                                ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
-                          child: Column(
-                            children: [
-                              SelectableText(
-                                'Elemental Burst Panel'.tr(),
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              SizedBox(height: 10),
-                              //ANCHOR Celestial Shower DMG
-                              if (currentcharacter == 'ganyu')
-                                ExpansionTile(
-                                    tilePadding: EdgeInsets.all(0),
-                                    childrenPadding: EdgeInsets.all(0),
-                                    title: builddamagebarwithcrit(Colors.black, 'Celestial Shower/per Ice Shard'.tr() + ':($celestialshowerdmgpercent%)', Colors.lightBlue[200], Colors.lightBlue[400],
-                                        Colors.lightBlue[600], celestialshowerdmgnc, celestialshowerdmgexp, celestialshowerdmgc),
-                                    children: <Widget>[
-                                      builddamagebarwithcrit(
-                                          Colors.red,
-                                          'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
-                                          Colors.lightBlue[200],
-                                          Colors.lightBlue[400],
-                                          Colors.lightBlue[600],
-                                          celestialshowerdmgnc * 1.5 * meltDMGpercent / 100,
-                                          celestialshowerdmgexp * 1.5 * meltDMGpercent / 100,
-                                          celestialshowerdmgc * 1.5 * meltDMGpercent / 100),
-                                      SizedBox(height: 10),
-                                    ]),
-                              //ANCHOR Ryukin Saxifrage DMG
-                              if (currentcharacter == 'yoimiya')
-                                ExpansionTile(
-                                    tilePadding: EdgeInsets.all(0),
-                                    childrenPadding: EdgeInsets.all(0),
-                                    title: builddamagebarwithcrit(Colors.black, 'Ryukin Saxifrage'.tr() + ':($ryukinsaxifragedmgpercent%)', Colors.red[200], Colors.red[400], Colors.red[600],
-                                        ryukinsaxifragedmgnc, ryukinsaxifragedmgexp, ryukinsaxifragedmgc),
-                                    children: <Widget>[
-                                      builddamagebarwithcrit(
-                                          Colors.red,
-                                          'Vaporize'.tr() + ':(' + double.parse((vaporizeDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
-                                          Colors.red[200],
-                                          Colors.red[400],
-                                          Colors.red[600],
-                                          ryukinsaxifragedmgnc * 1.5 * vaporizeDMGpercent / 100,
-                                          ryukinsaxifragedmgexp * 1.5 * vaporizeDMGpercent / 100,
-                                          ryukinsaxifragedmgc * 1.5 * vaporizeDMGpercent / 100),
-                                      SizedBox(height: 10),
-                                      builddamagebarwithcrit(
-                                          Colors.red,
-                                          'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 2).toStringAsFixed(1)).toString() + '%)',
-                                          Colors.red[200],
-                                          Colors.red[400],
-                                          Colors.red[600],
-                                          ryukinsaxifragedmgnc * 2 * meltDMGpercent / 100,
-                                          ryukinsaxifragedmgexp * 2 * meltDMGpercent / 100,
-                                          ryukinsaxifragedmgc * 2 * meltDMGpercent / 100),
-                                      SizedBox(height: 10),
-                                    ]),
-                              if (currentcharacter == 'yoimiya')
-                                ExpansionTile(
-                                    tilePadding: EdgeInsets.all(0),
-                                    childrenPadding: EdgeInsets.all(0),
-                                    title: builddamagebarwithcrit(Colors.black, 'Aurous Blaze'.tr() + ':($aurousblazedmgpercent%)', Colors.red[200], Colors.red[400], Colors.red[600], aurousblazedmgnc,
-                                        aurousblazedmgexp, aurousblazedmgc),
-                                    children: <Widget>[
-                                      builddamagebarwithcrit(
-                                          Colors.red,
-                                          'Vaporize'.tr() + ':(' + double.parse((vaporizeDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
-                                          Colors.red[200],
-                                          Colors.red[400],
-                                          Colors.red[600],
-                                          aurousblazedmgnc * 1.5 * vaporizeDMGpercent / 100,
-                                          aurousblazedmgexp * 1.5 * vaporizeDMGpercent / 100,
-                                          aurousblazedmgc * 1.5 * vaporizeDMGpercent / 100),
-                                      SizedBox(height: 10),
-                                      builddamagebarwithcrit(Colors.red, 'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 2).toStringAsFixed(1)).toString() + '%)', Colors.red[200], Colors.red[400],
-                                          Colors.red[600], aurousblazedmgnc * 2 * meltDMGpercent / 100, aurousblazedmgexp * 2 * meltDMGpercent / 100, aurousblazedmgc * 2 * meltDMGpercent / 100),
-                                      SizedBox(height: 10),
-                                    ]),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(10.0),
-                          margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
-                          child: Column(
-                            children: [
-                              SelectableText(
-                                'Elemental Reactions Panel'.tr(),
-                                style: TextStyle(fontSize: 20, height: 1.1),
-                              ),
-                              SizedBox(height: 10),
-                              //ANCHOR Superconduct DMG
-                              Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                SelectableText(
-                                  'Superconduct'.tr() + ':(' + superconductDMGpercent.toStringAsFixed(1) + '%)',
-                                  style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    height: 1.1,
-                                  ),
-                                )
-                              ]),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
+                                SizedBox(height: 10),
+                                //ANCHOR Overloaded DMG
+                                Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                   SelectableText(
-                                    'DMG'.tr() + ':',
+                                    'Overloaded'.tr() + ':(' + (overloadDMGpercent * 4).toStringAsFixed(1) + '%)',
                                     style: TextStyle(
                                       //fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                       fontSize: 15,
                                       height: 1.1,
                                     ),
-                                  ),
-                                  SelectableText(
-                                    double.parse(superconductDMG.toStringAsFixed(1)).toString(),
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.lightBlue[400],
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Stack(
-                                    alignment: Alignment.topLeft,
-                                    children: [
-                                      AnimatedContainer(
-                                        curve: Curves.easeIn,
-                                        duration: Duration(milliseconds: 500),
-                                        width: superconductDMG / 50,
-                                        height: 20,
-                                        color: Colors.lightBlue[400],
+                                  )
+                                ]),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    SelectableText(
+                                      'DMG'.tr() + ':',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        height: 1.1,
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              //ANCHOR Overloaded DMG
-                              Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                SelectableText(
-                                  'Overloaded'.tr() + ':(' + (overloadDMGpercent * 4).toStringAsFixed(1) + '%)',
-                                  style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    height: 1.1,
-                                  ),
-                                )
-                              ]),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  SelectableText(
-                                    'DMG'.tr() + ':',
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      height: 1.1,
                                     ),
-                                  ),
-                                  SelectableText(
-                                    double.parse(overloadDMG.toStringAsFixed(1)).toString(),
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.red[400],
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Stack(
-                                    alignment: Alignment.topLeft,
-                                    children: [
-                                      AnimatedContainer(
-                                        curve: Curves.easeIn,
-                                        duration: Duration(milliseconds: 500),
-                                        width: overloadDMG / 50,
-                                        height: 20,
+                                    SelectableText(
+                                      double.parse(overloadDMG.toStringAsFixed(1)).toString(),
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
                                         color: Colors.red[400],
+                                        fontSize: 15,
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              //ANCHOR Electro-Charged DMG
-                              Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                SelectableText(
-                                  'Electro-Charged'.tr() + ':(' + (electrochargedDMGpercent * 2.4).toStringAsFixed(1) + '% × 2)',
-                                  style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    height: 1.1,
-                                  ),
-                                )
-                              ]),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Stack(
+                                      alignment: Alignment.topLeft,
+                                      children: [
+                                        AnimatedContainer(
+                                          curve: Curves.easeIn,
+                                          duration: Duration(milliseconds: 500),
+                                          width: overloadDMG / 50,
+                                          height: 20,
+                                          color: Colors.red[400],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 10),
+                                //ANCHOR Electro-Charged DMG
+                                Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                   SelectableText(
-                                    'DMG'.tr() + ':',
+                                    'Electro-Charged'.tr() + ':(' + (electrochargedDMGpercent * 2.4).toStringAsFixed(1) + '% × 2)',
                                     style: TextStyle(
                                       //fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                       fontSize: 15,
                                       height: 1.1,
                                     ),
-                                  ),
-                                  SelectableText(
-                                    double.parse(electrochargedDMG.toStringAsFixed(1)).toString() + ' × 2',
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.purple[400],
-                                      fontSize: 15,
+                                  )
+                                ]),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    SelectableText(
+                                      'DMG'.tr() + ':',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        height: 1.1,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Stack(
-                                    alignment: Alignment.topLeft,
-                                    children: [
-                                      AnimatedContainer(
-                                        curve: Curves.easeIn,
-                                        duration: Duration(milliseconds: 500),
-                                        width: electrochargedDMG / 50,
-                                        height: 20,
+                                    SelectableText(
+                                      double.parse(electrochargedDMG.toStringAsFixed(1)).toString() + ' × 2',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
                                         color: Colors.purple[400],
+                                        fontSize: 15,
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              //ANCHOR Shattered DMG
-                              Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                SelectableText(
-                                  'Shattered'.tr() + ':(' + shatteredDMGpercent.toStringAsFixed(1) + '%)',
-                                  style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    height: 1.1,
-                                  ),
-                                )
-                              ]),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Stack(
+                                      alignment: Alignment.topLeft,
+                                      children: [
+                                        AnimatedContainer(
+                                          curve: Curves.easeIn,
+                                          duration: Duration(milliseconds: 500),
+                                          width: electrochargedDMG / 50,
+                                          height: 20,
+                                          color: Colors.purple[400],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 10),
+                                //ANCHOR Shattered DMG
+                                Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                   SelectableText(
-                                    'DMG'.tr() + ':',
+                                    'Shattered'.tr() + ':(' + shatteredDMGpercent.toStringAsFixed(1) + '%)',
                                     style: TextStyle(
                                       //fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                       fontSize: 15,
                                       height: 1.1,
                                     ),
-                                  ),
-                                  SelectableText(
-                                    double.parse(shatteredDMG.toStringAsFixed(1)).toString(),
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.grey[400],
-                                      fontSize: 15,
+                                  )
+                                ]),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    SelectableText(
+                                      'DMG'.tr() + ':',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        height: 1.1,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Stack(
-                                    alignment: Alignment.topLeft,
-                                    children: [
-                                      AnimatedContainer(
-                                        curve: Curves.easeIn,
-                                        duration: Duration(milliseconds: 500),
-                                        width: shatteredDMG / 50,
-                                        height: 20,
+                                    SelectableText(
+                                      double.parse(shatteredDMG.toStringAsFixed(1)).toString(),
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
                                         color: Colors.grey[400],
+                                        fontSize: 15,
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              //ANCHOR swirl DMG
-                              Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                SelectableText(
-                                  'Swirl'.tr() + ':(' + swirlDMGpercent.toStringAsFixed(1) + '%)',
-                                  style: TextStyle(
-                                    //fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    height: 1.1,
-                                  ),
-                                )
-                              ]),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Stack(
+                                      alignment: Alignment.topLeft,
+                                      children: [
+                                        AnimatedContainer(
+                                          curve: Curves.easeIn,
+                                          duration: Duration(milliseconds: 500),
+                                          width: shatteredDMG / 50,
+                                          height: 20,
+                                          color: Colors.grey[400],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 10),
+                                //ANCHOR swirl DMG
+                                Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                   SelectableText(
-                                    'DMG on Cryo'.tr() + ':',
+                                    'Swirl'.tr() + ':(' + swirlDMGpercent.toStringAsFixed(1) + '%)',
                                     style: TextStyle(
                                       //fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                       fontSize: 15,
                                       height: 1.1,
                                     ),
-                                  ),
-                                  SelectableText(
-                                    double.parse(swirlDMGonCryo.toStringAsFixed(1)).toString(),
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.lightBlue[400],
-                                      fontSize: 15,
+                                  )
+                                ]),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    SelectableText(
+                                      'DMG on Cryo'.tr() + ':',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        height: 1.1,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Stack(
-                                    alignment: Alignment.topLeft,
-                                    children: [
-                                      AnimatedContainer(
-                                        curve: Curves.easeIn,
-                                        duration: Duration(milliseconds: 500),
-                                        width: swirlDMGonCryo / 50,
-                                        height: 20,
+                                    SelectableText(
+                                      double.parse(swirlDMGonCryo.toStringAsFixed(1)).toString(),
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
                                         color: Colors.lightBlue[400],
+                                        fontSize: 15,
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 5),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  SelectableText(
-                                    'DMG on Pyro'.tr() + ':',
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      height: 1.1,
                                     ),
-                                  ),
-                                  SelectableText(
-                                    double.parse(swirlDMGonPyro.toStringAsFixed(1)).toString(),
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.red[400],
-                                      fontSize: 15,
-                                      height: 1.1,
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Stack(
+                                      alignment: Alignment.topLeft,
+                                      children: [
+                                        AnimatedContainer(
+                                          curve: Curves.easeIn,
+                                          duration: Duration(milliseconds: 500),
+                                          width: swirlDMGonCryo / 50,
+                                          height: 20,
+                                          color: Colors.lightBlue[400],
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Stack(
-                                    alignment: Alignment.topLeft,
-                                    children: [
-                                      AnimatedContainer(
-                                        curve: Curves.easeIn,
-                                        duration: Duration(milliseconds: 500),
-                                        width: swirlDMGonPyro / 50,
-                                        height: 20,
+                                  ],
+                                ),
+                                SizedBox(height: 5),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    SelectableText(
+                                      'DMG on Pyro'.tr() + ':',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        height: 1.1,
+                                      ),
+                                    ),
+                                    SelectableText(
+                                      double.parse(swirlDMGonPyro.toStringAsFixed(1)).toString(),
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
                                         color: Colors.red[400],
+                                        fontSize: 15,
+                                        height: 1.1,
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 5),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  SelectableText(
-                                    'DMG on Hydro'.tr() + ':',
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      height: 1.1,
                                     ),
-                                  ),
-                                  SelectableText(
-                                    double.parse(swirlDMGonHydro.toStringAsFixed(1)).toString(),
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.blue[400],
-                                      fontSize: 15,
-                                      height: 1.1,
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Stack(
+                                      alignment: Alignment.topLeft,
+                                      children: [
+                                        AnimatedContainer(
+                                          curve: Curves.easeIn,
+                                          duration: Duration(milliseconds: 500),
+                                          width: swirlDMGonPyro / 50,
+                                          height: 20,
+                                          color: Colors.red[400],
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Stack(
-                                    alignment: Alignment.topLeft,
-                                    children: [
-                                      AnimatedContainer(
-                                        curve: Curves.easeIn,
-                                        duration: Duration(milliseconds: 500),
-                                        width: swirlDMGonHydro / 50,
-                                        height: 20,
+                                  ],
+                                ),
+                                SizedBox(height: 5),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    SelectableText(
+                                      'DMG on Hydro'.tr() + ':',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        height: 1.1,
+                                      ),
+                                    ),
+                                    SelectableText(
+                                      double.parse(swirlDMGonHydro.toStringAsFixed(1)).toString(),
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
                                         color: Colors.blue[400],
+                                        fontSize: 15,
+                                        height: 1.1,
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 5),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  SelectableText(
-                                    'DMG on Electro'.tr() + ':',
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      height: 1.1,
                                     ),
-                                  ),
-                                  SelectableText(
-                                    double.parse(swirlDMGonElectro.toStringAsFixed(1)).toString(),
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.purple[400],
-                                      fontSize: 15,
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Stack(
+                                      alignment: Alignment.topLeft,
+                                      children: [
+                                        AnimatedContainer(
+                                          curve: Curves.easeIn,
+                                          duration: Duration(milliseconds: 500),
+                                          width: swirlDMGonHydro / 50,
+                                          height: 20,
+                                          color: Colors.blue[400],
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Stack(
-                                    alignment: Alignment.topLeft,
-                                    children: [
-                                      AnimatedContainer(
-                                        curve: Curves.easeIn,
-                                        duration: Duration(milliseconds: 500),
-                                        width: swirlDMGonElectro / 50,
-                                        height: 20,
+                                  ],
+                                ),
+                                SizedBox(height: 5),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    SelectableText(
+                                      'DMG on Electro'.tr() + ':',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        height: 1.1,
+                                      ),
+                                    ),
+                                    SelectableText(
+                                      double.parse(swirlDMGonElectro.toStringAsFixed(1)).toString(),
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
                                         color: Colors.purple[400],
+                                        fontSize: 15,
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Stack(
+                                      alignment: Alignment.topLeft,
+                                      children: [
+                                        AnimatedContainer(
+                                          curve: Curves.easeIn,
+                                          duration: Duration(milliseconds: 500),
+                                          width: swirlDMGonElectro / 50,
+                                          height: 20,
+                                          color: Colors.purple[400],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              //ANCHOR ----Footer----
+              ResponsiveGridCol(
+                xs: 12,
+                md: 12,
+                lg: 12,
+                child: Container(
+                  height: 100,
+                  color: Colors.grey[50],
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            SelectableText(
+                              'Stat scale'.tr(),
+                              style: TextStyle(
+                                //fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontSize: 15,
+                                height: 1.1,
+                              ),
+                            ),
+                            Slider(
+                              min: 1,
+                              max: 10,
+                              divisions: 9,
+                              activeColor: Colors.grey,
+                              inactiveColor: Colors.grey[200],
+                              label: statscale.toString(),
+                              value: statscale.toDouble(),
+                              onChanged: (value) {
+                                setState(() {
+                                  statscale = value.toInt();
+                                });
+                              },
+                            ),
+                            SelectableText(
+                              'Dmg scale'.tr(),
+                              style: TextStyle(
+                                //fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontSize: 15,
+                                height: 1.1,
+                              ),
+                            ),
+                            Slider(
+                              min: 1,
+                              max: 10,
+                              divisions: 9,
+                              activeColor: Colors.grey,
+                              inactiveColor: Colors.grey[200],
+                              label: dmgscale.toString(),
+                              value: dmgscale.toDouble(),
+                              onChanged: (value) {
+                                setState(() {
+                                  dmgscale = value.toInt();
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        SelectableText(
+                          'Provided by yunlu18.net',
                         ),
                       ],
                     ),
                   ),
                 ),
               ),
-            ),
-            //ANCHOR ----Footer----
-            ResponsiveGridCol(
-              xs: 12,
-              md: 12,
-              lg: 12,
-              child: Container(
-                height: 100,
-                color: Colors.grey[50],
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          SelectableText(
-                            'Stat scale'.tr(),
-                            style: TextStyle(
-                              //fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 15,
-                              height: 1.1,
-                            ),
-                          ),
-                          Slider(
-                            min: 1,
-                            max: 10,
-                            divisions: 9,
-                            activeColor: Colors.grey,
-                            inactiveColor: Colors.grey[200],
-                            label: statscale.toString(),
-                            value: statscale.toDouble(),
-                            onChanged: (value) {
-                              setState(() {
-                                statscale = value.toInt();
-                              });
-                            },
-                          ),
-                          SelectableText(
-                            'Dmg scale'.tr(),
-                            style: TextStyle(
-                              //fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 15,
-                              height: 1.1,
-                            ),
-                          ),
-                          Slider(
-                            min: 1,
-                            max: 10,
-                            divisions: 9,
-                            activeColor: Colors.grey,
-                            inactiveColor: Colors.grey[200],
-                            label: dmgscale.toString(),
-                            value: dmgscale.toDouble(),
-                            onChanged: (value) {
-                              setState(() {
-                                dmgscale = value.toInt();
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                      SelectableText(
-                        'Provided by yunlu18.net',
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ]),
+            ]),
+          ),
         ),
       ),
       // floatingActionButton: FloatingActionButton(
