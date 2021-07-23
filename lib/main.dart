@@ -29,8 +29,8 @@ class MyApp extends StatelessWidget {
         0: ThemeData(primarySwatch: Colors.blue),
         //yoimiya
         1: ThemeData(primarySwatch: Colors.red),
-
-        2: ThemeData(primarySwatch: Colors.yellow),
+        //ayaka
+        2: ThemeData(primarySwatch: Colors.blue),
         3: ThemeData(primarySwatch: Colors.lightGreen),
         4: ThemeData(primarySwatch: Colors.green),
         5: ThemeData(primarySwatch: Colors.lightBlue),
@@ -89,12 +89,14 @@ class _MyHomePageState extends State<MyHomePage> {
   String currentcharacter = 'ganyu';
   Map charactertoinfo = {
     'ganyu': {'iconimage': AssetImage('images/ganyu.png'), 'splashimage': AssetImage('images/2021010519290354247.png'), 'element': 'cryo', 'wtype': 'bow', 'color': 0, 'en': 'Ganyu'},
-    'yoimiya': {'iconimage': AssetImage('images/yoimiya.png'), 'splashimage': AssetImage('images/yoimiyalarge.png'), 'element': 'pyro', 'wtype': 'bow', 'color': 1, 'en': 'Yoimiya'}
+    'yoimiya': {'iconimage': AssetImage('images/yoimiya.png'), 'splashimage': AssetImage('images/yoimiyalarge.png'), 'element': 'pyro', 'wtype': 'bow', 'color': 1, 'en': 'Yoimiya'},
+    'ayaka': {'iconimage': AssetImage('images/ayaka.png'), 'splashimage': AssetImage('images/ayakalarge.png'), 'element': 'cryo', 'wtype': 'sword', 'color': 2, 'en': 'Kamisato Ayaka'}
   };
 
   Map themetocharacter = {
     0: 'ganyu',
     1: 'yoimiya',
+    2: 'ayaka',
   };
 
   bool spoilermode = false;
@@ -107,11 +109,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Map cleveltoatk = {
     'ganyu': {1: 26, 10: 26, 20: 68, 30: 68, 40: 135, 50: 173, 60: 217, 70: 256, 80: 295, 90: 335},
     'yoimiya': {1: 25, 10: 65, 20: 65, 30: 65, 40: 130, 50: 167, 60: 209, 70: 247, 80: 285, 90: 323},
+    'ayaka': {1: 27, 10: 27, 20: 69, 30: 69, 40: 138, 50: 177, 60: 222, 70: 238, 80: 302, 90: 342},
   };
 
   Map baseDEFbyLV = {
     'ganyu': {1: 49, 10: 49, 20: 127, 30: 169, 40: 253, 50: 326, 60: 409, 70: 482, 80: 556, 90: 630},
     'yoimiya': {1: 48, 10: 48, 20: 124, 30: 124, 40: 247, 50: 318, 60: 399, 70: 470, 80: 542, 90: 615},
+    'ayaka': {1: 61, 10: 61, 20: 158, 30: 158, 40: 315, 50: 405, 60: 509, 70: 600, 80: 692, 90: 784},
   };
 
   Map baseHPbyLV = {
@@ -139,10 +143,23 @@ class _MyHomePageState extends State<MyHomePage> {
       80: 8968,
       90: 10164,
     },
+    'ayaka': {
+      1: 1001,
+      10: 1001,
+      20: 2597,
+      30: 2597,
+      40: 5170,
+      50: 6649,
+      60: 8341,
+      70: 9838,
+      80: 11345,
+      90: 12858,
+    },
   };
 
   Map baseCDbyLVL = {
     'ganyu': {1: 50, 10: 50, 20: 50, 30: 50, 40: 50, 50: 59.6, 60: 69.2, 70: 69.2, 80: 78.8, 90: 88.4},
+    'ayaka': {1: 50, 10: 50, 20: 50, 30: 50, 40: 50, 50: 59.6, 60: 69.2, 70: 69.2, 80: 78.8, 90: 88.4},
   };
 
   int levelatk = 0;
@@ -9135,6 +9152,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   // ...
                 },
               ),
+            ListTile(
+              title: Text('ayaka').tr(),
+              onTap: () {
+                setState(() {
+                  currentcharacter = 'ayaka';
+                  DynamicTheme.of(context).setTheme(2);
+                });
+                // Update the state of the app.
+                // ...
+              },
+            ),
             ListTile(
                 title: Text(
                   "Languages".tr(),
