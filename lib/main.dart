@@ -1504,6 +1504,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   bool unreturningOn = false;
 
+  bool rapidfiringOn = false;
+
   bool rulebythunder1On = false;
   bool rulebythunder2On = false;
   int rulebythunder2Times = 2;
@@ -1844,6 +1846,34 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       rulebythunder1On = false;
       rulebythunder2On = false;
+    }
+
+    if (weaponselect == "rust") {
+      rapidfiringOn = true;
+      weapontoatk = {1: 42, 5: 56, 10: 74, 15: 91, 20: 109, 25: 152, 30: 170, 35: 187, 40: 205, 45: 248, 50: 266, 55: 309, 60: 327, 65: 370, 70: 388, 75: 431, 80: 449, 85: 492, 90: 510};
+      weapontoCDpercent = {
+        1: 9,
+        5: 10.5,
+        10: 12.3,
+        15: 14.1,
+        20: 15.9,
+        25: 17.7,
+        30: 19.5,
+        35: 21.4,
+        40: 23.2,
+        45: 25,
+        50: 26.8,
+        55: 28.6,
+        60: 30.4,
+        65: 32.3,
+        70: 34.1,
+        75: 35.9,
+        80: 37.7,
+        85: 39.5,
+        90: 41.3
+      };
+    } else {
+      rapidfiringOn = false;
     }
   }
 
@@ -2501,59 +2531,58 @@ class _MyHomePageState extends State<MyHomePage> {
                   //     );
                   //   },
                   // ),
-                  // SimpleDialogOption(
-                  //   child: Container(
-                  //     width: 400,
-                  //     height: 150,
-                  //     child: Row(
-                  //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //       children: [
-                  //         Card(
-                  //           elevation: 3,
-                  //           shape: RoundedRectangleBorder(
-                  //             borderRadius: BorderRadius.circular(10),
-                  //           ),
-                  //           child: InkWell(
-                  //             splashColor: Colors.blue.withAlpha(30),
-                  //             child: Container(
-                  //               width: 140,
-                  //               height: 140,
-                  //               decoration: BoxDecoration(
-                  //                 // color: Colors.lightBlue[50],
-                  //                 borderRadius:
-                  //                     BorderRadius.all(Radius.circular(10)),
-                  //                 image: DecorationImage(
-                  //                   image: AssetImage('images/weapon/Weapon_Rust.png'),
-                  //                   fit: BoxFit.contain,
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //           ),
-                  //         ),
-                  //         Container(
-                  //           width: 200,
-                  //           child: Text(
-                  //             'Rust',
-                  //             style: TextStyle(
-                  //               //fontWeight: FontWeight.bold,
-                  //               color: Colors.black,
-                  //               fontSize: 20,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  //   onPressed: () {
-                  //     setState(() {
-                  //       weaponstatcontrol('rust');
-                  //     });
-                  //     Navigator.pop(
-                  //       context,
-                  //       "user1",
-                  //     );
-                  //   },
-                  // ),
+                  SimpleDialogOption(
+                    child: Container(
+                      width: 400,
+                      height: 150,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Card(
+                            elevation: 3,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: InkWell(
+                              splashColor: Colors.blue.withAlpha(30),
+                              child: Container(
+                                width: 140,
+                                height: 140,
+                                decoration: BoxDecoration(
+                                  // color: Colors.lightBlue[50],
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  image: DecorationImage(
+                                    image: AssetImage('images/weapon/Weapon_Rust.png'),
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 200,
+                            child: Text(
+                              'Rust'.tr(),
+                              style: TextStyle(
+                                //fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        weaponstatcontrol('rust');
+                      });
+                      Navigator.pop(
+                        context,
+                        "user1",
+                      );
+                    },
+                  ),
                   // SimpleDialogOption(
                   //   child: Container(
                   //     width: 400,
@@ -8042,17 +8071,21 @@ class _MyHomePageState extends State<MyHomePage> {
     //bonusNormalATK
     bonusNormalATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) +
         (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) +
+        (rapidfiringOn ? (30 + weaponref * 10) : 0) +
         (reminiscenceofshime4On ? 50 : 0) +
         (rulebythunder2On ? ((rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))) : 0) as double;
     //bonusChargedATK
-    bonusChargedATKDMGpercent =
-        (reminiscenceofshime4On ? 50 : 0) + (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) + (troupesdawnlight4on ? 35 : 0) as double;
+    bonusChargedATKDMGpercent = (reminiscenceofshime4On ? 50 : 0) +
+        (strongWilled1On ? (9 + weaponref * 3) : 0) +
+        (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) +
+        (rapidfiringOn ? -10 : 0) +
+        (troupesdawnlight4on ? 35 : 0) as double;
 
     //bonusplungeatk
     bonusPlungeATKDMGpercent = (reminiscenceofshime4On ? 50 : 0);
-//bonusBurstATK
+    //bonusBurstATK
     bonusBurstDMGpercent = (royalflora2On ? 20 : 0) as double;
-//bonusDMG
+    //bonusDMG
     bonusDMGpercent = (monaqOn ? monaqlvtoratio[monaqlv] : 0) + (thundersoother4On ? 35 : 0) + (manualDMGpercentOn ? manualDMGpercent : 0) as double;
 
     if (strongWilled2Times <= 3) {
@@ -12973,6 +13006,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                               onSelected: (bool value) {
                                                 setState(() {
                                                   unreturningOn = value;
+                                                });
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                    if (weaponselect == 'rust')
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label: Text('Rapid Firing: Normal ATK DMG + '.tr() + (30 + weaponref * 10).toString() + '% & Charged ATK DMG - 10%'.tr()),
+                                              selected: rapidfiringOn,
+                                              selectedColor: Colors.tealAccent,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  rapidfiringOn = value;
                                                 });
                                               },
                                             ),
