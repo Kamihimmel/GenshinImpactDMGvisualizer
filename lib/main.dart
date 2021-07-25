@@ -888,6 +888,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //ANCHOR enemystat
   int enemylv = 80;
   int enemydefdebuff = 0;
+  int enemydefinput = 0;
   int enemytype = 1;
   double enemyPhysicalres = 10;
   double enemyPyrores = 10;
@@ -2175,6 +2176,11 @@ class _MyHomePageState extends State<MyHomePage> {
   int troublemakerstack = 0;
   bool summerscorchOn = false;
   bool yoimiyaconstellation2On = false;
+//ayakaoption
+  bool amatsumiOn = false;
+  bool katenOn = false;
+  bool ayakaconstellation4On = false;
+  bool ayakaconstellation6On = false;
 
   bool blizzardstrayer2On = true;
   bool blizzardstrayer41On = true;
@@ -9409,23 +9415,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
     currentcharacter = themetocharacter[DynamicTheme.of(context).themeId];
 
+    //defparam
+    enemydefdebuff = (ayakaconstellation4On ? 30 : 0) + enemydefinput;
+
     //bonusNormalATK
     bonusNormalATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) +
         (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) +
         (rapidfiringOn ? (30 + weaponref * 10) : 0) +
         (reminiscenceofshime4On ? 50 : 0) +
-        (rulebythunder2On
-            ? ((rulebythunder2Times == 1
-                ? (weaponref * 3 + 9)
-                : (rulebythunder2Times == 2
-                    ? (weaponref * 6 + 18)
-                    : (weaponref * 10 + 30))))
-            : 0) as double;
+        (amatsumiOn ? 30 : 0) +
+        (rulebythunder2On ? ((rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))) : 0) as double;
     //bonusChargedATK
     bonusChargedATKDMGpercent = (reminiscenceofshime4On ? 50 : 0) +
         (strongWilled1On ? (9 + weaponref * 3) : 0) +
         (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) +
         (rapidfiringOn ? -10 : 0) +
+        (amatsumiOn ? 30 : 0) +
+        (ayakaconstellation6On ? 298 : 0) +
         (troupesdawnlight4on ? 35 : 0) as double;
 
     //bonusplungeatk
@@ -9743,11 +9749,7 @@ class _MyHomePageState extends State<MyHomePage> {
     a4CryoDMGpercentMain = a4ElementDMGpercentbyLVL[gstar][glv];
     a4CryoDMGpercent = artifact4mainstatcat == 8 ? a4CryoDMGpercentMain : 0;
 
-    bonusCryoDMGpercent = levelCryoDMGpercent +
-        weaponCryoDMGpercent +
-        a4CryoDMGpercent +
-        (blizzardstrayer2On ? 15 : 0) +
-        (harmonyOn ? 20 : 0);
+    bonusCryoDMGpercent = levelCryoDMGpercent + weaponCryoDMGpercent + a4CryoDMGpercent + (blizzardstrayer2On ? 15 : 0) + (harmonyOn ? 20 : 0) + (katenOn ? 18 : 0);
 
     if (cleveltoElectroDMGpercent[level] != null)
       levelElectroDMGpercent = cleveltoElectroDMGpercent[level];
@@ -14645,22 +14647,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                                           strongWilled2Times)
                                                       .toString()),
                                             if (rulebythunder2On)
-                                              buildStatRow(
-                                                  Colors.amber,
-                                                  'Rule by Thunder2'.tr(),
-                                                  (rulebythunder2Times == 1
-                                                          ? (weaponref * 3 + 9)
-                                                          : (rulebythunder2Times ==
-                                                                  2
-                                                              ? (weaponref * 6 +
-                                                                  18)
-                                                              : (weaponref *
-                                                                      10 +
-                                                                  30)))
-                                                      .toString()),
-                                            if (reminiscenceofshime4On)
-                                              buildStatRow(Colors.red,
-                                                  'Reminiscence4'.tr(), "50"),
+                                              buildStatRow(Colors.amber, 'Rule by Thunder2'.tr(),
+                                                  (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30))).toString()),
+                                            if (rapidfiringOn) buildStatRow(Colors.teal[300], 'Rapid Firing'.tr(), (30 + weaponref * 10).toString()),
+                                            if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
+                                            if (amatsumiOn) buildStatRow(Colors.blue, 'amatsumi'.tr(), "30"),
                                           ],
                                         ),
                                       //ANCHOR statNormalATKDMG:bar
@@ -14706,17 +14697,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                               ),
                                             if (rulebythunder2On)
                                               buildstatbarpercent(
-                                                  Colors.amber,
-                                                  (rulebythunder2Times == 1
-                                                      ? (weaponref * 3 + 9)
-                                                      : (rulebythunder2Times ==
-                                                              2
-                                                          ? (weaponref * 6 + 18)
-                                                          : (weaponref * 10 +
-                                                              30)))),
-                                            if (reminiscenceofshime4On)
-                                              buildstatbarpercent(
-                                                  Colors.red, 50),
+                                                  Colors.amber, (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))),
+                                            if (rapidfiringOn) buildstatbarpercent(Colors.teal[300], (30 + weaponref * 10)),
+                                            if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
+                                            if (amatsumiOn) buildstatbarpercent(Colors.blue, 30),
                                           ],
                                         ),
                                       if (bonusChargedATKDMGpercent != 0)
@@ -14757,6 +14741,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             if (reminiscenceofshime4On)
                                               buildStatRow(Colors.red,
                                                   'Reminiscence4'.tr(), "50"),
+                                            if (rapidfiringOn) buildStatRow(Colors.teal[300], 'Rapid Firing'.tr(), "-10"),
+                                            if (amatsumiOn) buildStatRow(Colors.blue, 'amatsumi'.tr(), "30"),
+                                            if (ayakaconstellation6On) buildStatRow(Colors.grey, 'ayakaconstellation6'.tr(), "298"),
                                           ],
                                         ),
                                       //ANCHOR statChargedATKDMG:bar
@@ -14818,8 +14805,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                             if (reminiscenceofshime4On)
                                               buildstatbarpercent(
                                                   Colors.red, 50),
+                                            if (amatsumiOn) buildstatbarpercent(Colors.blue, 30),
+                                            if (ayakaconstellation6On) buildstatbarpercent(Colors.grey, 298),
                                           ],
                                         ),
+                                      if (bonusChargedATKDMGpercent < 0) SizedBox(height: 20),
                                       //ANCHOR Plunge Damage Title
                                       if (bonusPlungeATKDMGpercent != 0)
                                         SelectableText(
@@ -15062,6 +15052,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 'Harmony between Heaven and Earth'
                                                     .tr(),
                                                 '20'),
+                                          if (katenOn) buildStatRow(Colors.blue, 'katen'.tr(), '18'),
                                         ],
                                       ),
                                       //ANCHOR statCryoDMG:bar
@@ -15084,6 +15075,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (harmonyOn)
                                             buildstatbarpercent(
                                                 Colors.amber, 20),
+                                          if (katenOn) buildstatbarpercent(Colors.blue, 18),
                                         ],
                                       ),
                                       //ANCHOR Electro Damage Title
@@ -16398,11 +16390,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                           Theme.of(context).primaryColor,
                                       inactiveColor:
                                           Theme.of(context).primaryColorLight,
-                                      label: enemydefdebuff.toString(),
-                                      value: enemydefdebuff.toDouble(),
+                                      label: enemydefinput.toString(),
+                                      value: enemydefinput.toDouble(),
                                       onChanged: (value) {
                                         setState(() {
-                                          enemydefdebuff = value.toInt();
+                                          enemydefinput = value.toInt();
                                         });
                                       },
                                     ),
@@ -16561,7 +16553,72 @@ class _MyHomePageState extends State<MyHomePage> {
                                               fontSize: 15,
                                             ),
                                           ),
-                                        ]),
+                                        ),
+                                        Container(
+                                          width: 150,
+                                          child: Slider(
+                                            min: 0,
+                                            max: 10,
+                                            divisions: 10,
+                                            activeColor: Colors.red,
+                                            inactiveColor: Colors.red[200],
+                                            label: troublemakerstack.toString(),
+                                            value: troublemakerstack.toDouble(),
+                                            onChanged: (value) {
+                                              setState(() {
+                                                troublemakerstack = value.toInt();
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                        FilterChip(
+                                          selectedColor: Colors.red,
+                                          backgroundColor: Colors.red[200],
+                                          label: Text('Summer Scorch: 1% pyro per stack'.tr()),
+                                          selected: summerscorchOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              summerscorchOn = value;
+                                            });
+                                          },
+                                        ),
+                                      ]),
+                                    //ANCHOR CharacterOptions:ayakaskill
+                                    if (currentcharacter == 'ayaka')
+                                      Wrap(spacing: 10, runSpacing: 10, crossAxisAlignment: WrapCrossAlignment.center, children: <Widget>[
+                                        FilterChip(
+                                          selectedColor: Colors.blue,
+                                          backgroundColor: Colors.blue[200],
+                                          label: Text('Amatsumi Kunitsumi Sanctification:Normal & Charged Atk DMG +30%'.tr()),
+                                          selected: amatsumiOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              amatsumiOn = value;
+                                            });
+                                          },
+                                        ),
+                                        FilterChip(
+                                          selectedColor: Colors.blue,
+                                          backgroundColor: Colors.blue[200],
+                                          label: Text('Kanten Senmyou Blessing:Cryo DMG +18%'.tr()),
+                                          selected: katenOn,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              katenOn = value;
+                                            });
+                                          },
+                                        ),
+                                      ]),
+                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+                                      SelectableText(
+                                        'Constellation'.tr(),
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ]),
                                     if (currentcharacter == 'ganyu')
                                       Wrap(
                                           spacing: 10,
@@ -16597,6 +16654,27 @@ class _MyHomePageState extends State<MyHomePage> {
                                               },
                                             ),
                                           ]),
+                                    if (currentcharacter == 'ayaka')
+                                      Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                        FilterChip(
+                                          label: Text('Constellation4: Enemy DEF -30%'.tr()),
+                                          selected: ayakaconstellation4On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              ayakaconstellation4On = value;
+                                            });
+                                          },
+                                        ),
+                                        FilterChip(
+                                          label: Text('Constellation6: Charged Atk DMG +298%'.tr()),
+                                          selected: ayakaconstellation6On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              ayakaconstellation6On = value;
+                                            });
+                                          },
+                                        ),
+                                      ]),
                                     SizedBox(height: 10),
                                   ],
                                 ),
