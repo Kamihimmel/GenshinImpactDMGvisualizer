@@ -11516,6 +11516,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             if (rulebythunder2On)
                                               buildStatRow(Colors.amber, 'Rule by Thunder2'.tr(),
                                                   (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30))).toString()),
+                                            if (rapidfiringOn) buildStatRow(Colors.teal[300], 'Rapid Firing'.tr(), (30 + weaponref * 10).toString()),
                                             if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
                                           ],
                                         ),
@@ -11553,6 +11554,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             if (rulebythunder2On)
                                               buildstatbarpercent(
                                                   Colors.amber, (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))),
+                                            if (rapidfiringOn) buildstatbarpercent(Colors.teal[300], (30 + weaponref * 10)),
                                             if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
                                           ],
                                         ),
@@ -11570,6 +11572,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             if (strongWilled2On) buildStatRow(Colors.blue[300], 'Strong Willed2'.tr(), ((6 + weaponref * 2) * strongWilled2Times).toString()),
                                             if (troupesdawnlight4on) buildStatRow(Colors.green[400], "Troupe's Dawnlight 4 set".tr(), "35"),
                                             if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
+                                            if (rapidfiringOn) buildStatRow(Colors.teal[300], 'Rapid Firing'.tr(), "-10"),
                                           ],
                                         ),
                                       //ANCHOR statChargedATKDMG:bar
@@ -11619,6 +11622,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
                                           ],
                                         ),
+                                      if (bonusChargedATKDMGpercent < 0) SizedBox(height: 20),
                                       //ANCHOR Plunge Damage Title
                                       if (bonusPlungeATKDMGpercent != 0)
                                         SelectableText(
