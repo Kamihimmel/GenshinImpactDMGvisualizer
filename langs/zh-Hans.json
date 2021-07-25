@@ -247,8 +247,8 @@
     "Tricks of the Trouble-Maker": "袖火百景图",
     "Summer Scorch: 1% pyro per stack": "炎昼风物诗:每层1%火伤",
     "Summer Scorch": "炎昼风物诗",
-    "A Procession of Bonfires: Pyro DMG +25%": "万灯送火:火伤 +25%",
-    "A Procession of Bonfires": "万灯送火",
+    "A Procession of Bonfires: Pyro DMG +25%": "命之座2:火伤 +25%",
+    "A Procession of Bonfires": "命之座2",
     "Kindling Arrow": "焰硝矢",
     "Ryukin Saxifrage": "琉金云间草",
     "Aurous Blaze": "琉金火光",
@@ -264,5 +264,12 @@
     "Reminiscence2": "追忆2",
     "Reminiscence of Shime": "追忆之注连",
     "Normal/Charged/ Plunging Attack DMG +50%": "普通/重击/下落攻击伤害 +50%",
-    "Unreleased Content Mode Activated": "未实装模式激活"
+    "Amatsumi Kunitsumi Sanctification:Normal & Charged Atk DMG +30%": "天罪国罪镇词:普通攻击/重击伤害 +30%",
+    "Kanten Senmyou Blessing:Cryo DMG +18%": "寒天宣命祝词:冰伤 +18%",
+    "Constellation4: Enemy DEF -30%": "命之座4:敌人防御-30%",
+    "Constellation6: Charged Atk DMG +298%": "命之座6:重击伤害 +298%",
+    "amatsumi": "天罪国罪镇词",
+    "katen": "寒天宣命祝词",
+    "ayakaconstellation4": "命之座4",
+    "ayakaconstellation6": "命之座6"
 }
