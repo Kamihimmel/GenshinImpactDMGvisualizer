@@ -1,7 +1,7 @@
 {
     "title": "原神伤害可视化计算器",
     "ganyu": "甘雨",
-    "yoimiya": "霄宫",
+    "yoimiya": "宵宫",
     "ayaka": "神里绫华",
     "Character": "角色",
     "character": "角色",
@@ -264,5 +264,6 @@
     "Reminiscence2": "追忆2",
     "Reminiscence of Shime": "追忆之注连",
     "Normal/Charged/ Plunging Attack DMG +50%": "普通/重击/下落攻击伤害 +50%",
-    "Unreleased Content Mode Activated": "未实装模式激活"
+    "Unreleased Content Mode Activated": "未实装模式激活",
+    "Senho":"神里流·霰步"
 }

@@ -13,7 +13,10 @@ void main() async {
   await EasyLocalization.ensureInitialized();
 
   runApp(EasyLocalization(
-      supportedLocales: [Locale('en'), Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans')],
+      supportedLocales: [
+        Locale('en'),
+        Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans')
+      ],
       path: 'langs', // <-- change the path of the translation files
       fallbackLocale: Locale('en'),
       child: MyApp()));
@@ -35,7 +38,8 @@ class MyApp extends StatelessWidget {
         4: ThemeData(primarySwatch: Colors.green),
         5: ThemeData(primarySwatch: Colors.lightBlue),
       },
-      fallbackTheme: ThemeData.light(), // optional fallback theme, default value is ThemeData.light()
+      fallbackTheme: ThemeData
+          .light(), // optional fallback theme, default value is ThemeData.light()
     );
 
     return DynamicTheme(
@@ -88,9 +92,30 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String currentcharacter = 'ganyu';
   Map charactertoinfo = {
-    'ganyu': {'iconimage': AssetImage('images/ganyu.png'), 'splashimage': AssetImage('images/2021010519290354247.png'), 'element': 'cryo', 'wtype': 'bow', 'color': 0, 'en': 'Ganyu'},
-    'yoimiya': {'iconimage': AssetImage('images/yoimiya.png'), 'splashimage': AssetImage('images/yoimiyalarge.png'), 'element': 'pyro', 'wtype': 'bow', 'color': 1, 'en': 'Yoimiya'},
-    'ayaka': {'iconimage': AssetImage('images/ayaka.png'), 'splashimage': AssetImage('images/ayakalarge.png'), 'element': 'cryo', 'wtype': 'sword', 'color': 2, 'en': 'Kamisato Ayaka'}
+    'ganyu': {
+      'iconimage': AssetImage('images/ganyu.png'),
+      'splashimage': AssetImage('images/2021010519290354247.png'),
+      'element': 'cryo',
+      'wtype': 'bow',
+      'color': 0,
+      'en': 'Ganyu'
+    },
+    'yoimiya': {
+      'iconimage': AssetImage('images/yoimiya.png'),
+      'splashimage': AssetImage('images/yoimiyalarge.png'),
+      'element': 'pyro',
+      'wtype': 'bow',
+      'color': 1,
+      'en': 'Yoimiya'
+    },
+    'ayaka': {
+      'iconimage': AssetImage('images/ayaka.png'),
+      'splashimage': AssetImage('images/ayakalarge.png'),
+      'element': 'cryo',
+      'wtype': 'sword',
+      'color': 2,
+      'en': 'Kamisato Ayaka'
+    }
   };
 
   Map themetocharacter = {
@@ -107,15 +132,81 @@ class _MyHomePageState extends State<MyHomePage> {
   };
 
   Map cleveltoatk = {
-    'ganyu': {1: 26, 10: 26, 20: 68, 30: 68, 40: 135, 50: 173, 60: 217, 70: 256, 80: 295, 90: 335},
-    'yoimiya': {1: 25, 10: 65, 20: 65, 30: 65, 40: 130, 50: 167, 60: 209, 70: 247, 80: 285, 90: 323},
-    'ayaka': {1: 27, 10: 27, 20: 69, 30: 69, 40: 138, 50: 177, 60: 222, 70: 238, 80: 302, 90: 342},
+    'ganyu': {
+      1: 26,
+      10: 26,
+      20: 68,
+      30: 68,
+      40: 135,
+      50: 173,
+      60: 217,
+      70: 256,
+      80: 295,
+      90: 335
+    },
+    'yoimiya': {
+      1: 25,
+      10: 65,
+      20: 65,
+      30: 65,
+      40: 130,
+      50: 167,
+      60: 209,
+      70: 247,
+      80: 285,
+      90: 323
+    },
+    'ayaka': {
+      1: 27,
+      10: 27,
+      20: 69,
+      30: 69,
+      40: 138,
+      50: 177,
+      60: 222,
+      70: 238,
+      80: 302,
+      90: 342
+    },
   };
 
   Map baseDEFbyLV = {
-    'ganyu': {1: 49, 10: 49, 20: 127, 30: 169, 40: 253, 50: 326, 60: 409, 70: 482, 80: 556, 90: 630},
-    'yoimiya': {1: 48, 10: 48, 20: 124, 30: 124, 40: 247, 50: 318, 60: 399, 70: 470, 80: 542, 90: 615},
-    'ayaka': {1: 61, 10: 61, 20: 158, 30: 158, 40: 315, 50: 405, 60: 509, 70: 600, 80: 692, 90: 784},
+    'ganyu': {
+      1: 49,
+      10: 49,
+      20: 127,
+      30: 169,
+      40: 253,
+      50: 326,
+      60: 409,
+      70: 482,
+      80: 556,
+      90: 630
+    },
+    'yoimiya': {
+      1: 48,
+      10: 48,
+      20: 124,
+      30: 124,
+      40: 247,
+      50: 318,
+      60: 399,
+      70: 470,
+      80: 542,
+      90: 615
+    },
+    'ayaka': {
+      1: 61,
+      10: 61,
+      20: 158,
+      30: 158,
+      40: 315,
+      50: 405,
+      60: 509,
+      70: 600,
+      80: 692,
+      90: 784
+    },
   };
 
   Map baseHPbyLV = {
@@ -158,15 +249,48 @@ class _MyHomePageState extends State<MyHomePage> {
   };
 
   Map baseCDbyLVL = {
-    'ganyu': {1: 50, 10: 50, 20: 50, 30: 50, 40: 50, 50: 59.6, 60: 69.2, 70: 69.2, 80: 78.8, 90: 88.4},
-    'ayaka': {1: 50, 10: 50, 20: 50, 30: 50, 40: 50, 50: 59.6, 60: 69.2, 70: 69.2, 80: 78.8, 90: 88.4},
+    'ganyu': {
+      1: 50,
+      10: 50,
+      20: 50,
+      30: 50,
+      40: 50,
+      50: 59.6,
+      60: 69.2,
+      70: 69.2,
+      80: 78.8,
+      90: 88.4
+    },
+    'ayaka': {
+      1: 50,
+      10: 50,
+      20: 50,
+      30: 50,
+      40: 50,
+      50: 59.6,
+      60: 69.2,
+      70: 69.2,
+      80: 78.8,
+      90: 88.4
+    },
   };
 
   int levelatk = 0;
 
   double baseCR = 5;
   Map baseCRbylvl = {
-    'yoimiya': {1: 5, 10: 5, 20: 5, 30: 5, 40: 5, 50: 9.8, 60: 14.6, 70: 14.6, 80: 19.4, 90: 24.2},
+    'yoimiya': {
+      1: 5,
+      10: 5,
+      20: 5,
+      30: 5,
+      40: 5,
+      50: 9.8,
+      60: 14.6,
+      70: 14.6,
+      80: 19.4,
+      90: 24.2
+    },
   };
 
   Map<int, double> cleveltoPhysicalDMGpercent = {};
@@ -184,7 +308,27 @@ class _MyHomePageState extends State<MyHomePage> {
   Map<int, double> cleveltoGeoDMGpercent = {};
   double levelGeoDMGpercent = 0;
 
-  Map<int, int> weapontoatk = {1: 46, 5: 62, 10: 82, 15: 102, 20: 122, 25: 173, 30: 194, 35: 214, 40: 235, 45: 287, 50: 308, 55: 361, 60: 382, 65: 435, 70: 457, 75: 510, 80: 532, 85: 586, 90: 608};
+  Map<int, int> weapontoatk = {
+    1: 46,
+    5: 62,
+    10: 82,
+    15: 102,
+    20: 122,
+    25: 173,
+    30: 194,
+    35: 214,
+    40: 235,
+    45: 287,
+    50: 308,
+    55: 361,
+    60: 382,
+    65: 435,
+    70: 457,
+    75: 510,
+    80: 532,
+    85: 586,
+    90: 608
+  };
 
   Map<int, double> weapontoatkpercent = {
     1: 10.8,
@@ -389,18 +533,22 @@ class _MyHomePageState extends State<MyHomePage> {
     'amos': AssetImage('images/weapon/Weapon_Amos.png'),
     'skywardharp': AssetImage('images/weapon/Weapon_Skyward_Harp.png'),
     'alleyhunter': AssetImage('images/weapon/Weapon_Alley_Hunter.png'),
-    'blackcliffwarbow': AssetImage('images/weapon/Weapon_Blackcliff_Warbow.png'),
+    'blackcliffwarbow':
+        AssetImage('images/weapon/Weapon_Blackcliff_Warbow.png'),
     'compoundbow': AssetImage('images/weapon/Weapon_Compound_Bow.png'),
     'elegyfortheend': AssetImage('images/weapon/Weapon_Elegy_for_the_End.png'),
     'favoniuswarbow': AssetImage('images/weapon/Weapon_Favonius_Warbow.png'),
-    'prototypecrescent': AssetImage('images/weapon/Weapon_Prototype_Crescent.png'),
+    'prototypecrescent':
+        AssetImage('images/weapon/Weapon_Prototype_Crescent.png'),
     'rust': AssetImage('images/weapon/Weapon_Rust.png'),
     'sacrificialbow': AssetImage('images/weapon/Weapon_Sacrificial_Bow.png'),
     'thestringless': AssetImage('images/weapon/Weapon_The_Stringless.png'),
-    'theviridescenthunt': AssetImage('images/weapon/Weapon_The_Viridescent_Hunt.png'),
+    'theviridescenthunt':
+        AssetImage('images/weapon/Weapon_The_Viridescent_Hunt.png'),
     'windblumeode': AssetImage('images/weapon/Weapon_Windblume_Ode.png'),
     'slingshot': AssetImage('images/weapon/Weapon_Slingshot.png'),
-    'sharpshooteroath': AssetImage('images/weapon/Weapon_Sharpshooter_Oath.png'),
+    'sharpshooteroath':
+        AssetImage('images/weapon/Weapon_Sharpshooter_Oath.png'),
     'recurvebow': AssetImage('images/weapon/Weapon_Recurve_Bow.png'),
     'messenger': AssetImage('images/weapon/Weapon_Messenger.png'),
     'ebonybow': AssetImage('images/weapon/Weapon_Ebony_Bow.png'),
@@ -759,44 +907,386 @@ class _MyHomePageState extends State<MyHomePage> {
   int enemyGeoresv = 10;
 
   var eneresbytype = {
-    1: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //1 -> Hilichurl
-    2: {'physical': 70, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //2 -> Ruin Guard
-    3: {'physical': -20, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //3 -> Treasure Hoarder
-    4: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 999, 'cryo': 999, 'geo': 10}, //4 -> Andrius, Dominator of Wolves
-    5: {'physical': 10, 'pyro': 999, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //5 -> Pyro Slime
-    6: {'physical': 10, 'pyro': 10, 'hydro': 999, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //6 -> Hydro Slime
-    7: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 999, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //7 -> Dendro Slime
-    8: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 999, 'anemo': 10, 'cryo': 10, 'geo': 10}, //8 -> Electro Slime
-    9: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 999, 'cryo': 10, 'geo': 10}, //9 -> Anemo Slime
-    10: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 999, 'geo': 10}, //10-> Cryo Slime
-    11: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 999}, //11-> Geo Slime
-    12: {'physical': 30, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //12-> Mitachurl
-    13: {'physical': 10, 'pyro': 50, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //13-> Pyro Samachurl
-    14: {'physical': 10, 'pyro': 10, 'hydro': 50, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //14-> Hydro Samachurl
-    15: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 50, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //15-> Dendro Samachurl
-    16: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 50, 'cryo': 10, 'geo': 10}, //16-> Anemo Samachurl
-    17: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 50}, //17-> Geo Samachurl
-    18: {'physical': 50, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 70}, //18-> Stonehide Lawachurl
-    19: {'physical': 50, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //19-> Ruin Hunter
-    20: {'physical': 35, 'pyro': 75, 'hydro': 35, 'dendro': 35, 'electro': 35, 'anemo': 35, 'cryo': 35, 'geo': 35}, //20-> Pyro Flower
-    21: {'physical': 35, 'pyro': 35, 'hydro': 35, 'dendro': 35, 'electro': 35, 'anemo': 35, 'cryo': 75, 'geo': 35}, //21-> Cryo Flower
-    22: {'physical': 10, 'pyro': 50, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //22-> Pyro Flower(Stunned)
-    23: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 50, 'geo': 10}, //23-> Cryo Flower(Stunned)
-    24: {'physical': -20, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //24-> Fatui Skirmisher
-    25: {'physical': 80, 'pyro': 110, 'hydro': 110, 'dendro': 110, 'electro': 110, 'anemo': 110, 'cryo': 110, 'geo': 110}, //25-> Fatui Skirmisher(Shielded)
-    26: {'physical': -20, 'pyro': 50, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //26-> Fatui Pyro Agent
-    27: {'physical': -20, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 50, 'anemo': 10, 'cryo': 10, 'geo': 10}, //27-> Fatui Electro Cincin Mage
-    28: {'physical': 30, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 50}, //28-> Geovishap Hatchling
-    29: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //29-> Abyss Mage
-    30: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 999, 'anemo': 10, 'cryo': 10, 'geo': 10}, //30-> Electro Hypostasis
-    31: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 999, 'cryo': 10, 'geo': 10}, //31-> Anemo Hypostasis
-    32: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 999}, //32-> Geo Hypostasis
-    33: {'physical': 130, 'pyro': 170, 'hydro': 110, 'dendro': 110, 'electro': 110, 'anemo': 110, 'cryo': 110, 'geo': 110}, //33-> Pyro Regisvine
-    34: {'physical': 130, 'pyro': 110, 'hydro': 110, 'dendro': 110, 'electro': 110, 'anemo': 110, 'cryo': 170, 'geo': 110}, //34-> Cryo Regisvine
-    35: {'physical': 30, 'pyro': 70, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //35-> Pyro Regisvine(Stunned)
-    36: {'physical': 30, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 70, 'geo': 10}, //36-> Cryo Regisvine(Stunned)
-    37: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 10, 'cryo': 10, 'geo': 10}, //37-> Dvalin
-    38: {'physical': 10, 'pyro': 10, 'hydro': 10, 'dendro': 10, 'electro': 10, 'anemo': 999, 'cryo': 999, 'geo': 10} //38-> Andrius
+    1: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //1 -> Hilichurl
+    2: {
+      'physical': 70,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //2 -> Ruin Guard
+    3: {
+      'physical': -20,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //3 -> Treasure Hoarder
+    4: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 999,
+      'cryo': 999,
+      'geo': 10
+    }, //4 -> Andrius, Dominator of Wolves
+    5: {
+      'physical': 10,
+      'pyro': 999,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //5 -> Pyro Slime
+    6: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 999,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //6 -> Hydro Slime
+    7: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 999,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //7 -> Dendro Slime
+    8: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 999,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //8 -> Electro Slime
+    9: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 999,
+      'cryo': 10,
+      'geo': 10
+    }, //9 -> Anemo Slime
+    10: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 999,
+      'geo': 10
+    }, //10-> Cryo Slime
+    11: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 999
+    }, //11-> Geo Slime
+    12: {
+      'physical': 30,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //12-> Mitachurl
+    13: {
+      'physical': 10,
+      'pyro': 50,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //13-> Pyro Samachurl
+    14: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 50,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //14-> Hydro Samachurl
+    15: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 50,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //15-> Dendro Samachurl
+    16: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 50,
+      'cryo': 10,
+      'geo': 10
+    }, //16-> Anemo Samachurl
+    17: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 50
+    }, //17-> Geo Samachurl
+    18: {
+      'physical': 50,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 70
+    }, //18-> Stonehide Lawachurl
+    19: {
+      'physical': 50,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //19-> Ruin Hunter
+    20: {
+      'physical': 35,
+      'pyro': 75,
+      'hydro': 35,
+      'dendro': 35,
+      'electro': 35,
+      'anemo': 35,
+      'cryo': 35,
+      'geo': 35
+    }, //20-> Pyro Flower
+    21: {
+      'physical': 35,
+      'pyro': 35,
+      'hydro': 35,
+      'dendro': 35,
+      'electro': 35,
+      'anemo': 35,
+      'cryo': 75,
+      'geo': 35
+    }, //21-> Cryo Flower
+    22: {
+      'physical': 10,
+      'pyro': 50,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //22-> Pyro Flower(Stunned)
+    23: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 50,
+      'geo': 10
+    }, //23-> Cryo Flower(Stunned)
+    24: {
+      'physical': -20,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //24-> Fatui Skirmisher
+    25: {
+      'physical': 80,
+      'pyro': 110,
+      'hydro': 110,
+      'dendro': 110,
+      'electro': 110,
+      'anemo': 110,
+      'cryo': 110,
+      'geo': 110
+    }, //25-> Fatui Skirmisher(Shielded)
+    26: {
+      'physical': -20,
+      'pyro': 50,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //26-> Fatui Pyro Agent
+    27: {
+      'physical': -20,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 50,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //27-> Fatui Electro Cincin Mage
+    28: {
+      'physical': 30,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 50
+    }, //28-> Geovishap Hatchling
+    29: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //29-> Abyss Mage
+    30: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 999,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //30-> Electro Hypostasis
+    31: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 999,
+      'cryo': 10,
+      'geo': 10
+    }, //31-> Anemo Hypostasis
+    32: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 999
+    }, //32-> Geo Hypostasis
+    33: {
+      'physical': 130,
+      'pyro': 170,
+      'hydro': 110,
+      'dendro': 110,
+      'electro': 110,
+      'anemo': 110,
+      'cryo': 110,
+      'geo': 110
+    }, //33-> Pyro Regisvine
+    34: {
+      'physical': 130,
+      'pyro': 110,
+      'hydro': 110,
+      'dendro': 110,
+      'electro': 110,
+      'anemo': 110,
+      'cryo': 170,
+      'geo': 110
+    }, //34-> Cryo Regisvine
+    35: {
+      'physical': 30,
+      'pyro': 70,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //35-> Pyro Regisvine(Stunned)
+    36: {
+      'physical': 30,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 70,
+      'geo': 10
+    }, //36-> Cryo Regisvine(Stunned)
+    37: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 10,
+      'cryo': 10,
+      'geo': 10
+    }, //37-> Dvalin
+    38: {
+      'physical': 10,
+      'pyro': 10,
+      'hydro': 10,
+      'dendro': 10,
+      'electro': 10,
+      'anemo': 999,
+      'cryo': 999,
+      'geo': 10
+    } //38-> Andrius
   };
 
   //ANCHOR skilldamagestat
@@ -1314,6 +1804,161 @@ class _MyHomePageState extends State<MyHomePage> {
       15: 166.9,
     }
   };
+  var ayakanatklvl = {
+    '1hitDMG': {
+      1: 45.73,
+      2: 49.45,
+      3: 53.17,
+      4: 58.49,
+      5: 62.21,
+      6: 66.46,
+      7: 72.31,
+      8: 78.16,
+      9: 84.01,
+      10: 90.39,
+      11: 96.77,
+      12: 103.15,
+      13: 109.53,
+      14: 115.91,
+      15: 122.29,
+    },
+    '2hitDMG': {
+      1: 48.68,
+      2: 52.65,
+      3: 56.61,
+      4: 62.27,
+      5: 66.23,
+      6: 70.76,
+      7: 76.99,
+      8: 83.22,
+      9: 89.44,
+      10: 96.24,
+      11: 103.03,
+      12: 109.82,
+      13: 116.62,
+      14: 123.41,
+      15: 130.2,
+    },
+    '3hitDMG': {
+      1: 62.62,
+      2: 67.72,
+      3: 72.82,
+      4: 80.1,
+      5: 85.19,
+      6: 91.02,
+      7: 99.03,
+      8: 107.04,
+      9: 115.05,
+      10: 123.79,
+      11: 132.53,
+      12: 141.26,
+      13: 150,
+      14: 158.74,
+      15: 167.48,
+    },
+    '4hitDMG': {
+      1: 22.65,
+      2: 24.49,
+      3: 26.33,
+      4: 28.93,
+      5: 30.81,
+      6: 32.92,
+      7: 35.81,
+      8: 38.71,
+      9: 41.61,
+      10: 44.77,
+      11: 47.93,
+      12: 51.09,
+      13: 54.25,
+      14: 57.41,
+      15: 60.57,
+    },
+    '5hitDMG': {
+      1: 78.18,
+      2: 84.55,
+      3: 90.91,
+      4: 100,
+      5: 106.36,
+      6: 113.64,
+      7: 123.64,
+      8: 133.64,
+      9: 143.64,
+      10: 154.55,
+      11: 165.45,
+      12: 176.36,
+      13: 187.27,
+      14: 198.18,
+      15: 209.09,
+    },
+    'ChargedAttackDMG': {
+      1: 55.13,
+      2: 59.61,
+      3: 64.1,
+      4: 70.51,
+      5: 75,
+      6: 80.13,
+      7: 87.18,
+      8: 94.23,
+      9: 101.28,
+      10: 108.97,
+      11: 116.66,
+      12: 124.35,
+      13: 132.05,
+      14: 139.74,
+      15: 147.43,
+    },
+    'PlungeDMG': {
+      1: 63.93,
+      2: 69.14,
+      3: 74.34,
+      4: 81.77,
+      5: 86.98,
+      6: 92.93,
+      7: 101.1,
+      8: 109.28,
+      9: 117.46,
+      10: 126.38,
+      11: 135.3,
+      12: 144.22,
+      13: 153.14,
+      14: 162.06,
+      15: 170.98,
+    },
+    'LPlungeDMG': {
+      1: 127.84,
+      2: 138.24,
+      3: 148.65,
+      4: 163.51,
+      5: 173.92,
+      6: 185.81,
+      7: 202.16,
+      8: 218.51,
+      9: 234.86,
+      10: 252.7,
+      11: 270.54,
+      12: 288.38,
+      13: 306.22,
+      14: 324.05,
+      15: 341.89,
+    },
+    'HPlungeDMG': {
+      1: 159.68,
+      2: 172.67,
+      3: 185.67,
+      4: 204.24,
+      5: 217.23,
+      6: 232.09,
+      7: 252.51,
+      8: 272.93,
+      9: 293.36,
+      10: 315.64,
+      11: 337.92,
+      12: 360.2,
+      13: 382.48,
+      14: 404.76,
+      15: 427.04,
+    },
+  };
 
   double hit1dmgpercent = 0;
   double hit2dmgpercent = 0;
@@ -1327,6 +1972,7 @@ class _MyHomePageState extends State<MyHomePage> {
   double plungedmgpercent = 0;
   double lplungedmgpercent = 0;
   double hplungedmgpercent = 0;
+  double chargedattackdmgpercent = 0;
 
   double frostflakedmgpercent = 0;
   double frostflakebloomdmgpercent = 0;
@@ -1381,6 +2027,10 @@ class _MyHomePageState extends State<MyHomePage> {
   double hit6dmgexp = 0;
   double hit6dmgc = 0;
 
+  double chargedatkdmgnc = 0;
+  double chargedatkdmgexp = 0;
+  double chargedatkdmgc = 0;
+
   double plungedmgnc = 0;
   double plungedmgexp = 0;
   double plungedmgc = 0;
@@ -1392,6 +2042,54 @@ class _MyHomePageState extends State<MyHomePage> {
   double hplungedmgnc = 0;
   double hplungedmgexp = 0;
   double hplungedmgc = 0;
+
+  double natkalldmgnc = 0;
+  double natkalldmgexp = 0;
+  double natkalldmgc = 0;
+
+  double cyrohit1dmgnc = 0;
+  double cyrohit1dmgexp = 0;
+  double cyrohit1dmgc = 0;
+
+  double cyrohit2dmgnc = 0;
+  double cyrohit2dmgexp = 0;
+  double cyrohit2dmgc = 0;
+
+  double cyrohit3dmgnc = 0;
+  double cyrohit3dmgexp = 0;
+  double cyrohit3dmgc = 0;
+
+  double cyrohit4dmgnc = 0;
+  double cyrohit4dmgexp = 0;
+  double cyrohit4dmgc = 0;
+
+  double cyrohit5dmgnc = 0;
+  double cyrohit5dmgexp = 0;
+  double cyrohit5dmgc = 0;
+
+  double cyrohit6dmgnc = 0;
+  double cyrohit6dmgexp = 0;
+  double cyrohit6dmgc = 0;
+
+  double cyrochargedatkdmgnc = 0;
+  double cyrochargedatkdmgexp = 0;
+  double cyrochargedatkdmgc = 0;
+
+  double cyroplungedmgnc = 0;
+  double cyroplungedmgexp = 0;
+  double cyroplungedmgc = 0;
+
+  double cyrolplungedmgnc = 0;
+  double cyrolplungedmgexp = 0;
+  double cyrolplungedmgc = 0;
+
+  double cyrohplungedmgnc = 0;
+  double cyrohplungedmgexp = 0;
+  double cyrohplungedmgc = 0;
+
+  double cyronatkalldmgnc = 0;
+  double cyronatkalldmgexp = 0;
+  double cyronatkalldmgc = 0;
 
   double aimdmgnc = 0;
   double aimdmgexp = 0;
@@ -1599,7 +2297,8 @@ class _MyHomePageState extends State<MyHomePage> {
       blizzardstrayer2On = true;
       blizzardstrayer41On = true;
       blizzardstrayer42On = true;
-    } else if (artifactsetAselect == 'blizzard' || artifactsetBselect == 'blizzard') {
+    } else if (artifactsetAselect == 'blizzard' ||
+        artifactsetBselect == 'blizzard') {
       blizzardstrayer2On = true;
       blizzardstrayer41On = false;
       blizzardstrayer42On = false;
@@ -1612,7 +2311,8 @@ class _MyHomePageState extends State<MyHomePage> {
     if (artifactsetAselect == 'troupe' && artifactsetBselect == 'troupe') {
       troupesdawnlight2on = true;
       troupesdawnlight4on = true;
-    } else if (artifactsetAselect == 'troupe' || artifactsetBselect == 'troupe') {
+    } else if (artifactsetAselect == 'troupe' ||
+        artifactsetBselect == 'troupe') {
       troupesdawnlight2on = true;
       troupesdawnlight4on = false;
     } else {
@@ -1631,10 +2331,12 @@ class _MyHomePageState extends State<MyHomePage> {
       royalflora4On = false;
     }
 
-    if (artifactsetAselect == 'gladiator' && artifactsetBselect == 'gladiator') {
+    if (artifactsetAselect == 'gladiator' &&
+        artifactsetBselect == 'gladiator') {
       gladiator2On = true;
       gladiator4On = true;
-    } else if (artifactsetAselect == 'gladiator' || artifactsetBselect == 'gladiator') {
+    } else if (artifactsetAselect == 'gladiator' ||
+        artifactsetBselect == 'gladiator') {
       gladiator2On = true;
       gladiator4On = false;
     } else {
@@ -1645,7 +2347,8 @@ class _MyHomePageState extends State<MyHomePage> {
     if (artifactsetAselect == 'maiden' && artifactsetBselect == 'maiden') {
       maiden2On = false;
       maiden4On = false;
-    } else if (artifactsetAselect == 'maiden' || artifactsetBselect == 'maiden') {
+    } else if (artifactsetAselect == 'maiden' ||
+        artifactsetBselect == 'maiden') {
       maiden2On = false;
       maiden4On = false;
     } else {
@@ -1653,10 +2356,12 @@ class _MyHomePageState extends State<MyHomePage> {
       maiden4On = false;
     }
 
-    if (artifactsetAselect == 'thunderbird' && artifactsetBselect == 'thunderbird') {
+    if (artifactsetAselect == 'thunderbird' &&
+        artifactsetBselect == 'thunderbird') {
       thunderbird2On = true;
       thunderbird4On = true;
-    } else if (artifactsetAselect == 'thunderbird' || artifactsetBselect == 'thunderbird') {
+    } else if (artifactsetAselect == 'thunderbird' ||
+        artifactsetBselect == 'thunderbird') {
       thunderbird2On = true;
       thunderbird4On = false;
     } else {
@@ -1664,10 +2369,12 @@ class _MyHomePageState extends State<MyHomePage> {
       thunderbird4On = false;
     }
 
-    if (artifactsetAselect == 'thundersoother' && artifactsetBselect == 'thundersoother') {
+    if (artifactsetAselect == 'thundersoother' &&
+        artifactsetBselect == 'thundersoother') {
       thundersoother2On = false;
       thundersoother4On = true;
-    } else if (artifactsetAselect == 'thundersoother' || artifactsetBselect == 'thundersoother') {
+    } else if (artifactsetAselect == 'thundersoother' ||
+        artifactsetBselect == 'thundersoother') {
       thundersoother2On = false;
       thundersoother4On = false;
     } else {
@@ -1675,10 +2382,12 @@ class _MyHomePageState extends State<MyHomePage> {
       thundersoother4On = false;
     }
 
-    if (artifactsetAselect == 'reminiscenceofshime' && artifactsetBselect == 'reminiscenceofshime') {
+    if (artifactsetAselect == 'reminiscenceofshime' &&
+        artifactsetBselect == 'reminiscenceofshime') {
       reminiscenceofshime2On = true;
       reminiscenceofshime4On = true;
-    } else if (artifactsetAselect == 'reminiscenceofshime' || artifactsetBselect == 'reminiscenceofshime') {
+    } else if (artifactsetAselect == 'reminiscenceofshime' ||
+        artifactsetBselect == 'reminiscenceofshime') {
       reminiscenceofshime2On = true;
       reminiscenceofshime4On = false;
     } else {
@@ -1735,7 +2444,27 @@ class _MyHomePageState extends State<MyHomePage> {
     if (weaponselect == "amos") {
       strongWilled1On = true;
       strongWilled2On = true;
-      weapontoatk = {1: 46, 5: 62, 10: 82, 15: 102, 20: 122, 25: 173, 30: 194, 35: 214, 40: 235, 45: 287, 50: 308, 55: 361, 60: 382, 65: 435, 70: 457, 75: 510, 80: 532, 85: 586, 90: 608};
+      weapontoatk = {
+        1: 46,
+        5: 62,
+        10: 82,
+        15: 102,
+        20: 122,
+        25: 173,
+        30: 194,
+        35: 214,
+        40: 235,
+        45: 287,
+        50: 308,
+        55: 361,
+        60: 382,
+        65: 435,
+        70: 457,
+        75: 510,
+        80: 532,
+        85: 586,
+        90: 608
+      };
       weapontoatkpercent = {
         1: 10.8,
         5: 12.5,
@@ -1764,7 +2493,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (weaponselect == "skywardharp") {
       echoingBalladOn = true;
-      weapontoatk = {1: 48, 5: 65, 10: 87, 15: 110, 20: 133, 25: 188, 30: 212, 35: 236, 40: 261, 45: 316, 50: 341, 55: 398, 60: 423, 65: 480, 70: 506, 75: 563, 80: 590, 85: 648, 90: 674};
+      weapontoatk = {
+        1: 48,
+        5: 65,
+        10: 87,
+        15: 110,
+        20: 133,
+        25: 188,
+        30: 212,
+        35: 236,
+        40: 261,
+        45: 316,
+        50: 341,
+        55: 398,
+        60: 423,
+        65: 480,
+        70: 506,
+        75: 563,
+        80: 590,
+        85: 648,
+        90: 674
+      };
       weapontoCRpercent = {
         1: 4.8,
         5: 5.6,
@@ -1792,7 +2541,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (weaponselect == "prototypecrescent") {
       unreturningOn = true;
-      weapontoatk = {1: 42, 5: 56, 10: 74, 15: 91, 20: 109, 25: 152, 30: 170, 35: 187, 40: 205, 45: 248, 50: 266, 55: 306, 60: 327, 65: 370, 70: 388, 75: 431, 80: 449, 85: 492, 90: 510};
+      weapontoatk = {
+        1: 42,
+        5: 56,
+        10: 74,
+        15: 91,
+        20: 109,
+        25: 152,
+        30: 170,
+        35: 187,
+        40: 205,
+        45: 248,
+        50: 266,
+        55: 306,
+        60: 327,
+        65: 370,
+        70: 388,
+        75: 431,
+        80: 449,
+        85: 492,
+        90: 510
+      };
       weapontoatkpercent = {
         1: 9,
         5: 10.5,
@@ -1821,7 +2590,27 @@ class _MyHomePageState extends State<MyHomePage> {
     if (weaponselect == "thunderingpulse") {
       rulebythunder1On = true;
       rulebythunder2On = true;
-      weapontoatk = {1: 46, 5: 62, 10: 82, 15: 102, 20: 122, 25: 173, 30: 194, 35: 214, 40: 235, 45: 287, 50: 308, 55: 361, 60: 382, 65: 435, 70: 457, 75: 510, 80: 532, 85: 586, 90: 608};
+      weapontoatk = {
+        1: 46,
+        5: 62,
+        10: 82,
+        15: 102,
+        20: 122,
+        25: 173,
+        30: 194,
+        35: 214,
+        40: 235,
+        45: 287,
+        50: 308,
+        55: 361,
+        60: 382,
+        65: 435,
+        70: 457,
+        75: 510,
+        80: 532,
+        85: 586,
+        90: 608
+      };
       weapontoCDpercent = {
         1: 14.4,
         5: 16.7,
@@ -1850,7 +2639,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (weaponselect == "rust") {
       rapidfiringOn = true;
-      weapontoatk = {1: 42, 5: 56, 10: 74, 15: 91, 20: 109, 25: 152, 30: 170, 35: 187, 40: 205, 45: 248, 50: 266, 55: 309, 60: 327, 65: 370, 70: 388, 75: 431, 80: 449, 85: 492, 90: 510};
+      weapontoatk = {
+        1: 42,
+        5: 56,
+        10: 74,
+        15: 91,
+        20: 109,
+        25: 152,
+        30: 170,
+        35: 187,
+        40: 205,
+        45: 248,
+        50: 266,
+        55: 309,
+        60: 327,
+        65: 370,
+        70: 388,
+        75: 431,
+        80: 449,
+        85: 492,
+        90: 510
+      };
       weapontoCDpercent = {
         1: 9,
         5: 10.5,
@@ -1908,9 +2717,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 140,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/weapon/Weapon_Amos.png'),
+                                    image: AssetImage(
+                                        'images/weapon/Weapon_Amos.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -1961,9 +2772,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 140,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/weapon/Weapon_Skyward_Harp.png'),
+                                    image: AssetImage(
+                                        'images/weapon/Weapon_Skyward_Harp.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -2013,9 +2826,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 140,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/weapon/Weapon_Thundering_Pulse.png'),
+                                    image: AssetImage(
+                                        'images/weapon/Weapon_Thundering_Pulse.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -2390,9 +3205,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 140,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/weapon/Weapon_Prototype_Crescent.png'),
+                                    image: AssetImage(
+                                        'images/weapon/Weapon_Prototype_Crescent.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -2550,9 +3367,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 140,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/weapon/Weapon_Rust.png'),
+                                    image: AssetImage(
+                                        'images/weapon/Weapon_Rust.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3055,9 +3874,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Snowswept_Memory.png'),
+                                    image: AssetImage(
+                                        'images/Item_Snowswept_Memory.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3106,9 +3927,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Troupes_Dawnlight.png'),
+                                    image: AssetImage(
+                                        'images/Item_Troupes_Dawnlight.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3156,9 +3979,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Royal_Flora.png'),
+                                    image: AssetImage(
+                                        'images/Item_Royal_Flora.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3207,9 +4032,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Gladiator_Nostalgia.png'),
+                                    image: AssetImage(
+                                        'images/Item_Gladiator_Nostalgia.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3258,9 +4085,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Maiden\'s_Distant_Love.png'),
+                                    image: AssetImage(
+                                        'images/Item_Maiden\'s_Distant_Love.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3309,9 +4138,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Thunderbird\'s_Mercy.png'),
+                                    image: AssetImage(
+                                        'images/Item_Thunderbird\'s_Mercy.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3360,9 +4191,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Thundersoother\'s_Heart.png'),
+                                    image: AssetImage(
+                                        'images/Item_Thundersoother\'s_Heart.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3411,9 +4244,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Reminiscence_of_Shime.png'),
+                                    image: AssetImage(
+                                        'images/Item_Reminiscence_of_Shime.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3483,9 +4318,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Snowswept_Memory.png'),
+                                    image: AssetImage(
+                                        'images/Item_Snowswept_Memory.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3534,9 +4371,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Troupes_Dawnlight.png'),
+                                    image: AssetImage(
+                                        'images/Item_Troupes_Dawnlight.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3584,9 +4423,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Royal_Flora.png'),
+                                    image: AssetImage(
+                                        'images/Item_Royal_Flora.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3635,9 +4476,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Gladiator_Nostalgia.png'),
+                                    image: AssetImage(
+                                        'images/Item_Gladiator_Nostalgia.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3686,9 +4529,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Maiden\'s_Distant_Love.png'),
+                                    image: AssetImage(
+                                        'images/Item_Maiden\'s_Distant_Love.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3737,9 +4582,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Thunderbird\'s_Mercy.png'),
+                                    image: AssetImage(
+                                        'images/Item_Thunderbird\'s_Mercy.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3788,9 +4635,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Thundersoother\'s_Heart.png'),
+                                    image: AssetImage(
+                                        'images/Item_Thundersoother\'s_Heart.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3839,9 +4688,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   image: DecorationImage(
-                                    image: AssetImage('images/Item_Reminiscence_of_Shime.png'),
+                                    image: AssetImage(
+                                        'images/Item_Reminiscence_of_Shime.png'),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -3931,19 +4782,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1atkpercent < 34.8) stat1atkpercent = num.parse((stat1atkpercent + 0.1).toStringAsFixed(1));
+                                      if (stat1atkpercent < 34.8)
+                                        stat1atkpercent = num.parse(
+                                            (stat1atkpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1atkpercent > 0) stat1atkpercent = num.parse((stat1atkpercent - 0.1).toStringAsFixed(1));
+                                      if (stat1atkpercent > 0)
+                                        stat1atkpercent = num.parse(
+                                            (stat1atkpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -3962,7 +4823,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat1atkpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat1atkpercent = double.parse((value).toStringAsFixed(1));
+                            stat1atkpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat1atkpercent.toString());
                           });
                         },
@@ -4011,19 +4873,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1hppercent < 34.8) stat1hppercent = num.parse((stat1hppercent + 0.1).toStringAsFixed(1));
+                                      if (stat1hppercent < 34.8)
+                                        stat1hppercent = num.parse(
+                                            (stat1hppercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1hppercent > 0) stat1hppercent = num.parse((stat1hppercent - 0.1).toStringAsFixed(1));
+                                      if (stat1hppercent > 0)
+                                        stat1hppercent = num.parse(
+                                            (stat1hppercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -4042,7 +4914,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat1hppercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat1hppercent = double.parse((value).toStringAsFixed(1));
+                            stat1hppercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat1atkpercent.toString());
                           });
                         },
@@ -4094,19 +4967,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1defpercent < 43.8) stat1defpercent = num.parse((stat1defpercent + 0.1).toStringAsFixed(1));
+                                      if (stat1defpercent < 43.8)
+                                        stat1defpercent = num.parse(
+                                            (stat1defpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1defpercent > 0) stat1defpercent = num.parse((stat1defpercent - 0.1).toStringAsFixed(1));
+                                      if (stat1defpercent > 0)
+                                        stat1defpercent = num.parse(
+                                            (stat1defpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -4125,7 +5008,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat1defpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat1defpercent = double.parse((value).toStringAsFixed(1));
+                            stat1defpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat1atkpercent.toString());
                           });
                         },
@@ -4177,19 +5061,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1CRpercent < 23.4) stat1CRpercent = num.parse((stat1CRpercent + 0.1).toStringAsFixed(1));
+                                      if (stat1CRpercent < 23.4)
+                                        stat1CRpercent = num.parse(
+                                            (stat1CRpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1CRpercent > 0) stat1CRpercent = num.parse((stat1CRpercent - 0.1).toStringAsFixed(1));
+                                      if (stat1CRpercent > 0)
+                                        stat1CRpercent = num.parse(
+                                            (stat1CRpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -4208,7 +5102,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat1CRpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat1CRpercent = double.parse((value).toStringAsFixed(1));
+                            stat1CRpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat1atkpercent.toString());
                           });
                         },
@@ -4260,19 +5155,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1CDpercent < 46.8) stat1CDpercent = num.parse((stat1CDpercent + 0.1).toStringAsFixed(1));
+                                      if (stat1CDpercent < 46.8)
+                                        stat1CDpercent = num.parse(
+                                            (stat1CDpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1CDpercent > 0) stat1CDpercent = num.parse((stat1CDpercent - 0.1).toStringAsFixed(1));
+                                      if (stat1CDpercent > 0)
+                                        stat1CDpercent = num.parse(
+                                            (stat1CDpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -4291,7 +5196,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat1CDpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat1CDpercent = double.parse((value).toStringAsFixed(1));
+                            stat1CDpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat1atkpercent.toString());
                           });
                         },
@@ -4343,18 +5249,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1EM < 138) stat1EM = num.parse((stat1EM + 1).toStringAsFixed(0));
+                                      if (stat1EM < 138)
+                                        stat1EM = num.parse(
+                                            (stat1EM + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1EM > 0) stat1EM = num.parse((stat1EM - 1).toStringAsFixed(0));
+                                      if (stat1EM > 0)
+                                        stat1EM = num.parse(
+                                            (stat1EM - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -4419,19 +5333,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1ERpercent < 39) stat1ERpercent = num.parse((stat1ERpercent + 0.1).toStringAsFixed(1));
+                                      if (stat1ERpercent < 39)
+                                        stat1ERpercent = num.parse(
+                                            (stat1ERpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1ERpercent > 0) stat1ERpercent = num.parse((stat1ERpercent - 0.1).toStringAsFixed(1));
+                                      if (stat1ERpercent > 0)
+                                        stat1ERpercent = num.parse(
+                                            (stat1ERpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -4450,7 +5374,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat1ERpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat1ERpercent = double.parse((value).toStringAsFixed(1));
+                            stat1ERpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat1atkpercent.toString());
                           });
                         },
@@ -4502,18 +5427,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1hp < 1794) stat1hp = num.parse((stat1hp + 1).toStringAsFixed(0));
+                                      if (stat1hp < 1794)
+                                        stat1hp = num.parse(
+                                            (stat1hp + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1hp > 0) stat1hp = num.parse((stat1hp - 1).toStringAsFixed(0));
+                                      if (stat1hp > 0)
+                                        stat1hp = num.parse(
+                                            (stat1hp - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -4583,18 +5516,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1atk < 114) stat1atk = num.parse((stat1atk + 1).toStringAsFixed(0));
+                                      if (stat1atk < 114)
+                                        stat1atk = num.parse(
+                                            (stat1atk + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1atk > 0) stat1atk = num.parse((stat1atk - 1).toStringAsFixed(0));
+                                      if (stat1atk > 0)
+                                        stat1atk = num.parse(
+                                            (stat1atk - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -4662,18 +5603,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1def < 138) stat1def = num.parse((stat1def + 1).toStringAsFixed(0));
+                                      if (stat1def < 138)
+                                        stat1def = num.parse(
+                                            (stat1def + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat1def > 0) stat1def = num.parse((stat1def - 1).toStringAsFixed(0));
+                                      if (stat1def > 0)
+                                        stat1def = num.parse(
+                                            (stat1def - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -4764,19 +5713,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2atkpercent < 34.8) stat2atkpercent = num.parse((stat2atkpercent + 0.1).toStringAsFixed(1));
+                                      if (stat2atkpercent < 34.8)
+                                        stat2atkpercent = num.parse(
+                                            (stat2atkpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2atkpercent > 0) stat2atkpercent = num.parse((stat2atkpercent - 0.1).toStringAsFixed(1));
+                                      if (stat2atkpercent > 0)
+                                        stat2atkpercent = num.parse(
+                                            (stat2atkpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -4795,7 +5754,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat2atkpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat2atkpercent = double.parse((value).toStringAsFixed(1));
+                            stat2atkpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat2atkpercent.toString());
                           });
                         },
@@ -4844,19 +5804,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2hppercent < 34.8) stat2hppercent = num.parse((stat2hppercent + 0.1).toStringAsFixed(1));
+                                      if (stat2hppercent < 34.8)
+                                        stat2hppercent = num.parse(
+                                            (stat2hppercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2hppercent > 0) stat2hppercent = num.parse((stat2hppercent - 0.1).toStringAsFixed(1));
+                                      if (stat2hppercent > 0)
+                                        stat2hppercent = num.parse(
+                                            (stat2hppercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -4875,7 +5845,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat2hppercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat2hppercent = double.parse((value).toStringAsFixed(1));
+                            stat2hppercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat2atkpercent.toString());
                           });
                         },
@@ -4927,19 +5898,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2defpercent < 43.8) stat2defpercent = num.parse((stat2defpercent + 0.1).toStringAsFixed(1));
+                                      if (stat2defpercent < 43.8)
+                                        stat2defpercent = num.parse(
+                                            (stat2defpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2defpercent > 0) stat2defpercent = num.parse((stat2defpercent - 0.1).toStringAsFixed(1));
+                                      if (stat2defpercent > 0)
+                                        stat2defpercent = num.parse(
+                                            (stat2defpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -4958,7 +5939,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat2defpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat2defpercent = double.parse((value).toStringAsFixed(1));
+                            stat2defpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat2atkpercent.toString());
                           });
                         },
@@ -5010,19 +5992,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2CRpercent < 23.4) stat2CRpercent = num.parse((stat2CRpercent + 0.1).toStringAsFixed(1));
+                                      if (stat2CRpercent < 23.4)
+                                        stat2CRpercent = num.parse(
+                                            (stat2CRpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2CRpercent > 0) stat2CRpercent = num.parse((stat2CRpercent - 0.1).toStringAsFixed(1));
+                                      if (stat2CRpercent > 0)
+                                        stat2CRpercent = num.parse(
+                                            (stat2CRpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -5041,7 +6033,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat2CRpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat2CRpercent = double.parse((value).toStringAsFixed(1));
+                            stat2CRpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat2atkpercent.toString());
                           });
                         },
@@ -5093,19 +6086,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2CDpercent < 46.8) stat2CDpercent = num.parse((stat2CDpercent + 0.1).toStringAsFixed(1));
+                                      if (stat2CDpercent < 46.8)
+                                        stat2CDpercent = num.parse(
+                                            (stat2CDpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2CDpercent > 0) stat2CDpercent = num.parse((stat2CDpercent - 0.1).toStringAsFixed(1));
+                                      if (stat2CDpercent > 0)
+                                        stat2CDpercent = num.parse(
+                                            (stat2CDpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -5124,7 +6127,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat2CDpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat2CDpercent = double.parse((value).toStringAsFixed(1));
+                            stat2CDpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat2atkpercent.toString());
                           });
                         },
@@ -5176,18 +6180,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2EM < 138) stat2EM = num.parse((stat2EM + 1).toStringAsFixed(0));
+                                      if (stat2EM < 138)
+                                        stat2EM = num.parse(
+                                            (stat2EM + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2EM > 0) stat2EM = num.parse((stat2EM - 1).toStringAsFixed(0));
+                                      if (stat2EM > 0)
+                                        stat2EM = num.parse(
+                                            (stat2EM - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -5252,19 +6264,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2ERpercent < 39) stat2ERpercent = num.parse((stat2ERpercent + 0.1).toStringAsFixed(1));
+                                      if (stat2ERpercent < 39)
+                                        stat2ERpercent = num.parse(
+                                            (stat2ERpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2ERpercent > 0) stat2ERpercent = num.parse((stat2ERpercent - 0.1).toStringAsFixed(1));
+                                      if (stat2ERpercent > 0)
+                                        stat2ERpercent = num.parse(
+                                            (stat2ERpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -5283,7 +6305,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat2ERpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat2ERpercent = double.parse((value).toStringAsFixed(1));
+                            stat2ERpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat2atkpercent.toString());
                           });
                         },
@@ -5335,18 +6358,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2hp < 1794) stat2hp = num.parse((stat2hp + 1).toStringAsFixed(0));
+                                      if (stat2hp < 1794)
+                                        stat2hp = num.parse(
+                                            (stat2hp + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2hp > 0) stat2hp = num.parse((stat2hp - 1).toStringAsFixed(0));
+                                      if (stat2hp > 0)
+                                        stat2hp = num.parse(
+                                            (stat2hp - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -5416,18 +6447,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2atk < 114) stat2atk = num.parse((stat2atk + 1).toStringAsFixed(0));
+                                      if (stat2atk < 114)
+                                        stat2atk = num.parse(
+                                            (stat2atk + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2atk > 0) stat2atk = num.parse((stat2atk - 1).toStringAsFixed(0));
+                                      if (stat2atk > 0)
+                                        stat2atk = num.parse(
+                                            (stat2atk - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -5495,18 +6534,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2def < 138) stat2def = num.parse((stat2def + 1).toStringAsFixed(0));
+                                      if (stat2def < 138)
+                                        stat2def = num.parse(
+                                            (stat2def + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat2def > 0) stat2def = num.parse((stat2def - 1).toStringAsFixed(0));
+                                      if (stat2def > 0)
+                                        stat2def = num.parse(
+                                            (stat2def - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -5597,19 +6644,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3atkpercent < 34.8) stat3atkpercent = num.parse((stat3atkpercent + 0.1).toStringAsFixed(1));
+                                      if (stat3atkpercent < 34.8)
+                                        stat3atkpercent = num.parse(
+                                            (stat3atkpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3atkpercent > 0) stat3atkpercent = num.parse((stat3atkpercent - 0.1).toStringAsFixed(1));
+                                      if (stat3atkpercent > 0)
+                                        stat3atkpercent = num.parse(
+                                            (stat3atkpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -5628,7 +6685,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat3atkpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat3atkpercent = double.parse((value).toStringAsFixed(1));
+                            stat3atkpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat3atkpercent.toString());
                           });
                         },
@@ -5677,19 +6735,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3hppercent < 34.8) stat3hppercent = num.parse((stat3hppercent + 0.1).toStringAsFixed(1));
+                                      if (stat3hppercent < 34.8)
+                                        stat3hppercent = num.parse(
+                                            (stat3hppercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3hppercent > 0) stat3hppercent = num.parse((stat3hppercent - 0.1).toStringAsFixed(1));
+                                      if (stat3hppercent > 0)
+                                        stat3hppercent = num.parse(
+                                            (stat3hppercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -5708,7 +6776,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat3hppercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat3hppercent = double.parse((value).toStringAsFixed(1));
+                            stat3hppercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat3atkpercent.toString());
                           });
                         },
@@ -5760,19 +6829,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3defpercent < 43.8) stat3defpercent = num.parse((stat3defpercent + 0.1).toStringAsFixed(1));
+                                      if (stat3defpercent < 43.8)
+                                        stat3defpercent = num.parse(
+                                            (stat3defpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3defpercent > 0) stat3defpercent = num.parse((stat3defpercent - 0.1).toStringAsFixed(1));
+                                      if (stat3defpercent > 0)
+                                        stat3defpercent = num.parse(
+                                            (stat3defpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -5791,7 +6870,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat3defpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat3defpercent = double.parse((value).toStringAsFixed(1));
+                            stat3defpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat3atkpercent.toString());
                           });
                         },
@@ -5843,19 +6923,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3CRpercent < 23.4) stat3CRpercent = num.parse((stat3CRpercent + 0.1).toStringAsFixed(1));
+                                      if (stat3CRpercent < 23.4)
+                                        stat3CRpercent = num.parse(
+                                            (stat3CRpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3CRpercent > 0) stat3CRpercent = num.parse((stat3CRpercent - 0.1).toStringAsFixed(1));
+                                      if (stat3CRpercent > 0)
+                                        stat3CRpercent = num.parse(
+                                            (stat3CRpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -5874,7 +6964,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat3CRpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat3CRpercent = double.parse((value).toStringAsFixed(1));
+                            stat3CRpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat3atkpercent.toString());
                           });
                         },
@@ -5926,19 +7017,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3CDpercent < 46.8) stat3CDpercent = num.parse((stat3CDpercent + 0.1).toStringAsFixed(1));
+                                      if (stat3CDpercent < 46.8)
+                                        stat3CDpercent = num.parse(
+                                            (stat3CDpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3CDpercent > 0) stat3CDpercent = num.parse((stat3CDpercent - 0.1).toStringAsFixed(1));
+                                      if (stat3CDpercent > 0)
+                                        stat3CDpercent = num.parse(
+                                            (stat3CDpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -5957,7 +7058,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat3CDpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat3CDpercent = double.parse((value).toStringAsFixed(1));
+                            stat3CDpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat3atkpercent.toString());
                           });
                         },
@@ -6009,18 +7111,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3EM < 138) stat3EM = num.parse((stat3EM + 1).toStringAsFixed(0));
+                                      if (stat3EM < 138)
+                                        stat3EM = num.parse(
+                                            (stat3EM + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3EM > 0) stat3EM = num.parse((stat3EM - 1).toStringAsFixed(0));
+                                      if (stat3EM > 0)
+                                        stat3EM = num.parse(
+                                            (stat3EM - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -6085,19 +7195,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3ERpercent < 39) stat3ERpercent = num.parse((stat3ERpercent + 0.1).toStringAsFixed(1));
+                                      if (stat3ERpercent < 39)
+                                        stat3ERpercent = num.parse(
+                                            (stat3ERpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3ERpercent > 0) stat3ERpercent = num.parse((stat3ERpercent - 0.1).toStringAsFixed(1));
+                                      if (stat3ERpercent > 0)
+                                        stat3ERpercent = num.parse(
+                                            (stat3ERpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -6116,7 +7236,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat3ERpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat3ERpercent = double.parse((value).toStringAsFixed(1));
+                            stat3ERpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat3atkpercent.toString());
                           });
                         },
@@ -6168,18 +7289,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3hp < 1794) stat3hp = num.parse((stat3hp + 1).toStringAsFixed(0));
+                                      if (stat3hp < 1794)
+                                        stat3hp = num.parse(
+                                            (stat3hp + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3hp > 0) stat3hp = num.parse((stat3hp - 1).toStringAsFixed(0));
+                                      if (stat3hp > 0)
+                                        stat3hp = num.parse(
+                                            (stat3hp - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -6249,18 +7378,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3atk < 114) stat3atk = num.parse((stat3atk + 1).toStringAsFixed(0));
+                                      if (stat3atk < 114)
+                                        stat3atk = num.parse(
+                                            (stat3atk + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3atk > 0) stat3atk = num.parse((stat3atk - 1).toStringAsFixed(0));
+                                      if (stat3atk > 0)
+                                        stat3atk = num.parse(
+                                            (stat3atk - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -6328,18 +7465,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3def < 138) stat3def = num.parse((stat3def + 1).toStringAsFixed(0));
+                                      if (stat3def < 138)
+                                        stat3def = num.parse(
+                                            (stat3def + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat3def > 0) stat3def = num.parse((stat3def - 1).toStringAsFixed(0));
+                                      if (stat3def > 0)
+                                        stat3def = num.parse(
+                                            (stat3def - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -6430,19 +7575,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4atkpercent < 34.8) stat4atkpercent = num.parse((stat4atkpercent + 0.1).toStringAsFixed(1));
+                                      if (stat4atkpercent < 34.8)
+                                        stat4atkpercent = num.parse(
+                                            (stat4atkpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4atkpercent > 0) stat4atkpercent = num.parse((stat4atkpercent - 0.1).toStringAsFixed(1));
+                                      if (stat4atkpercent > 0)
+                                        stat4atkpercent = num.parse(
+                                            (stat4atkpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -6461,7 +7616,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat4atkpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat4atkpercent = double.parse((value).toStringAsFixed(1));
+                            stat4atkpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat4atkpercent.toString());
                           });
                         },
@@ -6510,19 +7666,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4hppercent < 34.8) stat4hppercent = num.parse((stat4hppercent + 0.1).toStringAsFixed(1));
+                                      if (stat4hppercent < 34.8)
+                                        stat4hppercent = num.parse(
+                                            (stat4hppercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4hppercent > 0) stat4hppercent = num.parse((stat4hppercent - 0.1).toStringAsFixed(1));
+                                      if (stat4hppercent > 0)
+                                        stat4hppercent = num.parse(
+                                            (stat4hppercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -6541,7 +7707,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat4hppercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat4hppercent = double.parse((value).toStringAsFixed(1));
+                            stat4hppercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat4atkpercent.toString());
                           });
                         },
@@ -6593,19 +7760,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4defpercent < 43.8) stat4defpercent = num.parse((stat4defpercent + 0.1).toStringAsFixed(1));
+                                      if (stat4defpercent < 43.8)
+                                        stat4defpercent = num.parse(
+                                            (stat4defpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4defpercent > 0) stat4defpercent = num.parse((stat4defpercent - 0.1).toStringAsFixed(1));
+                                      if (stat4defpercent > 0)
+                                        stat4defpercent = num.parse(
+                                            (stat4defpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -6624,7 +7801,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat4defpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat4defpercent = double.parse((value).toStringAsFixed(1));
+                            stat4defpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat4atkpercent.toString());
                           });
                         },
@@ -6676,19 +7854,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4CRpercent < 23.4) stat4CRpercent = num.parse((stat4CRpercent + 0.1).toStringAsFixed(1));
+                                      if (stat4CRpercent < 23.4)
+                                        stat4CRpercent = num.parse(
+                                            (stat4CRpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4CRpercent > 0) stat4CRpercent = num.parse((stat4CRpercent - 0.1).toStringAsFixed(1));
+                                      if (stat4CRpercent > 0)
+                                        stat4CRpercent = num.parse(
+                                            (stat4CRpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -6707,7 +7895,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat4CRpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat4CRpercent = double.parse((value).toStringAsFixed(1));
+                            stat4CRpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat4atkpercent.toString());
                           });
                         },
@@ -6759,19 +7948,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4CDpercent < 46.8) stat4CDpercent = num.parse((stat4CDpercent + 0.1).toStringAsFixed(1));
+                                      if (stat4CDpercent < 46.8)
+                                        stat4CDpercent = num.parse(
+                                            (stat4CDpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4CDpercent > 0) stat4CDpercent = num.parse((stat4CDpercent - 0.1).toStringAsFixed(1));
+                                      if (stat4CDpercent > 0)
+                                        stat4CDpercent = num.parse(
+                                            (stat4CDpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -6790,7 +7989,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat4CDpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat4CDpercent = double.parse((value).toStringAsFixed(1));
+                            stat4CDpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat4atkpercent.toString());
                           });
                         },
@@ -6842,18 +8042,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4EM < 138) stat4EM = num.parse((stat4EM + 1).toStringAsFixed(0));
+                                      if (stat4EM < 138)
+                                        stat4EM = num.parse(
+                                            (stat4EM + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4EM > 0) stat4EM = num.parse((stat4EM - 1).toStringAsFixed(0));
+                                      if (stat4EM > 0)
+                                        stat4EM = num.parse(
+                                            (stat4EM - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -6918,19 +8126,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4ERpercent < 39) stat4ERpercent = num.parse((stat4ERpercent + 0.1).toStringAsFixed(1));
+                                      if (stat4ERpercent < 39)
+                                        stat4ERpercent = num.parse(
+                                            (stat4ERpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4ERpercent > 0) stat4ERpercent = num.parse((stat4ERpercent - 0.1).toStringAsFixed(1));
+                                      if (stat4ERpercent > 0)
+                                        stat4ERpercent = num.parse(
+                                            (stat4ERpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -6949,7 +8167,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat4ERpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat4ERpercent = double.parse((value).toStringAsFixed(1));
+                            stat4ERpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat4atkpercent.toString());
                           });
                         },
@@ -7001,18 +8220,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4hp < 1794) stat4hp = num.parse((stat4hp + 1).toStringAsFixed(0));
+                                      if (stat4hp < 1794)
+                                        stat4hp = num.parse(
+                                            (stat4hp + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4hp > 0) stat4hp = num.parse((stat4hp - 1).toStringAsFixed(0));
+                                      if (stat4hp > 0)
+                                        stat4hp = num.parse(
+                                            (stat4hp - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -7082,18 +8309,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4atk < 114) stat4atk = num.parse((stat4atk + 1).toStringAsFixed(0));
+                                      if (stat4atk < 114)
+                                        stat4atk = num.parse(
+                                            (stat4atk + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4atk > 0) stat4atk = num.parse((stat4atk - 1).toStringAsFixed(0));
+                                      if (stat4atk > 0)
+                                        stat4atk = num.parse(
+                                            (stat4atk - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -7161,18 +8396,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4def < 138) stat4def = num.parse((stat4def + 1).toStringAsFixed(0));
+                                      if (stat4def < 138)
+                                        stat4def = num.parse(
+                                            (stat4def + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat4def > 0) stat4def = num.parse((stat4def - 1).toStringAsFixed(0));
+                                      if (stat4def > 0)
+                                        stat4def = num.parse(
+                                            (stat4def - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -7263,19 +8506,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5atkpercent < 34.8) stat5atkpercent = num.parse((stat5atkpercent + 0.1).toStringAsFixed(1));
+                                      if (stat5atkpercent < 34.8)
+                                        stat5atkpercent = num.parse(
+                                            (stat5atkpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5atkpercent > 0) stat5atkpercent = num.parse((stat5atkpercent - 0.1).toStringAsFixed(1));
+                                      if (stat5atkpercent > 0)
+                                        stat5atkpercent = num.parse(
+                                            (stat5atkpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -7294,7 +8547,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat5atkpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat5atkpercent = double.parse((value).toStringAsFixed(1));
+                            stat5atkpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat5atkpercent.toString());
                           });
                         },
@@ -7343,19 +8597,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5hppercent < 34.8) stat5hppercent = num.parse((stat5hppercent + 0.1).toStringAsFixed(1));
+                                      if (stat5hppercent < 34.8)
+                                        stat5hppercent = num.parse(
+                                            (stat5hppercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5hppercent > 0) stat5hppercent = num.parse((stat5hppercent - 0.1).toStringAsFixed(1));
+                                      if (stat5hppercent > 0)
+                                        stat5hppercent = num.parse(
+                                            (stat5hppercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -7374,7 +8638,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat5hppercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat5hppercent = double.parse((value).toStringAsFixed(1));
+                            stat5hppercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat5atkpercent.toString());
                           });
                         },
@@ -7426,19 +8691,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5defpercent < 43.8) stat5defpercent = num.parse((stat5defpercent + 0.1).toStringAsFixed(1));
+                                      if (stat5defpercent < 43.8)
+                                        stat5defpercent = num.parse(
+                                            (stat5defpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5defpercent > 0) stat5defpercent = num.parse((stat5defpercent - 0.1).toStringAsFixed(1));
+                                      if (stat5defpercent > 0)
+                                        stat5defpercent = num.parse(
+                                            (stat5defpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -7457,7 +8732,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat5defpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat5defpercent = double.parse((value).toStringAsFixed(1));
+                            stat5defpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat5atkpercent.toString());
                           });
                         },
@@ -7509,19 +8785,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5CRpercent < 23.4) stat5CRpercent = num.parse((stat5CRpercent + 0.1).toStringAsFixed(1));
+                                      if (stat5CRpercent < 23.4)
+                                        stat5CRpercent = num.parse(
+                                            (stat5CRpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5CRpercent > 0) stat5CRpercent = num.parse((stat5CRpercent - 0.1).toStringAsFixed(1));
+                                      if (stat5CRpercent > 0)
+                                        stat5CRpercent = num.parse(
+                                            (stat5CRpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -7540,7 +8826,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat5CRpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat5CRpercent = double.parse((value).toStringAsFixed(1));
+                            stat5CRpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat5atkpercent.toString());
                           });
                         },
@@ -7592,19 +8879,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5CDpercent < 46.8) stat5CDpercent = num.parse((stat5CDpercent + 0.1).toStringAsFixed(1));
+                                      if (stat5CDpercent < 46.8)
+                                        stat5CDpercent = num.parse(
+                                            (stat5CDpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5CDpercent > 0) stat5CDpercent = num.parse((stat5CDpercent - 0.1).toStringAsFixed(1));
+                                      if (stat5CDpercent > 0)
+                                        stat5CDpercent = num.parse(
+                                            (stat5CDpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -7623,7 +8920,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat5CDpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat5CDpercent = double.parse((value).toStringAsFixed(1));
+                            stat5CDpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat5atkpercent.toString());
                           });
                         },
@@ -7675,18 +8973,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5EM < 138) stat5EM = num.parse((stat5EM + 1).toStringAsFixed(0));
+                                      if (stat5EM < 138)
+                                        stat5EM = num.parse(
+                                            (stat5EM + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5EM > 0) stat5EM = num.parse((stat5EM - 1).toStringAsFixed(0));
+                                      if (stat5EM > 0)
+                                        stat5EM = num.parse(
+                                            (stat5EM - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -7751,19 +9057,29 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5ERpercent < 39) stat5ERpercent = num.parse((stat5ERpercent + 0.1).toStringAsFixed(1));
+                                      if (stat5ERpercent < 39)
+                                        stat5ERpercent = num.parse(
+                                            (stat5ERpercent + 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5ERpercent > 0) stat5ERpercent = num.parse((stat5ERpercent - 0.1).toStringAsFixed(1));
+                                      if (stat5ERpercent > 0)
+                                        stat5ERpercent = num.parse(
+                                            (stat5ERpercent - 0.1)
+                                                .toStringAsFixed(1));
                                       _setLabel(stat1atkpercent.toString());
                                     });
                                   },
@@ -7782,7 +9098,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         value: stat5ERpercent.toDouble(),
                         onChanged: (value) {
                           setState(() {
-                            stat5ERpercent = double.parse((value).toStringAsFixed(1));
+                            stat5ERpercent =
+                                double.parse((value).toStringAsFixed(1));
                             _setLabel(stat5atkpercent.toString());
                           });
                         },
@@ -7834,18 +9151,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5hp < 1794) stat5hp = num.parse((stat5hp + 1).toStringAsFixed(0));
+                                      if (stat5hp < 1794)
+                                        stat5hp = num.parse(
+                                            (stat5hp + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5hp > 0) stat5hp = num.parse((stat5hp - 1).toStringAsFixed(0));
+                                      if (stat5hp > 0)
+                                        stat5hp = num.parse(
+                                            (stat5hp - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -7915,18 +9240,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5atk < 114) stat5atk = num.parse((stat5atk + 1).toStringAsFixed(0));
+                                      if (stat5atk < 114)
+                                        stat5atk = num.parse(
+                                            (stat5atk + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5atk > 0) stat5atk = num.parse((stat5atk - 1).toStringAsFixed(0));
+                                      if (stat5atk > 0)
+                                        stat5atk = num.parse(
+                                            (stat5atk - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -7994,18 +9327,26 @@ class _MyHomePageState extends State<MyHomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_up, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_up,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5def < 138) stat5def = num.parse((stat5def + 1).toStringAsFixed(0));
+                                      if (stat5def < 138)
+                                        stat5def = num.parse(
+                                            (stat5def + 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
                                 InkWell(
-                                  child: Icon(Icons.arrow_drop_down, size: 22.0, color: Theme.of(context).primaryColor),
+                                  child: Icon(Icons.arrow_drop_down,
+                                      size: 22.0,
+                                      color: Theme.of(context).primaryColor),
                                   onTap: () {
                                     setState(() {
-                                      if (stat5def > 0) stat5def = num.parse((stat5def - 1).toStringAsFixed(0));
+                                      if (stat5def > 0)
+                                        stat5def = num.parse(
+                                            (stat5def - 1).toStringAsFixed(0));
                                     });
                                   },
                                 ),
@@ -8073,7 +9414,13 @@ class _MyHomePageState extends State<MyHomePage> {
         (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) +
         (rapidfiringOn ? (30 + weaponref * 10) : 0) +
         (reminiscenceofshime4On ? 50 : 0) +
-        (rulebythunder2On ? ((rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))) : 0) as double;
+        (rulebythunder2On
+            ? ((rulebythunder2Times == 1
+                ? (weaponref * 3 + 9)
+                : (rulebythunder2Times == 2
+                    ? (weaponref * 6 + 18)
+                    : (weaponref * 10 + 30))))
+            : 0) as double;
     //bonusChargedATK
     bonusChargedATKDMGpercent = (reminiscenceofshime4On ? 50 : 0) +
         (strongWilled1On ? (9 + weaponref * 3) : 0) +
@@ -8086,12 +9433,22 @@ class _MyHomePageState extends State<MyHomePage> {
     //bonusBurstATK
     bonusBurstDMGpercent = (royalflora2On ? 20 : 0) as double;
     //bonusDMG
-    bonusDMGpercent = (monaqOn ? monaqlvtoratio[monaqlv] : 0) + (thundersoother4On ? 35 : 0) + (manualDMGpercentOn ? manualDMGpercent : 0) as double;
+    bonusDMGpercent = (monaqOn ? monaqlvtoratio[monaqlv] : 0) +
+        (thundersoother4On ? 35 : 0) +
+        (manualDMGpercentOn ? manualDMGpercent : 0) as double;
 
     if (strongWilled2Times <= 3) {
-      bloomBonusChargedATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * (strongWilled2Times + 2) : 0) + (troupesdawnlight4on ? 35 : 0) as double;
+      bloomBonusChargedATKDMGpercent =
+          (strongWilled1On ? (9 + weaponref * 3) : 0) +
+              (strongWilled2On
+                  ? (6 + weaponref * 2) * (strongWilled2Times + 2)
+                  : 0) +
+              (troupesdawnlight4on ? 35 : 0) as double;
     } else {
-      bloomBonusChargedATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * 5 : 0) + (troupesdawnlight4on ? 35 : 0) as double;
+      bloomBonusChargedATKDMGpercent =
+          (strongWilled1On ? (9 + weaponref * 3) : 0) +
+              (strongWilled2On ? (6 + weaponref * 2) * 5 : 0) +
+              (troupesdawnlight4on ? 35 : 0) as double;
     }
 
     //ATK params
@@ -8120,9 +9477,12 @@ class _MyHomePageState extends State<MyHomePage> {
     a4atkpercentMain = a4atkpercentbyLVL[gstar][glv];
     a5atkpercentMain = a5atkpercentbyLVL[cstar][clv];
 
-    a3percentatkMain = (artifact3mainstatcat == 2) ? basicatk * a3atkpercentMain / 100 : 0;
-    a4percentatkMain = artifact4mainstatcat == 2 ? basicatk * a4atkpercentMain / 100 : 0;
-    a5percentatkMain = artifact5mainstatcat == 2 ? basicatk * a5atkpercentMain / 100 : 0;
+    a3percentatkMain =
+        (artifact3mainstatcat == 2) ? basicatk * a3atkpercentMain / 100 : 0;
+    a4percentatkMain =
+        artifact4mainstatcat == 2 ? basicatk * a4atkpercentMain / 100 : 0;
+    a5percentatkMain =
+        artifact5mainstatcat == 2 ? basicatk * a5atkpercentMain / 100 : 0;
 
     bonusatk = weaponatkpercentstat +
         a1percentatk +
@@ -8171,9 +9531,12 @@ class _MyHomePageState extends State<MyHomePage> {
     a4defpercentMain = a4defpercentbyLVL[gstar][glv];
     a5defpercentMain = a5defpercentbyLVL[cstar][clv];
 
-    a3percentdefMain = (artifact3mainstatcat == 3) ? lvldef * a3defpercentMain / 100 : 0;
-    a4percentdefMain = artifact4mainstatcat == 3 ? lvldef * a4defpercentMain / 100 : 0;
-    a5percentdefMain = artifact5mainstatcat == 3 ? lvldef * a5defpercentMain / 100 : 0;
+    a3percentdefMain =
+        (artifact3mainstatcat == 3) ? lvldef * a3defpercentMain / 100 : 0;
+    a4percentdefMain =
+        artifact4mainstatcat == 3 ? lvldef * a4defpercentMain / 100 : 0;
+    a5percentdefMain =
+        artifact5mainstatcat == 3 ? lvldef * a5defpercentMain / 100 : 0;
 
     bonusdef = weapondefpercentstat +
         a1percentdef +
@@ -8212,9 +9575,12 @@ class _MyHomePageState extends State<MyHomePage> {
     a4HPpercentMain = a4HPpercentbyLVL[gstar][glv];
     a5HPpercentMain = a5HPpercentbyLVL[cstar][clv];
 
-    a3percentHPMain = (artifact3mainstatcat == 1) ? lvlhp * a3HPpercentMain / 100 : 0;
-    a4percentHPMain = artifact4mainstatcat == 1 ? lvlhp * a4HPpercentMain / 100 : 0;
-    a5percentHPMain = artifact5mainstatcat == 1 ? lvlhp * a5HPpercentMain / 100 : 0;
+    a3percentHPMain =
+        (artifact3mainstatcat == 1) ? lvlhp * a3HPpercentMain / 100 : 0;
+    a4percentHPMain =
+        artifact4mainstatcat == 1 ? lvlhp * a4HPpercentMain / 100 : 0;
+    a5percentHPMain =
+        artifact5mainstatcat == 1 ? lvlhp * a5HPpercentMain / 100 : 0;
 
     bonusHP = weaponHPpercentstat +
         a1percenthp +
@@ -8235,7 +9601,8 @@ class _MyHomePageState extends State<MyHomePage> {
     allHP = lvlhp + bonusHP;
 
     //ER params
-    if (weapontoERpercent[weaponlv] != null) weaponERpercent = weapontoERpercent[weaponlv];
+    if (weapontoERpercent[weaponlv] != null)
+      weaponERpercent = weapontoERpercent[weaponlv];
 
     a3ERpercentMain = a3ERpercentbyLVL[sstar][slv];
     a3percentERMain = artifact3mainstatcat == 5 ? a3ERpercentMain : 0;
@@ -8312,7 +9679,8 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       baseCD = 50;
     }
-    if (weapontoCDpercent[weaponlv] != null) weaponCD = weapontoCDpercent[weaponlv];
+    if (weapontoCDpercent[weaponlv] != null)
+      weaponCD = weapontoCDpercent[weaponlv];
     a5CDmain = a5CDbyLVL[cstar][clv];
     a5CD = artifact5mainstatcat == 6 ? a5CDmain : 0;
     //baseCD += weaponCD;
@@ -8328,65 +9696,100 @@ class _MyHomePageState extends State<MyHomePage> {
     allCD = baseCD + bonusCD;
 
     //DMG params
-    if (cleveltoPhysicalDMGpercent[level] != null) levelPhysicalDMGpercent = cleveltoPhysicalDMGpercent[level];
-    if (weapontoPhysicalDMGpercent[weaponlv] != null) weaponPhysicalDMGpercent = weapontoPhysicalDMGpercent[weaponlv];
+    if (cleveltoPhysicalDMGpercent[level] != null)
+      levelPhysicalDMGpercent = cleveltoPhysicalDMGpercent[level];
+    if (weapontoPhysicalDMGpercent[weaponlv] != null)
+      weaponPhysicalDMGpercent = weapontoPhysicalDMGpercent[weaponlv];
 
     a4PhysicalDMGpercentMain = a4PhysicalDMGpercentbyLVL[gstar][glv];
-    a4PhysicalDMGpercent = artifact4mainstatcat == 5 ? a4PhysicalDMGpercentMain : 0;
+    a4PhysicalDMGpercent =
+        artifact4mainstatcat == 5 ? a4PhysicalDMGpercentMain : 0;
 
-    bonusPhysicalDMGpercent = levelPhysicalDMGpercent + weaponPhysicalDMGpercent + a4PhysicalDMGpercent;
+    bonusPhysicalDMGpercent = levelPhysicalDMGpercent +
+        weaponPhysicalDMGpercent +
+        a4PhysicalDMGpercent;
 
-    if (cleveltoPyroDMGpercent[level] != null) levelPyroDMGpercent = cleveltoPyroDMGpercent[level];
-    if (weapontoPyroDMGpercent[weaponlv] != null) weaponPyroDMGpercent = weapontoPyroDMGpercent[weaponlv];
+    if (cleveltoPyroDMGpercent[level] != null)
+      levelPyroDMGpercent = cleveltoPyroDMGpercent[level];
+    if (weapontoPyroDMGpercent[weaponlv] != null)
+      weaponPyroDMGpercent = weapontoPyroDMGpercent[weaponlv];
 
     a4PyroDMGpercentMain = a4ElementDMGpercentbyLVL[gstar][glv];
     a4PyroDMGpercent = artifact4mainstatcat == 6 ? a4PyroDMGpercentMain : 0;
 
-    bonusPyroDMGpercent = levelPyroDMGpercent + weaponPyroDMGpercent + a4PyroDMGpercent + troublemakerstack * 2 + (summerscorchOn ? troublemakerstack : 0) + (yoimiyaconstellation2On ? 25 : 0);
+    bonusPyroDMGpercent = levelPyroDMGpercent +
+        weaponPyroDMGpercent +
+        a4PyroDMGpercent +
+        troublemakerstack * 2 +
+        (summerscorchOn ? troublemakerstack : 0) +
+        (yoimiyaconstellation2On ? 25 : 0);
 
-    if (cleveltoHydroDMGpercent[level] != null) levelHydroDMGpercent = cleveltoHydroDMGpercent[level];
-    if (weapontoHydroDMGpercent[weaponlv] != null) weaponHydroDMGpercent = weapontoHydroDMGpercent[weaponlv];
+    if (cleveltoHydroDMGpercent[level] != null)
+      levelHydroDMGpercent = cleveltoHydroDMGpercent[level];
+    if (weapontoHydroDMGpercent[weaponlv] != null)
+      weaponHydroDMGpercent = weapontoHydroDMGpercent[weaponlv];
 
     a4HydroDMGpercentMain = a4ElementDMGpercentbyLVL[gstar][glv];
     a4HydroDMGpercent = artifact4mainstatcat == 7 ? a4HydroDMGpercentMain : 0;
 
-    bonusHydroDMGpercent = levelHydroDMGpercent + weaponHydroDMGpercent + a4HydroDMGpercent;
+    bonusHydroDMGpercent =
+        levelHydroDMGpercent + weaponHydroDMGpercent + a4HydroDMGpercent;
 
-    if (cleveltoCryoDMGpercent[level] != null) levelCryoDMGpercent = cleveltoCryoDMGpercent[level];
-    if (weapontoCryoDMGpercent[weaponlv] != null) weaponCryoDMGpercent = weapontoCryoDMGpercent[weaponlv];
+    if (cleveltoCryoDMGpercent[level] != null)
+      levelCryoDMGpercent = cleveltoCryoDMGpercent[level];
+    if (weapontoCryoDMGpercent[weaponlv] != null)
+      weaponCryoDMGpercent = weapontoCryoDMGpercent[weaponlv];
 
     a4CryoDMGpercentMain = a4ElementDMGpercentbyLVL[gstar][glv];
     a4CryoDMGpercent = artifact4mainstatcat == 8 ? a4CryoDMGpercentMain : 0;
 
-    bonusCryoDMGpercent = levelCryoDMGpercent + weaponCryoDMGpercent + a4CryoDMGpercent + (blizzardstrayer2On ? 15 : 0) + (harmonyOn ? 20 : 0);
+    bonusCryoDMGpercent = levelCryoDMGpercent +
+        weaponCryoDMGpercent +
+        a4CryoDMGpercent +
+        (blizzardstrayer2On ? 15 : 0) +
+        (harmonyOn ? 20 : 0);
 
-    if (cleveltoElectroDMGpercent[level] != null) levelElectroDMGpercent = cleveltoElectroDMGpercent[level];
-    if (weapontoElectroDMGpercent[weaponlv] != null) weaponElectroDMGpercent = weapontoElectroDMGpercent[weaponlv];
+    if (cleveltoElectroDMGpercent[level] != null)
+      levelElectroDMGpercent = cleveltoElectroDMGpercent[level];
+    if (weapontoElectroDMGpercent[weaponlv] != null)
+      weaponElectroDMGpercent = weapontoElectroDMGpercent[weaponlv];
 
     a4ElectroDMGpercentMain = a4ElementDMGpercentbyLVL[gstar][glv];
-    a4ElectroDMGpercent = artifact4mainstatcat == 9 ? a4ElectroDMGpercentMain : 0;
+    a4ElectroDMGpercent =
+        artifact4mainstatcat == 9 ? a4ElectroDMGpercentMain : 0;
 
-    bonusElectroDMGpercent = levelElectroDMGpercent + weaponElectroDMGpercent + a4ElectroDMGpercent + (thunderbird2On == true ? 15 : 0);
+    bonusElectroDMGpercent = levelElectroDMGpercent +
+        weaponElectroDMGpercent +
+        a4ElectroDMGpercent +
+        (thunderbird2On == true ? 15 : 0);
 
-    if (cleveltoAnemoDMGpercent[level] != null) levelAnemoDMGpercent = cleveltoAnemoDMGpercent[level];
-    if (weapontoAnemoDMGpercent[weaponlv] != null) weaponAnemoDMGpercent = weapontoAnemoDMGpercent[weaponlv];
+    if (cleveltoAnemoDMGpercent[level] != null)
+      levelAnemoDMGpercent = cleveltoAnemoDMGpercent[level];
+    if (weapontoAnemoDMGpercent[weaponlv] != null)
+      weaponAnemoDMGpercent = weapontoAnemoDMGpercent[weaponlv];
 
     a4AnemoDMGpercentMain = a4ElementDMGpercentbyLVL[gstar][glv];
     a4AnemoDMGpercent = artifact4mainstatcat == 10 ? a4AnemoDMGpercentMain : 0;
 
-    bonusAnemoDMGpercent = levelAnemoDMGpercent + weaponAnemoDMGpercent + a4AnemoDMGpercent;
+    bonusAnemoDMGpercent =
+        levelAnemoDMGpercent + weaponAnemoDMGpercent + a4AnemoDMGpercent;
 
-    if (cleveltoGeoDMGpercent[level] != null) levelGeoDMGpercent = cleveltoGeoDMGpercent[level];
-    if (weapontoGeoDMGpercent[weaponlv] != null) weaponGeoDMGpercent = weapontoGeoDMGpercent[weaponlv];
+    if (cleveltoGeoDMGpercent[level] != null)
+      levelGeoDMGpercent = cleveltoGeoDMGpercent[level];
+    if (weapontoGeoDMGpercent[weaponlv] != null)
+      weaponGeoDMGpercent = weapontoGeoDMGpercent[weaponlv];
 
     a4GeoDMGpercentMain = a4ElementDMGpercentbyLVL[gstar][glv];
     a4GeoDMGpercent = artifact4mainstatcat == 11 ? a4GeoDMGpercentMain : 0;
 
-    bonusGeoDMGpercent = levelGeoDMGpercent + weaponGeoDMGpercent + a4GeoDMGpercent;
+    bonusGeoDMGpercent =
+        levelGeoDMGpercent + weaponGeoDMGpercent + a4GeoDMGpercent;
 
     //enemyparams
 
-    enemyPhysicalresv = eneresbytype[enemytype]['physical'] - (zhonglieOn ? 20 : 0) - (manualresdebuffOn ? manualresdebuff : 0);
+    enemyPhysicalresv = eneresbytype[enemytype]['physical'] -
+        (zhonglieOn ? 20 : 0) -
+        (manualresdebuffOn ? manualresdebuff : 0);
     if (enemyPhysicalresv < 0)
       enemyPhysicalres = 1 - enemyPhysicalresv / 2 / 100;
     else if (enemyPhysicalresv < 76)
@@ -8396,7 +9799,9 @@ class _MyHomePageState extends State<MyHomePage> {
     else
       enemyPhysicalres = 0;
 
-    enemyPyroresv = eneresbytype[enemytype]['pyro'] - (zhonglieOn ? 20 : 0) - (manualresdebuffOn ? manualresdebuff : 0);
+    enemyPyroresv = eneresbytype[enemytype]['pyro'] -
+        (zhonglieOn ? 20 : 0) -
+        (manualresdebuffOn ? manualresdebuff : 0);
     if (enemyPyroresv < 0)
       enemyPyrores = 1 - enemyPyroresv / 2 / 100;
     else if (enemyPyroresv < 76)
@@ -8406,7 +9811,9 @@ class _MyHomePageState extends State<MyHomePage> {
     else
       enemyPyrores = 0;
 
-    enemyHydroresv = eneresbytype[enemytype]['hydro'] - (zhonglieOn ? 20 : 0) - (manualresdebuffOn ? manualresdebuff : 0);
+    enemyHydroresv = eneresbytype[enemytype]['hydro'] -
+        (zhonglieOn ? 20 : 0) -
+        (manualresdebuffOn ? manualresdebuff : 0);
     if (enemyHydroresv < 0)
       enemyHydrores = 1 - enemyHydroresv / 2 / 100;
     else if (enemyHydroresv < 76)
@@ -8416,7 +9823,9 @@ class _MyHomePageState extends State<MyHomePage> {
     else
       enemyHydrores = 0;
 
-    enemyDendroresv = eneresbytype[enemytype]['dendro'] - (zhonglieOn ? 20 : 0) - (manualresdebuffOn ? manualresdebuff : 0);
+    enemyDendroresv = eneresbytype[enemytype]['dendro'] -
+        (zhonglieOn ? 20 : 0) -
+        (manualresdebuffOn ? manualresdebuff : 0);
     if (enemyDendroresv < 0)
       enemyDendrores = 1 - enemyDendroresv / 2 / 100;
     else if (enemyDendroresv < 76)
@@ -8426,7 +9835,9 @@ class _MyHomePageState extends State<MyHomePage> {
     else
       enemyDendrores = 0;
 
-    enemyElectroresv = eneresbytype[enemytype]['electro'] - (zhonglieOn ? 20 : 0) - (manualresdebuffOn ? manualresdebuff : 0);
+    enemyElectroresv = eneresbytype[enemytype]['electro'] -
+        (zhonglieOn ? 20 : 0) -
+        (manualresdebuffOn ? manualresdebuff : 0);
     if (enemyElectroresv < 0)
       enemyElectrores = 1 - enemyElectroresv / 2 / 100;
     else if (enemyElectroresv < 76)
@@ -8436,7 +9847,9 @@ class _MyHomePageState extends State<MyHomePage> {
     else
       enemyElectrores = 0;
 
-    enemyAnemoresv = eneresbytype[enemytype]['anemo'] - (zhonglieOn ? 20 : 0) - (manualresdebuffOn ? manualresdebuff : 0);
+    enemyAnemoresv = eneresbytype[enemytype]['anemo'] -
+        (zhonglieOn ? 20 : 0) -
+        (manualresdebuffOn ? manualresdebuff : 0);
     if (enemyAnemoresv < 0)
       enemyAnemores = 1 - enemyAnemoresv / 2 / 100;
     else if (enemyAnemoresv < 76)
@@ -8446,7 +9859,10 @@ class _MyHomePageState extends State<MyHomePage> {
     else
       enemyAnemores = 0;
 
-    enemyCryoresv = eneresbytype[enemytype]['cryo'] - (ganyuconstellation1On ? 15 : 0) - (zhonglieOn ? 20 : 0) - (manualresdebuffOn ? manualresdebuff : 0);
+    enemyCryoresv = eneresbytype[enemytype]['cryo'] -
+        (ganyuconstellation1On ? 15 : 0) -
+        (zhonglieOn ? 20 : 0) -
+        (manualresdebuffOn ? manualresdebuff : 0);
     if (enemyCryoresv < 0)
       enemyCryores = 1 - enemyCryoresv / 2 / 100;
     else if (enemyCryoresv < 76)
@@ -8456,7 +9872,9 @@ class _MyHomePageState extends State<MyHomePage> {
     else
       enemyCryores = 0;
 
-    enemyGeoresv = eneresbytype[enemytype]['geo'] - (zhonglieOn ? 20 : 0) - (manualresdebuffOn ? manualresdebuff : 0);
+    enemyGeoresv = eneresbytype[enemytype]['geo'] -
+        (zhonglieOn ? 20 : 0) -
+        (manualresdebuffOn ? manualresdebuff : 0);
     if (enemyGeoresv < 0)
       enemyGeores = 1 - enemyGeoresv / 2 / 100;
     else if (enemyGeoresv < 76)
@@ -8465,6 +9883,10 @@ class _MyHomePageState extends State<MyHomePage> {
       enemyGeores = 1 / (4 * enemyGeoresv / 100 + 1);
     else
       enemyGeores = 0;
+
+    hit6dmgnc = 0;
+    hit6dmgexp = 0;
+    hit6dmgc = 0;
 
     //damagecalcparams
     switch (currentcharacter) {
@@ -8484,8 +9906,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
           kindlingdmgpercent = yoimiyanatklvl['KindlingArrowDMG'][natklv];
 
-          teikafiredancebonuspercent = yoimiyanatklvl['Teika Fire Dance Bonus'][eskilllv];
-          ryukinsaxifragedmgpercent = yoimiyanatklvl['Ryukin Saxifrage DMG'][eburstlv];
+          teikafiredancebonuspercent =
+              yoimiyanatklvl['Teika Fire Dance Bonus'][eskilllv];
+          ryukinsaxifragedmgpercent =
+              yoimiyanatklvl['Ryukin Saxifrage DMG'][eburstlv];
           aurousblazedmgpercent = yoimiyanatklvl['Aurous Blaze DMG'][eburstlv];
         }
         break;
@@ -8505,11 +9929,29 @@ class _MyHomePageState extends State<MyHomePage> {
           ganyucaimdmgpercent = ganyunatklvl['ChargedAimShootDMG'][natklv];
 
           frostflakedmgpercent = ganyunatklvl['Frostflake Arrow DMG'][natklv];
-          frostflakebloomdmgpercent = ganyunatklvl['Frostflake Arrow Bloom DMG'][natklv];
+          frostflakebloomdmgpercent =
+              ganyunatklvl['Frostflake Arrow Bloom DMG'][natklv];
 
-          trailoftheqilindmgpercent = ganyunatklvl['Trail of the Qilin DMG'][eskilllv];
-          trailoftheqilinhppercent = ganyunatklvl['Trail of the Qilin HP'][eskilllv];
-          celestialshowerdmgpercent = ganyunatklvl['Celestial Shower DMG'][eburstlv];
+          trailoftheqilindmgpercent =
+              ganyunatklvl['Trail of the Qilin DMG'][eskilllv];
+          trailoftheqilinhppercent =
+              ganyunatklvl['Trail of the Qilin HP'][eskilllv];
+          celestialshowerdmgpercent =
+              ganyunatklvl['Celestial Shower DMG'][eburstlv];
+        }
+        break;
+      case ('ayaka'):
+        {
+          hit1dmgpercent = ayakanatklvl['1hitDMG'][natklv];
+          hit2dmgpercent = ayakanatklvl['2hitDMG'][natklv];
+          hit3dmgpercent = ayakanatklvl['3hitDMG'][natklv];
+          hit4dmgpercent = ayakanatklvl['4hitDMG'][natklv];
+          hit5dmgpercent = ayakanatklvl['5hitDMG'][natklv];
+          chargedattackdmgpercent = ayakanatklvl['ChargedAttackDMG'][natklv];
+
+          plungedmgpercent = ayakanatklvl['PlungeDMG'][natklv];
+          lplungedmgpercent = ayakanatklvl['LPlungeDMG'][natklv];
+          hplungedmgpercent = ayakanatklvl['HPlungeDMG'][natklv];
         }
         break;
     }
@@ -8517,45 +9959,92 @@ class _MyHomePageState extends State<MyHomePage> {
     basicmeltpercent = (1 * 25 * allEM) / (9 * (allEM + 1400));
     basicsuperconductpercent = (16 * allEM / (allEM + 2000));
 
-    superconductDMGpercent = (1 + basicsuperconductpercent + (thunderbird4On == true ? 0.4 : 0)) * 100;
-    superconductDMG = electroReactionBaseBYlv[level] * 1 * superconductDMGpercent / 100 * enemyCryores;
+    superconductDMGpercent =
+        (1 + basicsuperconductpercent + (thunderbird4On == true ? 0.4 : 0)) *
+            100;
+    superconductDMG = electroReactionBaseBYlv[level] *
+        1 *
+        superconductDMGpercent /
+        100 *
+        enemyCryores;
 
-    overloadDMGpercent = (1 + basicsuperconductpercent + (thunderbird4On == true ? 0.4 : 0)) * 100;
-    overloadDMG = electroReactionBaseBYlv[level] * 4 * overloadDMGpercent / 100 * enemyPyrores;
+    overloadDMGpercent =
+        (1 + basicsuperconductpercent + (thunderbird4On == true ? 0.4 : 0)) *
+            100;
+    overloadDMG = electroReactionBaseBYlv[level] *
+        4 *
+        overloadDMGpercent /
+        100 *
+        enemyPyrores;
 
-    electrochargedDMGpercent = (1 + basicsuperconductpercent + (thunderbird4On == true ? 0.4 : 0)) * 100;
-    electrochargedDMG = electroReactionBaseBYlv[level] * 2.4 * electrochargedDMGpercent / 100 * enemyElectrores;
+    electrochargedDMGpercent =
+        (1 + basicsuperconductpercent + (thunderbird4On == true ? 0.4 : 0)) *
+            100;
+    electrochargedDMG = electroReactionBaseBYlv[level] *
+        2.4 *
+        electrochargedDMGpercent /
+        100 *
+        enemyElectrores;
 
     shatteredDMGpercent = (1 + basicsuperconductpercent) * 100;
-    shatteredDMG = electroReactionBaseBYlv[level] * 3 * shatteredDMGpercent / 100 * enemyPhysicalres;
+    shatteredDMG = electroReactionBaseBYlv[level] *
+        3 *
+        shatteredDMGpercent /
+        100 *
+        enemyPhysicalres;
 
     vaporizeDMGpercent = 100 * (1 + basicmeltpercent);
     meltDMGpercent = 100 * (1 + basicmeltpercent);
 
     swirlDMGpercent = (1 + basicsuperconductpercent) * 100;
-    swirlDMGonHydro = electroReactionBaseBYlv[level] * 1.2 * swirlDMGpercent / 100 * enemyHydrores;
-    swirlDMGonPyro = electroReactionBaseBYlv[level] * 1.2 * swirlDMGpercent / 100 * enemyPyrores;
-    swirlDMGonElectro = electroReactionBaseBYlv[level] * 1.2 * swirlDMGpercent / 100 * enemyElectrores;
-    swirlDMGonCryo = electroReactionBaseBYlv[level] * 1.2 * swirlDMGpercent / 100 * enemyCryores;
+    swirlDMGonHydro = electroReactionBaseBYlv[level] *
+        1.2 *
+        swirlDMGpercent /
+        100 *
+        enemyHydrores;
+    swirlDMGonPyro = electroReactionBaseBYlv[level] *
+        1.2 *
+        swirlDMGpercent /
+        100 *
+        enemyPyrores;
+    swirlDMGonElectro = electroReactionBaseBYlv[level] *
+        1.2 *
+        swirlDMGpercent /
+        100 *
+        enemyElectrores;
+    swirlDMGonCryo = electroReactionBaseBYlv[level] *
+        1.2 *
+        swirlDMGpercent /
+        100 *
+        enemyCryores;
 
     hit1dmgc = allatk *
         (hit1dmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hit1dmgnc = allatk *
         (hit1dmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hit1dmgexp = allatk *
         (hit1dmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres *
@@ -8564,21 +10053,30 @@ class _MyHomePageState extends State<MyHomePage> {
     hit2dmgc = allatk *
         (hit2dmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hit2dmgnc = allatk *
         (hit2dmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hit2dmgexp = allatk *
         (hit2dmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres *
@@ -8587,21 +10085,30 @@ class _MyHomePageState extends State<MyHomePage> {
     hit3dmgc = allatk *
         (hit3dmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hit3dmgnc = allatk *
         (hit3dmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hit3dmgexp = allatk *
         (hit3dmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres *
@@ -8610,21 +10117,30 @@ class _MyHomePageState extends State<MyHomePage> {
     hit4dmgc = allatk *
         (hit4dmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hit4dmgnc = allatk *
         (hit4dmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hit4dmgexp = allatk *
         (hit4dmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres *
@@ -8633,21 +10149,30 @@ class _MyHomePageState extends State<MyHomePage> {
     hit5dmgc = allatk *
         (hit5dmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hit5dmgnc = allatk *
         (hit5dmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hit5dmgexp = allatk *
         (hit5dmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres *
@@ -8656,44 +10181,435 @@ class _MyHomePageState extends State<MyHomePage> {
     hit6dmgc = allatk *
         (hit6dmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hit6dmgnc = allatk *
         (hit6dmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hit6dmgexp = allatk *
         (hit6dmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
+    chargedatkdmgc = allatk *
+        (chargedattackdmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPhysicalres;
+
+    chargedatkdmgnc = allatk *
+        (chargedattackdmgpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPhysicalres;
+
+    chargedatkdmgexp = allatk *
+        (chargedattackdmgpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPhysicalres *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    cyrohit1dmgc = allatk *
+        (hit1dmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrohit1dmgnc = allatk *
+        (hit1dmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrohit1dmgexp = allatk *
+        (hit1dmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    cyrohit2dmgc = allatk *
+        (hit2dmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrohit2dmgnc = allatk *
+        (hit2dmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrohit2dmgexp = allatk *
+        (hit2dmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    cyrohit3dmgc = allatk *
+        (hit3dmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrohit3dmgnc = allatk *
+        (hit3dmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrohit3dmgexp = allatk *
+        (hit3dmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    cyrohit4dmgc = allatk *
+        (hit4dmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrohit4dmgnc = allatk *
+        (hit4dmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrohit4dmgexp = allatk *
+        (hit4dmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    cyrohit5dmgc = allatk *
+        (hit5dmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrohit5dmgnc = allatk *
+        (hit5dmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrohit5dmgexp = allatk *
+        (hit5dmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    cyrohit6dmgc = allatk *
+        (hit6dmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrohit6dmgnc = allatk *
+        (hit6dmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrohit6dmgexp = allatk *
+        (hit6dmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    cyrochargedatkdmgc = allatk *
+        (chargedattackdmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrochargedatkdmgnc = allatk *
+        (chargedattackdmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrochargedatkdmgexp = allatk *
+        (chargedattackdmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    cyroplungedmgc = allatk *
+        (plungedmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyroplungedmgnc = allatk *
+        (plungedmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyroplungedmgexp = allatk *
+        (plungedmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    cyrolplungedmgc = allatk *
+        (lplungedmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrolplungedmgnc = allatk *
+        (lplungedmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrolplungedmgexp = allatk *
+        (lplungedmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    cyrohplungedmgc = allatk *
+        (hplungedmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrohplungedmgnc = allatk *
+        (hplungedmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    cyrohplungedmgexp = allatk *
+        (hplungedmgpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    cyronatkalldmgnc = cyrohit1dmgnc +
+        cyrohit2dmgnc +
+        cyrohit3dmgnc +
+        cyrohit4dmgnc +
+        cyrohit5dmgnc +
+        (cyrohit6dmgnc > 0 ? cyrohit6dmgnc : 0);
+
+    cyronatkalldmgexp = cyrohit1dmgexp +
+        cyrohit2dmgexp +
+        cyrohit3dmgexp +
+        cyrohit4dmgexp +
+        cyrohit5dmgexp +
+        (cyrohit6dmgexp > 0 ? cyrohit6dmgexp : 0);
+
+    cyronatkalldmgc = cyrohit1dmgc +
+        cyrohit2dmgc +
+        cyrohit3dmgc +
+        cyrohit4dmgc +
+        cyrohit5dmgc +
+        (cyrohit6dmgc > 0 ? cyrohit6dmgc : 0);
+
     aimdmgc = allatk *
         (aimdmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     aimdmgnc = allatk *
         (aimdmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     aimdmgexp = allatk *
         (aimdmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres *
@@ -8702,21 +10618,30 @@ class _MyHomePageState extends State<MyHomePage> {
     ganyucaimdmgc = allatk *
         (ganyucaimdmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores;
 
     ganyucaimdmgnc = allatk *
         (ganyucaimdmgpercent / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores;
 
     ganyucaimdmgexp = allatk *
         (ganyucaimdmgpercent / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores *
@@ -8725,21 +10650,30 @@ class _MyHomePageState extends State<MyHomePage> {
     yoimiyacaimdmgc = allatk *
         (yoimiyacaimdmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
 
     yoimiyacaimdmgnc = allatk *
         (yoimiyacaimdmgpercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
 
     yoimiyacaimdmgexp = allatk *
         (yoimiyacaimdmgpercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores *
@@ -8748,21 +10682,30 @@ class _MyHomePageState extends State<MyHomePage> {
     plungedmgc = allatk *
         (plungedmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     plungedmgnc = allatk *
         (plungedmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     plungedmgexp = allatk *
         (plungedmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres *
@@ -8771,21 +10714,30 @@ class _MyHomePageState extends State<MyHomePage> {
     lplungedmgc = allatk *
         (lplungedmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     lplungedmgnc = allatk *
         (lplungedmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     lplungedmgexp = allatk *
         (lplungedmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres *
@@ -8794,44 +10746,83 @@ class _MyHomePageState extends State<MyHomePage> {
     hplungedmgc = allatk *
         (hplungedmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hplungedmgnc = allatk *
         (hplungedmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     hplungedmgexp = allatk *
         (hplungedmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100 + bonusPlungeATKDMGpercent / 100) *
+        (1 +
+            bonusPhysicalDMGpercent / 100 +
+            bonusDMGpercent / 100 +
+            bonusPlungeATKDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
+    natkalldmgnc = hit1dmgnc +
+        hit2dmgnc +
+        hit3dmgnc +
+        hit4dmgnc +
+        hit5dmgnc +
+        (hit6dmgnc > 0 ? hit6dmgnc : 0);
+
+    natkalldmgexp = hit1dmgexp +
+        hit2dmgexp +
+        hit3dmgexp +
+        hit4dmgexp +
+        hit5dmgexp +
+        (hit6dmgexp > 0 ? hit6dmgexp : 0);
+
+    natkalldmgc = hit1dmgc +
+        hit2dmgc +
+        hit3dmgc +
+        hit4dmgc +
+        hit5dmgc +
+        (hit6dmgc > 0 ? hit6dmgc : 0);
+
     frostflakedmgc = allatk *
         (frostflakedmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores;
 
     frostflakedmgnc = allatk *
         (frostflakedmgpercent / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores;
 
     frostflakedmgexp = allatk *
         (frostflakedmgpercent / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores *
@@ -8840,21 +10831,30 @@ class _MyHomePageState extends State<MyHomePage> {
     frostflakebloomdmgc = allatk *
         (frostflakebloomdmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bloomBonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bloomBonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores;
 
     frostflakebloomdmgnc = allatk *
         (frostflakebloomdmgpercent / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bloomBonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bloomBonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores;
 
     frostflakebloomdmgexp = allatk *
         (frostflakebloomdmgpercent / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bloomBonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bloomBonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores *
@@ -8892,21 +10892,30 @@ class _MyHomePageState extends State<MyHomePage> {
     celestialshowerdmgc = allatk *
         (celestialshowerdmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusBurstDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores;
 
     celestialshowerdmgnc = allatk *
         (celestialshowerdmgpercent / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusBurstDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores;
 
     celestialshowerdmgexp = allatk *
         (celestialshowerdmgpercent / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusCryoDMGpercent / 100 +
+            bonusBurstDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores *
@@ -8915,21 +10924,30 @@ class _MyHomePageState extends State<MyHomePage> {
     kindlingarrowdmgc = allatk *
         (kindlingdmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
 
     kindlingarrowdmgnc = allatk *
         (kindlingdmgpercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
 
     kindlingarrowdmgexp = allatk *
         (kindlingdmgpercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusChargedATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores *
@@ -8938,7 +10956,10 @@ class _MyHomePageState extends State<MyHomePage> {
     teikafiredancehit1dmgnc = allatk *
         (hit1dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
@@ -8946,7 +10967,10 @@ class _MyHomePageState extends State<MyHomePage> {
     teikafiredancehit1dmgexp = allatk *
         (hit1dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores *
@@ -8956,7 +10980,10 @@ class _MyHomePageState extends State<MyHomePage> {
         (hit2dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
@@ -8964,7 +10991,10 @@ class _MyHomePageState extends State<MyHomePage> {
     teikafiredancehit2dmgnc = allatk *
         (hit2dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
@@ -8972,7 +11002,10 @@ class _MyHomePageState extends State<MyHomePage> {
     teikafiredancehit2dmgexp = allatk *
         (hit2dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores *
@@ -8982,7 +11015,10 @@ class _MyHomePageState extends State<MyHomePage> {
         (hit3dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
@@ -8990,7 +11026,10 @@ class _MyHomePageState extends State<MyHomePage> {
     teikafiredancehit3dmgnc = allatk *
         (hit3dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
@@ -8998,7 +11037,10 @@ class _MyHomePageState extends State<MyHomePage> {
     teikafiredancehit3dmgexp = allatk *
         (hit3dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores *
@@ -9008,7 +11050,10 @@ class _MyHomePageState extends State<MyHomePage> {
         (hit4dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
@@ -9016,7 +11061,10 @@ class _MyHomePageState extends State<MyHomePage> {
     teikafiredancehit4dmgnc = allatk *
         (hit4dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
@@ -9024,7 +11072,10 @@ class _MyHomePageState extends State<MyHomePage> {
     teikafiredancehit4dmgexp = allatk *
         (hit4dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores *
@@ -9034,7 +11085,10 @@ class _MyHomePageState extends State<MyHomePage> {
         (hit5dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
@@ -9042,7 +11096,10 @@ class _MyHomePageState extends State<MyHomePage> {
     teikafiredancehit5dmgnc = allatk *
         (hit5dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
@@ -9050,36 +11107,60 @@ class _MyHomePageState extends State<MyHomePage> {
     teikafiredancehit5dmgexp = allatk *
         (hit5dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusNormalATKDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
-    teikafiredanceallhitdmgc = teikafiredancehit1dmgc * 2 + teikafiredancehit2dmgc + teikafiredancehit3dmgc + teikafiredancehit4dmgc * 2 + teikafiredancehit5dmgc;
+    teikafiredanceallhitdmgc = teikafiredancehit1dmgc * 2 +
+        teikafiredancehit2dmgc +
+        teikafiredancehit3dmgc +
+        teikafiredancehit4dmgc * 2 +
+        teikafiredancehit5dmgc;
 
-    teikafiredanceallhitdmgnc = teikafiredancehit1dmgnc * 2 + teikafiredancehit2dmgnc + teikafiredancehit3dmgnc + teikafiredancehit4dmgnc * 2 + teikafiredancehit5dmgnc;
+    teikafiredanceallhitdmgnc = teikafiredancehit1dmgnc * 2 +
+        teikafiredancehit2dmgnc +
+        teikafiredancehit3dmgnc +
+        teikafiredancehit4dmgnc * 2 +
+        teikafiredancehit5dmgnc;
 
-    teikafiredanceallhitdmgexp = teikafiredancehit1dmgexp * 2 + teikafiredancehit2dmgexp + teikafiredancehit3dmgexp + teikafiredancehit4dmgexp * 2 + teikafiredancehit5dmgexp;
+    teikafiredanceallhitdmgexp = teikafiredancehit1dmgexp * 2 +
+        teikafiredancehit2dmgexp +
+        teikafiredancehit3dmgexp +
+        teikafiredancehit4dmgexp * 2 +
+        teikafiredancehit5dmgexp;
 
     ryukinsaxifragedmgc = allatk *
         (ryukinsaxifragedmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusBurstDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
 
     ryukinsaxifragedmgnc = allatk *
         (ryukinsaxifragedmgpercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusBurstDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
 
     ryukinsaxifragedmgexp = allatk *
         (ryukinsaxifragedmgpercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusBurstDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores *
@@ -9088,21 +11169,30 @@ class _MyHomePageState extends State<MyHomePage> {
     aurousblazedmgc = allatk *
         (aurousblazedmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusBurstDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
 
     aurousblazedmgnc = allatk *
         (aurousblazedmgpercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusBurstDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores;
 
     aurousblazedmgexp = allatk *
         (aurousblazedmgpercent / 100) *
-        (1 + bonusPyroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 +
+            bonusPyroDMGpercent / 100 +
+            bonusBurstDMGpercent / 100 +
+            bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores *
@@ -9116,8 +11206,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
-    echoingballaddmgnc =
-        allatk * (125 / 100) * (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) * (100 + level) / ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) * enemyPhysicalres;
+    echoingballaddmgnc = allatk *
+        (125 / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPhysicalres;
 
     echoingballaddmgexp = allatk *
         (125 / 100) *
@@ -9128,7 +11222,9 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
     //screenadjust
-    double heightadjust = (MediaQuery.of(context).size.height - 200 > 800) ? (MediaQuery.of(context).size.height - 200) : 800;
+    double heightadjust = (MediaQuery.of(context).size.height - 200 > 800)
+        ? (MediaQuery.of(context).size.height - 200)
+        : 800;
 
     return Scaffold(
       drawer: Drawer(
@@ -9217,7 +11313,8 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text('简体中文'),
               onTap: () {
                 // Update the state of the app.
-                EasyLocalization.of(context).setLocale(Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'));
+                EasyLocalization.of(context).setLocale(
+                    Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'));
                 // ...
               },
             ),
@@ -9234,7 +11331,9 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(width: 10),
             Container(
               width: 120,
-              decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 1), borderRadius: BorderRadius.all(Radius.circular(10))),
+              decoration: BoxDecoration(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
               child: Center(
                 child: Text(
                   "ver " + currentcharacter.tr() + " 0.9",
@@ -9303,12 +11402,17 @@ class _MyHomePageState extends State<MyHomePage> {
                         Container(
                           padding: EdgeInsets.all(10.0),
                           margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(color: Color.fromRGBO(0, 0, 0, 0.3), borderRadius: BorderRadius.all(Radius.circular(10))),
+                          decoration: BoxDecoration(
+                              color: Color.fromRGBO(0, 0, 0, 0.3),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Image(
-                                image: elementopng[charactertoinfo[currentcharacter]['element']],
+                                image: elementopng[
+                                    charactertoinfo[currentcharacter]
+                                        ['element']],
                                 height: 100,
                               ),
                               SelectableText(
@@ -9328,7 +11432,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           height: 400,
                           padding: EdgeInsets.all(10.0),
                           margin: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                          decoration: BoxDecoration(
+                              color: Color.fromRGBO(255, 255, 255, 0.8),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -9349,7 +11456,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     max: 90,
                                     divisions: 9,
                                     activeColor: Theme.of(context).primaryColor,
-                                    inactiveColor: Theme.of(context).primaryColorLight,
+                                    inactiveColor:
+                                        Theme.of(context).primaryColorLight,
                                     label: level.toString(),
                                     value: level.toDouble(),
                                     onChanged: (value) {
@@ -9377,7 +11485,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     max: 15,
                                     divisions: 14,
                                     activeColor: Theme.of(context).primaryColor,
-                                    inactiveColor: Theme.of(context).primaryColorLight,
+                                    inactiveColor:
+                                        Theme.of(context).primaryColorLight,
                                     label: natklv.toString(),
                                     value: natklv.toDouble(),
                                     onChanged: (value) {
@@ -9405,7 +11514,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     max: 15,
                                     divisions: 14,
                                     activeColor: Theme.of(context).primaryColor,
-                                    inactiveColor: Theme.of(context).primaryColorLight,
+                                    inactiveColor:
+                                        Theme.of(context).primaryColorLight,
                                     label: eskilllv.toString(),
                                     value: eskilllv.toDouble(),
                                     onChanged: (value) {
@@ -9433,7 +11543,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     max: 15,
                                     divisions: 14,
                                     activeColor: Theme.of(context).primaryColor,
-                                    inactiveColor: Theme.of(context).primaryColorLight,
+                                    inactiveColor:
+                                        Theme.of(context).primaryColorLight,
                                     label: eburstlv.toString(),
                                     value: eburstlv.toDouble(),
                                     onChanged: (value) {
@@ -9461,7 +11572,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     max: 6,
                                     divisions: 6,
                                     activeColor: Theme.of(context).primaryColor,
-                                    inactiveColor: Theme.of(context).primaryColorLight,
+                                    inactiveColor:
+                                        Theme.of(context).primaryColorLight,
                                     label: cons.toString(),
                                     value: cons.toDouble(),
                                     onChanged: (value) {
@@ -9487,7 +11599,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 lg: 6,
                 xl: 3,
                 child: Container(
-                  height: (MediaQuery.of(context).size.width > 1200) ? heightadjust : null,
+                  height: (MediaQuery.of(context).size.width > 1200)
+                      ? heightadjust
+                      : null,
                   color: Colors.lightGreen[50],
                   child: Center(
                     child: SingleChildScrollView(
@@ -9498,7 +11612,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             height: 350,
                             padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 255, 255, 0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
 
                             //ANCHOR weapon
                             child: Column(
@@ -9517,7 +11634,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       height: 200,
                                       decoration: BoxDecoration(
                                         // color: Colors.lightBlue[50],
-                                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
                                         image: DecorationImage(
                                           image: weapontopng[weaponselect],
                                           fit: BoxFit.contain,
@@ -9542,8 +11660,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                       min: 1,
                                       max: 90,
                                       divisions: 18,
-                                      activeColor: Theme.of(context).primaryColor,
-                                      inactiveColor: Theme.of(context).primaryColorLight,
+                                      activeColor:
+                                          Theme.of(context).primaryColor,
+                                      inactiveColor:
+                                          Theme.of(context).primaryColorLight,
                                       label: weaponlv.toString(),
                                       value: weaponlv.toDouble(),
                                       onChanged: (value) {
@@ -9570,8 +11690,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                       min: 1,
                                       max: 5,
                                       divisions: 4,
-                                      activeColor: Theme.of(context).primaryColor,
-                                      inactiveColor: Theme.of(context).primaryColorLight,
+                                      activeColor:
+                                          Theme.of(context).primaryColor,
+                                      inactiveColor:
+                                          Theme.of(context).primaryColorLight,
                                       label: weaponref.toString(),
                                       value: weaponref.toDouble(),
                                       onChanged: (value) {
@@ -9590,31 +11712,39 @@ class _MyHomePageState extends State<MyHomePage> {
                             height: 800,
                             padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 255, 255, 0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                               children: [
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Card(
                                           elevation: 3,
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           child: InkWell(
-                                            splashColor: Colors.blue.withAlpha(30),
+                                            splashColor:
+                                                Colors.blue.withAlpha(30),
                                             onTap: _showSimpleDialogasA,
                                             child: Container(
                                               width: 150,
                                               height: 150,
                                               decoration: BoxDecoration(
                                                 // color: Colors.lightBlue[50],
-                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
                                                 image: DecorationImage(
-                                                  image: artifactsettopng[artifactsetAselect],
+                                                  image: artifactsettopng[
+                                                      artifactsetAselect],
                                                   fit: BoxFit.contain,
                                                 ),
                                               ),
@@ -9633,24 +11763,29 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ],
                                     ),
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Card(
                                           elevation: 3,
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           child: InkWell(
-                                            splashColor: Colors.blue.withAlpha(30),
+                                            splashColor:
+                                                Colors.blue.withAlpha(30),
                                             onTap: _showSimpleDialogasB,
                                             child: Container(
                                               width: 150,
                                               height: 150,
                                               decoration: BoxDecoration(
                                                 // color: Colors.lightBlue[50],
-                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
                                                 image: DecorationImage(
-                                                  image: artifactsettopng[artifactsetBselect],
+                                                  image: artifactsettopng[
+                                                      artifactsetBselect],
                                                   fit: BoxFit.contain,
                                                 ),
                                               ),
@@ -9676,15 +11811,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Card(
                                           elevation: 1,
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           child: InkWell(
-                                            splashColor: Colors.blue.withAlpha(30),
+                                            splashColor:
+                                                Colors.blue.withAlpha(30),
                                             onTap: () {
                                               print('Card tapped.');
                                             },
@@ -9693,9 +11831,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                               height: 50,
                                               decoration: BoxDecoration(
                                                 // color: Colors.lightBlue[50],
-                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
                                                 image: DecorationImage(
-                                                  image: AssetImage('images/Icon_Flower_of_Life.png'),
+                                                  image: AssetImage(
+                                                      'images/Icon_Flower_of_Life.png'),
                                                   fit: BoxFit.contain,
                                                 ),
                                               ),
@@ -9730,10 +11870,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ],
                                     ),
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: <Widget>[
                                             SelectableText(
                                               '${"Star".tr()}: $fstar',
@@ -9750,8 +11892,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 min: 4,
                                                 max: 5,
                                                 divisions: 1,
-                                                activeColor: Theme.of(context).primaryColor,
-                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                activeColor: Theme.of(context)
+                                                    .primaryColor,
+                                                inactiveColor: Theme.of(context)
+                                                    .primaryColorLight,
                                                 label: fstar.toString(),
                                                 value: fstar.toDouble(),
                                                 onChanged: (value) {
@@ -9764,7 +11908,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ],
                                         ),
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: <Widget>[
                                             SelectableText(
                                               '${"Lv".tr()}: $flv',
@@ -9781,8 +11926,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 min: 1,
                                                 max: 20,
                                                 divisions: 5,
-                                                activeColor: Theme.of(context).primaryColor,
-                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                activeColor: Theme.of(context)
+                                                    .primaryColor,
+                                                inactiveColor: Theme.of(context)
+                                                    .primaryColorLight,
                                                 label: flv.toString(),
                                                 value: flv.toDouble(),
                                                 onChanged: (value) {
@@ -9804,10 +11951,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                           width: 170,
                                           height: 100,
                                           child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
                                               Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: <Widget>[
                                                   if (!stat1atkpercentOn &&
                                                       !stat1hppercentOn &&
@@ -9819,21 +11968,43 @@ class _MyHomePageState extends State<MyHomePage> {
                                                       !stat1CDpercentOn &&
                                                       !stat1EMOn &&
                                                       !stat1ERpercentOn)
-                                                    Text('Please click to set stats').tr(),
-                                                  if (stat1atkpercentOn) Text('${"ATK".tr()}%:$stat1atkpercent'),
-                                                  if (stat1hppercentOn) Text('${"HP".tr()}%:$stat1hppercent'),
-                                                  if (stat1defpercentOn) Text('${"DEF".tr()}%:$stat1defpercent'),
-                                                  if (stat1CRpercentOn) Text('${"Critical Rate".tr()}%:$stat1CRpercent'),
-                                                  if (stat1CDpercentOn) Text('${"Critical Damage".tr()}%:$stat1CDpercent'),
-                                                  if (stat1EMOn) Text('${"Elemental Mastery".tr()}:$stat1EM'),
-                                                  if (stat1ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat1ERpercent'),
-                                                  if (stat1atkOn) Text('${"ATK".tr()}:$stat1atk'),
-                                                  if (stat1hpOn) Text('${"HP".tr()}:$stat1hp'),
-                                                  if (stat1defOn) Text('${"DEF".tr()}:$stat1def'),
+                                                    Text('Please click to set stats')
+                                                        .tr(),
+                                                  if (stat1atkpercentOn)
+                                                    Text(
+                                                        '${"ATK".tr()}%:$stat1atkpercent'),
+                                                  if (stat1hppercentOn)
+                                                    Text(
+                                                        '${"HP".tr()}%:$stat1hppercent'),
+                                                  if (stat1defpercentOn)
+                                                    Text(
+                                                        '${"DEF".tr()}%:$stat1defpercent'),
+                                                  if (stat1CRpercentOn)
+                                                    Text(
+                                                        '${"Critical Rate".tr()}%:$stat1CRpercent'),
+                                                  if (stat1CDpercentOn)
+                                                    Text(
+                                                        '${"Critical Damage".tr()}%:$stat1CDpercent'),
+                                                  if (stat1EMOn)
+                                                    Text(
+                                                        '${"Elemental Mastery".tr()}:$stat1EM'),
+                                                  if (stat1ERpercentOn)
+                                                    Text(
+                                                        '${"Energy Recharge".tr()}%:$stat1ERpercent'),
+                                                  if (stat1atkOn)
+                                                    Text(
+                                                        '${"ATK".tr()}:$stat1atk'),
+                                                  if (stat1hpOn)
+                                                    Text(
+                                                        '${"HP".tr()}:$stat1hp'),
+                                                  if (stat1defOn)
+                                                    Text(
+                                                        '${"DEF".tr()}:$stat1def'),
                                                 ],
                                               ),
                                               Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: <Widget>[
                                                   Visibility(
                                                     visible: false,
@@ -9860,15 +12031,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Card(
                                           elevation: 1,
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           child: InkWell(
-                                            splashColor: Colors.blue.withAlpha(30),
+                                            splashColor:
+                                                Colors.blue.withAlpha(30),
                                             onTap: () {
                                               print('Card tapped.');
                                             },
@@ -9877,9 +12051,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                               height: 50,
                                               decoration: BoxDecoration(
                                                 // color: Colors.lightBlue[50],
-                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
                                                 image: DecorationImage(
-                                                  image: AssetImage('images/Icon_Plume_of_Death.png'),
+                                                  image: AssetImage(
+                                                      'images/Icon_Plume_of_Death.png'),
                                                   fit: BoxFit.contain,
                                                 ),
                                               ),
@@ -9914,10 +12090,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ],
                                     ),
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: <Widget>[
                                             SelectableText(
                                               '${"Star".tr()}: $pstar',
@@ -9934,8 +12112,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 min: 4,
                                                 max: 5,
                                                 divisions: 1,
-                                                activeColor: Theme.of(context).primaryColor,
-                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                activeColor: Theme.of(context)
+                                                    .primaryColor,
+                                                inactiveColor: Theme.of(context)
+                                                    .primaryColorLight,
                                                 label: pstar.toString(),
                                                 value: pstar.toDouble(),
                                                 onChanged: (value) {
@@ -9948,7 +12128,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ],
                                         ),
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: <Widget>[
                                             SelectableText(
                                               '${"Lv".tr()}: $plv',
@@ -9965,8 +12146,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 min: 1,
                                                 max: 20,
                                                 divisions: 5,
-                                                activeColor: Theme.of(context).primaryColor,
-                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                activeColor: Theme.of(context)
+                                                    .primaryColor,
+                                                inactiveColor: Theme.of(context)
+                                                    .primaryColorLight,
                                                 label: plv.toString(),
                                                 value: plv.toDouble(),
                                                 onChanged: (value) {
@@ -9988,10 +12171,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                           width: 170,
                                           height: 100,
                                           child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
                                               Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: <Widget>[
                                                   if (!stat2atkpercentOn &&
                                                       !stat2hppercentOn &&
@@ -10003,21 +12188,43 @@ class _MyHomePageState extends State<MyHomePage> {
                                                       !stat2CDpercentOn &&
                                                       !stat2EMOn &&
                                                       !stat2ERpercentOn)
-                                                    Text('Please click to set stats').tr(),
-                                                  if (stat2atkpercentOn) Text('${"ATK".tr()}%:$stat2atkpercent'),
-                                                  if (stat2hppercentOn) Text('${"HP".tr()}%:$stat2hppercent'),
-                                                  if (stat2defpercentOn) Text('${"DEF".tr()}%:$stat2defpercent'),
-                                                  if (stat2CRpercentOn) Text('${"Critical Rate".tr()}%:$stat2CRpercent'),
-                                                  if (stat2CDpercentOn) Text('${"Critical Damage".tr()}%:$stat2CDpercent'),
-                                                  if (stat2EMOn) Text('${"Elemental Mastery".tr()}:$stat2EM'),
-                                                  if (stat2ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat2ERpercent'),
-                                                  if (stat2atkOn) Text('${"ATK".tr()}:$stat2atk'),
-                                                  if (stat2hpOn) Text('${"HP".tr()}:$stat2hp'),
-                                                  if (stat2defOn) Text('${"DEF".tr()}:$stat2def'),
+                                                    Text('Please click to set stats')
+                                                        .tr(),
+                                                  if (stat2atkpercentOn)
+                                                    Text(
+                                                        '${"ATK".tr()}%:$stat2atkpercent'),
+                                                  if (stat2hppercentOn)
+                                                    Text(
+                                                        '${"HP".tr()}%:$stat2hppercent'),
+                                                  if (stat2defpercentOn)
+                                                    Text(
+                                                        '${"DEF".tr()}%:$stat2defpercent'),
+                                                  if (stat2CRpercentOn)
+                                                    Text(
+                                                        '${"Critical Rate".tr()}%:$stat2CRpercent'),
+                                                  if (stat2CDpercentOn)
+                                                    Text(
+                                                        '${"Critical Damage".tr()}%:$stat2CDpercent'),
+                                                  if (stat2EMOn)
+                                                    Text(
+                                                        '${"Elemental Mastery".tr()}:$stat2EM'),
+                                                  if (stat2ERpercentOn)
+                                                    Text(
+                                                        '${"Energy Recharge".tr()}%:$stat2ERpercent'),
+                                                  if (stat2atkOn)
+                                                    Text(
+                                                        '${"ATK".tr()}:$stat2atk'),
+                                                  if (stat2hpOn)
+                                                    Text(
+                                                        '${"HP".tr()}:$stat2hp'),
+                                                  if (stat2defOn)
+                                                    Text(
+                                                        '${"DEF".tr()}:$stat2def'),
                                                 ],
                                               ),
                                               Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: <Widget>[
                                                   Visibility(
                                                     visible: false,
@@ -10044,15 +12251,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Card(
                                           elevation: 1,
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           child: InkWell(
-                                            splashColor: Colors.blue.withAlpha(30),
+                                            splashColor:
+                                                Colors.blue.withAlpha(30),
                                             onTap: () {
                                               print('Card tapped.');
                                             },
@@ -10061,9 +12271,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                               height: 50,
                                               decoration: BoxDecoration(
                                                 // color: Colors.lightBlue[50],
-                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
                                                 image: DecorationImage(
-                                                  image: AssetImage('images/Icon_Sands_of_Eon.png'),
+                                                  image: AssetImage(
+                                                      'images/Icon_Sands_of_Eon.png'),
                                                   fit: BoxFit.contain,
                                                 ),
                                               ),
@@ -10090,39 +12302,46 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     DropdownMenuItem(
                                                       child: Text(
                                                         "${"HP".tr()}%",
-                                                        style: TextStyle(fontSize: 15),
+                                                        style: TextStyle(
+                                                            fontSize: 15),
                                                       ),
                                                       value: 1,
                                                     ),
                                                     DropdownMenuItem(
                                                       child: Text(
                                                         "${"ATK".tr()}%",
-                                                        style: TextStyle(fontSize: 15),
+                                                        style: TextStyle(
+                                                            fontSize: 15),
                                                       ),
                                                       value: 2,
                                                     ),
                                                     DropdownMenuItem(
                                                         child: Text(
                                                           "${"DEF".tr()}%",
-                                                          style: TextStyle(fontSize: 15),
+                                                          style: TextStyle(
+                                                              fontSize: 15),
                                                         ),
                                                         value: 3),
                                                     DropdownMenuItem(
                                                         child: Text(
-                                                          "Elemental Mastery".tr(),
-                                                          style: TextStyle(fontSize: 10),
+                                                          "Elemental Mastery"
+                                                              .tr(),
+                                                          style: TextStyle(
+                                                              fontSize: 10),
                                                         ),
                                                         value: 4),
                                                     DropdownMenuItem(
                                                         child: Text(
                                                           "${"Energy Recharge".tr()}%",
-                                                          style: TextStyle(fontSize: 10),
+                                                          style: TextStyle(
+                                                              fontSize: 10),
                                                         ),
                                                         value: 5)
                                                   ],
                                                   onChanged: (value) {
                                                     setState(() {
-                                                      artifact3mainstatcat = value;
+                                                      artifact3mainstatcat =
+                                                          value;
                                                     });
                                                   }),
                                             ),
@@ -10131,10 +12350,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ],
                                     ),
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: <Widget>[
                                             SelectableText(
                                               '${"Star".tr()}: $sstar',
@@ -10151,8 +12372,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 min: 4,
                                                 max: 5,
                                                 divisions: 1,
-                                                activeColor: Theme.of(context).primaryColor,
-                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                activeColor: Theme.of(context)
+                                                    .primaryColor,
+                                                inactiveColor: Theme.of(context)
+                                                    .primaryColorLight,
                                                 label: sstar.toString(),
                                                 value: sstar.toDouble(),
                                                 onChanged: (value) {
@@ -10165,7 +12388,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ],
                                         ),
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: <Widget>[
                                             SelectableText(
                                               '${"Lv".tr()}: $slv',
@@ -10182,8 +12406,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 min: 1,
                                                 max: 20,
                                                 divisions: 5,
-                                                activeColor: Theme.of(context).primaryColor,
-                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                activeColor: Theme.of(context)
+                                                    .primaryColor,
+                                                inactiveColor: Theme.of(context)
+                                                    .primaryColorLight,
                                                 label: slv.toString(),
                                                 value: slv.toDouble(),
                                                 onChanged: (value) {
@@ -10205,10 +12431,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                           width: 170,
                                           height: 100,
                                           child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
                                               Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: <Widget>[
                                                   if (!stat3atkpercentOn &&
                                                       !stat3hppercentOn &&
@@ -10220,21 +12448,43 @@ class _MyHomePageState extends State<MyHomePage> {
                                                       !stat3CDpercentOn &&
                                                       !stat3EMOn &&
                                                       !stat3ERpercentOn)
-                                                    Text('Please click to set stats').tr(),
-                                                  if (stat3atkpercentOn) Text('${"ATK".tr()}%:$stat3atkpercent'),
-                                                  if (stat3hppercentOn) Text('${"HP".tr()}%:$stat3hppercent'),
-                                                  if (stat3defpercentOn) Text('${"DEF".tr()}%:$stat3defpercent'),
-                                                  if (stat3CRpercentOn) Text('${"Critical Rate".tr()}%:$stat3CRpercent'),
-                                                  if (stat3CDpercentOn) Text('${"Critical Damage".tr()}%:$stat3CDpercent'),
-                                                  if (stat3EMOn) Text('${"Elemental Mastery".tr()}:$stat3EM'),
-                                                  if (stat3ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat3ERpercent'),
-                                                  if (stat3atkOn) Text('${"ATK".tr()}:$stat3atk'),
-                                                  if (stat3hpOn) Text('${"HP".tr()}:$stat3hp'),
-                                                  if (stat3defOn) Text('${"DEF".tr()}:$stat3def'),
+                                                    Text('Please click to set stats')
+                                                        .tr(),
+                                                  if (stat3atkpercentOn)
+                                                    Text(
+                                                        '${"ATK".tr()}%:$stat3atkpercent'),
+                                                  if (stat3hppercentOn)
+                                                    Text(
+                                                        '${"HP".tr()}%:$stat3hppercent'),
+                                                  if (stat3defpercentOn)
+                                                    Text(
+                                                        '${"DEF".tr()}%:$stat3defpercent'),
+                                                  if (stat3CRpercentOn)
+                                                    Text(
+                                                        '${"Critical Rate".tr()}%:$stat3CRpercent'),
+                                                  if (stat3CDpercentOn)
+                                                    Text(
+                                                        '${"Critical Damage".tr()}%:$stat3CDpercent'),
+                                                  if (stat3EMOn)
+                                                    Text(
+                                                        '${"Elemental Mastery".tr()}:$stat3EM'),
+                                                  if (stat3ERpercentOn)
+                                                    Text(
+                                                        '${"Energy Recharge".tr()}%:$stat3ERpercent'),
+                                                  if (stat3atkOn)
+                                                    Text(
+                                                        '${"ATK".tr()}:$stat3atk'),
+                                                  if (stat3hpOn)
+                                                    Text(
+                                                        '${"HP".tr()}:$stat3hp'),
+                                                  if (stat3defOn)
+                                                    Text(
+                                                        '${"DEF".tr()}:$stat3def'),
                                                 ],
                                               ),
                                               Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: <Widget>[
                                                   Visibility(
                                                     visible: false,
@@ -10261,15 +12511,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Card(
                                           elevation: 1,
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           child: InkWell(
-                                            splashColor: Colors.blue.withAlpha(30),
+                                            splashColor:
+                                                Colors.blue.withAlpha(30),
                                             onTap: () {
                                               print('Card tapped.');
                                             },
@@ -10278,9 +12531,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                               height: 50,
                                               decoration: BoxDecoration(
                                                 // color: Colors.lightBlue[50],
-                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
                                                 image: DecorationImage(
-                                                  image: AssetImage('images/Icon_Goblet_of_Eonothem.png'),
+                                                  image: AssetImage(
+                                                      'images/Icon_Goblet_of_Eonothem.png'),
                                                   fit: BoxFit.contain,
                                                 ),
                                               ),
@@ -10307,75 +12562,88 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     DropdownMenuItem(
                                                       child: Text(
                                                         "${"HP".tr()}%",
-                                                        style: TextStyle(fontSize: 15),
+                                                        style: TextStyle(
+                                                            fontSize: 15),
                                                       ),
                                                       value: 1,
                                                     ),
                                                     DropdownMenuItem(
                                                       child: Text(
                                                         "${"ATK".tr()}%",
-                                                        style: TextStyle(fontSize: 15),
+                                                        style: TextStyle(
+                                                            fontSize: 15),
                                                       ),
                                                       value: 2,
                                                     ),
                                                     DropdownMenuItem(
                                                         child: Text(
                                                           "${"DEF".tr()}%",
-                                                          style: TextStyle(fontSize: 15),
+                                                          style: TextStyle(
+                                                              fontSize: 15),
                                                         ),
                                                         value: 3),
                                                     DropdownMenuItem(
                                                         child: Text(
-                                                          "Elemental Mastery".tr(),
-                                                          style: TextStyle(fontSize: 10),
+                                                          "Elemental Mastery"
+                                                              .tr(),
+                                                          style: TextStyle(
+                                                              fontSize: 10),
                                                         ),
                                                         value: 4),
                                                     DropdownMenuItem(
                                                         child: Text(
                                                           "${"Physical Damage".tr()}%",
-                                                          style: TextStyle(fontSize: 10),
+                                                          style: TextStyle(
+                                                              fontSize: 10),
                                                         ),
                                                         value: 5),
                                                     DropdownMenuItem(
                                                         child: Text(
                                                           "${"Pyro Damage".tr()}%",
-                                                          style: TextStyle(fontSize: 10),
+                                                          style: TextStyle(
+                                                              fontSize: 10),
                                                         ),
                                                         value: 6),
                                                     DropdownMenuItem(
                                                         child: Text(
                                                           "${"Hydro Damage".tr()}%",
-                                                          style: TextStyle(fontSize: 10),
+                                                          style: TextStyle(
+                                                              fontSize: 10),
                                                         ),
                                                         value: 7),
                                                     DropdownMenuItem(
                                                         child: Text(
                                                           "${"Cryo Damage".tr()}%",
-                                                          style: TextStyle(fontSize: 10),
+                                                          style: TextStyle(
+                                                              fontSize: 10),
                                                         ),
                                                         value: 8),
                                                     DropdownMenuItem(
                                                         child: Text(
                                                           "${"Electro Damage".tr()}%",
-                                                          style: TextStyle(fontSize: 10),
+                                                          style: TextStyle(
+                                                              fontSize: 10),
                                                         ),
                                                         value: 9),
                                                     DropdownMenuItem(
                                                         child: Text(
                                                           "${"Anemo Damage".tr()}%",
-                                                          style: TextStyle(fontSize: 10),
+                                                          style: TextStyle(
+                                                              fontSize: 10),
                                                         ),
                                                         value: 10),
                                                     DropdownMenuItem(
                                                         child: Text(
                                                           "${"Geo Damage".tr()}%",
-                                                          style: TextStyle(fontSize: 10),
+                                                          style: TextStyle(
+                                                              fontSize: 10),
                                                         ),
                                                         value: 11),
                                                   ],
                                                   onChanged: (value) {
                                                     setState(() {
-                                                      artifact4mainstatcat = value;
+                                                      artifact4mainstatcat =
+                                                          value;
                                                     });
                                                   }),
                                             ),
@@ -10384,10 +12652,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ],
                                     ),
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: <Widget>[
                                             SelectableText(
                                               '${"Star".tr()}: $gstar',
@@ -10404,8 +12674,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 min: 4,
                                                 max: 5,
                                                 divisions: 1,
-                                                activeColor: Theme.of(context).primaryColor,
-                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                activeColor: Theme.of(context)
+                                                    .primaryColor,
+                                                inactiveColor: Theme.of(context)
+                                                    .primaryColorLight,
                                                 label: gstar.toString(),
                                                 value: gstar.toDouble(),
                                                 onChanged: (value) {
@@ -10418,7 +12690,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ],
                                         ),
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: <Widget>[
                                             SelectableText(
                                               '${"Lv".tr()}: $glv',
@@ -10435,8 +12708,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 min: 1,
                                                 max: 20,
                                                 divisions: 5,
-                                                activeColor: Theme.of(context).primaryColor,
-                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                activeColor: Theme.of(context)
+                                                    .primaryColor,
+                                                inactiveColor: Theme.of(context)
+                                                    .primaryColorLight,
                                                 label: glv.toString(),
                                                 value: glv.toDouble(),
                                                 onChanged: (value) {
@@ -10458,10 +12733,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                           width: 170,
                                           height: 100,
                                           child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
                                               Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: <Widget>[
                                                   if (!stat4atkpercentOn &&
                                                       !stat4hppercentOn &&
@@ -10473,21 +12750,43 @@ class _MyHomePageState extends State<MyHomePage> {
                                                       !stat4CDpercentOn &&
                                                       !stat4EMOn &&
                                                       !stat4ERpercentOn)
-                                                    Text('Please click to set stats').tr(),
-                                                  if (stat4atkpercentOn) Text('${"ATK".tr()}%:$stat4atkpercent'),
-                                                  if (stat4hppercentOn) Text('${"HP".tr()}%:$stat4hppercent'),
-                                                  if (stat4defpercentOn) Text('${"DEF".tr()}%:$stat4defpercent'),
-                                                  if (stat4CRpercentOn) Text('${"Critical Rate".tr()}%:$stat4CRpercent'),
-                                                  if (stat4CDpercentOn) Text('${"Critical Damage".tr()}%:$stat4CDpercent'),
-                                                  if (stat4EMOn) Text('${"Elemental Mastery".tr()}:$stat4EM'),
-                                                  if (stat4ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat4ERpercent'),
-                                                  if (stat4atkOn) Text('${"ATK".tr()}:$stat4atk'),
-                                                  if (stat4hpOn) Text('${"HP".tr()}:$stat4hp'),
-                                                  if (stat4defOn) Text('${"DEF".tr()}:$stat4def'),
+                                                    Text('Please click to set stats')
+                                                        .tr(),
+                                                  if (stat4atkpercentOn)
+                                                    Text(
+                                                        '${"ATK".tr()}%:$stat4atkpercent'),
+                                                  if (stat4hppercentOn)
+                                                    Text(
+                                                        '${"HP".tr()}%:$stat4hppercent'),
+                                                  if (stat4defpercentOn)
+                                                    Text(
+                                                        '${"DEF".tr()}%:$stat4defpercent'),
+                                                  if (stat4CRpercentOn)
+                                                    Text(
+                                                        '${"Critical Rate".tr()}%:$stat4CRpercent'),
+                                                  if (stat4CDpercentOn)
+                                                    Text(
+                                                        '${"Critical Damage".tr()}%:$stat4CDpercent'),
+                                                  if (stat4EMOn)
+                                                    Text(
+                                                        '${"Elemental Mastery".tr()}:$stat4EM'),
+                                                  if (stat4ERpercentOn)
+                                                    Text(
+                                                        '${"Energy Recharge".tr()}%:$stat4ERpercent'),
+                                                  if (stat4atkOn)
+                                                    Text(
+                                                        '${"ATK".tr()}:$stat4atk'),
+                                                  if (stat4hpOn)
+                                                    Text(
+                                                        '${"HP".tr()}:$stat4hp'),
+                                                  if (stat4defOn)
+                                                    Text(
+                                                        '${"DEF".tr()}:$stat4def'),
                                                 ],
                                               ),
                                               Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: <Widget>[
                                                   Visibility(
                                                     visible: false,
@@ -10514,15 +12813,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Card(
                                           elevation: 1,
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           child: InkWell(
-                                            splashColor: Colors.blue.withAlpha(30),
+                                            splashColor:
+                                                Colors.blue.withAlpha(30),
                                             onTap: () {
                                               print('Card tapped.');
                                             },
@@ -10531,9 +12833,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                               height: 50,
                                               decoration: BoxDecoration(
                                                 // color: Colors.lightBlue[50],
-                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
                                                 image: DecorationImage(
-                                                  image: AssetImage('images/Icon_Circlet_of_Logos.png'),
+                                                  image: AssetImage(
+                                                      'images/Icon_Circlet_of_Logos.png'),
                                                   fit: BoxFit.contain,
                                                 ),
                                               ),
@@ -10560,51 +12864,60 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     DropdownMenuItem(
                                                       child: Text(
                                                         "${"HP".tr()}%",
-                                                        style: TextStyle(fontSize: 15),
+                                                        style: TextStyle(
+                                                            fontSize: 15),
                                                       ),
                                                       value: 1,
                                                     ),
                                                     DropdownMenuItem(
                                                       child: Text(
                                                         "${"ATK".tr()}%",
-                                                        style: TextStyle(fontSize: 15),
+                                                        style: TextStyle(
+                                                            fontSize: 15),
                                                       ),
                                                       value: 2,
                                                     ),
                                                     DropdownMenuItem(
                                                         child: Text(
                                                           "${"DEF".tr()}%",
-                                                          style: TextStyle(fontSize: 15),
+                                                          style: TextStyle(
+                                                              fontSize: 15),
                                                         ),
                                                         value: 3),
                                                     DropdownMenuItem(
                                                         child: Text(
-                                                          "Elemental Mastery".tr(),
-                                                          style: TextStyle(fontSize: 10),
+                                                          "Elemental Mastery"
+                                                              .tr(),
+                                                          style: TextStyle(
+                                                              fontSize: 10),
                                                         ),
                                                         value: 4),
                                                     DropdownMenuItem(
                                                         child: Text(
                                                           "${"Critical Rate".tr()}%",
-                                                          style: TextStyle(fontSize: 10),
+                                                          style: TextStyle(
+                                                              fontSize: 10),
                                                         ),
                                                         value: 5),
                                                     DropdownMenuItem(
                                                         child: Text(
                                                           "${"Critical Damage".tr()}%",
-                                                          style: TextStyle(fontSize: 10),
+                                                          style: TextStyle(
+                                                              fontSize: 10),
                                                         ),
                                                         value: 6),
                                                     DropdownMenuItem(
                                                         child: Text(
                                                           "${"Healing Bonus".tr()}%",
-                                                          style: TextStyle(fontSize: 10),
+                                                          style: TextStyle(
+                                                              fontSize: 10),
                                                         ),
                                                         value: 7),
                                                   ],
                                                   onChanged: (value) {
                                                     setState(() {
-                                                      artifact5mainstatcat = value;
+                                                      artifact5mainstatcat =
+                                                          value;
                                                     });
                                                   }),
                                             ),
@@ -10613,10 +12926,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ],
                                     ),
                                     Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: <Widget>[
                                             SelectableText(
                                               '${"Star".tr()}: $cstar',
@@ -10633,8 +12948,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 min: 4,
                                                 max: 5,
                                                 divisions: 1,
-                                                activeColor: Theme.of(context).primaryColor,
-                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                activeColor: Theme.of(context)
+                                                    .primaryColor,
+                                                inactiveColor: Theme.of(context)
+                                                    .primaryColorLight,
                                                 label: cstar.toString(),
                                                 value: cstar.toDouble(),
                                                 onChanged: (value) {
@@ -10647,7 +12964,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ],
                                         ),
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: <Widget>[
                                             SelectableText(
                                               '${"Lv".tr()}: $clv',
@@ -10664,8 +12982,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 min: 1,
                                                 max: 20,
                                                 divisions: 5,
-                                                activeColor: Theme.of(context).primaryColor,
-                                                inactiveColor: Theme.of(context).primaryColorLight,
+                                                activeColor: Theme.of(context)
+                                                    .primaryColor,
+                                                inactiveColor: Theme.of(context)
+                                                    .primaryColorLight,
                                                 label: clv.toString(),
                                                 value: clv.toDouble(),
                                                 onChanged: (value) {
@@ -10687,10 +13007,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                           width: 170,
                                           height: 100,
                                           child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
                                               Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: <Widget>[
                                                   if (!stat5atkpercentOn &&
                                                       !stat5hppercentOn &&
@@ -10702,21 +13024,43 @@ class _MyHomePageState extends State<MyHomePage> {
                                                       !stat5CDpercentOn &&
                                                       !stat5EMOn &&
                                                       !stat5ERpercentOn)
-                                                    Text('Please click to set stats').tr(),
-                                                  if (stat5atkpercentOn) Text('${"ATK".tr()}%:$stat5atkpercent'),
-                                                  if (stat5hppercentOn) Text('${"HP".tr()}%:$stat5hppercent'),
-                                                  if (stat5defpercentOn) Text('${"DEF".tr()}%:$stat5defpercent'),
-                                                  if (stat5CRpercentOn) Text('${"Critical Rate".tr()}%:$stat5CRpercent'),
-                                                  if (stat5CDpercentOn) Text('${"Critical Damage".tr()}%:$stat5CDpercent'),
-                                                  if (stat5EMOn) Text('${"Elemental Mastery".tr()}:$stat5EM'),
-                                                  if (stat5ERpercentOn) Text('${"Energy Recharge".tr()}%:$stat5ERpercent'),
-                                                  if (stat5atkOn) Text('${"ATK".tr()}:$stat5atk'),
-                                                  if (stat5hpOn) Text('${"HP".tr()}:$stat5hp'),
-                                                  if (stat5defOn) Text('${"DEF".tr()}:$stat5def'),
+                                                    Text('Please click to set stats')
+                                                        .tr(),
+                                                  if (stat5atkpercentOn)
+                                                    Text(
+                                                        '${"ATK".tr()}%:$stat5atkpercent'),
+                                                  if (stat5hppercentOn)
+                                                    Text(
+                                                        '${"HP".tr()}%:$stat5hppercent'),
+                                                  if (stat5defpercentOn)
+                                                    Text(
+                                                        '${"DEF".tr()}%:$stat5defpercent'),
+                                                  if (stat5CRpercentOn)
+                                                    Text(
+                                                        '${"Critical Rate".tr()}%:$stat5CRpercent'),
+                                                  if (stat5CDpercentOn)
+                                                    Text(
+                                                        '${"Critical Damage".tr()}%:$stat5CDpercent'),
+                                                  if (stat5EMOn)
+                                                    Text(
+                                                        '${"Elemental Mastery".tr()}:$stat5EM'),
+                                                  if (stat5ERpercentOn)
+                                                    Text(
+                                                        '${"Energy Recharge".tr()}%:$stat5ERpercent'),
+                                                  if (stat5atkOn)
+                                                    Text(
+                                                        '${"ATK".tr()}:$stat5atk'),
+                                                  if (stat5hpOn)
+                                                    Text(
+                                                        '${"HP".tr()}:$stat5hp'),
+                                                  if (stat5defOn)
+                                                    Text(
+                                                        '${"DEF".tr()}:$stat5def'),
                                                 ],
                                               ),
                                               Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: <Widget>[
                                                   Visibility(
                                                     visible: false,
@@ -10755,7 +13099,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 lg: 6,
                 xl: 3,
                 child: Container(
-                  height: (MediaQuery.of(context).size.width > 1200) ? heightadjust : null,
+                  height: (MediaQuery.of(context).size.width > 1200)
+                      ? heightadjust
+                      : null,
                   color: Colors.yellow[50],
                   child: Center(
                     child: SingleChildScrollView(
@@ -10766,7 +13112,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 255, 255, 0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                               children: [
                                 SelectableText(
@@ -10778,7 +13127,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
                                 SizedBox(height: 10),
                                 SelectableText(
-                                  '${"ATK".tr()}:$basicatk + ' + double.parse(bonusatk.toStringAsFixed(1)).toString() + ' = ' + double.parse(allatk.toStringAsFixed(1)).toString(),
+                                  '${"ATK".tr()}:$basicatk + ' +
+                                      double.parse(bonusatk.toStringAsFixed(1))
+                                          .toString() +
+                                      ' = ' +
+                                      double.parse(allatk.toStringAsFixed(1))
+                                          .toString(),
                                   style: TextStyle(fontSize: 15),
                                 ),
                                 Padding(
@@ -10807,82 +13161,309 @@ class _MyHomePageState extends State<MyHomePage> {
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             //ANCHOR statATK:stats
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
-                                                buildStatRow(Colors.red, 'level'.tr(), '$levelatk'),
-                                                buildStatRow(Colors.blue, 'weapon'.tr(), '$weaponatk'),
+                                                buildStatRow(Colors.red,
+                                                    'level'.tr(), '$levelatk'),
+                                                buildStatRow(
+                                                    Colors.blue,
+                                                    'weapon'.tr(),
+                                                    '$weaponatk'),
                                                 if (weaponatkpercent != 0)
-                                                  buildStatRow(Colors.green, '${"weapon".tr()}%($weaponatkpercent)', double.parse(weaponatkpercentstat.toStringAsFixed(1)).toString()),
-                                                if (stat1atkOn == true) buildStatRow(Colors.red, 'a1'.tr(), double.parse(stat1atk.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.green,
+                                                      '${"weapon".tr()}%($weaponatkpercent)',
+                                                      double.parse(
+                                                              weaponatkpercentstat
+                                                                  .toStringAsFixed(
+                                                                      1))
+                                                          .toString()),
+                                                if (stat1atkOn == true)
+                                                  buildStatRow(
+                                                      Colors.red,
+                                                      'a1'.tr(),
+                                                      double.parse(stat1atk
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (stat1atkpercentOn == true)
-                                                  buildStatRow(Colors.yellow[700], '${"a1".tr()}%($stat1atkpercent)', double.parse(a1percentatk.toStringAsFixed(1)).toString()),
-                                                buildStatRow(Colors.pink, 'a2'.tr(), a2atk.toString()),
+                                                  buildStatRow(
+                                                      Colors.yellow[700],
+                                                      '${"a1".tr()}%($stat1atkpercent)',
+                                                      double.parse(a1percentatk
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                buildStatRow(
+                                                    Colors.pink,
+                                                    'a2'.tr(),
+                                                    a2atk.toString()),
                                                 if (stat2atkpercentOn == true)
-                                                  buildStatRow(Colors.pink[700], '${"a2".tr()}%($stat2atkpercent)', double.parse(a2percentatk.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.pink[700],
+                                                      '${"a2".tr()}%($stat2atkpercent)',
+                                                      double.parse(a2percentatk
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (artifact3mainstatcat == 2)
-                                                  buildStatRow(Colors.blueGrey, '${"a3".tr()}%($a3atkpercentMain)', double.parse(a3percentatkMain.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.blueGrey,
+                                                      '${"a3".tr()}%($a3atkpercentMain)',
+                                                      double.parse(a3percentatkMain
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (stat3atkpercentOn == true)
-                                                  buildStatRow(Colors.blueGrey, '${"a3".tr()}%($stat3atkpercent)', double.parse(a3percentatk.toStringAsFixed(1)).toString()),
-                                                if (stat3atkOn == true) buildStatRow(Colors.blueGrey[700], 'a3'.tr(), double.parse(stat3atk.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.blueGrey,
+                                                      '${"a3".tr()}%($stat3atkpercent)',
+                                                      double.parse(a3percentatk
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat3atkOn == true)
+                                                  buildStatRow(
+                                                      Colors.blueGrey[700],
+                                                      'a3'.tr(),
+                                                      double.parse(stat3atk
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (artifact4mainstatcat == 2)
-                                                  buildStatRow(Colors.purple, '${"a4".tr()}%($a4atkpercentMain)', double.parse(a4percentatkMain.toStringAsFixed(1)).toString()),
-                                                if (stat4atkpercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%($stat4atkpercent)', double.parse(a4percentatk.toStringAsFixed(1)).toString()),
-                                                if (stat4atkOn == true) buildStatRow(Colors.purple[700], 'a4'.tr(), double.parse(stat4atk.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.purple,
+                                                      '${"a4".tr()}%($a4atkpercentMain)',
+                                                      double.parse(a4percentatkMain
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat4atkpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.purple,
+                                                      '${"a4".tr()}%($stat4atkpercent)',
+                                                      double.parse(a4percentatk
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat4atkOn == true)
+                                                  buildStatRow(
+                                                      Colors.purple[700],
+                                                      'a4'.tr(),
+                                                      double.parse(stat4atk
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (artifact5mainstatcat == 2)
-                                                  buildStatRow(Colors.teal, '${"a5".tr()}%($a5atkpercentMain)', double.parse(a5percentatkMain.toStringAsFixed(1)).toString()),
-                                                if (stat5atkpercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%($stat5atkpercent)', double.parse(a5percentatk.toStringAsFixed(1)).toString()),
-                                                if (stat5atkOn == true) buildStatRow(Colors.teal[700], 'a5'.tr(), double.parse(stat5atk.toStringAsFixed(1)).toString()),
-                                                if (pyro2On == true) buildStatRow(Colors.red, '${"2 Pyro".tr()}%(25)', (basicatk * 25 / 100).toStringAsFixed(1)),
-                                                if (gladiator2On == true) buildStatRow(Colors.red, '${"Gladiator2".tr()}%(18)', (basicatk * 18 / 100).toStringAsFixed(1)),
-                                                if (reminiscenceofshime2On == true) buildStatRow(Colors.red, '${"Reminiscence2".tr()}%(18)', (basicatk * 18 / 100).toStringAsFixed(1)),
-                                                if (royalflora4On == true) buildStatRow(Colors.blue, '${"Noblesse4".tr()}%(20)', (basicatk * 20 / 100).toStringAsFixed(1)),
+                                                  buildStatRow(
+                                                      Colors.teal,
+                                                      '${"a5".tr()}%($a5atkpercentMain)',
+                                                      double.parse(a5percentatkMain
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat5atkpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.teal,
+                                                      '${"a5".tr()}%($stat5atkpercent)',
+                                                      double.parse(a5percentatk
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat5atkOn == true)
+                                                  buildStatRow(
+                                                      Colors.teal[700],
+                                                      'a5'.tr(),
+                                                      double.parse(stat5atk
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (pyro2On == true)
+                                                  buildStatRow(
+                                                      Colors.red,
+                                                      '${"2 Pyro".tr()}%(25)',
+                                                      (basicatk * 25 / 100)
+                                                          .toStringAsFixed(1)),
+                                                if (gladiator2On == true)
+                                                  buildStatRow(
+                                                      Colors.red,
+                                                      '${"Gladiator2".tr()}%(18)',
+                                                      (basicatk * 18 / 100)
+                                                          .toStringAsFixed(1)),
+                                                if (reminiscenceofshime2On ==
+                                                    true)
+                                                  buildStatRow(
+                                                      Colors.red,
+                                                      '${"Reminiscence2".tr()}%(18)',
+                                                      (basicatk * 18 / 100)
+                                                          .toStringAsFixed(1)),
+                                                if (royalflora4On == true)
+                                                  buildStatRow(
+                                                      Colors.blue,
+                                                      '${"Noblesse4".tr()}%(20)',
+                                                      (basicatk * 20 / 100)
+                                                          .toStringAsFixed(1)),
                                                 if (unreturningOn == true)
-                                                  buildStatRow(Colors.tealAccent, '${"Unreturning".tr()}%(' + (27 + weaponref * 9).toStringAsFixed(1) + ')',
-                                                      (basicatk * (27 + weaponref * 9) / 100).toStringAsFixed(1)),
-                                                if (dragonslayerOn) buildStatRow(Colors.grey, '${"Dragon Slayers".tr()}%(48)', (basicatk * 48 / 100).toStringAsFixed(1)),
-                                                if (bennetqOn) buildStatRow(Colors.red, '${"班尼特".tr()}(burst)', (bennetbasicatk * bennetqlvtoratio[bennetqlv] / 100).toStringAsFixed(1)),
-                                                if (manualatkOn) buildStatRow(Colors.red[300], '${"Manual".tr()}:${"ATK".tr()}', (manualatk.toStringAsFixed(1))),
+                                                  buildStatRow(
+                                                      Colors.tealAccent,
+                                                      '${"Unreturning".tr()}%(' +
+                                                          (27 + weaponref * 9)
+                                                              .toStringAsFixed(
+                                                                  1) +
+                                                          ')',
+                                                      (basicatk *
+                                                              (27 +
+                                                                  weaponref *
+                                                                      9) /
+                                                              100)
+                                                          .toStringAsFixed(1)),
+                                                if (dragonslayerOn)
+                                                  buildStatRow(
+                                                      Colors.grey,
+                                                      '${"Dragon Slayers".tr()}%(48)',
+                                                      (basicatk * 48 / 100)
+                                                          .toStringAsFixed(1)),
+                                                if (bennetqOn)
+                                                  buildStatRow(
+                                                      Colors.red,
+                                                      '${"班尼特".tr()}(burst)',
+                                                      (bennetbasicatk *
+                                                              bennetqlvtoratio[
+                                                                  bennetqlv] /
+                                                              100)
+                                                          .toStringAsFixed(1)),
+                                                if (manualatkOn)
+                                                  buildStatRow(
+                                                      Colors.red[300],
+                                                      '${"Manual".tr()}:${"ATK".tr()}',
+                                                      (manualatk
+                                                          .toStringAsFixed(1))),
                                                 if (manualatkpercentOn)
-                                                  buildStatRow(Colors.red[300], '${"Manual".tr()}:${"ATK".tr()}%($manualatkpercent)', ((basicatk * manualatkpercent / 100).toStringAsFixed(1))),
+                                                  buildStatRow(
+                                                      Colors.red[300],
+                                                      '${"Manual".tr()}:${"ATK".tr()}%($manualatkpercent)',
+                                                      ((basicatk *
+                                                              manualatkpercent /
+                                                              100)
+                                                          .toStringAsFixed(1))),
                                                 if (rulebythunder1On)
-                                                  buildStatRow(Colors.purple, '${"Rule by Thunder1".tr()}%(' + (15 + weaponref * 5).toStringAsFixed(1) + ')',
-                                                      (basicatk * (15 + weaponref * 5) / 100).toStringAsFixed(1)),
+                                                  buildStatRow(
+                                                      Colors.purple,
+                                                      '${"Rule by Thunder1".tr()}%(' +
+                                                          (15 + weaponref * 5)
+                                                              .toStringAsFixed(
+                                                                  1) +
+                                                          ')',
+                                                      (basicatk *
+                                                              (15 +
+                                                                  weaponref *
+                                                                      5) /
+                                                              100)
+                                                          .toStringAsFixed(1)),
                                               ],
                                             ),
                                             //ANCHOR statATK:bar
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
-                                                buildstatbar(Colors.red, levelatk),
-                                                buildstatbar(Colors.blue, weaponatk),
-                                                buildstatbar(Colors.green, weaponatkpercentstat),
-                                                if (stat1atkOn == true) buildstatbar(Colors.yellow, stat1atk),
-                                                if (stat1atkpercentOn == true) buildstatbar(Colors.yellow[700], a1percentatk),
-                                                buildstatbar(Colors.pink, a2atk),
-                                                if (stat2atkpercentOn == true) buildstatbar(Colors.pink[700], a2percentatk),
-                                                if (artifact3mainstatcat == 2) buildstatbar(Colors.blueGrey, a3percentatkMain),
-                                                if (stat3atkpercentOn == true) buildstatbar(Colors.blueGrey, a3percentatk),
-                                                if (stat3atkOn == true) buildstatbar(Colors.blueGrey[700], stat3atk),
-                                                if (artifact4mainstatcat == 2) buildstatbar(Colors.purple, a4percentatkMain),
-                                                if (stat4atkpercentOn == true) buildstatbar(Colors.purple, a4percentatk),
-                                                if (stat4atkOn == true) buildstatbar(Colors.purple[700], stat4atk),
-                                                if (artifact5mainstatcat == 2) buildstatbar(Colors.teal, a5percentatkMain),
-                                                if (stat5atkpercentOn == true) buildstatbar(Colors.teal, a5percentatk),
-                                                if (stat5atkOn == true) buildstatbar(Colors.teal[700], stat5atk),
-                                                if (pyro2On == true) buildstatbar(Colors.red, (basicatk * 25 / 100)),
-                                                if (gladiator2On == true) buildstatbar(Colors.red, (basicatk * 18 / 100)),
-                                                if (reminiscenceofshime2On == true) buildstatbar(Colors.red, (basicatk * 18 / 100)),
-                                                if (royalflora4On == true) buildstatbar(Colors.blue, (basicatk * 20 / 100)),
-                                                if (unreturningOn == true) buildstatbar(Colors.tealAccent, (basicatk * (27 + weaponref * 9) / 100)),
-                                                if (dragonslayerOn) buildstatbar(Colors.grey, (basicatk * 48 / 100)),
-                                                if (bennetqOn) buildstatbar(Colors.red, (bennetbasicatk * bennetqlvtoratio[bennetqlv] / 100)),
-                                                if (manualatkOn) buildstatbar(Colors.red[300], (manualatk)),
-                                                if (manualatkpercentOn) buildstatbar(Colors.red[300], (basicatk * manualatkpercent / 100)),
-                                                if (rulebythunder1On == true) buildstatbar(Colors.purple, (basicatk * (15 + weaponref * 5) / 100)),
+                                                buildstatbar(
+                                                    Colors.red, levelatk),
+                                                buildstatbar(
+                                                    Colors.blue, weaponatk),
+                                                buildstatbar(Colors.green,
+                                                    weaponatkpercentstat),
+                                                if (stat1atkOn == true)
+                                                  buildstatbar(
+                                                      Colors.yellow, stat1atk),
+                                                if (stat1atkpercentOn == true)
+                                                  buildstatbar(
+                                                      Colors.yellow[700],
+                                                      a1percentatk),
+                                                buildstatbar(
+                                                    Colors.pink, a2atk),
+                                                if (stat2atkpercentOn == true)
+                                                  buildstatbar(Colors.pink[700],
+                                                      a2percentatk),
+                                                if (artifact3mainstatcat == 2)
+                                                  buildstatbar(Colors.blueGrey,
+                                                      a3percentatkMain),
+                                                if (stat3atkpercentOn == true)
+                                                  buildstatbar(Colors.blueGrey,
+                                                      a3percentatk),
+                                                if (stat3atkOn == true)
+                                                  buildstatbar(
+                                                      Colors.blueGrey[700],
+                                                      stat3atk),
+                                                if (artifact4mainstatcat == 2)
+                                                  buildstatbar(Colors.purple,
+                                                      a4percentatkMain),
+                                                if (stat4atkpercentOn == true)
+                                                  buildstatbar(Colors.purple,
+                                                      a4percentatk),
+                                                if (stat4atkOn == true)
+                                                  buildstatbar(
+                                                      Colors.purple[700],
+                                                      stat4atk),
+                                                if (artifact5mainstatcat == 2)
+                                                  buildstatbar(Colors.teal,
+                                                      a5percentatkMain),
+                                                if (stat5atkpercentOn == true)
+                                                  buildstatbar(Colors.teal,
+                                                      a5percentatk),
+                                                if (stat5atkOn == true)
+                                                  buildstatbar(Colors.teal[700],
+                                                      stat5atk),
+                                                if (pyro2On == true)
+                                                  buildstatbar(Colors.red,
+                                                      (basicatk * 25 / 100)),
+                                                if (gladiator2On == true)
+                                                  buildstatbar(Colors.red,
+                                                      (basicatk * 18 / 100)),
+                                                if (reminiscenceofshime2On ==
+                                                    true)
+                                                  buildstatbar(Colors.red,
+                                                      (basicatk * 18 / 100)),
+                                                if (royalflora4On == true)
+                                                  buildstatbar(Colors.blue,
+                                                      (basicatk * 20 / 100)),
+                                                if (unreturningOn == true)
+                                                  buildstatbar(
+                                                      Colors.tealAccent,
+                                                      (basicatk *
+                                                          (27 + weaponref * 9) /
+                                                          100)),
+                                                if (dragonslayerOn)
+                                                  buildstatbar(Colors.grey,
+                                                      (basicatk * 48 / 100)),
+                                                if (bennetqOn)
+                                                  buildstatbar(
+                                                      Colors.red,
+                                                      (bennetbasicatk *
+                                                          bennetqlvtoratio[
+                                                              bennetqlv] /
+                                                          100)),
+                                                if (manualatkOn)
+                                                  buildstatbar(Colors.red[300],
+                                                      (manualatk)),
+                                                if (manualatkpercentOn)
+                                                  buildstatbar(
+                                                      Colors.red[300],
+                                                      (basicatk *
+                                                          manualatkpercent /
+                                                          100)),
+                                                if (rulebythunder1On == true)
+                                                  buildstatbar(
+                                                      Colors.purple,
+                                                      (basicatk *
+                                                          (15 + weaponref * 5) /
+                                                          100)),
                                               ],
                                             ),
                                           ],
@@ -10895,7 +13476,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
                                 SizedBox(height: 10),
                                 SelectableText(
-                                  '${"HP".tr()}:$lvlhp + ' + double.parse(bonusHP.toStringAsFixed(1)).toString() + ' = ' + double.parse(allHP.toStringAsFixed(1)).toString(),
+                                  '${"HP".tr()}:$lvlhp + ' +
+                                      double.parse(bonusHP.toStringAsFixed(1))
+                                          .toString() +
+                                      ' = ' +
+                                      double.parse(allHP.toStringAsFixed(1))
+                                          .toString(),
                                   style: TextStyle(fontSize: 15),
                                 ),
                                 Padding(
@@ -10906,7 +13492,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             //ANCHOR statHP:stats
                                             //level:Colors.red
@@ -10923,52 +13510,187 @@ class _MyHomePageState extends State<MyHomePage> {
                                             //a5%:Colors.teal
                                             //a5:Colors.teal[700]
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
-                                                buildStatRow(Colors.red, 'level'.tr(), '$lvlhp'),
+                                                buildStatRow(Colors.red,
+                                                    'level'.tr(), '$lvlhp'),
                                                 if (weaponHPpercentstat > 0)
-                                                  buildStatRow(Colors.green, '${"weapon".tr()}%($weaponHPpercent)', double.parse(weaponHPpercentstat.toStringAsFixed(1)).toString()),
-                                                if (stat1hpOn == true) buildStatRow(Colors.yellow, 'a1'.tr(), double.parse(stat1hp.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.green,
+                                                      '${"weapon".tr()}%($weaponHPpercent)',
+                                                      double.parse(
+                                                              weaponHPpercentstat
+                                                                  .toStringAsFixed(
+                                                                      1))
+                                                          .toString()),
+                                                if (stat1hpOn == true)
+                                                  buildStatRow(
+                                                      Colors.yellow,
+                                                      'a1'.tr(),
+                                                      double.parse(stat1hp
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (stat1hppercentOn == true)
-                                                  buildStatRow(Colors.yellow[700], '${"a1".tr()}%($stat1hppercent)', double.parse(a1percenthp.toStringAsFixed(1)).toString()),
-                                                buildStatRow(Colors.yellow, 'a1'.tr(), a1hp.toString()),
-                                                if (stat2hpOn == true) buildStatRow(Colors.pink[700], 'a2'.tr(), double.parse(stat2hp.toStringAsFixed(1)).toString()),
-                                                if (stat2hppercentOn == true) buildStatRow(Colors.pink, '${"a2".tr()}%($stat2hppercent)', double.parse(a2percenthp.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.yellow[700],
+                                                      '${"a1".tr()}%($stat1hppercent)',
+                                                      double.parse(a1percenthp
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                buildStatRow(Colors.yellow,
+                                                    'a1'.tr(), a1hp.toString()),
+                                                if (stat2hpOn == true)
+                                                  buildStatRow(
+                                                      Colors.pink[700],
+                                                      'a2'.tr(),
+                                                      double.parse(stat2hp
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat2hppercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.pink,
+                                                      '${"a2".tr()}%($stat2hppercent)',
+                                                      double.parse(a2percenthp
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (artifact3mainstatcat == 1)
-                                                  buildStatRow(Colors.blueGrey, '${"a3".tr()}%($a3HPpercentMain)', double.parse(a3percentHPMain.toStringAsFixed(1)).toString()),
-                                                if (stat3hppercentOn == true) buildStatRow(Colors.blueGrey, '${"a3".tr()}%($stat3hppercent)', double.parse(a3percentHP.toStringAsFixed(1)).toString()),
-                                                if (stat3hpOn == true) buildStatRow(Colors.blueGrey[700], 'a3'.tr(), double.parse(stat3hp.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.blueGrey,
+                                                      '${"a3".tr()}%($a3HPpercentMain)',
+                                                      double.parse(a3percentHPMain
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat3hppercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.blueGrey,
+                                                      '${"a3".tr()}%($stat3hppercent)',
+                                                      double.parse(a3percentHP
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat3hpOn == true)
+                                                  buildStatRow(
+                                                      Colors.blueGrey[700],
+                                                      'a3'.tr(),
+                                                      double.parse(stat3hp
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (artifact4mainstatcat == 1)
-                                                  buildStatRow(Colors.purple, '${"a4".tr()}%($a4HPpercentMain)', double.parse(a4percentHPMain.toStringAsFixed(1)).toString()),
-                                                if (stat4hppercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%($stat4hppercent)', double.parse(a4percentHP.toStringAsFixed(1)).toString()),
-                                                if (stat4hpOn == true) buildStatRow(Colors.purple[700], 'a4'.tr(), double.parse(stat4hp.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.purple,
+                                                      '${"a4".tr()}%($a4HPpercentMain)',
+                                                      double.parse(a4percentHPMain
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat4hppercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.purple,
+                                                      '${"a4".tr()}%($stat4hppercent)',
+                                                      double.parse(a4percentHP
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat4hpOn == true)
+                                                  buildStatRow(
+                                                      Colors.purple[700],
+                                                      'a4'.tr(),
+                                                      double.parse(stat4hp
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (artifact5mainstatcat == 1)
-                                                  buildStatRow(Colors.teal, '${"a5".tr()}%($a5HPpercentMain)', double.parse(a5percentHPMain.toStringAsFixed(1)).toString()),
-                                                if (stat5hppercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%($stat5hppercent)', double.parse(a5percentHP.toStringAsFixed(1)).toString()),
-                                                if (stat5hpOn == true) buildStatRow(Colors.teal[700], 'a5'.tr(), double.parse(stat5hp.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.teal,
+                                                      '${"a5".tr()}%($a5HPpercentMain)',
+                                                      double.parse(a5percentHPMain
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat5hppercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.teal,
+                                                      '${"a5".tr()}%($stat5hppercent)',
+                                                      double.parse(a5percentHP
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat5hpOn == true)
+                                                  buildStatRow(
+                                                      Colors.teal[700],
+                                                      'a5'.tr(),
+                                                      double.parse(stat5hp
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                               ],
                                             ),
 
                                             //ANCHOR statHP:bar
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
-                                                buildstatbarhp(Colors.red, lvlhp),
-                                                if (weaponHPpercent != 0) buildstatbarhp(Colors.blue, weaponHPpercentstat),
-                                                if (stat1hpOn == true) buildstatbarhp(Colors.yellow, stat1hp),
-                                                if (stat1hppercentOn == true) buildstatbarhp(Colors.yellow[700], a1percenthp),
-                                                buildstatbarhp(Colors.yellow, a1hp),
-                                                if (stat2hpOn == true) buildstatbarhp(Colors.pink, stat2hp),
-                                                if (stat2hppercentOn == true) buildstatbarhp(Colors.pink[700], a2percenthp),
-                                                if (artifact3mainstatcat == 1) buildstatbarhp(Colors.blueGrey, a3percentHPMain),
-                                                if (stat3hppercentOn == true) buildstatbarhp(Colors.blueGrey, a3percentHP),
-                                                if (stat3hpOn == true) buildstatbarhp(Colors.blueGrey[700], stat3hp),
-                                                if (artifact4mainstatcat == 1) buildstatbarhp(Colors.purple, a4percentHPMain),
-                                                if (stat4hppercentOn == true) buildstatbarhp(Colors.purple, a4percentHP),
-                                                if (stat4hpOn == true) buildstatbarhp(Colors.purple[700], stat4hp),
-                                                if (artifact5mainstatcat == 1) buildstatbarhp(Colors.teal, a5percentHPMain),
-                                                if (stat5hppercentOn == true) buildstatbarhp(Colors.teal, a5percentHP),
-                                                if (stat5hpOn == true) buildstatbarhp(Colors.teal[700], stat5hp),
+                                                buildstatbarhp(
+                                                    Colors.red, lvlhp),
+                                                if (weaponHPpercent != 0)
+                                                  buildstatbarhp(Colors.blue,
+                                                      weaponHPpercentstat),
+                                                if (stat1hpOn == true)
+                                                  buildstatbarhp(
+                                                      Colors.yellow, stat1hp),
+                                                if (stat1hppercentOn == true)
+                                                  buildstatbarhp(
+                                                      Colors.yellow[700],
+                                                      a1percenthp),
+                                                buildstatbarhp(
+                                                    Colors.yellow, a1hp),
+                                                if (stat2hpOn == true)
+                                                  buildstatbarhp(
+                                                      Colors.pink, stat2hp),
+                                                if (stat2hppercentOn == true)
+                                                  buildstatbarhp(
+                                                      Colors.pink[700],
+                                                      a2percenthp),
+                                                if (artifact3mainstatcat == 1)
+                                                  buildstatbarhp(
+                                                      Colors.blueGrey,
+                                                      a3percentHPMain),
+                                                if (stat3hppercentOn == true)
+                                                  buildstatbarhp(
+                                                      Colors.blueGrey,
+                                                      a3percentHP),
+                                                if (stat3hpOn == true)
+                                                  buildstatbarhp(
+                                                      Colors.blueGrey[700],
+                                                      stat3hp),
+                                                if (artifact4mainstatcat == 1)
+                                                  buildstatbarhp(Colors.purple,
+                                                      a4percentHPMain),
+                                                if (stat4hppercentOn == true)
+                                                  buildstatbarhp(Colors.purple,
+                                                      a4percentHP),
+                                                if (stat4hpOn == true)
+                                                  buildstatbarhp(
+                                                      Colors.purple[700],
+                                                      stat4hp),
+                                                if (artifact5mainstatcat == 1)
+                                                  buildstatbarhp(Colors.teal,
+                                                      a5percentHPMain),
+                                                if (stat5hppercentOn == true)
+                                                  buildstatbarhp(
+                                                      Colors.teal, a5percentHP),
+                                                if (stat5hpOn == true)
+                                                  buildstatbarhp(
+                                                      Colors.teal[700],
+                                                      stat5hp),
                                               ],
                                             ),
                                           ],
@@ -10980,7 +13702,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
                                 //ANCHOR DEF
                                 SelectableText(
-                                  '${"DEF".tr()}:$lvldef + ' + double.parse(bonusdef.toStringAsFixed(1)).toString() + ' = ' + double.parse(alldef.toStringAsFixed(1)).toString(),
+                                  '${"DEF".tr()}:$lvldef + ' +
+                                      double.parse(bonusdef.toStringAsFixed(1))
+                                          .toString() +
+                                      ' = ' +
+                                      double.parse(alldef.toStringAsFixed(1))
+                                          .toString(),
                                   style: TextStyle(fontSize: 15),
                                 ),
                                 Padding(
@@ -10991,55 +13718,181 @@ class _MyHomePageState extends State<MyHomePage> {
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             //ANCHOR statDEF:stats
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
-                                                buildStatRow(Colors.red, 'level'.tr(), '$lvldef'),
+                                                buildStatRow(Colors.red,
+                                                    'level'.tr(), '$lvldef'),
                                                 if (weapondefpercentstat != 0)
-                                                  buildStatRow(Colors.green, '${"weapon".tr()}%($weapondefpercent)', double.parse(weapondefpercentstat.toStringAsFixed(1)).toString()),
-                                                if (stat1defOn == true) buildStatRow(Colors.yellow, 'a1'.tr(), double.parse(stat1def.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.green,
+                                                      '${"weapon".tr()}%($weapondefpercent)',
+                                                      double.parse(
+                                                              weapondefpercentstat
+                                                                  .toStringAsFixed(
+                                                                      1))
+                                                          .toString()),
+                                                if (stat1defOn == true)
+                                                  buildStatRow(
+                                                      Colors.yellow,
+                                                      'a1'.tr(),
+                                                      double.parse(stat1def
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (stat1defpercentOn == true)
-                                                  buildStatRow(Colors.yellow[700], '${"a1".tr()}%($stat1defpercent)', double.parse(a1percentdef.toStringAsFixed(1)).toString()),
-                                                if (stat2defOn == true) buildStatRow(Colors.pink, 'a2'.tr(), double.parse(stat2def.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.yellow[700],
+                                                      '${"a1".tr()}%($stat1defpercent)',
+                                                      double.parse(a1percentdef
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat2defOn == true)
+                                                  buildStatRow(
+                                                      Colors.pink,
+                                                      'a2'.tr(),
+                                                      double.parse(stat2def
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (stat2defpercentOn == true)
-                                                  buildStatRow(Colors.pink[700], '${"a2".tr()}%($stat2defpercent)', double.parse(a2percentdef.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.pink[700],
+                                                      '${"a2".tr()}%($stat2defpercent)',
+                                                      double.parse(a2percentdef
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (artifact3mainstatcat == 3)
-                                                  buildStatRow(Colors.blueGrey, '${"a3".tr()}%($a3defpercentMain)', double.parse(a3percentdefMain.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.blueGrey,
+                                                      '${"a3".tr()}%($a3defpercentMain)',
+                                                      double.parse(a3percentdefMain
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (stat3defpercentOn == true)
-                                                  buildStatRow(Colors.blueGrey, '${"a3".tr()}%($stat3defpercent)', double.parse(a3percentHP.toStringAsFixed(1)).toString()),
-                                                if (stat3defOn == true) buildStatRow(Colors.blueGrey[700], 'a3'.tr(), double.parse(stat3def.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.blueGrey,
+                                                      '${"a3".tr()}%($stat3defpercent)',
+                                                      double.parse(a3percentHP
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat3defOn == true)
+                                                  buildStatRow(
+                                                      Colors.blueGrey[700],
+                                                      'a3'.tr(),
+                                                      double.parse(stat3def
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (artifact4mainstatcat == 3)
-                                                  buildStatRow(Colors.purple, '${"a4".tr()}%($a4defpercentMain)', double.parse(a4percentdefMain.toStringAsFixed(1)).toString()),
-                                                if (stat4defpercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%($stat4defpercent)', double.parse(a4percentdef.toStringAsFixed(1)).toString()),
-                                                if (stat4defOn == true) buildStatRow(Colors.purple[700], 'a4'.tr(), double.parse(stat4def.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.purple,
+                                                      '${"a4".tr()}%($a4defpercentMain)',
+                                                      double.parse(a4percentdefMain
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat4defpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.purple,
+                                                      '${"a4".tr()}%($stat4defpercent)',
+                                                      double.parse(a4percentdef
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat4defOn == true)
+                                                  buildStatRow(
+                                                      Colors.purple[700],
+                                                      'a4'.tr(),
+                                                      double.parse(stat4def
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                                 if (artifact5mainstatcat == 3)
-                                                  buildStatRow(Colors.teal, '${"a5".tr()}%($a5defpercentMain)', double.parse(a5percentdefMain.toStringAsFixed(1)).toString()),
-                                                if (stat5defpercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%($stat5defpercent)', double.parse(a5percentdef.toStringAsFixed(1)).toString()),
-                                                if (stat5defOn == true) buildStatRow(Colors.teal[700], 'a5'.tr(), double.parse(stat5def.toStringAsFixed(1)).toString()),
+                                                  buildStatRow(
+                                                      Colors.teal,
+                                                      '${"a5".tr()}%($a5defpercentMain)',
+                                                      double.parse(a5percentdefMain
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat5defpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.teal,
+                                                      '${"a5".tr()}%($stat5defpercent)',
+                                                      double.parse(a5percentdef
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
+                                                if (stat5defOn == true)
+                                                  buildStatRow(
+                                                      Colors.teal[700],
+                                                      'a5'.tr(),
+                                                      double.parse(stat5def
+                                                              .toStringAsFixed(
+                                                                  1))
+                                                          .toString()),
                                               ],
                                             ),
 
                                             //ANCHOR statDEF:bar
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
-                                                buildstatbar(Colors.red, lvldef),
-                                                if (weapondefpercentstat != 0) buildstatbar(Colors.blue, weapondefpercentstat),
-                                                if (stat1defOn == true) buildstatbar(Colors.yellow, stat1def),
-                                                if (stat1defpercentOn == true) buildstatbar(Colors.yellow[700], a1percentdef),
-                                                if (stat2defpercentOn == true) buildstatbar(Colors.pink[700], a2percentdef),
-                                                if (artifact3mainstatcat == 3) buildstatbar(Colors.blueGrey, a3percentdefMain),
-                                                if (stat3defpercentOn == true) buildstatbar(Colors.blueGrey, a3percentdef),
-                                                if (stat3defOn == true) buildstatbar(Colors.blueGrey[700], stat3def),
-                                                if (artifact4mainstatcat == 3) buildstatbar(Colors.purple, a4percentdefMain),
-                                                if (stat4defpercentOn == true) buildstatbar(Colors.purple, a4percentdef),
-                                                if (stat4defOn == true) buildstatbar(Colors.purple[700], stat4def),
-                                                if (artifact5mainstatcat == 3) buildstatbar(Colors.teal, a5percentdefMain),
-                                                if (stat5defpercentOn == true) buildstatbar(Colors.teal, a5percentdef),
-                                                if (stat5defOn == true) buildstatbar(Colors.teal[700], stat5def),
+                                                buildstatbar(
+                                                    Colors.red, lvldef),
+                                                if (weapondefpercentstat != 0)
+                                                  buildstatbar(Colors.blue,
+                                                      weapondefpercentstat),
+                                                if (stat1defOn == true)
+                                                  buildstatbar(
+                                                      Colors.yellow, stat1def),
+                                                if (stat1defpercentOn == true)
+                                                  buildstatbar(
+                                                      Colors.yellow[700],
+                                                      a1percentdef),
+                                                if (stat2defpercentOn == true)
+                                                  buildstatbar(Colors.pink[700],
+                                                      a2percentdef),
+                                                if (artifact3mainstatcat == 3)
+                                                  buildstatbar(Colors.blueGrey,
+                                                      a3percentdefMain),
+                                                if (stat3defpercentOn == true)
+                                                  buildstatbar(Colors.blueGrey,
+                                                      a3percentdef),
+                                                if (stat3defOn == true)
+                                                  buildstatbar(
+                                                      Colors.blueGrey[700],
+                                                      stat3def),
+                                                if (artifact4mainstatcat == 3)
+                                                  buildstatbar(Colors.purple,
+                                                      a4percentdefMain),
+                                                if (stat4defpercentOn == true)
+                                                  buildstatbar(Colors.purple,
+                                                      a4percentdef),
+                                                if (stat4defOn == true)
+                                                  buildstatbar(
+                                                      Colors.purple[700],
+                                                      stat4def),
+                                                if (artifact5mainstatcat == 3)
+                                                  buildstatbar(Colors.teal,
+                                                      a5percentdefMain),
+                                                if (stat5defpercentOn == true)
+                                                  buildstatbar(Colors.teal,
+                                                      a5percentdef),
+                                                if (stat5defOn == true)
+                                                  buildstatbar(Colors.teal[700],
+                                                      stat5def),
                                               ],
                                             ),
                                           ],
@@ -11051,7 +13904,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
                                 //ANCHOR ER
                                 SelectableText(
-                                  '${"Energy Recharge".tr()}:100% + ' + double.parse(bonusER.toStringAsFixed(1)).toString() + '% = ' + double.parse(allER.toStringAsFixed(1)).toString() + '%',
+                                  '${"Energy Recharge".tr()}:100% + ' +
+                                      double.parse(bonusER.toStringAsFixed(1))
+                                          .toString() +
+                                      '% = ' +
+                                      double.parse(allER.toStringAsFixed(1))
+                                          .toString() +
+                                      '%',
                                   style: TextStyle(fontSize: 15),
                                 ),
                                 Padding(
@@ -11062,35 +13921,89 @@ class _MyHomePageState extends State<MyHomePage> {
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             //ANCHOR statER:stats
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
-                                                buildStatRow(Colors.red, '${"baseER".tr()}%', '100'),
-                                                if (weaponERpercent != 0) buildStatRow(Colors.green, '${"weapon".tr()}%', '$weaponERpercent'),
-                                                if (stat1ERpercentOn == true) buildStatRow(Colors.yellow[700], '${"a1".tr()}%', '$stat1ERpercent'),
-                                                if (stat2ERpercentOn == true) buildStatRow(Colors.pink[700], '${"a2".tr()}%', '$stat2ERpercent'),
-                                                if (artifact3mainstatcat == 5) buildStatRow(Colors.blueGrey, '${"a3".tr()}%', '$a3ERpercentMain'),
-                                                if (stat3ERpercentOn == true) buildStatRow(Colors.blueGrey, '${"a3".tr()}%', '$stat3ERpercent'),
-                                                if (stat4ERpercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%', '$stat4ERpercent'),
-                                                if (stat5ERpercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%', '$stat5ERpercent'),
+                                                buildStatRow(Colors.red,
+                                                    '${"baseER".tr()}%', '100'),
+                                                if (weaponERpercent != 0)
+                                                  buildStatRow(
+                                                      Colors.green,
+                                                      '${"weapon".tr()}%',
+                                                      '$weaponERpercent'),
+                                                if (stat1ERpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.yellow[700],
+                                                      '${"a1".tr()}%',
+                                                      '$stat1ERpercent'),
+                                                if (stat2ERpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.pink[700],
+                                                      '${"a2".tr()}%',
+                                                      '$stat2ERpercent'),
+                                                if (artifact3mainstatcat == 5)
+                                                  buildStatRow(
+                                                      Colors.blueGrey,
+                                                      '${"a3".tr()}%',
+                                                      '$a3ERpercentMain'),
+                                                if (stat3ERpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.blueGrey,
+                                                      '${"a3".tr()}%',
+                                                      '$stat3ERpercent'),
+                                                if (stat4ERpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.purple,
+                                                      '${"a4".tr()}%',
+                                                      '$stat4ERpercent'),
+                                                if (stat5ERpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.teal,
+                                                      '${"a5".tr()}%',
+                                                      '$stat5ERpercent'),
                                               ],
                                             ),
 
                                             //ANCHOR statER:bar
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
-                                                buildstatbarpercent(Colors.red, 50),
-                                                if (weaponERpercent != 0) buildstatbarpercent(Colors.blue, weaponERpercent),
-                                                if (stat1ERpercentOn == true) buildstatbarpercent(Colors.yellow[700], stat1ERpercent),
-                                                if (stat2ERpercentOn == true) buildstatbarpercent(Colors.pink[700], stat2ERpercent),
-                                                if (artifact3mainstatcat == 5) buildstatbarpercent(Colors.blueGrey, a3ERpercentMain),
-                                                if (stat3ERpercentOn == true) buildstatbarpercent(Colors.blueGrey, stat3ERpercent),
-                                                if (stat4ERpercentOn == true) buildstatbarpercent(Colors.purple, stat4ERpercent),
-                                                if (stat5ERpercentOn == true) buildstatbarpercent(Colors.teal, stat5ERpercent),
+                                                buildstatbarpercent(
+                                                    Colors.red, 50),
+                                                if (weaponERpercent != 0)
+                                                  buildstatbarpercent(
+                                                      Colors.blue,
+                                                      weaponERpercent),
+                                                if (stat1ERpercentOn == true)
+                                                  buildstatbarpercent(
+                                                      Colors.yellow[700],
+                                                      stat1ERpercent),
+                                                if (stat2ERpercentOn == true)
+                                                  buildstatbarpercent(
+                                                      Colors.pink[700],
+                                                      stat2ERpercent),
+                                                if (artifact3mainstatcat == 5)
+                                                  buildstatbarpercent(
+                                                      Colors.blueGrey,
+                                                      a3ERpercentMain),
+                                                if (stat3ERpercentOn == true)
+                                                  buildstatbarpercent(
+                                                      Colors.blueGrey,
+                                                      stat3ERpercent),
+                                                if (stat4ERpercentOn == true)
+                                                  buildstatbarpercent(
+                                                      Colors.purple,
+                                                      stat4ERpercent),
+                                                if (stat5ERpercentOn == true)
+                                                  buildstatbarpercent(
+                                                      Colors.teal,
+                                                      stat5ERpercent),
                                               ],
                                             ),
                                           ],
@@ -11107,7 +14020,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 255, 255, 0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                               //ANCHOR CR
 
@@ -11120,11 +14036,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
                                 SelectableText(
                                   '${"Critical Rate".tr()}:' +
-                                      double.parse(baseCR.toStringAsFixed(1)).toString() +
+                                      double.parse(baseCR.toStringAsFixed(1))
+                                          .toString() +
                                       '% + ' +
-                                      double.parse(bonusCR.toStringAsFixed(1)).toString() +
+                                      double.parse(bonusCR.toStringAsFixed(1))
+                                          .toString() +
                                       '% = ' +
-                                      double.parse(allCR.toStringAsFixed(1)).toString() +
+                                      double.parse(allCR.toStringAsFixed(1))
+                                          .toString() +
                                       '%',
                                   style: TextStyle(fontSize: 15),
                                 ),
@@ -11136,45 +14055,108 @@ class _MyHomePageState extends State<MyHomePage> {
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             //ANCHOR statCR:stats
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
-                                                buildStatRow(Colors.red, 'character'.tr(), '$baseCR'),
-                                                if (weaponCR != 0) buildStatRow(Colors.blue[700], 'weapon'.tr(), '$weaponCR'),
-                                                if (stat1CRpercentOn == true) buildStatRow(Colors.yellow[700], 'a1'.tr(), '$stat1CRpercent'),
-                                                if (stat2CRpercentOn == true) buildStatRow(Colors.pink[700], 'a2'.tr(), '$stat2CRpercent'),
-                                                if (stat3CRpercentOn == true) buildStatRow(Colors.blueGrey, 'a3'.tr(), '$stat3CRpercent'),
-                                                if (stat4CRpercentOn == true) buildStatRow(Colors.purple, 'a4'.tr(), '$stat4CRpercent'),
-                                                if (artifact5mainstatcat == 5) buildStatRow(Colors.purple, 'a5'.tr(), '$a5CR'),
-                                                if (stat5CRpercentOn == true) buildStatRow(Colors.teal, 'a5'.tr(), '$stat5CRpercent'),
-                                                if (undividedHeartOn == true) buildStatRow(Colors.amber, 'Undevided Heart'.tr(), '20'),
-                                                if (blizzardstrayer41On == true) buildStatRow(Colors.blue[300], 'Blizzard Strayer 4 set(cryo)'.tr(), '20'),
-                                                if (blizzardstrayer42On == true) buildStatRow(Colors.blue[400], 'Blizzard Strayer 4 set(frozen)'.tr(), '20'),
-                                                if (cryo2On == true) buildStatRow(Colors.blue[200], '2 Cryo'.tr(), '15'),
-                                                if (manualCRpercentOn) buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualCRpercent).toStringAsFixed(1))),
+                                                buildStatRow(
+                                                    Colors.red,
+                                                    'character'.tr(),
+                                                    '$baseCR'),
+                                                if (weaponCR != 0)
+                                                  buildStatRow(
+                                                      Colors.blue[700],
+                                                      'weapon'.tr(),
+                                                      '$weaponCR'),
+                                                if (stat1CRpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.yellow[700],
+                                                      'a1'.tr(),
+                                                      '$stat1CRpercent'),
+                                                if (stat2CRpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.pink[700],
+                                                      'a2'.tr(),
+                                                      '$stat2CRpercent'),
+                                                if (stat3CRpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.blueGrey,
+                                                      'a3'.tr(),
+                                                      '$stat3CRpercent'),
+                                                if (stat4CRpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.purple,
+                                                      'a4'.tr(),
+                                                      '$stat4CRpercent'),
+                                                if (artifact5mainstatcat == 5)
+                                                  buildStatRow(Colors.purple,
+                                                      'a5'.tr(), '$a5CR'),
+                                                if (stat5CRpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.teal,
+                                                      'a5'.tr(),
+                                                      '$stat5CRpercent'),
+                                                if (undividedHeartOn == true)
+                                                  buildStatRow(
+                                                      Colors.amber,
+                                                      'Undevided Heart'.tr(),
+                                                      '20'),
+                                                if (blizzardstrayer41On == true)
+                                                  buildStatRow(
+                                                      Colors.blue[300],
+                                                      'Blizzard Strayer 4 set(cryo)'
+                                                          .tr(),
+                                                      '20'),
+                                                if (blizzardstrayer42On == true)
+                                                  buildStatRow(
+                                                      Colors.blue[400],
+                                                      'Blizzard Strayer 4 set(frozen)'
+                                                          .tr(),
+                                                      '20'),
+                                                if (cryo2On == true)
+                                                  buildStatRow(Colors.blue[200],
+                                                      '2 Cryo'.tr(), '15'),
+                                                if (manualCRpercentOn)
+                                                  buildStatRow(
+                                                      Colors.red[300],
+                                                      'Manual'.tr(),
+                                                      ((manualCRpercent)
+                                                          .toStringAsFixed(1))),
                                               ],
                                             ),
 
                                             //ANCHOR statCR:bar
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
                                                   children: [
-                                                    AnimatedContainer(curve: Curves.easeIn, duration: Duration(milliseconds: 500), width: baseCR * 2, height: 20, color: Colors.red),
+                                                    AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(
+                                                            milliseconds: 500),
+                                                        width: baseCR * 2,
+                                                        height: 20,
+                                                        color: Colors.red),
                                                   ],
                                                 ),
                                                 if (weaponCR != 0)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
+                                                        duration: Duration(
+                                                            milliseconds: 500),
                                                         width: weaponCR * 2,
                                                         height: 20,
                                                         color: Colors.blue[700],
@@ -11183,25 +14165,34 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (stat1CRpercentOn == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
-                                                        width: stat1CRpercent * 2,
+                                                        duration: Duration(
+                                                            milliseconds: 500),
+                                                        width:
+                                                            stat1CRpercent * 2,
                                                         height: 20,
-                                                        color: Colors.yellow[700],
+                                                        color:
+                                                            Colors.yellow[700],
                                                       ),
                                                     ],
                                                   ),
                                                 if (stat2CRpercentOn == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
-                                                        width: stat2CRpercent * 2,
+                                                        duration: Duration(
+                                                            milliseconds: 500),
+                                                        width:
+                                                            stat2CRpercent * 2,
                                                         height: 20,
                                                         color: Colors.pink[700],
                                                       ),
@@ -11209,12 +14200,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (stat3CRpercentOn == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
-                                                        width: stat3CRpercent * 2,
+                                                        duration: Duration(
+                                                            milliseconds: 500),
+                                                        width:
+                                                            stat3CRpercent * 2,
                                                         height: 20,
                                                         color: Colors.blueGrey,
                                                       ),
@@ -11222,12 +14217,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (stat4CRpercentOn == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
-                                                        width: stat4CRpercent * 2,
+                                                        duration: Duration(
+                                                            milliseconds: 500),
+                                                        width:
+                                                            stat4CRpercent * 2,
                                                         height: 20,
                                                         color: Colors.purple,
                                                       ),
@@ -11235,11 +14234,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (artifact5mainstatcat == 5)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
+                                                        duration: Duration(
+                                                            milliseconds: 500),
                                                         width: a5CR * 2,
                                                         height: 20,
                                                         color: Colors.teal,
@@ -11248,12 +14250,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (stat5CRpercentOn == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
-                                                        width: stat5CRpercent * 2,
+                                                        duration: Duration(
+                                                            milliseconds: 500),
+                                                        width:
+                                                            stat5CRpercent * 2,
                                                         height: 20,
                                                         color: Colors.teal,
                                                       ),
@@ -11261,11 +14267,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (undividedHeartOn == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
+                                                        duration: Duration(
+                                                            milliseconds: 500),
                                                         width: 40,
                                                         height: 20,
                                                         color: Colors.amber,
@@ -11274,11 +14283,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (blizzardstrayer41On == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
+                                                        duration: Duration(
+                                                            milliseconds: 500),
                                                         width: 40,
                                                         height: 20,
                                                         color: Colors.blue[300],
@@ -11287,11 +14299,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (blizzardstrayer42On == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
+                                                        duration: Duration(
+                                                            milliseconds: 500),
                                                         width: 40,
                                                         height: 20,
                                                         color: Colors.blue[400],
@@ -11300,18 +14315,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (cryo2On == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
+                                                        duration: Duration(
+                                                            milliseconds: 500),
                                                         width: 30,
                                                         height: 20,
                                                         color: Colors.blue[200],
                                                       ),
                                                     ],
                                                   ),
-                                                if (manualCRpercentOn) buildstatbarpercent(Colors.red[300], manualCRpercent),
+                                                if (manualCRpercentOn)
+                                                  buildstatbarpercent(
+                                                      Colors.red[300],
+                                                      manualCRpercent),
                                               ],
                                             ),
                                           ],
@@ -11323,11 +14344,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                 //ANCHOR CD
                                 SelectableText(
                                   '${"Critical Damage".tr()}:' +
-                                      double.parse(baseCD.toStringAsFixed(1)).toString() +
+                                      double.parse(baseCD.toStringAsFixed(1))
+                                          .toString() +
                                       '% + ' +
-                                      double.parse(bonusCD.toStringAsFixed(1)).toString() +
+                                      double.parse(bonusCD.toStringAsFixed(1))
+                                          .toString() +
                                       '% = ' +
-                                      double.parse(allCD.toStringAsFixed(1)).toString() +
+                                      double.parse(allCD.toStringAsFixed(1))
+                                          .toString() +
                                       '%',
                                   style: TextStyle(fontSize: 15),
                                 ),
@@ -11339,43 +14363,97 @@ class _MyHomePageState extends State<MyHomePage> {
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             //ANCHOR statCD:stats
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
-                                                buildStatRow(Colors.red, 'character'.tr(), '$baseCD'),
-                                                if (weaponCD != 0) buildStatRow(Colors.blue, 'weapon'.tr(), '$weaponCD'),
-                                                if (stat1CDpercentOn == true) buildStatRow(Colors.yellow[700], 'a1'.tr(), '$stat1CDpercent'),
-                                                if (stat2CDpercentOn == true) buildStatRow(Colors.pink[700], 'a2'.tr(), '$stat2CDpercent'),
-                                                if (stat3CDpercentOn == true) buildStatRow(Colors.blueGrey, 'a3'.tr(), '$stat3CDpercent'),
-                                                if (stat4CDpercentOn == true) buildStatRow(Colors.blueGrey, 'a4'.tr(), '$stat4CDpercent'),
-                                                if (artifact5mainstatcat == 6) buildStatRow(Colors.teal, 'a5'.tr(), '$a5CD'),
-                                                if (stat5CDpercentOn == true) buildStatRow(Colors.teal, 'a5'.tr(), '$stat5CDpercent'),
-                                                if (echoingBalladOn == true) buildStatRow(Colors.tealAccent, 'Echoing Ballad1'.tr(), (15 + weaponref * 5).toString()),
-                                                if (manualCDpercentOn) buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualCDpercent).toStringAsFixed(1))),
+                                                buildStatRow(
+                                                    Colors.red,
+                                                    'character'.tr(),
+                                                    '$baseCD'),
+                                                if (weaponCD != 0)
+                                                  buildStatRow(
+                                                      Colors.blue,
+                                                      'weapon'.tr(),
+                                                      '$weaponCD'),
+                                                if (stat1CDpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.yellow[700],
+                                                      'a1'.tr(),
+                                                      '$stat1CDpercent'),
+                                                if (stat2CDpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.pink[700],
+                                                      'a2'.tr(),
+                                                      '$stat2CDpercent'),
+                                                if (stat3CDpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.blueGrey,
+                                                      'a3'.tr(),
+                                                      '$stat3CDpercent'),
+                                                if (stat4CDpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.blueGrey,
+                                                      'a4'.tr(),
+                                                      '$stat4CDpercent'),
+                                                if (artifact5mainstatcat == 6)
+                                                  buildStatRow(Colors.teal,
+                                                      'a5'.tr(), '$a5CD'),
+                                                if (stat5CDpercentOn == true)
+                                                  buildStatRow(
+                                                      Colors.teal,
+                                                      'a5'.tr(),
+                                                      '$stat5CDpercent'),
+                                                if (echoingBalladOn == true)
+                                                  buildStatRow(
+                                                      Colors.tealAccent,
+                                                      'Echoing Ballad1'.tr(),
+                                                      (15 + weaponref * 5)
+                                                          .toString()),
+                                                if (manualCDpercentOn)
+                                                  buildStatRow(
+                                                      Colors.red[300],
+                                                      'Manual'.tr(),
+                                                      ((manualCDpercent)
+                                                          .toStringAsFixed(1))),
                                               ],
                                             ),
 
                                             //ANCHOR statCD:bar
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 if ((baseCD - weaponCD) != 0)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
-                                                      AnimatedContainer(curve: Curves.easeIn, duration: Duration(milliseconds: 500), width: baseCD * 2, height: 20, color: Colors.red),
+                                                      AnimatedContainer(
+                                                          curve: Curves.easeIn,
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  500),
+                                                          width: baseCD * 2,
+                                                          height: 20,
+                                                          color: Colors.red),
                                                     ],
                                                   ),
                                                 if (weaponCD != 0)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
+                                                        duration: Duration(
+                                                            milliseconds: 500),
                                                         width: weaponCD * 2,
                                                         height: 20,
                                                         color: Colors.blue,
@@ -11384,25 +14462,34 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (stat1CDpercentOn == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
-                                                        width: stat1CDpercent * 2,
+                                                        duration: Duration(
+                                                            milliseconds: 500),
+                                                        width:
+                                                            stat1CDpercent * 2,
                                                         height: 20,
-                                                        color: Colors.yellow[700],
+                                                        color:
+                                                            Colors.yellow[700],
                                                       ),
                                                     ],
                                                   ),
                                                 if (stat2CDpercentOn == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
-                                                        width: stat2CDpercent * 2,
+                                                        duration: Duration(
+                                                            milliseconds: 500),
+                                                        width:
+                                                            stat2CDpercent * 2,
                                                         height: 20,
                                                         color: Colors.pink[700],
                                                       ),
@@ -11410,12 +14497,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (stat3CDpercentOn == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
-                                                        width: stat3CDpercent * 2,
+                                                        duration: Duration(
+                                                            milliseconds: 500),
+                                                        width:
+                                                            stat3CDpercent * 2,
                                                         height: 20,
                                                         color: Colors.blueGrey,
                                                       ),
@@ -11423,12 +14514,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (stat4CDpercentOn == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
-                                                        width: stat4CDpercent * 2,
+                                                        duration: Duration(
+                                                            milliseconds: 500),
+                                                        width:
+                                                            stat4CDpercent * 2,
                                                         height: 20,
                                                         color: Colors.purple,
                                                       ),
@@ -11436,11 +14531,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (artifact5mainstatcat == 6)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
+                                                        duration: Duration(
+                                                            milliseconds: 500),
                                                         width: a5CD * 2,
                                                         height: 20,
                                                         color: Colors.teal,
@@ -11449,12 +14547,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (stat5CDpercentOn == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
-                                                        width: stat5CDpercent * 2,
+                                                        duration: Duration(
+                                                            milliseconds: 500),
+                                                        width:
+                                                            stat5CDpercent * 2,
                                                         height: 20,
                                                         color: Colors.teal,
                                                       ),
@@ -11462,18 +14564,27 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ),
                                                 if (echoingBalladOn == true)
                                                   Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       AnimatedContainer(
                                                         curve: Curves.easeIn,
-                                                        duration: Duration(milliseconds: 500),
-                                                        width: (15 + weaponref * 5) * 2 as double,
+                                                        duration: Duration(
+                                                            milliseconds: 500),
+                                                        width: (15 +
+                                                                weaponref * 5) *
+                                                            2 as double,
                                                         height: 20,
-                                                        color: Colors.tealAccent,
+                                                        color:
+                                                            Colors.tealAccent,
                                                       ),
                                                     ],
                                                   ),
-                                                if (manualCDpercentOn) buildstatbarpercent(Colors.red[300], manualCDpercent),
+                                                if (manualCDpercentOn)
+                                                  buildstatbarpercent(
+                                                      Colors.red[300],
+                                                      manualCDpercent),
                                               ],
                                             ),
                                           ],
@@ -11489,7 +14600,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 255, 255, 0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                               children: [
                                 SelectableText(
@@ -11503,35 +14617,69 @@ class _MyHomePageState extends State<MyHomePage> {
                                     children: [
                                       if (bonusNormalATKDMGpercent != 0)
                                         SelectableText(
-                                          '${"Normal Attack Damage".tr()}:' + double.parse(bonusNormalATKDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          '${"Normal Attack Damage".tr()}:' +
+                                              double.parse(
+                                                      bonusNormalATKDMGpercent
+                                                          .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statNormalATKDMG:stats
                                       if (bonusNormalATKDMGpercent != 0)
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           children: [
-                                            if (strongWilled1On) buildStatRow(Colors.purple[300], 'Strong Willed1'.tr(), (9 + weaponref * 3).toString()),
-                                            if (strongWilled2On) buildStatRow(Colors.blue[300], 'Strong Willed2'.tr(), ((6 + weaponref * 2) * strongWilled2Times).toString()),
+                                            if (strongWilled1On)
+                                              buildStatRow(
+                                                  Colors.purple[300],
+                                                  'Strong Willed1'.tr(),
+                                                  (9 + weaponref * 3)
+                                                      .toString()),
+                                            if (strongWilled2On)
+                                              buildStatRow(
+                                                  Colors.blue[300],
+                                                  'Strong Willed2'.tr(),
+                                                  ((6 + weaponref * 2) *
+                                                          strongWilled2Times)
+                                                      .toString()),
                                             if (rulebythunder2On)
-                                              buildStatRow(Colors.amber, 'Rule by Thunder2'.tr(),
-                                                  (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30))).toString()),
-                                            if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
+                                              buildStatRow(
+                                                  Colors.amber,
+                                                  'Rule by Thunder2'.tr(),
+                                                  (rulebythunder2Times == 1
+                                                          ? (weaponref * 3 + 9)
+                                                          : (rulebythunder2Times ==
+                                                                  2
+                                                              ? (weaponref * 6 +
+                                                                  18)
+                                                              : (weaponref *
+                                                                      10 +
+                                                                  30)))
+                                                      .toString()),
+                                            if (reminiscenceofshime4On)
+                                              buildStatRow(Colors.red,
+                                                  'Reminiscence4'.tr(), "50"),
                                           ],
                                         ),
                                       //ANCHOR statNormalATKDMG:bar
                                       if (bonusNormalATKDMGpercent != 0)
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           children: [
                                             if (strongWilled1On)
                                               Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   AnimatedContainer(
                                                     curve: Curves.easeIn,
-                                                    duration: Duration(milliseconds: 500),
-                                                    width: (9 + weaponref * 3) * 2 as double,
+                                                    duration: Duration(
+                                                        milliseconds: 500),
+                                                    width: (9 + weaponref * 3) *
+                                                        2 as double,
                                                     height: 20,
                                                     color: Colors.purple[300],
                                                   ),
@@ -11539,12 +14687,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                               ),
                                             if (strongWilled2On)
                                               Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   AnimatedContainer(
                                                     curve: Curves.easeIn,
-                                                    duration: Duration(milliseconds: 500),
-                                                    width: ((6 + weaponref * 2) * strongWilled2Times) * 2 * 2 as double,
+                                                    duration: Duration(
+                                                        milliseconds: 500),
+                                                    width: ((6 +
+                                                                weaponref * 2) *
+                                                            strongWilled2Times) *
+                                                        2 *
+                                                        2 as double,
                                                     height: 20,
                                                     color: Colors.blue[300],
                                                   ),
@@ -11552,39 +14706,76 @@ class _MyHomePageState extends State<MyHomePage> {
                                               ),
                                             if (rulebythunder2On)
                                               buildstatbarpercent(
-                                                  Colors.amber, (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))),
-                                            if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
+                                                  Colors.amber,
+                                                  (rulebythunder2Times == 1
+                                                      ? (weaponref * 3 + 9)
+                                                      : (rulebythunder2Times ==
+                                                              2
+                                                          ? (weaponref * 6 + 18)
+                                                          : (weaponref * 10 +
+                                                              30)))),
+                                            if (reminiscenceofshime4On)
+                                              buildstatbarpercent(
+                                                  Colors.red, 50),
                                           ],
                                         ),
                                       if (bonusChargedATKDMGpercent != 0)
                                         SelectableText(
-                                          '${"Charged Attack Damage".tr()}:' + double.parse(bonusChargedATKDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          '${"Charged Attack Damage".tr()}:' +
+                                              double.parse(
+                                                      bonusChargedATKDMGpercent
+                                                          .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statChargedATKDMG:stats
                                       if (bonusChargedATKDMGpercent != 0)
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           children: [
-                                            if (strongWilled1On) buildStatRow(Colors.purple[300], 'Strong Willed1'.tr(), (9 + weaponref * 3).toString()),
-                                            if (strongWilled2On) buildStatRow(Colors.blue[300], 'Strong Willed2'.tr(), ((6 + weaponref * 2) * strongWilled2Times).toString()),
-                                            if (troupesdawnlight4on) buildStatRow(Colors.green[400], "Troupe's Dawnlight 4 set".tr(), "35"),
-                                            if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
+                                            if (strongWilled1On)
+                                              buildStatRow(
+                                                  Colors.purple[300],
+                                                  'Strong Willed1'.tr(),
+                                                  (9 + weaponref * 3)
+                                                      .toString()),
+                                            if (strongWilled2On)
+                                              buildStatRow(
+                                                  Colors.blue[300],
+                                                  'Strong Willed2'.tr(),
+                                                  ((6 + weaponref * 2) *
+                                                          strongWilled2Times)
+                                                      .toString()),
+                                            if (troupesdawnlight4on)
+                                              buildStatRow(
+                                                  Colors.green[400],
+                                                  "Troupe's Dawnlight 4 set"
+                                                      .tr(),
+                                                  "35"),
+                                            if (reminiscenceofshime4On)
+                                              buildStatRow(Colors.red,
+                                                  'Reminiscence4'.tr(), "50"),
                                           ],
                                         ),
                                       //ANCHOR statChargedATKDMG:bar
                                       if (bonusChargedATKDMGpercent != 0)
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           children: [
                                             if (strongWilled1On)
                                               Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   AnimatedContainer(
                                                     curve: Curves.easeIn,
-                                                    duration: Duration(milliseconds: 500),
-                                                    width: (9 + weaponref * 3) * 2 as double,
+                                                    duration: Duration(
+                                                        milliseconds: 500),
+                                                    width: (9 + weaponref * 3) *
+                                                        2 as double,
                                                     height: 20,
                                                     color: Colors.purple[300],
                                                   ),
@@ -11592,12 +14783,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                               ),
                                             if (strongWilled2On)
                                               Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   AnimatedContainer(
                                                     curve: Curves.easeIn,
-                                                    duration: Duration(milliseconds: 500),
-                                                    width: ((6 + weaponref * 2) * strongWilled2Times) * 2 * 2 as double,
+                                                    duration: Duration(
+                                                        milliseconds: 500),
+                                                    width: ((6 +
+                                                                weaponref * 2) *
+                                                            strongWilled2Times) *
+                                                        2 *
+                                                        2 as double,
                                                     height: 20,
                                                     color: Colors.blue[300],
                                                   ),
@@ -11605,265 +14802,523 @@ class _MyHomePageState extends State<MyHomePage> {
                                               ),
                                             if (troupesdawnlight4on)
                                               Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   AnimatedContainer(
                                                     curve: Curves.easeIn,
-                                                    duration: Duration(milliseconds: 500),
+                                                    duration: Duration(
+                                                        milliseconds: 500),
                                                     width: 35 * 2 as double,
                                                     height: 20,
                                                     color: Colors.green[400],
                                                   ),
                                                 ],
                                               ),
-                                            if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
+                                            if (reminiscenceofshime4On)
+                                              buildstatbarpercent(
+                                                  Colors.red, 50),
                                           ],
                                         ),
                                       //ANCHOR Plunge Damage Title
                                       if (bonusPlungeATKDMGpercent != 0)
                                         SelectableText(
-                                          '${"Plunge Damage".tr()}:' + double.parse(bonusPlungeATKDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          '${"Plunge Damage".tr()}:' +
+                                              double.parse(
+                                                      bonusPlungeATKDMGpercent
+                                                          .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statPlungeDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
+                                          if (reminiscenceofshime4On)
+                                            buildStatRow(Colors.red,
+                                                'Reminiscence4'.tr(), "50"),
                                         ],
                                       ),
                                       //ANCHOR statPlungeDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
+                                          if (reminiscenceofshime4On)
+                                            buildstatbarpercent(Colors.red, 50),
                                         ],
                                       ),
                                       //ANCHOR Physical Damage Title
                                       if (bonusPhysicalDMGpercent != 0)
                                         SelectableText(
-                                          '${"Physical Damage".tr()}:' + double.parse(bonusPhysicalDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          '${"Physical Damage".tr()}:' +
+                                              double.parse(
+                                                      bonusPhysicalDMGpercent
+                                                          .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statPhysicalDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (levelPhysicalDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelPhysicalDMGpercent'),
-                                          if (weaponPhysicalDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponPhysicalDMGpercent'),
-                                          if (artifact4mainstatcat == 5) buildStatRow(Colors.purple, 'a4'.tr(), '$a4PhysicalDMGpercent'),
+                                          if (levelPhysicalDMGpercent != 0)
+                                            buildStatRow(
+                                                Colors.red,
+                                                'character'.tr(),
+                                                '$levelPhysicalDMGpercent'),
+                                          if (weaponPhysicalDMGpercent != 0)
+                                            buildStatRow(
+                                                Colors.green,
+                                                'weapon'.tr(),
+                                                '$weaponPhysicalDMGpercent'),
+                                          if (artifact4mainstatcat == 5)
+                                            buildStatRow(
+                                                Colors.purple,
+                                                'a4'.tr(),
+                                                '$a4PhysicalDMGpercent'),
                                         ],
                                       ),
                                       //ANCHOR statPhysicalDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (levelPhysicalDMGpercent != 0) buildstatbarpercent(Colors.red, levelPhysicalDMGpercent),
-                                          if (weaponPhysicalDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponPhysicalDMGpercent),
-                                          if (artifact4mainstatcat == 5) buildstatbarpercent(Colors.purple, a4PhysicalDMGpercent),
+                                          if (levelPhysicalDMGpercent != 0)
+                                            buildstatbarpercent(Colors.red,
+                                                levelPhysicalDMGpercent),
+                                          if (weaponPhysicalDMGpercent != 0)
+                                            buildstatbarpercent(Colors.blue,
+                                                weaponPhysicalDMGpercent),
+                                          if (artifact4mainstatcat == 5)
+                                            buildstatbarpercent(Colors.purple,
+                                                a4PhysicalDMGpercent),
                                         ],
                                       ),
                                       //ANCHOR Pyro Damage Title
                                       if (bonusPyroDMGpercent != 0)
                                         SelectableText(
-                                          '${"Pyro Damage".tr()}:' + double.parse(bonusPyroDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          '${"Pyro Damage".tr()}:' +
+                                              double.parse(bonusPyroDMGpercent
+                                                      .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statPyroDMG:stats
                                       if (bonusPyroDMGpercent != 0)
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           children: [
-                                            if (levelPyroDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelPyroDMGpercent'),
-                                            if (weaponPyroDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponPyroDMGpercent'),
-                                            if (artifact4mainstatcat == 6) buildStatRow(Colors.purple, 'a4'.tr(), '$a4PyroDMGpercent'),
-                                            if (troublemakerstack != 0) buildStatRow(Colors.red, 'Tricks of the Trouble-Maker'.tr(), (troublemakerstack * 2).toString()),
-                                            if (summerscorchOn) buildStatRow(Colors.red[400], 'Summer Scorch'.tr(), '$troublemakerstack'),
-                                            if (yoimiyaconstellation2On) buildStatRow(Colors.amber, 'A Procession of Bonfires'.tr(), '25'),
+                                            if (levelPyroDMGpercent != 0)
+                                              buildStatRow(
+                                                  Colors.red,
+                                                  'character'.tr(),
+                                                  '$levelPyroDMGpercent'),
+                                            if (weaponPyroDMGpercent != 0)
+                                              buildStatRow(
+                                                  Colors.green,
+                                                  'weapon'.tr(),
+                                                  '$weaponPyroDMGpercent'),
+                                            if (artifact4mainstatcat == 6)
+                                              buildStatRow(
+                                                  Colors.purple,
+                                                  'a4'.tr(),
+                                                  '$a4PyroDMGpercent'),
+                                            if (troublemakerstack != 0)
+                                              buildStatRow(
+                                                  Colors.red,
+                                                  'Tricks of the Trouble-Maker'
+                                                      .tr(),
+                                                  (troublemakerstack * 2)
+                                                      .toString()),
+                                            if (summerscorchOn)
+                                              buildStatRow(
+                                                  Colors.red[400],
+                                                  'Summer Scorch'.tr(),
+                                                  '$troublemakerstack'),
+                                            if (yoimiyaconstellation2On)
+                                              buildStatRow(
+                                                  Colors.amber,
+                                                  'A Procession of Bonfires'
+                                                      .tr(),
+                                                  '25'),
                                           ],
                                         ),
                                       //ANCHOR statPyroDMG:bar
                                       if (bonusPyroDMGpercent != 0)
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           children: [
-                                            if (levelPyroDMGpercent != 0) buildstatbarpercent(Colors.red, levelPyroDMGpercent),
-                                            if (weaponPyroDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponPyroDMGpercent),
-                                            if (artifact4mainstatcat == 6) buildstatbarpercent(Colors.purple, a4PyroDMGpercent),
-                                            if (troublemakerstack != 0) buildstatbarpercent(Colors.red, troublemakerstack * 2),
-                                            if (summerscorchOn) buildstatbarpercent(Colors.red[400], troublemakerstack),
-                                            if (yoimiyaconstellation2On) buildstatbarpercent(Colors.amber, 25),
+                                            if (levelPyroDMGpercent != 0)
+                                              buildstatbarpercent(Colors.red,
+                                                  levelPyroDMGpercent),
+                                            if (weaponPyroDMGpercent != 0)
+                                              buildstatbarpercent(Colors.blue,
+                                                  weaponPyroDMGpercent),
+                                            if (artifact4mainstatcat == 6)
+                                              buildstatbarpercent(Colors.purple,
+                                                  a4PyroDMGpercent),
+                                            if (troublemakerstack != 0)
+                                              buildstatbarpercent(Colors.red,
+                                                  troublemakerstack * 2),
+                                            if (summerscorchOn)
+                                              buildstatbarpercent(
+                                                  Colors.red[400],
+                                                  troublemakerstack),
+                                            if (yoimiyaconstellation2On)
+                                              buildstatbarpercent(
+                                                  Colors.amber, 25),
                                           ],
                                         ),
                                       //ANCHOR Hydro Damage Title
                                       if (bonusHydroDMGpercent != 0)
                                         SelectableText(
-                                          '${"Hydro Damage".tr()}:' + double.parse(bonusHydroDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          '${"Hydro Damage".tr()}:' +
+                                              double.parse(bonusHydroDMGpercent
+                                                      .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statHydroDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (levelHydroDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelHydroDMGpercent'),
-                                          if (weaponHydroDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponHydroDMGpercent'),
-                                          if (artifact4mainstatcat == 7) buildStatRow(Colors.purple, 'a4'.tr(), '$a4HydroDMGpercent'),
+                                          if (levelHydroDMGpercent != 0)
+                                            buildStatRow(
+                                                Colors.red,
+                                                'character'.tr(),
+                                                '$levelHydroDMGpercent'),
+                                          if (weaponHydroDMGpercent != 0)
+                                            buildStatRow(
+                                                Colors.green,
+                                                'weapon'.tr(),
+                                                '$weaponHydroDMGpercent'),
+                                          if (artifact4mainstatcat == 7)
+                                            buildStatRow(
+                                                Colors.purple,
+                                                'a4'.tr(),
+                                                '$a4HydroDMGpercent'),
                                         ],
                                       ),
                                       //ANCHOR statHydroDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (levelHydroDMGpercent != 0) buildstatbarpercent(Colors.red, levelHydroDMGpercent),
-                                          if (weaponHydroDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponHydroDMGpercent),
-                                          if (artifact4mainstatcat == 7) buildstatbarpercent(Colors.purple, a4HydroDMGpercent),
+                                          if (levelHydroDMGpercent != 0)
+                                            buildstatbarpercent(Colors.red,
+                                                levelHydroDMGpercent),
+                                          if (weaponHydroDMGpercent != 0)
+                                            buildstatbarpercent(Colors.blue,
+                                                weaponHydroDMGpercent),
+                                          if (artifact4mainstatcat == 7)
+                                            buildstatbarpercent(Colors.purple,
+                                                a4HydroDMGpercent),
                                         ],
                                       ),
                                       //ANCHOR Cryo Damage Title
                                       if (bonusCryoDMGpercent != 0)
                                         SelectableText(
-                                          '${"Cryo Damage".tr()}:' + double.parse(bonusCryoDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          '${"Cryo Damage".tr()}:' +
+                                              double.parse(bonusCryoDMGpercent
+                                                      .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statCryoDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (levelCryoDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelCryoDMGpercent'),
-                                          if (weaponCryoDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponCryoDMGpercent'),
-                                          if (artifact4mainstatcat == 8) buildStatRow(Colors.purple, 'a4'.tr(), '$a4CryoDMGpercent'),
-                                          if (blizzardstrayer2On) buildStatRow(Colors.blue[300], 'Blizzard2'.tr(), '15'),
-                                          if (harmonyOn) buildStatRow(Colors.amber, 'Harmony between Heaven and Earth'.tr(), '20'),
+                                          if (levelCryoDMGpercent != 0)
+                                            buildStatRow(
+                                                Colors.red,
+                                                'character'.tr(),
+                                                '$levelCryoDMGpercent'),
+                                          if (weaponCryoDMGpercent != 0)
+                                            buildStatRow(
+                                                Colors.green,
+                                                'weapon'.tr(),
+                                                '$weaponCryoDMGpercent'),
+                                          if (artifact4mainstatcat == 8)
+                                            buildStatRow(Colors.purple,
+                                                'a4'.tr(), '$a4CryoDMGpercent'),
+                                          if (blizzardstrayer2On)
+                                            buildStatRow(Colors.blue[300],
+                                                'Blizzard2'.tr(), '15'),
+                                          if (harmonyOn)
+                                            buildStatRow(
+                                                Colors.amber,
+                                                'Harmony between Heaven and Earth'
+                                                    .tr(),
+                                                '20'),
                                         ],
                                       ),
                                       //ANCHOR statCryoDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (levelCryoDMGpercent != 0) buildstatbarpercent(Colors.red, levelCryoDMGpercent),
-                                          if (weaponCryoDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponCryoDMGpercent),
-                                          if (artifact4mainstatcat == 8) buildstatbarpercent(Colors.purple, a4CryoDMGpercent),
-                                          if (blizzardstrayer2On) buildstatbarpercent(Colors.blue[300], 15),
-                                          if (harmonyOn) buildstatbarpercent(Colors.amber, 20),
+                                          if (levelCryoDMGpercent != 0)
+                                            buildstatbarpercent(Colors.red,
+                                                levelCryoDMGpercent),
+                                          if (weaponCryoDMGpercent != 0)
+                                            buildstatbarpercent(Colors.blue,
+                                                weaponCryoDMGpercent),
+                                          if (artifact4mainstatcat == 8)
+                                            buildstatbarpercent(Colors.purple,
+                                                a4CryoDMGpercent),
+                                          if (blizzardstrayer2On)
+                                            buildstatbarpercent(
+                                                Colors.blue[300], 15),
+                                          if (harmonyOn)
+                                            buildstatbarpercent(
+                                                Colors.amber, 20),
                                         ],
                                       ),
                                       //ANCHOR Electro Damage Title
                                       if (bonusElectroDMGpercent != 0)
                                         SelectableText(
-                                          '${"Electro Damage".tr()}:' + double.parse(bonusElectroDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          '${"Electro Damage".tr()}:' +
+                                              double.parse(
+                                                      bonusElectroDMGpercent
+                                                          .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statElectroDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (levelElectroDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelElectroDMGpercent'),
-                                          if (weaponElectroDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponElectroDMGpercent'),
-                                          if (artifact4mainstatcat == 9) buildStatRow(Colors.purple, 'a4'.tr(), '$a4ElectroDMGpercent'),
-                                          if (thunderbird2On) buildStatRow(Colors.purple[400], 'Thundering Fury 2 Set'.tr(), '15'),
+                                          if (levelElectroDMGpercent != 0)
+                                            buildStatRow(
+                                                Colors.red,
+                                                'character'.tr(),
+                                                '$levelElectroDMGpercent'),
+                                          if (weaponElectroDMGpercent != 0)
+                                            buildStatRow(
+                                                Colors.green,
+                                                'weapon'.tr(),
+                                                '$weaponElectroDMGpercent'),
+                                          if (artifact4mainstatcat == 9)
+                                            buildStatRow(
+                                                Colors.purple,
+                                                'a4'.tr(),
+                                                '$a4ElectroDMGpercent'),
+                                          if (thunderbird2On)
+                                            buildStatRow(
+                                                Colors.purple[400],
+                                                'Thundering Fury 2 Set'.tr(),
+                                                '15'),
                                         ],
                                       ),
                                       //ANCHOR statElectroDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (levelElectroDMGpercent != 0) buildstatbarpercent(Colors.red, levelElectroDMGpercent),
-                                          if (weaponElectroDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponElectroDMGpercent),
-                                          if (artifact4mainstatcat == 9) buildstatbarpercent(Colors.purple, a4ElectroDMGpercent),
-                                          if (thunderbird2On) buildstatbarpercent(Colors.purple[400], 15)
+                                          if (levelElectroDMGpercent != 0)
+                                            buildstatbarpercent(Colors.red,
+                                                levelElectroDMGpercent),
+                                          if (weaponElectroDMGpercent != 0)
+                                            buildstatbarpercent(Colors.blue,
+                                                weaponElectroDMGpercent),
+                                          if (artifact4mainstatcat == 9)
+                                            buildstatbarpercent(Colors.purple,
+                                                a4ElectroDMGpercent),
+                                          if (thunderbird2On)
+                                            buildstatbarpercent(
+                                                Colors.purple[400], 15)
                                         ],
                                       ),
                                       //ANCHOR Anemo Damage Title
                                       if (bonusAnemoDMGpercent != 0)
                                         SelectableText(
-                                          '${"Anemo Damage".tr()}:' + double.parse(bonusAnemoDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          '${"Anemo Damage".tr()}:' +
+                                              double.parse(bonusAnemoDMGpercent
+                                                      .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statAnemoDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (levelAnemoDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelAnemoDMGpercent'),
-                                          if (weaponAnemoDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponAnemoDMGpercent'),
-                                          if (artifact4mainstatcat == 10) buildStatRow(Colors.purple, 'a4'.tr(), '$a4AnemoDMGpercent'),
+                                          if (levelAnemoDMGpercent != 0)
+                                            buildStatRow(
+                                                Colors.red,
+                                                'character'.tr(),
+                                                '$levelAnemoDMGpercent'),
+                                          if (weaponAnemoDMGpercent != 0)
+                                            buildStatRow(
+                                                Colors.green,
+                                                'weapon'.tr(),
+                                                '$weaponAnemoDMGpercent'),
+                                          if (artifact4mainstatcat == 10)
+                                            buildStatRow(
+                                                Colors.purple,
+                                                'a4'.tr(),
+                                                '$a4AnemoDMGpercent'),
                                         ],
                                       ),
                                       //ANCHOR statAnemoDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (levelAnemoDMGpercent != 0) buildstatbarpercent(Colors.red, levelAnemoDMGpercent),
-                                          if (weaponAnemoDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponAnemoDMGpercent),
-                                          if (artifact4mainstatcat == 10) buildstatbarpercent(Colors.purple, a4AnemoDMGpercent),
+                                          if (levelAnemoDMGpercent != 0)
+                                            buildstatbarpercent(Colors.red,
+                                                levelAnemoDMGpercent),
+                                          if (weaponAnemoDMGpercent != 0)
+                                            buildstatbarpercent(Colors.blue,
+                                                weaponAnemoDMGpercent),
+                                          if (artifact4mainstatcat == 10)
+                                            buildstatbarpercent(Colors.purple,
+                                                a4AnemoDMGpercent),
                                         ],
                                       ),
                                       //ANCHOR Geo Damage Title
                                       if (bonusGeoDMGpercent != 0)
                                         SelectableText(
-                                          '${"Geo Damage".tr()}:' + double.parse(bonusGeoDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          '${"Geo Damage".tr()}:' +
+                                              double.parse(bonusGeoDMGpercent
+                                                      .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statGeoDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (levelGeoDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelGeoDMGpercent'),
-                                          if (weaponGeoDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponGeoDMGpercent'),
-                                          if (artifact4mainstatcat == 11) buildStatRow(Colors.purple, 'a4'.tr(), '$a4GeoDMGpercent'),
+                                          if (levelGeoDMGpercent != 0)
+                                            buildStatRow(
+                                                Colors.red,
+                                                'character'.tr(),
+                                                '$levelGeoDMGpercent'),
+                                          if (weaponGeoDMGpercent != 0)
+                                            buildStatRow(
+                                                Colors.green,
+                                                'weapon'.tr(),
+                                                '$weaponGeoDMGpercent'),
+                                          if (artifact4mainstatcat == 11)
+                                            buildStatRow(Colors.purple,
+                                                'a4'.tr(), '$a4GeoDMGpercent'),
                                         ],
                                       ),
                                       //ANCHOR statGeoDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (levelGeoDMGpercent != 0) buildstatbarpercent(Colors.red, levelGeoDMGpercent),
-                                          if (weaponGeoDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponGeoDMGpercent),
-                                          if (artifact4mainstatcat == 11) buildstatbarpercent(Colors.purple, a4GeoDMGpercent),
+                                          if (levelGeoDMGpercent != 0)
+                                            buildstatbarpercent(
+                                                Colors.red, levelGeoDMGpercent),
+                                          if (weaponGeoDMGpercent != 0)
+                                            buildstatbarpercent(Colors.blue,
+                                                weaponGeoDMGpercent),
+                                          if (artifact4mainstatcat == 11)
+                                            buildstatbarpercent(
+                                                Colors.purple, a4GeoDMGpercent),
                                         ],
                                       ),
 
                                       //ANCHOR Elemental Burst Damage Title
                                       if (bonusBurstDMGpercent != 0)
                                         SelectableText(
-                                          '${"Elemental Burst Damage".tr()}:' + double.parse(bonusBurstDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          '${"Elemental Burst Damage".tr()}:' +
+                                              double.parse(bonusBurstDMGpercent
+                                                      .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statBurstDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (royalflora2On) buildStatRow(Colors.blue, 'Noblesse Oblige 2 Set'.tr(), '20'),
+                                          if (royalflora2On)
+                                            buildStatRow(
+                                                Colors.blue,
+                                                'Noblesse Oblige 2 Set'.tr(),
+                                                '20'),
                                         ],
                                       ),
                                       //ANCHOR statBurstDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (royalflora2On) buildstatbarpercent(Colors.blue, 20),
+                                          if (royalflora2On)
+                                            buildstatbarpercent(
+                                                Colors.blue, 20),
                                         ],
                                       ),
                                       //ANCHOR  Damage Bonus Title
                                       if (bonusDMGpercent != 0)
                                         SelectableText(
-                                          '${"Damage Bonus".tr()}:' + double.parse(bonusDMGpercent.toStringAsFixed(1)).toString() + '%',
+                                          '${"Damage Bonus".tr()}:' +
+                                              double.parse(bonusDMGpercent
+                                                      .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statBonusDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (monaqOn) buildStatRow(Colors.purple[300], 'Mona(burst)'.tr(), (monaqlvtoratio[monaqlv] * 1).toStringAsFixed(1)),
-                                          if (thundersoother4On) buildStatRow(Color(0xFF6480FF), 'Thundersoother 4 Set'.tr(), '35'),
-                                          if (manualDMGpercentOn) buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualDMGpercent).toStringAsFixed(1))),
+                                          if (monaqOn)
+                                            buildStatRow(
+                                                Colors.purple[300],
+                                                'Mona(burst)'.tr(),
+                                                (monaqlvtoratio[monaqlv] * 1)
+                                                    .toStringAsFixed(1)),
+                                          if (thundersoother4On)
+                                            buildStatRow(
+                                                Color(0xFF6480FF),
+                                                'Thundersoother 4 Set'.tr(),
+                                                '35'),
+                                          if (manualDMGpercentOn)
+                                            buildStatRow(
+                                                Colors.red[300],
+                                                'Manual'.tr(),
+                                                ((manualDMGpercent)
+                                                    .toStringAsFixed(1))),
                                         ],
                                       ),
                                       //ANCHOR statBonusDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (monaqOn) buildstatbarpercent(Colors.purple[300], (monaqlvtoratio[monaqlv] * 1)),
-                                          if (thundersoother4On) buildstatbarpercent(Color(0xFF6480FF), 35),
-                                          if (manualDMGpercentOn) buildstatbarpercent(Colors.red[300], manualDMGpercent),
+                                          if (monaqOn)
+                                            buildstatbarpercent(
+                                                Colors.purple[300],
+                                                (monaqlvtoratio[monaqlv] * 1)),
+                                          if (thundersoother4On)
+                                            buildstatbarpercent(
+                                                Color(0xFF6480FF), 35),
+                                          if (manualDMGpercentOn)
+                                            buildstatbarpercent(Colors.red[300],
+                                                manualDMGpercent),
                                         ],
                                       ),
                                     ],
@@ -11877,7 +15332,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 255, 255, 0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                               children: [
                                 SelectableText(
@@ -11888,7 +15346,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
                                 //ANCHOR EM
                                 SelectableText(
-                                  '${"Elemental Mastery".tr()}:$lvlEM + ' + double.parse(bonusEM.toStringAsFixed(1)).toString() + ' = ' + double.parse(allEM.toStringAsFixed(1)).toString(),
+                                  '${"Elemental Mastery".tr()}:$lvlEM + ' +
+                                      double.parse(bonusEM.toStringAsFixed(1))
+                                          .toString() +
+                                      ' = ' +
+                                      double.parse(allEM.toStringAsFixed(1))
+                                          .toString(),
                                   style: TextStyle(fontSize: 15),
                                 ),
                                 Padding(
@@ -11897,40 +15360,80 @@ class _MyHomePageState extends State<MyHomePage> {
                                     children: [
                                       //ANCHOR statEM:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (lvlEM != 0) buildStatRow(Colors.red, 'baseEM'.tr(), '$lvlEM'),
-                                          if (weaponEM != 0) buildStatRow(Colors.red, "weapon".tr(), '$weaponEM'),
-                                          if (stat1EMOn == true) buildStatRow(Colors.yellow, "a1".tr(), '$stat1EM'),
-                                          if (stat2EMOn == true) buildStatRow(Colors.pink, "a2".tr(), '$stat2EM'),
-                                          if (artifact3mainstatcat == 4) buildStatRow(Colors.blueGrey, "a3".tr(), '$a3EM'),
-                                          if (stat3EMOn == true) buildStatRow(Colors.blueGrey, "a3".tr(), '$stat3EM'),
-                                          if (artifact4mainstatcat == 4) buildStatRow(Colors.purple, "a4".tr(), '$a4EM'),
-                                          if (stat4EMOn == true) buildStatRow(Colors.purple, "a4".tr(), '$stat4EM'),
-                                          if (artifact5mainstatcat == 4) buildStatRow(Colors.teal, "a5".tr(), '$a5EM'),
-                                          if (stat5EMOn == true) buildStatRow(Colors.teal, "a5".tr(), '$stat5EM'),
-                                          if (troupesdawnlight2on) buildStatRow(Colors.teal, "Troupe's Dawnlight 2 set".tr(), '80'),
-                                          if (manualEMOn) buildStatRow(Colors.red[300], 'Manual'.tr(), ((manualEM).toStringAsFixed(1))),
+                                          if (lvlEM != 0)
+                                            buildStatRow(Colors.red,
+                                                'baseEM'.tr(), '$lvlEM'),
+                                          if (weaponEM != 0)
+                                            buildStatRow(Colors.red,
+                                                "weapon".tr(), '$weaponEM'),
+                                          if (stat1EMOn == true)
+                                            buildStatRow(Colors.yellow,
+                                                "a1".tr(), '$stat1EM'),
+                                          if (stat2EMOn == true)
+                                            buildStatRow(Colors.pink, "a2".tr(),
+                                                '$stat2EM'),
+                                          if (artifact3mainstatcat == 4)
+                                            buildStatRow(Colors.blueGrey,
+                                                "a3".tr(), '$a3EM'),
+                                          if (stat3EMOn == true)
+                                            buildStatRow(Colors.blueGrey,
+                                                "a3".tr(), '$stat3EM'),
+                                          if (artifact4mainstatcat == 4)
+                                            buildStatRow(Colors.purple,
+                                                "a4".tr(), '$a4EM'),
+                                          if (stat4EMOn == true)
+                                            buildStatRow(Colors.purple,
+                                                "a4".tr(), '$stat4EM'),
+                                          if (artifact5mainstatcat == 4)
+                                            buildStatRow(Colors.teal, "a5".tr(),
+                                                '$a5EM'),
+                                          if (stat5EMOn == true)
+                                            buildStatRow(Colors.teal, "a5".tr(),
+                                                '$stat5EM'),
+                                          if (troupesdawnlight2on)
+                                            buildStatRow(
+                                                Colors.teal,
+                                                "Troupe's Dawnlight 2 set".tr(),
+                                                '80'),
+                                          if (manualEMOn)
+                                            buildStatRow(
+                                                Colors.red[300],
+                                                'Manual'.tr(),
+                                                ((manualEM)
+                                                    .toStringAsFixed(1))),
                                         ],
                                       ),
 
                                       //ANCHOR statEM:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
                                           Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
-                                              AnimatedContainer(curve: Curves.easeIn, duration: Duration(milliseconds: 500), width: lvlEM / 7, height: 20, color: Colors.red),
+                                              AnimatedContainer(
+                                                  curve: Curves.easeIn,
+                                                  duration: Duration(
+                                                      milliseconds: 500),
+                                                  width: lvlEM / 7,
+                                                  height: 20,
+                                                  color: Colors.red),
                                             ],
                                           ),
                                           if (weaponEM != 0)
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 AnimatedContainer(
                                                   curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
+                                                  duration: Duration(
+                                                      milliseconds: 500),
                                                   width: weaponEM / 7,
                                                   height: 20,
                                                   color: Colors.blue,
@@ -11939,11 +15442,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ),
                                           if (stat1EMOn == true)
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 AnimatedContainer(
                                                   curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
+                                                  duration: Duration(
+                                                      milliseconds: 500),
                                                   width: stat1EM / 7,
                                                   height: 20,
                                                   color: Colors.yellow,
@@ -11952,11 +15457,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ),
                                           if (stat2EMOn == true)
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 AnimatedContainer(
                                                   curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
+                                                  duration: Duration(
+                                                      milliseconds: 500),
                                                   width: stat2EM / 7,
                                                   height: 20,
                                                   color: Colors.pink,
@@ -11965,11 +15472,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ),
                                           if (artifact3mainstatcat == 4)
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 AnimatedContainer(
                                                   curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
+                                                  duration: Duration(
+                                                      milliseconds: 500),
                                                   width: a3EM / 7,
                                                   height: 20,
                                                   color: Colors.blueGrey,
@@ -11978,11 +15487,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ),
                                           if (stat3EMOn == true)
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 AnimatedContainer(
                                                   curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
+                                                  duration: Duration(
+                                                      milliseconds: 500),
                                                   width: stat3EM / 7,
                                                   height: 20,
                                                   color: Colors.blueGrey,
@@ -11991,11 +15502,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ),
                                           if (artifact4mainstatcat == 4)
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 AnimatedContainer(
                                                   curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
+                                                  duration: Duration(
+                                                      milliseconds: 500),
                                                   width: a4EM / 7,
                                                   height: 20,
                                                   color: Colors.purple,
@@ -12004,11 +15517,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ),
                                           if (stat4EMOn == true)
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 AnimatedContainer(
                                                   curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
+                                                  duration: Duration(
+                                                      milliseconds: 500),
                                                   width: stat4EM / 7,
                                                   height: 20,
                                                   color: Colors.purple,
@@ -12017,11 +15532,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ),
                                           if (artifact5mainstatcat == 4)
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 AnimatedContainer(
                                                   curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
+                                                  duration: Duration(
+                                                      milliseconds: 500),
                                                   width: a5EM / 7,
                                                   height: 20,
                                                   color: Colors.teal,
@@ -12030,11 +15547,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ),
                                           if (stat5EMOn == true)
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 AnimatedContainer(
                                                   curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
+                                                  duration: Duration(
+                                                      milliseconds: 500),
                                                   width: stat5EM / 7,
                                                   height: 20,
                                                   color: Colors.teal,
@@ -12043,165 +15562,288 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ),
                                           if (troupesdawnlight2on)
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 AnimatedContainer(
                                                   curve: Curves.easeIn,
-                                                  duration: Duration(milliseconds: 500),
+                                                  duration: Duration(
+                                                      milliseconds: 500),
                                                   width: 80 / 7,
                                                   height: 20,
                                                   color: Colors.green[400],
                                                 ),
                                               ],
                                             ),
-                                          if (manualEMOn) buildstatbar(Colors.red[300], manualEM),
+                                          if (manualEMOn)
+                                            buildstatbar(
+                                                Colors.red[300], manualEM),
                                         ],
                                       ),
                                       //ANCHOR Vaporize Damage Title
                                       if (vaporizeDMGpercent > 100)
                                         SelectableText(
-                                          '${"Vaporize Damage Plus".tr()}:' + (vaporizeDMGpercent - 100).toStringAsFixed(1) + '%',
+                                          '${"Vaporize Damage Plus".tr()}:' +
+                                              (vaporizeDMGpercent - 100)
+                                                  .toStringAsFixed(1) +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statVaporizeDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicmeltpercent * 100).toStringAsFixed(1)),
+                                          if (allEM != 0)
+                                            buildStatRow(
+                                                Colors.amber[400],
+                                                'EM'.tr(),
+                                                (basicmeltpercent * 100)
+                                                    .toStringAsFixed(1)),
                                         ],
                                       ),
                                       //ANCHOR statVaporizeDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicmeltpercent * 100 / 5)),
+                                          if (allEM != 0)
+                                            buildstatbarpercent(
+                                                Colors.amber[400],
+                                                (basicmeltpercent * 100 / 5)),
                                         ],
                                       ),
                                       //ANCHOR Melt Damage Title
                                       if (meltDMGpercent > 100)
                                         SelectableText(
-                                          '${"Melt Damage Plus".tr()}:' + (meltDMGpercent - 100).toStringAsFixed(1) + '%',
+                                          '${"Melt Damage Plus".tr()}:' +
+                                              (meltDMGpercent - 100)
+                                                  .toStringAsFixed(1) +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statMeltDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), ((basicmeltpercent) * 100).toStringAsFixed(1)),
+                                          if (allEM != 0)
+                                            buildStatRow(
+                                                Colors.amber[400],
+                                                'EM'.tr(),
+                                                ((basicmeltpercent) * 100)
+                                                    .toStringAsFixed(1)),
                                         ],
                                       ),
                                       //ANCHOR statMeltDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicmeltpercent * 100 / 5)),
+                                          if (allEM != 0)
+                                            buildstatbarpercent(
+                                                Colors.amber[400],
+                                                (basicmeltpercent * 100 / 5)),
                                         ],
                                       ),
 
                                       //ANCHOR Superconduct Damage Title
                                       if (superconductDMGpercent > 100)
                                         SelectableText(
-                                          '${"Superconduct Damage Plus".tr()}:' + (superconductDMGpercent - 100).toStringAsFixed(1) + '%',
+                                          '${"Superconduct Damage Plus".tr()}:' +
+                                              (superconductDMGpercent - 100)
+                                                  .toStringAsFixed(1) +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statSuperconductDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
-                                          if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set'.tr(), '40'),
+                                          if (allEM != 0)
+                                            buildStatRow(
+                                                Colors.amber[400],
+                                                'EM'.tr(),
+                                                (basicsuperconductpercent * 100)
+                                                    .toStringAsFixed(1)),
+                                          if (thunderbird4On)
+                                            buildStatRow(
+                                                Colors.purple[400],
+                                                'Thundering Fury 4 Set'.tr(),
+                                                '40'),
                                         ],
                                       ),
                                       //ANCHOR statSuperconductDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
-                                          if (thunderbird4On) buildstatbarpercent(Colors.purple[400], 40 / 5),
+                                          if (allEM != 0)
+                                            buildstatbarpercent(
+                                                Colors.amber[400],
+                                                (basicsuperconductpercent *
+                                                    100 /
+                                                    5)),
+                                          if (thunderbird4On)
+                                            buildstatbarpercent(
+                                                Colors.purple[400], 40 / 5),
                                         ],
                                       ),
                                       //ANCHOR Overloaded Damage Title
                                       if (overloadDMGpercent > 100)
                                         SelectableText(
-                                          '${"Overloaded Damage Plus".tr()}:' + (overloadDMGpercent - 100).toStringAsFixed(1) + '%',
+                                          '${"Overloaded Damage Plus".tr()}:' +
+                                              (overloadDMGpercent - 100)
+                                                  .toStringAsFixed(1) +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statOverloadedDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
-                                          if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set'.tr(), '40'),
+                                          if (allEM != 0)
+                                            buildStatRow(
+                                                Colors.amber[400],
+                                                'EM'.tr(),
+                                                (basicsuperconductpercent * 100)
+                                                    .toStringAsFixed(1)),
+                                          if (thunderbird4On)
+                                            buildStatRow(
+                                                Colors.purple[400],
+                                                'Thundering Fury 4 Set'.tr(),
+                                                '40'),
                                         ],
                                       ),
                                       //ANCHOR statOverloadedDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
-                                          if (thunderbird4On) buildstatbarpercent(Colors.purple[400], 40 / 5),
+                                          if (allEM != 0)
+                                            buildstatbarpercent(
+                                                Colors.amber[400],
+                                                (basicsuperconductpercent *
+                                                    100 /
+                                                    5)),
+                                          if (thunderbird4On)
+                                            buildstatbarpercent(
+                                                Colors.purple[400], 40 / 5),
                                         ],
                                       ),
                                       //ANCHOR Electro-Charged Damage Title
                                       if (electrochargedDMGpercent > 100)
                                         SelectableText(
-                                          '${"Electro-Charge Damage Plus".tr()}:' + (electrochargedDMGpercent - 100).toStringAsFixed(1) + '%',
+                                          '${"Electro-Charge Damage Plus".tr()}:' +
+                                              (electrochargedDMGpercent - 100)
+                                                  .toStringAsFixed(1) +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statElectro-ChargedDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
-                                          if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set'.tr(), '40'),
+                                          if (allEM != 0)
+                                            buildStatRow(
+                                                Colors.amber[400],
+                                                'EM'.tr(),
+                                                (basicsuperconductpercent * 100)
+                                                    .toStringAsFixed(1)),
+                                          if (thunderbird4On)
+                                            buildStatRow(
+                                                Colors.purple[400],
+                                                'Thundering Fury 4 Set'.tr(),
+                                                '40'),
                                         ],
                                       ),
                                       //ANCHOR statElectro-ChargedDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
-                                          if (thunderbird4On) buildstatbarpercent(Colors.purple[400], 40 / 5),
+                                          if (allEM != 0)
+                                            buildstatbarpercent(
+                                                Colors.amber[400],
+                                                (basicsuperconductpercent *
+                                                    100 /
+                                                    5)),
+                                          if (thunderbird4On)
+                                            buildstatbarpercent(
+                                                Colors.purple[400], 40 / 5),
                                         ],
                                       ),
                                       //ANCHOR Shattered Damage Title
                                       if (shatteredDMGpercent > 100)
                                         SelectableText(
-                                          '${"Shattered Damage Plus".tr()}:' + (shatteredDMGpercent - 100).toStringAsFixed(1) + '%',
+                                          '${"Shattered Damage Plus".tr()}:' +
+                                              (shatteredDMGpercent - 100)
+                                                  .toStringAsFixed(1) +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statShatteredDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
+                                          if (allEM != 0)
+                                            buildStatRow(
+                                                Colors.amber[400],
+                                                'EM'.tr(),
+                                                (basicsuperconductpercent * 100)
+                                                    .toStringAsFixed(1)),
                                         ],
                                       ),
                                       //ANCHOR statShatteredDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
+                                          if (allEM != 0)
+                                            buildstatbarpercent(
+                                                Colors.amber[400],
+                                                (basicsuperconductpercent *
+                                                    100 /
+                                                    5)),
                                         ],
                                       ),
                                       //ANCHOR Swirl Damage Title
                                       if (shatteredDMGpercent > 100)
                                         SelectableText(
-                                          '${"Swirl Damage Plus".tr()}:' + (swirlDMGpercent - 100).toStringAsFixed(1) + '%',
+                                          '${"Swirl Damage Plus".tr()}:' +
+                                              (swirlDMGpercent - 100)
+                                                  .toStringAsFixed(1) +
+                                              '%',
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       //ANCHOR statSwirlDMG:stats
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
+                                          if (allEM != 0)
+                                            buildStatRow(
+                                                Colors.amber[400],
+                                                'EM'.tr(),
+                                                (basicsuperconductpercent * 100)
+                                                    .toStringAsFixed(1)),
                                         ],
                                       ),
                                       //ANCHOR statSwirlDMG:bar
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
+                                          if (allEM != 0)
+                                            buildstatbarpercent(
+                                                Colors.amber[400],
+                                                (basicsuperconductpercent *
+                                                    100 /
+                                                    5)),
                                         ],
                                       ),
                                     ],
@@ -12215,7 +15857,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 255, 255, 0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                               children: [
                                 SelectableText(
@@ -12256,211 +15901,251 @@ class _MyHomePageState extends State<MyHomePage> {
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Treasure Hoarder".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 3),
                                             DropdownMenuItem(
                                                 child: Text(
-                                                  "Andrius, Dominator of Wolves".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  "Andrius, Dominator of Wolves"
+                                                      .tr(),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 4),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Pyro Slime".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 5),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Hydro Slime".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 6),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Dendro Slime".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 7),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Electro Slime".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 8),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Anemo Slime".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 9),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Cryo Slime".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 10),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Geo Slime".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 11),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Mitachurl".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 12),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Pyro Samachurl".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 13),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Hydro Samachurl".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 14),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Dendro Samachurl".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 15),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Anemo Samachurl".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 16),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Geo Samachurl".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 17),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Stonehide Lawachurl".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 18),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Ruin Hunter".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 19),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Pyro Flower".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 20),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Cryo Flower".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 21),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Pyro Flower(Stunned)".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 22),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Cryo Flower(Stunned)".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 23),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Fatui Skirmisher".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 24),
                                             DropdownMenuItem(
                                                 child: Text(
-                                                  "Fatui Skirmisher(Shielded)".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  "Fatui Skirmisher(Shielded)"
+                                                      .tr(),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 25),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Fatui Pyro Agent".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 26),
                                             DropdownMenuItem(
                                                 child: Text(
-                                                  "Fatui Electro Cincin Mage".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  "Fatui Electro Cincin Mage"
+                                                      .tr(),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 27),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Geovishap Hatchling".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 28),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Abyss Mage".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 29),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Electro Hypostasis".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 30),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Anemo Hypostasis".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 31),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Geo Hypostasis".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 32),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Pyro Regisvine".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 33),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Cryo Regisvine".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 34),
                                             DropdownMenuItem(
                                                 child: Text(
-                                                  "Pyro Regisvine(Stunned)".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  "Pyro Regisvine(Stunned)"
+                                                      .tr(),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 35),
                                             DropdownMenuItem(
                                                 child: Text(
-                                                  "Cryo Regisvine(Stunned)".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  "Cryo Regisvine(Stunned)"
+                                                      .tr(),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 36),
                                             DropdownMenuItem(
                                                 child: Text(
                                                   "Dvalin".tr(),
-                                                  style: TextStyle(fontSize: 15),
+                                                  style:
+                                                      TextStyle(fontSize: 15),
                                                 ),
                                                 value: 37),
                                           ],
@@ -12473,7 +16158,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ],
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     Column(
                                       children: [
@@ -12653,7 +16339,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 255, 255, 0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                               children: [
                                 SelectableText(
@@ -12676,8 +16365,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                     Slider(
                                       min: 1,
                                       max: 100,
-                                      activeColor: Theme.of(context).primaryColor,
-                                      inactiveColor: Theme.of(context).primaryColorLight,
+                                      activeColor:
+                                          Theme.of(context).primaryColor,
+                                      inactiveColor:
+                                          Theme.of(context).primaryColorLight,
                                       label: enemylv.toString(),
                                       value: enemylv.toDouble(),
                                       onChanged: (value) {
@@ -12703,8 +16394,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                     Slider(
                                       min: 0,
                                       max: 100,
-                                      activeColor: Theme.of(context).primaryColor,
-                                      inactiveColor: Theme.of(context).primaryColorLight,
+                                      activeColor:
+                                          Theme.of(context).primaryColor,
+                                      inactiveColor:
+                                          Theme.of(context).primaryColorLight,
                                       label: enemydefdebuff.toString(),
                                       value: enemydefdebuff.toDouble(),
                                       onChanged: (value) {
@@ -12722,7 +16415,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 255, 255, 0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                               children: [
                                 SelectableText(
@@ -12736,131 +16432,171 @@ class _MyHomePageState extends State<MyHomePage> {
                                   childrenPadding: EdgeInsets.all(0),
                                   initiallyExpanded: true,
                                   title: Column(children: [
-                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                      SelectableText(
-                                        'Character'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                    ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          SelectableText(
+                                            'Character'.tr(),
+                                            style: TextStyle(
+                                              //fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ]),
                                   ]),
                                   children: <Widget>[
-                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                      SelectableText(
-                                        'Talents'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                    ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          SelectableText(
+                                            'Talents'.tr(),
+                                            style: TextStyle(
+                                              //fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ]),
                                     //ANCHOR CharacterOptions:ganyuskill
                                     if (currentcharacter == 'ganyu')
-                                      Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                        //       buildfilterchip('Undivided Heart: CRIT Rate + 20%'.tr(), undividedHeartOn, Colors.amber, Colors.amber[200]),
+                                      Wrap(
+                                          spacing: 10,
+                                          runSpacing: 10,
+                                          children: <Widget>[
+                                            //       buildfilterchip('Undivided Heart: CRIT Rate + 20%'.tr(), undividedHeartOn, Colors.amber, Colors.amber[200]),
 
-                                        FilterChip(
-                                          selectedColor: Colors.amber,
-                                          backgroundColor: Colors.amber[200],
-                                          label: Text('Undivided Heart: CRIT Rate + 20%'.tr()),
-                                          selected: undividedHeartOn,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              undividedHeartOn = value;
-                                            });
-                                          },
-                                        ),
+                                            FilterChip(
+                                              selectedColor: Colors.amber,
+                                              backgroundColor:
+                                                  Colors.amber[200],
+                                              label: Text(
+                                                  'Undivided Heart: CRIT Rate + 20%'
+                                                      .tr()),
+                                              selected: undividedHeartOn,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  undividedHeartOn = value;
+                                                });
+                                              },
+                                            ),
 
-                                        FilterChip(
-                                          selectedColor: Colors.amber,
-                                          backgroundColor: Colors.amber[200],
-                                          label: Text('Harmony between Heaven and Earth: Cryo DMG + 20%'.tr()),
-                                          selected: harmonyOn,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              harmonyOn = value;
-                                            });
-                                          },
-                                        ),
-                                      ]),
+                                            FilterChip(
+                                              selectedColor: Colors.amber,
+                                              backgroundColor:
+                                                  Colors.amber[200],
+                                              label: Text(
+                                                  'Harmony between Heaven and Earth: Cryo DMG + 20%'
+                                                      .tr()),
+                                              selected: harmonyOn,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  harmonyOn = value;
+                                                });
+                                              },
+                                            ),
+                                          ]),
                                     //ANCHOR CharacterOptions:yoimiyaskill
                                     if (currentcharacter == 'yoimiya')
-                                      Wrap(spacing: 10, runSpacing: 10, crossAxisAlignment: WrapCrossAlignment.center, children: <Widget>[
-                                        SelectableText(
-                                          'Tricks of the Trouble-Maker:2% pryo per stack'.tr(),
-                                          style: TextStyle(
-                                            //fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                            fontSize: 15,
+                                      Wrap(
+                                          spacing: 10,
+                                          runSpacing: 10,
+                                          crossAxisAlignment:
+                                              WrapCrossAlignment.center,
+                                          children: <Widget>[
+                                            SelectableText(
+                                              'Tricks of the Trouble-Maker:2% pryo per stack'
+                                                  .tr(),
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 150,
+                                              child: Slider(
+                                                min: 0,
+                                                max: 10,
+                                                divisions: 10,
+                                                activeColor: Colors.red,
+                                                inactiveColor: Colors.red[200],
+                                                label: troublemakerstack
+                                                    .toString(),
+                                                value: troublemakerstack
+                                                    .toDouble(),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    troublemakerstack =
+                                                        value.toInt();
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                            FilterChip(
+                                              selectedColor: Colors.red,
+                                              backgroundColor: Colors.red[200],
+                                              label: Text(
+                                                  'Summer Scorch: 1% pyro per stack'
+                                                      .tr()),
+                                              selected: summerscorchOn,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  summerscorchOn = value;
+                                                });
+                                              },
+                                            ),
+                                          ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          SelectableText(
+                                            'Constellation'.tr(),
+                                            style: TextStyle(
+                                              //fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                            ),
                                           ),
-                                        ),
-                                        Container(
-                                          width: 150,
-                                          child: Slider(
-                                            min: 0,
-                                            max: 10,
-                                            divisions: 10,
-                                            activeColor: Colors.red,
-                                            inactiveColor: Colors.red[200],
-                                            label: troublemakerstack.toString(),
-                                            value: troublemakerstack.toDouble(),
-                                            onChanged: (value) {
-                                              setState(() {
-                                                troublemakerstack = value.toInt();
-                                              });
-                                            },
-                                          ),
-                                        ),
-                                        FilterChip(
-                                          selectedColor: Colors.red,
-                                          backgroundColor: Colors.red[200],
-                                          label: Text('Summer Scorch: 1% pyro per stack'.tr()),
-                                          selected: summerscorchOn,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              summerscorchOn = value;
-                                            });
-                                          },
-                                        ),
-                                      ]),
-                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                      SelectableText(
-                                        'Constellation'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                    ]),
+                                        ]),
                                     if (currentcharacter == 'ganyu')
-                                      Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                        FilterChip(
-                                          label: Text('Constellation1: Enemy Cryo Res -15%'.tr()),
-                                          selected: ganyuconstellation1On,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              ganyuconstellation1On = value;
-                                            });
-                                          },
-                                        ),
-                                      ]),
+                                      Wrap(
+                                          spacing: 10,
+                                          runSpacing: 10,
+                                          children: <Widget>[
+                                            FilterChip(
+                                              label: Text(
+                                                  'Constellation1: Enemy Cryo Res -15%'
+                                                      .tr()),
+                                              selected: ganyuconstellation1On,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  ganyuconstellation1On = value;
+                                                });
+                                              },
+                                            ),
+                                          ]),
                                     if (currentcharacter == 'yoimiya')
-                                      Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                        FilterChip(
-                                          label: Text('A Procession of Bonfires: Pyro DMG +25%'.tr()),
-                                          selected: yoimiyaconstellation2On,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              yoimiyaconstellation2On = value;
-                                            });
-                                          },
-                                        ),
-                                      ]),
+                                      Wrap(
+                                          spacing: 10,
+                                          runSpacing: 10,
+                                          children: <Widget>[
+                                            FilterChip(
+                                              label: Text(
+                                                  'A Procession of Bonfires: Pyro DMG +25%'
+                                                      .tr()),
+                                              selected: yoimiyaconstellation2On,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  yoimiyaconstellation2On =
+                                                      value;
+                                                });
+                                              },
+                                            ),
+                                          ]),
                                     SizedBox(height: 10),
                                   ],
                                 ),
@@ -12871,222 +16607,316 @@ class _MyHomePageState extends State<MyHomePage> {
                                   initiallyExpanded: true,
                                   childrenPadding: EdgeInsets.all(0),
                                   title: Column(children: [
-                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                      SelectableText(
-                                        'Weapon'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                    ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          SelectableText(
+                                            'Weapon'.tr(),
+                                            style: TextStyle(
+                                              //fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                              height: 1.1,
+                                            ),
+                                          ),
+                                        ]),
                                   ]),
                                   children: <Widget>[
-                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                      SelectableText(
-                                        'Weapon bonus'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                    ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          SelectableText(
+                                            'Weapon bonus'.tr(),
+                                            style: TextStyle(
+                                              //fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                              height: 1.1,
+                                            ),
+                                          ),
+                                        ]),
                                     if (strongWilled1On)
                                       Column(
                                         children: [
-                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                            FilterChip(
-                                              label: Text('Strong-Willed1: Normal and Charged Attack DMG + '.tr() + (9 + weaponref * 3).toString() + '%'),
-                                              selected: true,
-                                              selectedColor: Colors.purple[300],
-                                              onSelected: (bool value) {
-                                                setState(() {});
-                                              },
-                                            ),
-                                            FilterChip(
-                                              label: Text('Strong-Willed2: '.tr() + (6 + weaponref * 2).toString() + '% every 0.1s the arrow is in the air for up to 5 times.'.tr()),
-                                              selected: true,
-                                              selectedColor: Colors.blue[300],
-                                              onSelected: (bool value) {
-                                                setState(() {});
-                                              },
-                                            ),
-                                          ]),
+                                          Wrap(
+                                              spacing: 10,
+                                              runSpacing: 10,
+                                              children: <Widget>[
+                                                FilterChip(
+                                                  label: Text(
+                                                      'Strong-Willed1: Normal and Charged Attack DMG + '
+                                                              .tr() +
+                                                          (9 + weaponref * 3)
+                                                              .toString() +
+                                                          '%'),
+                                                  selected: true,
+                                                  selectedColor:
+                                                      Colors.purple[300],
+                                                  onSelected: (bool value) {
+                                                    setState(() {});
+                                                  },
+                                                ),
+                                                FilterChip(
+                                                  label: Text('Strong-Willed2: '
+                                                          .tr() +
+                                                      (6 + weaponref * 2)
+                                                          .toString() +
+                                                      '% every 0.1s the arrow is in the air for up to 5 times.'
+                                                          .tr()),
+                                                  selected: true,
+                                                  selectedColor:
+                                                      Colors.blue[300],
+                                                  onSelected: (bool value) {
+                                                    setState(() {});
+                                                  },
+                                                ),
+                                              ]),
                                           SizedBox(height: 10),
-                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                            ChoiceChip(
-                                              label: Text('0.1s'),
-                                              selected: (strongWilled2Times == 1),
-                                              onSelected: (bool value) {
-                                                setState(() {
-                                                  strongWilled2Times = 1;
-                                                });
-                                              },
-                                            ),
-                                            ChoiceChip(
-                                              label: Text('0.2s'),
-                                              selected: (strongWilled2Times == 2),
-                                              onSelected: (bool value) {
-                                                setState(() {
-                                                  strongWilled2Times = 2;
-                                                });
-                                              },
-                                            ),
-                                            ChoiceChip(
-                                              label: Text('0.3s'),
-                                              selected: (strongWilled2Times == 3),
-                                              onSelected: (bool value) {
-                                                setState(() {
-                                                  strongWilled2Times = 3;
-                                                });
-                                              },
-                                            ),
-                                            ChoiceChip(
-                                              label: Text('0.4s'),
-                                              selected: (strongWilled2Times == 4),
-                                              onSelected: (bool value) {
-                                                setState(() {
-                                                  strongWilled2Times = 4;
-                                                });
-                                              },
-                                            ),
-                                            ChoiceChip(
-                                              label: Text('0.5s'),
-                                              selected: (strongWilled2Times == 5),
-                                              onSelected: (bool value) {
-                                                setState(() {
-                                                  strongWilled2Times = 5;
-                                                });
-                                              },
-                                            ),
-                                          ]),
+                                          Wrap(
+                                              spacing: 10,
+                                              runSpacing: 10,
+                                              children: <Widget>[
+                                                ChoiceChip(
+                                                  label: Text('0.1s'),
+                                                  selected:
+                                                      (strongWilled2Times == 1),
+                                                  onSelected: (bool value) {
+                                                    setState(() {
+                                                      strongWilled2Times = 1;
+                                                    });
+                                                  },
+                                                ),
+                                                ChoiceChip(
+                                                  label: Text('0.2s'),
+                                                  selected:
+                                                      (strongWilled2Times == 2),
+                                                  onSelected: (bool value) {
+                                                    setState(() {
+                                                      strongWilled2Times = 2;
+                                                    });
+                                                  },
+                                                ),
+                                                ChoiceChip(
+                                                  label: Text('0.3s'),
+                                                  selected:
+                                                      (strongWilled2Times == 3),
+                                                  onSelected: (bool value) {
+                                                    setState(() {
+                                                      strongWilled2Times = 3;
+                                                    });
+                                                  },
+                                                ),
+                                                ChoiceChip(
+                                                  label: Text('0.4s'),
+                                                  selected:
+                                                      (strongWilled2Times == 4),
+                                                  onSelected: (bool value) {
+                                                    setState(() {
+                                                      strongWilled2Times = 4;
+                                                    });
+                                                  },
+                                                ),
+                                                ChoiceChip(
+                                                  label: Text('0.5s'),
+                                                  selected:
+                                                      (strongWilled2Times == 5),
+                                                  onSelected: (bool value) {
+                                                    setState(() {
+                                                      strongWilled2Times = 5;
+                                                    });
+                                                  },
+                                                ),
+                                              ]),
                                           SizedBox(height: 10),
                                         ],
                                       ),
                                     if (echoingBalladOn)
                                       Column(
                                         children: [
-                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                            FilterChip(
-                                              label: Text('Echoing Ballad1: Crit DMG + '.tr() + (15 + weaponref * 5).toString() + '%'),
-                                              selected: true,
-                                              selectedColor: Colors.tealAccent,
-                                              onSelected: (bool value) {
-                                                setState(() {});
-                                              },
-                                            ),
-                                            SizedBox(height: 10),
-                                            FilterChip(
-                                              label: Text('Echoing Ballad2: '.tr() +
-                                                  (50 + weaponref * 10).toString() +
-                                                  '% chance get a 125% Physical ATK AoE DMG every '.tr() +
-                                                  (4.5 - weaponref * 0.5).toString() +
-                                                  's'.tr()),
-                                              selected: true,
-                                              onSelected: (bool value) {
-                                                setState(() {});
-                                              },
-                                            ),
-                                          ]),
+                                          Wrap(
+                                              spacing: 10,
+                                              runSpacing: 10,
+                                              children: <Widget>[
+                                                FilterChip(
+                                                  label: Text(
+                                                      'Echoing Ballad1: Crit DMG + '
+                                                              .tr() +
+                                                          (15 + weaponref * 5)
+                                                              .toString() +
+                                                          '%'),
+                                                  selected: true,
+                                                  selectedColor:
+                                                      Colors.tealAccent,
+                                                  onSelected: (bool value) {
+                                                    setState(() {});
+                                                  },
+                                                ),
+                                                SizedBox(height: 10),
+                                                FilterChip(
+                                                  label: Text('Echoing Ballad2: '
+                                                          .tr() +
+                                                      (50 +
+                                                              weaponref * 10)
+                                                          .toString() +
+                                                      '% chance get a 125% Physical ATK AoE DMG every '
+                                                          .tr() +
+                                                      (4.5 - weaponref * 0.5)
+                                                          .toString() +
+                                                      's'.tr()),
+                                                  selected: true,
+                                                  onSelected: (bool value) {
+                                                    setState(() {});
+                                                  },
+                                                ),
+                                              ]),
                                           SizedBox(height: 10),
                                         ],
                                       ),
                                     if (weaponselect == 'prototypecrescent')
                                       Column(
                                         children: [
-                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                            FilterChip(
-                                              label: Text('Unreturning: Charged Attack hits on weak points + 10% Movement SPD & '.tr() + (27 + weaponref * 9).toString() + '% ATK for 10s'.tr()),
-                                              selected: unreturningOn,
-                                              selectedColor: Colors.tealAccent,
-                                              onSelected: (bool value) {
-                                                setState(() {
-                                                  unreturningOn = value;
-                                                });
-                                              },
-                                            ),
-                                          ]),
+                                          Wrap(
+                                              spacing: 10,
+                                              runSpacing: 10,
+                                              children: <Widget>[
+                                                FilterChip(
+                                                  label: Text(
+                                                      'Unreturning: Charged Attack hits on weak points + 10% Movement SPD & '
+                                                              .tr() +
+                                                          (27 + weaponref * 9)
+                                                              .toString() +
+                                                          '% ATK for 10s'.tr()),
+                                                  selected: unreturningOn,
+                                                  selectedColor:
+                                                      Colors.tealAccent,
+                                                  onSelected: (bool value) {
+                                                    setState(() {
+                                                      unreturningOn = value;
+                                                    });
+                                                  },
+                                                ),
+                                              ]),
                                           SizedBox(height: 10),
                                         ],
                                       ),
                                     if (weaponselect == 'rust')
                                       Column(
                                         children: [
-                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                            FilterChip(
-                                              label: Text('Rapid Firing: Normal ATK DMG + '.tr() + (30 + weaponref * 10).toString() + '% & Charged ATK DMG - 10%'.tr()),
-                                              selected: rapidfiringOn,
-                                              selectedColor: Colors.tealAccent,
-                                              onSelected: (bool value) {
-                                                setState(() {
-                                                  rapidfiringOn = value;
-                                                });
-                                              },
-                                            ),
-                                          ]),
+                                          Wrap(
+                                              spacing: 10,
+                                              runSpacing: 10,
+                                              children: <Widget>[
+                                                FilterChip(
+                                                  label: Text(
+                                                      'Rapid Firing: Normal ATK DMG + '
+                                                              .tr() +
+                                                          (30 + weaponref * 10)
+                                                              .toString() +
+                                                          '% & Charged ATK DMG - 10%'
+                                                              .tr()),
+                                                  selected: rapidfiringOn,
+                                                  selectedColor:
+                                                      Colors.tealAccent,
+                                                  onSelected: (bool value) {
+                                                    setState(() {
+                                                      rapidfiringOn = value;
+                                                    });
+                                                  },
+                                                ),
+                                              ]),
                                           SizedBox(height: 10),
                                         ],
                                       ),
                                     if (rulebythunder1On)
                                       Column(
                                         children: [
-                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                            FilterChip(
-                                              label: Text('Rule by thunder1: ATK + '.tr() + (15 + weaponref * 5).toString() + '%'),
-                                              selected: true,
-                                              selectedColor: Colors.purple[300],
-                                              onSelected: (bool value) {
-                                                setState(() {});
-                                              },
-                                            ),
-                                            FilterChip(
-                                              label: Text('Rule-by-thunder2: Normal ATK DMG +'.tr() +
-                                                  (rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30))).toString() +
-                                                  '% Thunder Seal stack lv'.tr() +
-                                                  rulebythunder2Times.toString()),
-                                              selected: rulebythunder2On,
-                                              selectedColor: Colors.amber,
-                                              onSelected: (bool value) {
-                                                setState(() {
-                                                  rulebythunder2On = value;
-                                                });
-                                              },
-                                            ),
-                                          ]),
+                                          Wrap(
+                                              spacing: 10,
+                                              runSpacing: 10,
+                                              children: <Widget>[
+                                                FilterChip(
+                                                  label: Text(
+                                                      'Rule by thunder1: ATK + '
+                                                              .tr() +
+                                                          (15 + weaponref * 5)
+                                                              .toString() +
+                                                          '%'),
+                                                  selected: true,
+                                                  selectedColor:
+                                                      Colors.purple[300],
+                                                  onSelected: (bool value) {
+                                                    setState(() {});
+                                                  },
+                                                ),
+                                                FilterChip(
+                                                  label: Text('Rule-by-thunder2: Normal ATK DMG +'
+                                                          .tr() +
+                                                      (rulebythunder2Times == 1
+                                                              ? (weaponref * 3 +
+                                                                  9)
+                                                              : (rulebythunder2Times ==
+                                                                      2
+                                                                  ? (weaponref *
+                                                                          6 +
+                                                                      18)
+                                                                  : (weaponref *
+                                                                          10 +
+                                                                      30)))
+                                                          .toString() +
+                                                      '% Thunder Seal stack lv'
+                                                          .tr() +
+                                                      rulebythunder2Times
+                                                          .toString()),
+                                                  selected: rulebythunder2On,
+                                                  selectedColor: Colors.amber,
+                                                  onSelected: (bool value) {
+                                                    setState(() {
+                                                      rulebythunder2On = value;
+                                                    });
+                                                  },
+                                                ),
+                                              ]),
                                           SizedBox(height: 10),
-                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                            ChoiceChip(
-                                              label: Text('1'),
-                                              selected: (rulebythunder2Times == 1),
-                                              onSelected: (bool value) {
-                                                setState(() {
-                                                  rulebythunder2Times = 1;
-                                                });
-                                              },
-                                            ),
-                                            ChoiceChip(
-                                              label: Text('2'),
-                                              selected: (rulebythunder2Times == 2),
-                                              onSelected: (bool value) {
-                                                setState(() {
-                                                  rulebythunder2Times = 2;
-                                                });
-                                              },
-                                            ),
-                                            ChoiceChip(
-                                              label: Text('3'),
-                                              selected: (rulebythunder2Times == 3),
-                                              onSelected: (bool value) {
-                                                setState(() {
-                                                  rulebythunder2Times = 3;
-                                                });
-                                              },
-                                            ),
-                                          ]),
+                                          Wrap(
+                                              spacing: 10,
+                                              runSpacing: 10,
+                                              children: <Widget>[
+                                                ChoiceChip(
+                                                  label: Text('1'),
+                                                  selected:
+                                                      (rulebythunder2Times ==
+                                                          1),
+                                                  onSelected: (bool value) {
+                                                    setState(() {
+                                                      rulebythunder2Times = 1;
+                                                    });
+                                                  },
+                                                ),
+                                                ChoiceChip(
+                                                  label: Text('2'),
+                                                  selected:
+                                                      (rulebythunder2Times ==
+                                                          2),
+                                                  onSelected: (bool value) {
+                                                    setState(() {
+                                                      rulebythunder2Times = 2;
+                                                    });
+                                                  },
+                                                ),
+                                                ChoiceChip(
+                                                  label: Text('3'),
+                                                  selected:
+                                                      (rulebythunder2Times ==
+                                                          3),
+                                                  onSelected: (bool value) {
+                                                    setState(() {
+                                                      rulebythunder2Times = 3;
+                                                    });
+                                                  },
+                                                ),
+                                              ]),
                                           SizedBox(height: 10),
                                         ],
                                       ),
@@ -13100,221 +16930,287 @@ class _MyHomePageState extends State<MyHomePage> {
                                   initiallyExpanded: true,
                                   childrenPadding: EdgeInsets.all(0),
                                   title: Column(children: [
-                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                      SelectableText(
-                                        'Artifact'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                    ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          SelectableText(
+                                            'Artifact'.tr(),
+                                            style: TextStyle(
+                                              //fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                              height: 1.1,
+                                            ),
+                                          ),
+                                        ]),
                                   ]),
                                   children: <Widget>[
-                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                      SelectableText(
-                                        'Artifact Bonus'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                    ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          SelectableText(
+                                            'Artifact Bonus'.tr(),
+                                            style: TextStyle(
+                                              //fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                              height: 1.1,
+                                            ),
+                                          ),
+                                        ]),
                                     SizedBox(height: 10),
-                                    Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                      if (artifactsetAselect == 'blizzard' || artifactsetBselect == 'blizzard')
-                                        FilterChip(
-                                          label: Text('${"2 set".tr()}: ${"Cryo DMG".tr()} +15%'),
-                                          selectedColor: Colors.blue[300],
-                                          backgroundColor: Colors.blue[200],
-                                          selected: blizzardstrayer2On,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              blizzardstrayer2On = value;
-                                            });
-                                          },
-                                        ),
-                                      if (artifactsetAselect == 'blizzard' && artifactsetBselect == 'blizzard')
-                                        FilterChip(
-                                          label: Text('${"4 set".tr()}: ${"Crit Rate".tr()} +20%(cryo)'),
-                                          selectedColor: Colors.blue[300],
-                                          backgroundColor: Colors.blue[200],
-                                          selected: blizzardstrayer41On,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              blizzardstrayer41On = value;
-                                            });
-                                          },
-                                        ),
-                                      if (artifactsetAselect == 'blizzard' && artifactsetBselect == 'blizzard')
-                                        FilterChip(
-                                          label: Text('${"4 set".tr()}: ${"Crit Rate".tr()} +20%(${"frozen".tr()})'),
-                                          selectedColor: Colors.blue[400],
-                                          backgroundColor: Colors.blue[300],
-                                          selected: blizzardstrayer42On,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              blizzardstrayer42On = value;
-                                            });
-                                          },
-                                        ),
-                                      if (artifactsetAselect == 'troupe' || artifactsetBselect == 'troupe')
-                                        FilterChip(
-                                          label: Text('${"2 set".tr()}: ${"EM".tr()} +80 '),
-                                          selectedColor: Colors.green[400],
-                                          backgroundColor: Colors.green[300],
-                                          selected: troupesdawnlight2on,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              troupesdawnlight2on = value;
-                                            });
-                                          },
-                                        ),
-                                      if (artifactsetAselect == 'troupe' && artifactsetBselect == 'troupe')
-                                        FilterChip(
-                                          label: Text('${"4 set".tr()}: ${"Charged ATK".tr()} +35% '),
-                                          selectedColor: Colors.green[400],
-                                          backgroundColor: Colors.green[300],
-                                          selected: troupesdawnlight4on,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              troupesdawnlight4on = value;
-                                            });
-                                          },
-                                        ),
-                                      if (artifactsetAselect == 'royal' || artifactsetBselect == 'royal')
-                                        FilterChip(
-                                          label: Text('${"2 set".tr()}: ${"Elemental Burst DMG".tr()} +20% '),
-                                          selectedColor: Colors.blue,
-                                          backgroundColor: Colors.blue[200],
-                                          selected: royalflora2On,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              royalflora2On = value;
-                                            });
-                                          },
-                                        ),
-                                      if (artifactsetAselect == 'royal' && artifactsetBselect == 'royal')
-                                        FilterChip(
-                                          label: Text('${"4 set".tr()}: ${"Using an Elemental Burst increases all party members' ATK by 20% for 12s".tr()}'),
-                                          selectedColor: Colors.blue,
-                                          backgroundColor: Colors.blue[200],
-                                          selected: royalflora4On,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              royalflora4On = value;
-                                            });
-                                          },
-                                        ),
-                                      if (artifactsetAselect == 'gladiator' || artifactsetBselect == 'gladiator')
-                                        FilterChip(
-                                          label: Text('${"2 set".tr()}: ${"ATK".tr()} +18% '),
-                                          selectedColor: Colors.red[400],
-                                          backgroundColor: Colors.red[300],
-                                          selected: gladiator2On,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              gladiator2On = value;
-                                            });
-                                          },
-                                        ),
-                                      if (artifactsetAselect == 'gladiator' && artifactsetBselect == 'gladiator')
-                                        FilterChip(
-                                          label: Text('${"4 set".tr()}: ${"Increase Normal Attack DMG by 35% (Using sword/claymore/poleram)".tr()}'),
-                                          selectedColor: Colors.red[400],
-                                          backgroundColor: Colors.red[300],
-                                          selected: gladiator4On,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              gladiator4On = value;
-                                            });
-                                          },
-                                        ),
-                                      if (artifactsetAselect == 'maiden' || artifactsetBselect == 'maiden')
-                                        FilterChip(
-                                          label: Text('${"2 set".tr()}: ${"Character Healing Effectiveness +15%".tr()}'),
-                                          selectedColor: Colors.grey,
-                                          backgroundColor: Colors.grey,
-                                          selected: maiden2On,
-                                          onSelected: (bool value) {},
-                                        ),
-                                      if (artifactsetAselect == 'maiden' && artifactsetBselect == 'maiden')
-                                        FilterChip(
-                                          label: Text('${"4 set".tr()}: ${"Healing Received +20%".tr()}'),
-                                          selectedColor: Colors.grey,
-                                          backgroundColor: Colors.grey,
-                                          selected: maiden4On,
-                                          onSelected: (bool value) {},
-                                        ),
-                                      if (artifactsetAselect == 'thunderbird' || artifactsetBselect == 'thunderbird')
-                                        FilterChip(
-                                          label: Text('${"2 set".tr()}: ${"Electro DMG Bonus +15%".tr()}'),
-                                          selectedColor: Colors.purple[400],
-                                          backgroundColor: Colors.purple[300],
-                                          selected: thunderbird2On,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              thunderbird2On = value;
-                                            });
-                                          },
-                                        ),
-                                      if (artifactsetAselect == 'thunderbird' && artifactsetBselect == 'thunderbird')
-                                        FilterChip(
-                                          label: Text('${"4 set".tr()}: ${"Superconduct DMG".tr()} + 40% '),
-                                          selectedColor: Colors.purple[400],
-                                          backgroundColor: Colors.purple[300],
-                                          selected: thunderbird4On,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              thunderbird4On = value;
-                                            });
-                                          },
-                                        ),
-                                      if (artifactsetAselect == 'thundersoother' || artifactsetBselect == 'thundersoother')
-                                        FilterChip(
-                                          label: Text('${"2 set".tr()}: ${"Electro RES".tr()} +40% '),
-                                          selectedColor: Colors.grey,
-                                          backgroundColor: Colors.grey,
-                                          selected: thundersoother2On,
-                                          onSelected: (bool value) {},
-                                        ),
-                                      if (artifactsetAselect == 'thundersoother' && artifactsetBselect == 'thundersoother')
-                                        FilterChip(
-                                          label: Text('${"4 set".tr()}: ${"DMG Against Opponents Affected By Electro +35%".tr()}'),
-                                          selectedColor: Color(0xFF6446E6),
-                                          backgroundColor: Color(0xFF6480FF),
-                                          selected: thundersoother4On,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              thundersoother4On = value;
-                                            });
-                                          },
-                                        ),
-                                      if (artifactsetAselect == 'reminiscenceofshime' || artifactsetBselect == 'reminiscenceofshime')
-                                        FilterChip(
-                                          label: Text('${"2 set".tr()}: ${"ATK".tr()} +18% '),
-                                          selectedColor: Colors.red[400],
-                                          backgroundColor: Colors.red[300],
-                                          selected: reminiscenceofshime2On,
-                                          onSelected: (bool value) {},
-                                        ),
-                                      if (artifactsetAselect == 'reminiscenceofshime' && artifactsetBselect == 'reminiscenceofshime')
-                                        FilterChip(
-                                          label: Text('${"4 set".tr()}: ${"Normal/Charged/ Plunging Attack DMG +50%".tr()}'),
-                                          selectedColor: Colors.red[400],
-                                          backgroundColor: Colors.red[300],
-                                          selected: reminiscenceofshime4On,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              reminiscenceofshime4On = value;
-                                            });
-                                          },
-                                        ),
-                                    ]),
+                                    Wrap(
+                                        spacing: 10,
+                                        runSpacing: 10,
+                                        children: <Widget>[
+                                          if (artifactsetAselect ==
+                                                  'blizzard' ||
+                                              artifactsetBselect == 'blizzard')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"2 set".tr()}: ${"Cryo DMG".tr()} +15%'),
+                                              selectedColor: Colors.blue[300],
+                                              backgroundColor: Colors.blue[200],
+                                              selected: blizzardstrayer2On,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  blizzardstrayer2On = value;
+                                                });
+                                              },
+                                            ),
+                                          if (artifactsetAselect ==
+                                                  'blizzard' &&
+                                              artifactsetBselect == 'blizzard')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"4 set".tr()}: ${"Crit Rate".tr()} +20%(cryo)'),
+                                              selectedColor: Colors.blue[300],
+                                              backgroundColor: Colors.blue[200],
+                                              selected: blizzardstrayer41On,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  blizzardstrayer41On = value;
+                                                });
+                                              },
+                                            ),
+                                          if (artifactsetAselect ==
+                                                  'blizzard' &&
+                                              artifactsetBselect == 'blizzard')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"4 set".tr()}: ${"Crit Rate".tr()} +20%(${"frozen".tr()})'),
+                                              selectedColor: Colors.blue[400],
+                                              backgroundColor: Colors.blue[300],
+                                              selected: blizzardstrayer42On,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  blizzardstrayer42On = value;
+                                                });
+                                              },
+                                            ),
+                                          if (artifactsetAselect == 'troupe' ||
+                                              artifactsetBselect == 'troupe')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"2 set".tr()}: ${"EM".tr()} +80 '),
+                                              selectedColor: Colors.green[400],
+                                              backgroundColor:
+                                                  Colors.green[300],
+                                              selected: troupesdawnlight2on,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  troupesdawnlight2on = value;
+                                                });
+                                              },
+                                            ),
+                                          if (artifactsetAselect == 'troupe' &&
+                                              artifactsetBselect == 'troupe')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"4 set".tr()}: ${"Charged ATK".tr()} +35% '),
+                                              selectedColor: Colors.green[400],
+                                              backgroundColor:
+                                                  Colors.green[300],
+                                              selected: troupesdawnlight4on,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  troupesdawnlight4on = value;
+                                                });
+                                              },
+                                            ),
+                                          if (artifactsetAselect == 'royal' ||
+                                              artifactsetBselect == 'royal')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"2 set".tr()}: ${"Elemental Burst DMG".tr()} +20% '),
+                                              selectedColor: Colors.blue,
+                                              backgroundColor: Colors.blue[200],
+                                              selected: royalflora2On,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  royalflora2On = value;
+                                                });
+                                              },
+                                            ),
+                                          if (artifactsetAselect == 'royal' &&
+                                              artifactsetBselect == 'royal')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"4 set".tr()}: ${"Using an Elemental Burst increases all party members' ATK by 20% for 12s".tr()}'),
+                                              selectedColor: Colors.blue,
+                                              backgroundColor: Colors.blue[200],
+                                              selected: royalflora4On,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  royalflora4On = value;
+                                                });
+                                              },
+                                            ),
+                                          if (artifactsetAselect ==
+                                                  'gladiator' ||
+                                              artifactsetBselect == 'gladiator')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"2 set".tr()}: ${"ATK".tr()} +18% '),
+                                              selectedColor: Colors.red[400],
+                                              backgroundColor: Colors.red[300],
+                                              selected: gladiator2On,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  gladiator2On = value;
+                                                });
+                                              },
+                                            ),
+                                          if (artifactsetAselect ==
+                                                  'gladiator' &&
+                                              artifactsetBselect == 'gladiator')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"4 set".tr()}: ${"Increase Normal Attack DMG by 35% (Using sword/claymore/poleram)".tr()}'),
+                                              selectedColor: Colors.red[400],
+                                              backgroundColor: Colors.red[300],
+                                              selected: gladiator4On,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  gladiator4On = value;
+                                                });
+                                              },
+                                            ),
+                                          if (artifactsetAselect == 'maiden' ||
+                                              artifactsetBselect == 'maiden')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"2 set".tr()}: ${"Character Healing Effectiveness +15%".tr()}'),
+                                              selectedColor: Colors.grey,
+                                              backgroundColor: Colors.grey,
+                                              selected: maiden2On,
+                                              onSelected: (bool value) {},
+                                            ),
+                                          if (artifactsetAselect == 'maiden' &&
+                                              artifactsetBselect == 'maiden')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"4 set".tr()}: ${"Healing Received +20%".tr()}'),
+                                              selectedColor: Colors.grey,
+                                              backgroundColor: Colors.grey,
+                                              selected: maiden4On,
+                                              onSelected: (bool value) {},
+                                            ),
+                                          if (artifactsetAselect ==
+                                                  'thunderbird' ||
+                                              artifactsetBselect ==
+                                                  'thunderbird')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"2 set".tr()}: ${"Electro DMG Bonus +15%".tr()}'),
+                                              selectedColor: Colors.purple[400],
+                                              backgroundColor:
+                                                  Colors.purple[300],
+                                              selected: thunderbird2On,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  thunderbird2On = value;
+                                                });
+                                              },
+                                            ),
+                                          if (artifactsetAselect ==
+                                                  'thunderbird' &&
+                                              artifactsetBselect ==
+                                                  'thunderbird')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"4 set".tr()}: ${"Superconduct DMG".tr()} + 40% '),
+                                              selectedColor: Colors.purple[400],
+                                              backgroundColor:
+                                                  Colors.purple[300],
+                                              selected: thunderbird4On,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  thunderbird4On = value;
+                                                });
+                                              },
+                                            ),
+                                          if (artifactsetAselect ==
+                                                  'thundersoother' ||
+                                              artifactsetBselect ==
+                                                  'thundersoother')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"2 set".tr()}: ${"Electro RES".tr()} +40% '),
+                                              selectedColor: Colors.grey,
+                                              backgroundColor: Colors.grey,
+                                              selected: thundersoother2On,
+                                              onSelected: (bool value) {},
+                                            ),
+                                          if (artifactsetAselect ==
+                                                  'thundersoother' &&
+                                              artifactsetBselect ==
+                                                  'thundersoother')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"4 set".tr()}: ${"DMG Against Opponents Affected By Electro +35%".tr()}'),
+                                              selectedColor: Color(0xFF6446E6),
+                                              backgroundColor:
+                                                  Color(0xFF6480FF),
+                                              selected: thundersoother4On,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  thundersoother4On = value;
+                                                });
+                                              },
+                                            ),
+                                          if (artifactsetAselect ==
+                                                  'reminiscenceofshime' ||
+                                              artifactsetBselect ==
+                                                  'reminiscenceofshime')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"2 set".tr()}: ${"ATK".tr()} +18% '),
+                                              selectedColor: Colors.red[400],
+                                              backgroundColor: Colors.red[300],
+                                              selected: reminiscenceofshime2On,
+                                              onSelected: (bool value) {},
+                                            ),
+                                          if (artifactsetAselect ==
+                                                  'reminiscenceofshime' &&
+                                              artifactsetBselect ==
+                                                  'reminiscenceofshime')
+                                            FilterChip(
+                                              label: Text(
+                                                  '${"4 set".tr()}: ${"Normal/Charged/ Plunging Attack DMG +50%".tr()}'),
+                                              selectedColor: Colors.red[400],
+                                              backgroundColor: Colors.red[300],
+                                              selected: reminiscenceofshime4On,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  reminiscenceofshime4On =
+                                                      value;
+                                                });
+                                              },
+                                            ),
+                                        ]),
                                     SizedBox(height: 10),
                                   ],
                                 ),
@@ -13324,92 +17220,114 @@ class _MyHomePageState extends State<MyHomePage> {
                                   tilePadding: EdgeInsets.all(0),
                                   childrenPadding: EdgeInsets.all(0),
                                   title: Column(children: [
-                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                      SelectableText(
-                                        'Usual Buffs'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                    ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          SelectableText(
+                                            'Usual Buffs'.tr(),
+                                            style: TextStyle(
+                                              //fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                              height: 1.1,
+                                            ),
+                                          ),
+                                        ]),
                                   ]),
                                   children: <Widget>[
-                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                      SelectableText(
-                                        'Elemental Resonance'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                    ]),
-                                    Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                      FilterChip(
-                                        selectedColor: Colors.red,
-                                        backgroundColor: Colors.red[200],
-                                        label: Text('${"2 Pyro".tr()}: ${"ATK".tr()} + 25%'),
-                                        selected: pyro2On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            pyro2On = value;
-                                          });
-                                        },
-                                      ),
-                                      FilterChip(
-                                        selectedColor: Colors.blue[200],
-                                        backgroundColor: Colors.blue[50],
-                                        label: Text('${"2 Cyro".tr()}: ${"Crit Rate".tr()} +15%'),
-                                        selected: cryo2On,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            cryo2On = value;
-                                          });
-                                        },
-                                      ),
-                                    ]),
-                                    SizedBox(height: 10),
-                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                      SelectableText(
-                                        'Character Buffs'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                    ]),
-                                    Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
-                                      FilterChip(
-                                        selectedColor: Colors.yellow,
-                                        backgroundColor: Colors.yellow[200],
-                                        label: Text('Zhongli(skill):Enemy All res - 20%'.tr()),
-                                        selected: zhonglieOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            zhonglieOn = value;
-                                          });
-                                        },
-                                      ),
-                                      FilterChip(
-                                        selectedColor: Colors.grey,
-                                        backgroundColor: Colors.grey[200],
-                                        label: Text('Thrilling Tales of Dragon Slayers(R5): ATK +48%'.tr()),
-                                        selected: dragonslayerOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            dragonslayerOn = value;
-                                          });
-                                        },
-                                      ),
-                                    ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          SelectableText(
+                                            'Elemental Resonance'.tr(),
+                                            style: TextStyle(
+                                              //fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                              height: 1.1,
+                                            ),
+                                          ),
+                                        ]),
+                                    Wrap(
+                                        spacing: 10,
+                                        runSpacing: 10,
+                                        children: <Widget>[
+                                          FilterChip(
+                                            selectedColor: Colors.red,
+                                            backgroundColor: Colors.red[200],
+                                            label: Text(
+                                                '${"2 Pyro".tr()}: ${"ATK".tr()} + 25%'),
+                                            selected: pyro2On,
+                                            onSelected: (bool value) {
+                                              setState(() {
+                                                pyro2On = value;
+                                              });
+                                            },
+                                          ),
+                                          FilterChip(
+                                            selectedColor: Colors.blue[200],
+                                            backgroundColor: Colors.blue[50],
+                                            label: Text(
+                                                '${"2 Cyro".tr()}: ${"Crit Rate".tr()} +15%'),
+                                            selected: cryo2On,
+                                            onSelected: (bool value) {
+                                              setState(() {
+                                                cryo2On = value;
+                                              });
+                                            },
+                                          ),
+                                        ]),
                                     SizedBox(height: 10),
                                     Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          SelectableText(
+                                            'Character Buffs'.tr(),
+                                            style: TextStyle(
+                                              //fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ]),
+                                    Wrap(
+                                        spacing: 10,
+                                        runSpacing: 10,
+                                        children: <Widget>[
+                                          FilterChip(
+                                            selectedColor: Colors.yellow,
+                                            backgroundColor: Colors.yellow[200],
+                                            label: Text(
+                                                'Zhongli(skill):Enemy All res - 20%'
+                                                    .tr()),
+                                            selected: zhonglieOn,
+                                            onSelected: (bool value) {
+                                              setState(() {
+                                                zhonglieOn = value;
+                                              });
+                                            },
+                                          ),
+                                          FilterChip(
+                                            selectedColor: Colors.grey,
+                                            backgroundColor: Colors.grey[200],
+                                            label: Text(
+                                                'Thrilling Tales of Dragon Slayers(R5): ATK +48%'
+                                                    .tr()),
+                                            selected: dragonslayerOn,
+                                            onSelected: (bool value) {
+                                              setState(() {
+                                                dragonslayerOn = value;
+                                              });
+                                            },
+                                          ),
+                                        ]),
+                                    SizedBox(height: 10),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
                                         FilterChip(
                                           selectedColor: Colors.red,
@@ -13430,14 +17348,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                           height: 50,
                                           alignment: Alignment.center,
                                           child: TextFormField(
-                                              textAlignVertical: TextAlignVertical.center,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
+                                              textAlignVertical:
+                                                  TextAlignVertical.center,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              inputFormatters: <
+                                                  TextInputFormatter>[
+                                                FilteringTextInputFormatter
+                                                    .digitsOnly,
+                                                LengthLimitingTextInputFormatter(
+                                                    3)
+                                              ],
                                               decoration: InputDecoration(
                                                 // prefixIcon: Text("basic atk"),
-                                                labelText: '${"Bennet Basic atk".tr()}:',
+                                                labelText:
+                                                    '${"Bennet Basic atk".tr()}:',
 
-                                                contentPadding: EdgeInsets.all(5),
+                                                contentPadding:
+                                                    EdgeInsets.all(5),
                                                 //isDense: true,
                                               ),
                                               //maxLength: 4,
@@ -13448,7 +17376,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               // onSaved: (input) => bennetbasicatk = num.tryParse(input),
                                               onChanged: (value) {
                                                 setState(() {
-                                                  bennetbasicatk = num.tryParse(value) ?? 0;
+                                                  bennetbasicatk =
+                                                      num.tryParse(value) ?? 0;
                                                 });
                                               }),
                                         ),
@@ -13478,83 +17407,96 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 DropdownMenuItem(
                                                   child: Text(
                                                     "1",
-                                                    style: TextStyle(fontSize: 15),
+                                                    style:
+                                                        TextStyle(fontSize: 15),
                                                   ),
                                                   value: 1,
                                                 ),
                                                 DropdownMenuItem(
                                                   child: Text(
                                                     "2",
-                                                    style: TextStyle(fontSize: 15),
+                                                    style:
+                                                        TextStyle(fontSize: 15),
                                                   ),
                                                   value: 2,
                                                 ),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "3",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 3),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "4",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 4),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "5",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 5),
                                                 DropdownMenuItem(
                                                   child: Text(
                                                     "6",
-                                                    style: TextStyle(fontSize: 15),
+                                                    style:
+                                                        TextStyle(fontSize: 15),
                                                   ),
                                                   value: 6,
                                                 ),
                                                 DropdownMenuItem(
                                                   child: Text(
                                                     "7",
-                                                    style: TextStyle(fontSize: 15),
+                                                    style:
+                                                        TextStyle(fontSize: 15),
                                                   ),
                                                   value: 7,
                                                 ),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "8",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 8),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "9",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 9),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "10",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 10),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "11",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 11),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "12",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 12),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "13",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 13),
                                               ],
@@ -13568,7 +17510,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ),
                                     SizedBox(height: 10),
                                     Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
                                         FilterChip(
                                           selectedColor: Colors.purple[300],
@@ -13607,83 +17550,96 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 DropdownMenuItem(
                                                   child: Text(
                                                     "1",
-                                                    style: TextStyle(fontSize: 15),
+                                                    style:
+                                                        TextStyle(fontSize: 15),
                                                   ),
                                                   value: 1,
                                                 ),
                                                 DropdownMenuItem(
                                                   child: Text(
                                                     "2",
-                                                    style: TextStyle(fontSize: 15),
+                                                    style:
+                                                        TextStyle(fontSize: 15),
                                                   ),
                                                   value: 2,
                                                 ),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "3",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 3),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "4",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 4),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "5",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 5),
                                                 DropdownMenuItem(
                                                   child: Text(
                                                     "6",
-                                                    style: TextStyle(fontSize: 15),
+                                                    style:
+                                                        TextStyle(fontSize: 15),
                                                   ),
                                                   value: 6,
                                                 ),
                                                 DropdownMenuItem(
                                                   child: Text(
                                                     "7",
-                                                    style: TextStyle(fontSize: 15),
+                                                    style:
+                                                        TextStyle(fontSize: 15),
                                                   ),
                                                   value: 7,
                                                 ),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "8",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 8),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "9",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 9),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "10",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 10),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "11",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 11),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "12",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 12),
                                                 DropdownMenuItem(
                                                     child: Text(
                                                       "13",
-                                                      style: TextStyle(fontSize: 15),
+                                                      style: TextStyle(
+                                                          fontSize: 15),
                                                     ),
                                                     value: 13),
                                               ],
@@ -13704,21 +17660,25 @@ class _MyHomePageState extends State<MyHomePage> {
                                   tilePadding: EdgeInsets.all(0),
                                   childrenPadding: EdgeInsets.all(0),
                                   title: Column(children: [
-                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                      SelectableText(
-                                        'Manual Adjusts'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          height: 1.1,
-                                        ),
-                                      ),
-                                    ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          SelectableText(
+                                            'Manual Adjusts'.tr(),
+                                            style: TextStyle(
+                                              //fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: 15,
+                                              height: 1.1,
+                                            ),
+                                          ),
+                                        ]),
                                   ]),
                                   children: <Widget>[
                                     Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
                                         FilterChip(
                                           selectedColor: Colors.red[300],
@@ -13739,14 +17699,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                           height: 50,
                                           alignment: Alignment.center,
                                           child: TextFormField(
-                                              textAlignVertical: TextAlignVertical.center,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(4)],
+                                              textAlignVertical:
+                                                  TextAlignVertical.center,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              inputFormatters: <
+                                                  TextInputFormatter>[
+                                                FilteringTextInputFormatter
+                                                    .digitsOnly,
+                                                LengthLimitingTextInputFormatter(
+                                                    4)
+                                              ],
                                               decoration: InputDecoration(
                                                 // prefixIcon: Text("basic atk"),
-                                                labelText: '${"Bonus atk".tr()}:',
+                                                labelText:
+                                                    '${"Bonus atk".tr()}:',
 
-                                                contentPadding: EdgeInsets.all(5),
+                                                contentPadding:
+                                                    EdgeInsets.all(5),
                                                 //isDense: true,
                                               ),
                                               //maxLength: 4,
@@ -13757,7 +17727,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               // onSaved: (input) => bennetbasicatk = num.tryParse(input),
                                               onChanged: (value) {
                                                 setState(() {
-                                                  manualatk = num.tryParse(value) ?? 0;
+                                                  manualatk =
+                                                      num.tryParse(value) ?? 0;
                                                 });
                                               }),
                                         ),
@@ -13783,13 +17754,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                           height: 50,
                                           alignment: Alignment.center,
                                           child: TextFormField(
-                                              textAlignVertical: TextAlignVertical.center,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(2)],
+                                              textAlignVertical:
+                                                  TextAlignVertical.center,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              inputFormatters: <
+                                                  TextInputFormatter>[
+                                                FilteringTextInputFormatter
+                                                    .digitsOnly,
+                                                LengthLimitingTextInputFormatter(
+                                                    2)
+                                              ],
                                               decoration: InputDecoration(
                                                 // prefixIcon: Text("basic atk"),
-                                                labelText: '${"Bonus Crit Rate".tr()}%:',
-                                                contentPadding: EdgeInsets.all(5),
+                                                labelText:
+                                                    '${"Bonus Crit Rate".tr()}%:',
+                                                contentPadding:
+                                                    EdgeInsets.all(5),
                                                 //isDense: true,
                                               ),
                                               //maxLength: 4,
@@ -13800,7 +17781,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               // onSaved: (input) => bennetbasicatk = num.tryParse(input),
                                               onChanged: (value) {
                                                 setState(() {
-                                                  manualCRpercent = num.tryParse(value) ?? 0;
+                                                  manualCRpercent =
+                                                      num.tryParse(value) ?? 0;
                                                 });
                                               }),
                                         ),
@@ -13810,7 +17792,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ],
                                     ),
                                     Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
                                         FilterChip(
                                           selectedColor: Colors.red[300],
@@ -13831,14 +17814,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                           height: 50,
                                           alignment: Alignment.center,
                                           child: TextFormField(
-                                              textAlignVertical: TextAlignVertical.center,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
+                                              textAlignVertical:
+                                                  TextAlignVertical.center,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              inputFormatters: <
+                                                  TextInputFormatter>[
+                                                FilteringTextInputFormatter
+                                                    .digitsOnly,
+                                                LengthLimitingTextInputFormatter(
+                                                    3)
+                                              ],
                                               decoration: InputDecoration(
                                                 // prefixIcon: Text("basic atk"),
-                                                labelText: '${"Bonus atk".tr()}%:',
+                                                labelText:
+                                                    '${"Bonus atk".tr()}%:',
 
-                                                contentPadding: EdgeInsets.all(5),
+                                                contentPadding:
+                                                    EdgeInsets.all(5),
                                                 //isDense: true,
                                               ),
                                               //maxLength: 4,
@@ -13849,7 +17842,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               // onSaved: (input) => bennetbasicatk = num.tryParse(input),
                                               onChanged: (value) {
                                                 setState(() {
-                                                  manualatkpercent = num.tryParse(value) ?? 0;
+                                                  manualatkpercent =
+                                                      num.tryParse(value) ?? 0;
                                                 });
                                               }),
                                         ),
@@ -13875,13 +17869,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                           height: 50,
                                           alignment: Alignment.center,
                                           child: TextFormField(
-                                              textAlignVertical: TextAlignVertical.center,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
+                                              textAlignVertical:
+                                                  TextAlignVertical.center,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              inputFormatters: <
+                                                  TextInputFormatter>[
+                                                FilteringTextInputFormatter
+                                                    .digitsOnly,
+                                                LengthLimitingTextInputFormatter(
+                                                    3)
+                                              ],
                                               decoration: InputDecoration(
                                                 // prefixIcon: Text("basic atk"),
-                                                labelText: '${"Bonus Crit Damage".tr()}%:',
-                                                contentPadding: EdgeInsets.all(5),
+                                                labelText:
+                                                    '${"Bonus Crit Damage".tr()}%:',
+                                                contentPadding:
+                                                    EdgeInsets.all(5),
                                                 //isDense: true,
                                               ),
                                               //maxLength: 4,
@@ -13892,7 +17896,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               // onSaved: (input) => bennetbasicatk = num.tryParse(input),
                                               onChanged: (value) {
                                                 setState(() {
-                                                  manualCDpercent = num.tryParse(value) ?? 0;
+                                                  manualCDpercent =
+                                                      num.tryParse(value) ?? 0;
                                                 });
                                               }),
                                         ),
@@ -13902,7 +17907,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ],
                                     ),
                                     Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
                                         FilterChip(
                                           selectedColor: Colors.red[300],
@@ -13923,14 +17929,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                           height: 50,
                                           alignment: Alignment.center,
                                           child: TextFormField(
-                                              textAlignVertical: TextAlignVertical.center,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
+                                              textAlignVertical:
+                                                  TextAlignVertical.center,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              inputFormatters: <
+                                                  TextInputFormatter>[
+                                                FilteringTextInputFormatter
+                                                    .digitsOnly,
+                                                LengthLimitingTextInputFormatter(
+                                                    3)
+                                              ],
                                               decoration: InputDecoration(
                                                 // prefixIcon: Text("basic atk"),
-                                                labelText: '${"Bonus EM".tr()}:',
+                                                labelText:
+                                                    '${"Bonus EM".tr()}:',
 
-                                                contentPadding: EdgeInsets.all(5),
+                                                contentPadding:
+                                                    EdgeInsets.all(5),
                                                 //isDense: true,
                                               ),
                                               //maxLength: 4,
@@ -13941,7 +17957,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               // onSaved: (input) => bennetbasicatk = num.tryParse(input),
                                               onChanged: (value) {
                                                 setState(() {
-                                                  manualEM = num.tryParse(value) ?? 0;
+                                                  manualEM =
+                                                      num.tryParse(value) ?? 0;
                                                 });
                                               }),
                                         ),
@@ -13951,7 +17968,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                         FilterChip(
                                           selectedColor: Colors.red[300],
                                           backgroundColor: Colors.red[200],
-                                          label: Text('${"Damage Bonus".tr()}%'),
+                                          label:
+                                              Text('${"Damage Bonus".tr()}%'),
                                           selected: manualDMGpercentOn,
                                           onSelected: (bool value) {
                                             setState(() {
@@ -13967,14 +17985,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                           height: 50,
                                           alignment: Alignment.center,
                                           child: TextFormField(
-                                              textAlignVertical: TextAlignVertical.center,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(3)],
+                                              textAlignVertical:
+                                                  TextAlignVertical.center,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              inputFormatters: <
+                                                  TextInputFormatter>[
+                                                FilteringTextInputFormatter
+                                                    .digitsOnly,
+                                                LengthLimitingTextInputFormatter(
+                                                    3)
+                                              ],
                                               decoration: InputDecoration(
                                                 // prefixIcon: Text("basic atk"),
-                                                labelText: '${"Damage Bonus".tr()}%:',
+                                                labelText:
+                                                    '${"Damage Bonus".tr()}%:',
 
-                                                contentPadding: EdgeInsets.all(5),
+                                                contentPadding:
+                                                    EdgeInsets.all(5),
                                                 //isDense: true,
                                               ),
                                               //maxLength: 4,
@@ -13985,7 +18013,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               // onSaved: (input) => bennetbasicatk = num.tryParse(input),
                                               onChanged: (value) {
                                                 setState(() {
-                                                  manualDMGpercent = num.tryParse(value) ?? 0;
+                                                  manualDMGpercent =
+                                                      num.tryParse(value) ?? 0;
                                                 });
                                               }),
                                         ),
@@ -13995,7 +18024,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ],
                                     ),
                                     Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
                                         FilterChip(
                                           selectedColor: Colors.red[300],
@@ -14016,14 +18046,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                           height: 50,
                                           alignment: Alignment.center,
                                           child: TextFormField(
-                                              textAlignVertical: TextAlignVertical.center,
-                                              keyboardType: TextInputType.number,
-                                              inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(2)],
+                                              textAlignVertical:
+                                                  TextAlignVertical.center,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              inputFormatters: <
+                                                  TextInputFormatter>[
+                                                FilteringTextInputFormatter
+                                                    .digitsOnly,
+                                                LengthLimitingTextInputFormatter(
+                                                    2)
+                                              ],
                                               decoration: InputDecoration(
                                                 // prefixIcon: Text("basic atk"),
-                                                labelText: '${"Enemy Res Decrease".tr()}:',
+                                                labelText:
+                                                    '${"Enemy Res Decrease".tr()}:',
 
-                                                contentPadding: EdgeInsets.all(5),
+                                                contentPadding:
+                                                    EdgeInsets.all(5),
                                                 //isDense: true,
                                               ),
                                               //maxLength: 4,
@@ -14034,7 +18074,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               // onSaved: (input) => bennetbasicatk = num.tryParse(input),
                                               onChanged: (value) {
                                                 setState(() {
-                                                  manualresdebuff = num.tryParse(value) ?? 0;
+                                                  manualresdebuff =
+                                                      num.tryParse(value) ?? 0;
                                                 });
                                               }),
                                         ),
@@ -14062,7 +18103,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 lg: 6,
                 xl: 3,
                 child: Container(
-                  height: (MediaQuery.of(context).size.width > 1200) ? heightadjust : null,
+                  height: (MediaQuery.of(context).size.width > 1200)
+                      ? heightadjust
+                      : null,
                   color: Colors.red[50],
                   child: Center(
                     child: SingleChildScrollView(
@@ -14072,7 +18115,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 255, 255, 0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                               children: [
                                 SelectableText(
@@ -14085,48 +18131,151 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ExpansionTile(
                                     tilePadding: EdgeInsets.all(0),
                                     childrenPadding: EdgeInsets.all(0),
-                                    title: builddamagebarwithcrit(Colors.black, 'Charged Aim Shoot Damage'.tr() + ':($ganyucaimdmgpercent%)', Colors.lightBlue[200], Colors.lightBlue[400],
-                                        Colors.lightBlue[600], ganyucaimdmgnc, ganyucaimdmgexp, ganyucaimdmgc),
+                                    title: builddamagebarwithcrit(
+                                        Colors.black,
+                                        'Charged Aim Shoot Damage'.tr() +
+                                            ':($ganyucaimdmgpercent%)',
+                                        Colors.lightBlue[200],
+                                        Colors.lightBlue[400],
+                                        Colors.lightBlue[600],
+                                        ganyucaimdmgnc,
+                                        ganyucaimdmgexp,
+                                        ganyucaimdmgc),
                                     children: <Widget>[
                                       builddamagebarwithcrit(
-                                          Colors.black, '1-Hit Damage'.tr() + ':($hit1dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit1dmgnc, hit1dmgexp, hit1dmgc),
+                                          Colors.black,
+                                          '1-Hit Damage'.tr() +
+                                              ':($hit1dmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit1dmgnc,
+                                          hit1dmgexp,
+                                          hit1dmgc),
                                       SizedBox(height: 10),
                                       builddamagebarwithcrit(
-                                          Colors.black, '2-Hit Damage'.tr() + ':($hit2dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit2dmgnc, hit2dmgexp, hit2dmgc),
+                                          Colors.black,
+                                          '2-Hit Damage'.tr() +
+                                              ':($hit2dmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit2dmgnc,
+                                          hit2dmgexp,
+                                          hit2dmgc),
                                       SizedBox(height: 10),
                                       builddamagebarwithcrit(
-                                          Colors.black, '3-Hit Damage'.tr() + ':($hit3dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit3dmgnc, hit3dmgexp, hit3dmgc),
+                                          Colors.black,
+                                          '3-Hit Damage'.tr() +
+                                              ':($hit3dmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit3dmgnc,
+                                          hit3dmgexp,
+                                          hit3dmgc),
                                       SizedBox(height: 10),
                                       builddamagebarwithcrit(
-                                          Colors.black, '4-Hit Damage'.tr() + ':($hit4dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit4dmgnc, hit4dmgexp, hit4dmgc),
+                                          Colors.black,
+                                          '4-Hit Damage'.tr() +
+                                              ':($hit4dmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit4dmgnc,
+                                          hit4dmgexp,
+                                          hit4dmgc),
                                       SizedBox(height: 10),
                                       builddamagebarwithcrit(
-                                          Colors.black, '5-Hit Damage'.tr() + ':($hit5dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit5dmgnc, hit5dmgexp, hit5dmgc),
+                                          Colors.black,
+                                          '5-Hit Damage'.tr() +
+                                              ':($hit5dmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit5dmgnc,
+                                          hit5dmgexp,
+                                          hit5dmgc),
                                       SizedBox(height: 10),
                                       builddamagebarwithcrit(
-                                          Colors.black, '6-Hit Damage'.tr() + ':($hit6dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit6dmgnc, hit6dmgexp, hit6dmgc),
+                                          Colors.black,
+                                          '6-Hit Damage'.tr() +
+                                              ':($hit6dmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit6dmgnc,
+                                          hit6dmgexp,
+                                          hit6dmgc),
                                       SizedBox(height: 10),
                                       builddamagebarwithcrit(
-                                          Colors.black, 'Aim Shoot Damage'.tr() + ':($aimdmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], aimdmgnc, aimdmgexp, aimdmgc),
+                                          Colors.black,
+                                          'Aim Shoot Damage'.tr() +
+                                              ':($aimdmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          aimdmgnc,
+                                          aimdmgexp,
+                                          aimdmgc),
                                       SizedBox(height: 10),
                                       builddamagebarwithcrit(
-                                          Colors.black, 'Plunge Damage'.tr() + ':($plungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], plungedmgnc, plungedmgexp, plungedmgc),
+                                          Colors.black,
+                                          'Plunge Damage'.tr() +
+                                              ':($plungedmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          plungedmgnc,
+                                          plungedmgexp,
+                                          plungedmgc),
                                       SizedBox(height: 10),
-                                      builddamagebarwithcrit(Colors.black, 'Low Plunge Damage'.tr() + ':($lplungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], lplungedmgnc,
-                                          lplungedmgexp, lplungedmgc),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Low Plunge Damage'.tr() +
+                                              ':($lplungedmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          lplungedmgnc,
+                                          lplungedmgexp,
+                                          lplungedmgc),
                                       SizedBox(height: 10),
-                                      builddamagebarwithcrit(Colors.black, 'High Plunge Damage'.tr() + ':($hplungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hplungedmgnc,
-                                          hplungedmgexp, hplungedmgc),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'High Plunge Damage'.tr() +
+                                              ':($hplungedmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hplungedmgnc,
+                                          hplungedmgexp,
+                                          hplungedmgc),
                                       SizedBox(height: 10),
                                       builddamagebarwithcrit(
                                           Colors.red,
-                                          'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                          'Melt'.tr() +
+                                              ':(' +
+                                              double.parse(
+                                                      (meltDMGpercent * 1.5)
+                                                          .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%)',
                                           Colors.lightBlue[200],
                                           Colors.lightBlue[400],
                                           Colors.lightBlue[600],
-                                          ganyucaimdmgnc * 1.5 * meltDMGpercent / 100,
-                                          ganyucaimdmgexp * 1.5 * meltDMGpercent / 100,
-                                          ganyucaimdmgc * 1.5 * meltDMGpercent / 100),
+                                          ganyucaimdmgnc *
+                                              1.5 *
+                                              meltDMGpercent /
+                                              100,
+                                          ganyucaimdmgexp *
+                                              1.5 *
+                                              meltDMGpercent /
+                                              100,
+                                          ganyucaimdmgc *
+                                              1.5 *
+                                              meltDMGpercent /
+                                              100),
                                       SizedBox(height: 10),
                                     ],
                                   ),
@@ -14134,61 +18283,422 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ExpansionTile(
                                     tilePadding: EdgeInsets.all(0),
                                     childrenPadding: EdgeInsets.all(0),
-                                    title: builddamagebarwithcrit(Colors.black, 'Charged Aim Shoot Damage'.tr() + ':($yoimiyacaimdmgpercent%)', Colors.red[200], Colors.red[400], Colors.red[600],
-                                        yoimiyacaimdmgnc, yoimiyacaimdmgexp, yoimiyacaimdmgc),
+                                    title: builddamagebarwithcrit(
+                                        Colors.black,
+                                        'Charged Aim Shoot Damage'.tr() +
+                                            ':($yoimiyacaimdmgpercent%)',
+                                        Colors.red[200],
+                                        Colors.red[400],
+                                        Colors.red[600],
+                                        yoimiyacaimdmgnc,
+                                        yoimiyacaimdmgexp,
+                                        yoimiyacaimdmgc),
                                     children: <Widget>[
                                       builddamagebarwithcrit(
-                                          Colors.black, '1-Hit Damage'.tr() + ':($hit1dmgpercent% × 2)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit1dmgnc, hit1dmgexp, hit1dmgc),
+                                          Colors.black,
+                                          '1-Hit Damage'.tr() +
+                                              ':($hit1dmgpercent% × 2)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit1dmgnc,
+                                          hit1dmgexp,
+                                          hit1dmgc),
                                       SizedBox(height: 10),
                                       builddamagebarwithcrit(
-                                          Colors.black, '2-Hit Damage'.tr() + ':($hit2dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit2dmgnc, hit2dmgexp, hit2dmgc),
+                                          Colors.black,
+                                          '2-Hit Damage'.tr() +
+                                              ':($hit2dmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit2dmgnc,
+                                          hit2dmgexp,
+                                          hit2dmgc),
                                       SizedBox(height: 10),
                                       builddamagebarwithcrit(
-                                          Colors.black, '3-Hit Damage'.tr() + ':($hit3dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit3dmgnc, hit3dmgexp, hit3dmgc),
+                                          Colors.black,
+                                          '3-Hit Damage'.tr() +
+                                              ':($hit3dmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit3dmgnc,
+                                          hit3dmgexp,
+                                          hit3dmgc),
                                       SizedBox(height: 10),
                                       builddamagebarwithcrit(
-                                          Colors.black, '4-Hit Damage'.tr() + ':($hit4dmgpercent% × 2)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit4dmgnc, hit4dmgexp, hit4dmgc),
+                                          Colors.black,
+                                          '4-Hit Damage'.tr() +
+                                              ':($hit4dmgpercent% × 2)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit4dmgnc,
+                                          hit4dmgexp,
+                                          hit4dmgc),
                                       SizedBox(height: 10),
                                       builddamagebarwithcrit(
-                                          Colors.black, '5-Hit Damage'.tr() + ':($hit5dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit5dmgnc, hit5dmgexp, hit5dmgc),
+                                          Colors.black,
+                                          '5-Hit Damage'.tr() +
+                                              ':($hit5dmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit5dmgnc,
+                                          hit5dmgexp,
+                                          hit5dmgc),
                                       SizedBox(height: 10),
                                       builddamagebarwithcrit(
-                                          Colors.black, 'Aim Shoot Damage'.tr() + ':($aimdmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], aimdmgnc, aimdmgexp, aimdmgc),
+                                          Colors.black,
+                                          'Aim Shoot Damage'.tr() +
+                                              ':($aimdmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          aimdmgnc,
+                                          aimdmgexp,
+                                          aimdmgc),
                                       SizedBox(height: 10),
                                       builddamagebarwithcrit(
-                                          Colors.black, 'Plunge Damage'.tr() + ':($plungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], plungedmgnc, plungedmgexp, plungedmgc),
+                                          Colors.black,
+                                          'Plunge Damage'.tr() +
+                                              ':($plungedmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          plungedmgnc,
+                                          plungedmgexp,
+                                          plungedmgc),
                                       SizedBox(height: 10),
-                                      builddamagebarwithcrit(Colors.black, 'Low Plunge Damage'.tr() + ':($lplungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], lplungedmgnc,
-                                          lplungedmgexp, lplungedmgc),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Low Plunge Damage'.tr() +
+                                              ':($lplungedmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          lplungedmgnc,
+                                          lplungedmgexp,
+                                          lplungedmgc),
                                       SizedBox(height: 10),
-                                      builddamagebarwithcrit(Colors.black, 'High Plunge Damage'.tr() + ':($hplungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hplungedmgnc,
-                                          hplungedmgexp, hplungedmgc),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'High Plunge Damage'.tr() +
+                                              ':($hplungedmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hplungedmgnc,
+                                          hplungedmgexp,
+                                          hplungedmgc),
+                                      SizedBox(height: 10),
+                                    ],
+                                  ),
+                                if (currentcharacter == 'ayaka')
+                                  ExpansionTile(
+                                    tilePadding: EdgeInsets.all(0),
+                                    childrenPadding: EdgeInsets.all(0),
+                                    title: builddamagebarwithcrit(
+                                        Colors.black,
+                                        'Normal Attack Damage'.tr() +
+                                            '/' +
+                                            'per loop'.tr() +
+                                            ':(100%)',
+                                        Colors.grey[500],
+                                        Colors.grey[700],
+                                        Colors.grey[900],
+                                        natkalldmgnc,
+                                        natkalldmgexp,
+                                        natkalldmgc),
+                                    children: <Widget>[
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '1-Hit Damage'.tr() +
+                                              ':($hit1dmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit1dmgnc,
+                                          hit1dmgexp,
+                                          hit1dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '2-Hit Damage'.tr() +
+                                              ':($hit2dmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit2dmgnc,
+                                          hit2dmgexp,
+                                          hit2dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '3-Hit Damage'.tr() +
+                                              ':($hit3dmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit3dmgnc,
+                                          hit3dmgexp,
+                                          hit3dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '4-Hit Damage'.tr() +
+                                              ':($hit4dmgpercent% × 3)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit4dmgnc,
+                                          hit4dmgexp,
+                                          hit4dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '5-Hit Damage'.tr() +
+                                              ':($hit5dmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hit5dmgnc,
+                                          hit5dmgexp,
+                                          hit5dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Charged Attack Damage'.tr() +
+                                              ':($chargedattackdmgpercent% × 3)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          chargedatkdmgnc,
+                                          chargedatkdmgexp,
+                                          chargedatkdmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Plunge Damage'.tr() +
+                                              ':($plungedmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          plungedmgnc,
+                                          plungedmgexp,
+                                          plungedmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Low Plunge Damage'.tr() +
+                                              ':($lplungedmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          lplungedmgnc,
+                                          lplungedmgexp,
+                                          lplungedmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'High Plunge Damage'.tr() +
+                                              ':($hplungedmgpercent%)',
+                                          Colors.grey[500],
+                                          Colors.grey[700],
+                                          Colors.grey[900],
+                                          hplungedmgnc,
+                                          hplungedmgexp,
+                                          hplungedmgc),
                                       SizedBox(height: 10),
                                     ],
                                   ),
                                 //ANCHOR Kindling Arrow
-                                if (currentcharacter == 'yoimiya') SizedBox(height: 10),
                                 if (currentcharacter == 'yoimiya')
-                                  builddamagebarwithcrit(Colors.black, 'Kindling Arrow'.tr() + ':($kindlingdmgpercent% × 3)', Colors.red[200], Colors.red[400], Colors.red[600], kindlingarrowdmgnc,
-                                      kindlingarrowdmgexp, kindlingarrowdmgc),
+                                  SizedBox(height: 10),
+                                if (currentcharacter == 'yoimiya')
+                                  builddamagebarwithcrit(
+                                      Colors.black,
+                                      'Kindling Arrow'.tr() +
+                                          ':($kindlingdmgpercent% × 3)',
+                                      Colors.red[200],
+                                      Colors.red[400],
+                                      Colors.red[600],
+                                      kindlingarrowdmgnc,
+                                      kindlingarrowdmgexp,
+                                      kindlingarrowdmgc),
                                 SizedBox(height: 10),
+                                //ANCHOR Kamisato Art: Hyouka
+                                if (currentcharacter == 'ayaka')
+                                  ExpansionTile(
+                                      tilePadding: EdgeInsets.all(0),
+                                      childrenPadding: EdgeInsets.all(0),
+                                      title: builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Senho'.tr() +
+                                              'Charged Attack Damage'.tr() +
+                                              ':($chargedattackdmgpercent% × 3)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          cyrochargedatkdmgnc,
+                                          cyrochargedatkdmgexp,
+                                          cyrochargedatkdmgc),
+                                      children: <Widget>[
+                                        builddamagebarwithcrit(
+                                          Colors.black,
+                                          '1-Hit Damage'.tr() +
+                                              ':($hit1dmgpercent%)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          cyrohit1dmgnc,
+                                          cyrohit1dmgexp,
+                                          cyrohit1dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '2-Hit Damage'.tr() +
+                                              ':($hit2dmgpercent%)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          cyrohit2dmgnc,
+                                          cyrohit2dmgexp,
+                                          cyrohit2dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '3-Hit Damage'.tr() +
+                                              ':($hit3dmgpercent%)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          cyrohit3dmgnc,
+                                          cyrohit3dmgexp,
+                                          cyrohit3dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '4-Hit Damage'.tr() +
+                                              ':($hit4dmgpercent% × 3)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          cyrohit4dmgnc,
+                                          cyrohit4dmgexp,
+                                          cyrohit4dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '5-Hit Damage'.tr() +
+                                              ':($hit5dmgpercent%)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          cyrohit5dmgnc,
+                                          cyrohit5dmgexp,
+                                          cyrohit5dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Plunge Damage'.tr() +
+                                              ':($plungedmgpercent%)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          cyroplungedmgnc,
+                                          cyroplungedmgexp,
+                                          cyroplungedmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Low Plunge Damage'.tr() +
+                                              ':($lplungedmgpercent%)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          cyrolplungedmgnc,
+                                          cyrolplungedmgexp,
+                                          cyrolplungedmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'High Plunge Damage'.tr() +
+                                              ':($hplungedmgpercent%)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          cyrohplungedmgnc,
+                                          cyrohplungedmgexp,
+                                          cyrohplungedmgc),
+                                      SizedBox(height: 10),
+                                        // builddamagebarwithcrit(
+                                        //     Colors.red,
+                                        //     'Melt'.tr() +
+                                        //         ':(' +
+                                        //         double.parse(
+                                        //                 (meltDMGpercent * 1.5)
+                                        //                     .toStringAsFixed(1))
+                                        //             .toString() +
+                                        //         '%)',
+                                        //     Colors.lightBlue[200],
+                                        //     Colors.lightBlue[400],
+                                        //     Colors.lightBlue[600],
+                                        //     frostflakedmgnc *
+                                        //         1.5 *
+                                        //         meltDMGpercent /
+                                        //         100,
+                                        //     frostflakedmgexp *
+                                        //         1.5 *
+                                        //         meltDMGpercent /
+                                        //         100,
+                                        //     frostflakedmgc *
+                                        //         1.5 *
+                                        //         meltDMGpercent /
+                                        //         100),
+                                        // SizedBox(height: 10),
+                                      ]),
                                 //ANCHOR Frostflake Arrow
                                 if (currentcharacter == 'ganyu')
                                   ExpansionTile(
                                       tilePadding: EdgeInsets.all(0),
                                       childrenPadding: EdgeInsets.all(0),
-                                      title: builddamagebarwithcrit(Colors.black, 'Frostflake Arrow'.tr() + ':($frostflakedmgpercent%)', Colors.lightBlue[200], Colors.lightBlue[400],
-                                          Colors.lightBlue[600], frostflakedmgnc, frostflakedmgexp, frostflakedmgc),
+                                      title: builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Frostflake Arrow'.tr() +
+                                              ':($frostflakedmgpercent%)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          frostflakedmgnc,
+                                          frostflakedmgexp,
+                                          frostflakedmgc),
                                       children: <Widget>[
                                         builddamagebarwithcrit(
                                             Colors.red,
-                                            'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                            'Melt'.tr() +
+                                                ':(' +
+                                                double.parse(
+                                                        (meltDMGpercent * 1.5)
+                                                            .toStringAsFixed(1))
+                                                    .toString() +
+                                                '%)',
                                             Colors.lightBlue[200],
                                             Colors.lightBlue[400],
                                             Colors.lightBlue[600],
-                                            frostflakedmgnc * 1.5 * meltDMGpercent / 100,
-                                            frostflakedmgexp * 1.5 * meltDMGpercent / 100,
-                                            frostflakedmgc * 1.5 * meltDMGpercent / 100),
+                                            frostflakedmgnc *
+                                                1.5 *
+                                                meltDMGpercent /
+                                                100,
+                                            frostflakedmgexp *
+                                                1.5 *
+                                                meltDMGpercent /
+                                                100,
+                                            frostflakedmgc *
+                                                1.5 *
+                                                meltDMGpercent /
+                                                100),
                                         SizedBox(height: 10),
                                       ]),
                                 //ANCHOR Frostflake Arrow Bloom
@@ -14196,18 +18706,41 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ExpansionTile(
                                       tilePadding: EdgeInsets.all(0),
                                       childrenPadding: EdgeInsets.all(0),
-                                      title: builddamagebarwithcrit(Colors.black, 'Frostflake Bloom'.tr() + ':($frostflakebloomdmgpercent%)', Colors.lightBlue[200], Colors.lightBlue[400],
-                                          Colors.lightBlue[600], frostflakebloomdmgnc, frostflakebloomdmgexp, frostflakebloomdmgc),
+                                      title: builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Frostflake Bloom'.tr() +
+                                              ':($frostflakebloomdmgpercent%)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          frostflakebloomdmgnc,
+                                          frostflakebloomdmgexp,
+                                          frostflakebloomdmgc),
                                       children: <Widget>[
                                         builddamagebarwithcrit(
                                             Colors.red,
-                                            'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                            'Melt'.tr() +
+                                                ':(' +
+                                                double.parse(
+                                                        (meltDMGpercent * 1.5)
+                                                            .toStringAsFixed(1))
+                                                    .toString() +
+                                                '%)',
                                             Colors.lightBlue[200],
                                             Colors.lightBlue[400],
                                             Colors.lightBlue[600],
-                                            frostflakebloomdmgnc * 1.5 * meltDMGpercent / 100,
-                                            frostflakebloomdmgexp * 1.5 * meltDMGpercent / 100,
-                                            frostflakebloomdmgc * 1.5 * meltDMGpercent / 100),
+                                            frostflakebloomdmgnc *
+                                                1.5 *
+                                                meltDMGpercent /
+                                                100,
+                                            frostflakebloomdmgexp *
+                                                1.5 *
+                                                meltDMGpercent /
+                                                100,
+                                            frostflakebloomdmgc *
+                                                1.5 *
+                                                meltDMGpercent /
+                                                100),
                                         SizedBox(height: 10),
                                       ]),
                                 //ANCHOR Frostflake All
@@ -14215,32 +18748,65 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ExpansionTile(
                                     tilePadding: EdgeInsets.all(0),
                                     childrenPadding: EdgeInsets.all(0),
-                                    title: builddamagebarwithcrit(Colors.black, 'Frostflake Arrow All'.tr(), Colors.lightBlue[200], Colors.lightBlue[400], Colors.lightBlue[600], frostflakealldmgnc,
-                                        frostflakealldmgexp, frostflakealldmgc),
+                                    title: builddamagebarwithcrit(
+                                        Colors.black,
+                                        'Frostflake Arrow All'.tr(),
+                                        Colors.lightBlue[200],
+                                        Colors.lightBlue[400],
+                                        Colors.lightBlue[600],
+                                        frostflakealldmgnc,
+                                        frostflakealldmgexp,
+                                        frostflakealldmgc),
                                     children: <Widget>[
                                       builddamagebarwithcrit(
                                           Colors.red,
-                                          'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                          'Melt'.tr() +
+                                              ':(' +
+                                              double.parse(
+                                                      (meltDMGpercent * 1.5)
+                                                          .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%)',
                                           Colors.lightBlue[200],
                                           Colors.lightBlue[400],
                                           Colors.lightBlue[600],
-                                          frostflakealldmgnc * 1.5 * meltDMGpercent / 100,
-                                          frostflakealldmgexp * 1.5 * meltDMGpercent / 100,
-                                          frostflakealldmgc * 1.5 * meltDMGpercent / 100),
+                                          frostflakealldmgnc *
+                                              1.5 *
+                                              meltDMGpercent /
+                                              100,
+                                          frostflakealldmgexp *
+                                              1.5 *
+                                              meltDMGpercent /
+                                              100,
+                                          frostflakealldmgc *
+                                              1.5 *
+                                              meltDMGpercent /
+                                              100),
                                       SizedBox(height: 10),
                                     ],
                                   ),
                                 if (echoingBalladOn)
                                   //ANCHOR Echoing Ballad Physical AoE
-                                  builddamagebarwithcrit(Colors.black, 'Echoing Ballad Physical AoE'.tr() + ':(125%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], echoingballaddmgnc,
-                                      echoingballaddmgexp, echoingballaddmgc),
+                                  builddamagebarwithcrit(
+                                      Colors.black,
+                                      'Echoing Ballad Physical AoE'.tr() +
+                                          ':(125%)',
+                                      Colors.grey[500],
+                                      Colors.grey[700],
+                                      Colors.grey[900],
+                                      echoingballaddmgnc,
+                                      echoingballaddmgexp,
+                                      echoingballaddmgc),
                               ],
                             ),
                           ),
                           Container(
                             padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 255, 255, 0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                               children: [
                                 SelectableText(
@@ -14251,17 +18817,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
                                 //ANCHOR Trail of the Qilin HP
                                 if (currentcharacter == 'ganyu')
-                                  Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                    SelectableText(
-                                      'Trail of the Qilin HP'.tr() + ':($trailoftheqilinhp)',
-                                      style: TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 15,
-                                        height: 1.1,
-                                      ),
-                                    ),
-                                  ]),
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: <Widget>[
+                                        SelectableText(
+                                          'Trail of the Qilin HP'.tr() +
+                                              ':($trailoftheqilinhp)',
+                                          style: TextStyle(
+                                            //fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 15,
+                                            height: 1.1,
+                                          ),
+                                        ),
+                                      ]),
                                 if (currentcharacter == 'ganyu')
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -14271,7 +18841,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                         children: [
                                           AnimatedContainer(
                                             curve: Curves.easeIn,
-                                            duration: Duration(milliseconds: 500),
+                                            duration:
+                                                Duration(milliseconds: 500),
                                             width: trailoftheqilinhp / 500,
                                             height: 20,
                                             color: Colors.grey[900],
@@ -14286,18 +18857,41 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ExpansionTile(
                                     tilePadding: EdgeInsets.all(0),
                                     childrenPadding: EdgeInsets.all(0),
-                                    title: builddamagebarwithcrit(Colors.black, 'Trail of the Qilin DMG'.tr() + ':($trailoftheqilindmgpercent)%', Colors.lightBlue[200], Colors.lightBlue[400],
-                                        Colors.lightBlue[600], trailoftheqilindmgnc, trailoftheqilindmgexp, trailoftheqilindmgc),
+                                    title: builddamagebarwithcrit(
+                                        Colors.black,
+                                        'Trail of the Qilin DMG'.tr() +
+                                            ':($trailoftheqilindmgpercent)%',
+                                        Colors.lightBlue[200],
+                                        Colors.lightBlue[400],
+                                        Colors.lightBlue[600],
+                                        trailoftheqilindmgnc,
+                                        trailoftheqilindmgexp,
+                                        trailoftheqilindmgc),
                                     children: <Widget>[
                                       builddamagebarwithcrit(
                                           Colors.red,
-                                          'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                          'Melt'.tr() +
+                                              ':(' +
+                                              double.parse(
+                                                      (meltDMGpercent * 1.5)
+                                                          .toStringAsFixed(1))
+                                                  .toString() +
+                                              '%)',
                                           Colors.lightBlue[200],
                                           Colors.lightBlue[400],
                                           Colors.lightBlue[600],
-                                          trailoftheqilindmgnc * 1.5 * meltDMGpercent / 100,
-                                          trailoftheqilindmgexp * 1.5 * meltDMGpercent / 100,
-                                          trailoftheqilindmgc * 1.5 * meltDMGpercent / 100),
+                                          trailoftheqilindmgnc *
+                                              1.5 *
+                                              meltDMGpercent /
+                                              100,
+                                          trailoftheqilindmgexp *
+                                              1.5 *
+                                              meltDMGpercent /
+                                              100,
+                                          trailoftheqilindmgc *
+                                              1.5 *
+                                              meltDMGpercent /
+                                              100),
                                       SizedBox(height: 10),
                                     ],
                                   ),
@@ -14305,23 +18899,74 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ExpansionTile(
                                     tilePadding: EdgeInsets.all(0),
                                     childrenPadding: EdgeInsets.all(0),
-                                    title: builddamagebarwithcrit(Colors.black, 'Teika Fire Dance'.tr() + "/" + 'per loop'.tr() + ':($teikafiredancebonuspercent)%' + 'Normal Attack Damage'.tr(),
-                                        Colors.red[500], Colors.red[700], Colors.red[900], teikafiredanceallhitdmgnc, teikafiredanceallhitdmgexp, teikafiredanceallhitdmgc),
+                                    title: builddamagebarwithcrit(
+                                        Colors.black,
+                                        'Teika Fire Dance'.tr() +
+                                            "/" +
+                                            'per loop'.tr() +
+                                            ':($teikafiredancebonuspercent)%' +
+                                            'Normal Attack Damage'.tr(),
+                                        Colors.red[500],
+                                        Colors.red[700],
+                                        Colors.red[900],
+                                        teikafiredanceallhitdmgnc,
+                                        teikafiredanceallhitdmgexp,
+                                        teikafiredanceallhitdmgc),
                                     children: <Widget>[
-                                      builddamagebarwithcrit(Colors.black, '1-Hit Damage'.tr() + ':($hit1dmgpercent% × $teikafiredancebonuspercent% × 2)', Colors.red[500], Colors.red[700],
-                                          Colors.red[900], teikafiredancehit1dmgnc, teikafiredancehit1dmgexp, teikafiredancehit1dmgc),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '1-Hit Damage'.tr() +
+                                              ':($hit1dmgpercent% × $teikafiredancebonuspercent% × 2)',
+                                          Colors.red[500],
+                                          Colors.red[700],
+                                          Colors.red[900],
+                                          teikafiredancehit1dmgnc,
+                                          teikafiredancehit1dmgexp,
+                                          teikafiredancehit1dmgc),
                                       SizedBox(height: 10),
-                                      builddamagebarwithcrit(Colors.black, '2-Hit Damage'.tr() + ':($hit2dmgpercent%)×$teikafiredancebonuspercent%', Colors.red[500], Colors.red[700], Colors.red[900],
-                                          teikafiredancehit2dmgnc, teikafiredancehit2dmgexp, teikafiredancehit2dmgc),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '2-Hit Damage'.tr() +
+                                              ':($hit2dmgpercent%)×$teikafiredancebonuspercent%',
+                                          Colors.red[500],
+                                          Colors.red[700],
+                                          Colors.red[900],
+                                          teikafiredancehit2dmgnc,
+                                          teikafiredancehit2dmgexp,
+                                          teikafiredancehit2dmgc),
                                       SizedBox(height: 10),
-                                      builddamagebarwithcrit(Colors.black, '3-Hit Damage'.tr() + ':($hit3dmgpercent%)×$teikafiredancebonuspercent%', Colors.red[500], Colors.red[700], Colors.red[900],
-                                          teikafiredancehit3dmgnc, teikafiredancehit3dmgexp, teikafiredancehit3dmgc),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '3-Hit Damage'.tr() +
+                                              ':($hit3dmgpercent%)×$teikafiredancebonuspercent%',
+                                          Colors.red[500],
+                                          Colors.red[700],
+                                          Colors.red[900],
+                                          teikafiredancehit3dmgnc,
+                                          teikafiredancehit3dmgexp,
+                                          teikafiredancehit3dmgc),
                                       SizedBox(height: 10),
-                                      builddamagebarwithcrit(Colors.black, '4-Hit Damage'.tr() + ':($hit4dmgpercent% × $teikafiredancebonuspercent% × 2)', Colors.red[500], Colors.red[700],
-                                          Colors.red[900], teikafiredancehit4dmgnc, teikafiredancehit4dmgexp, teikafiredancehit4dmgc),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '4-Hit Damage'.tr() +
+                                              ':($hit4dmgpercent% × $teikafiredancebonuspercent% × 2)',
+                                          Colors.red[500],
+                                          Colors.red[700],
+                                          Colors.red[900],
+                                          teikafiredancehit4dmgnc,
+                                          teikafiredancehit4dmgexp,
+                                          teikafiredancehit4dmgc),
                                       SizedBox(height: 10),
-                                      builddamagebarwithcrit(Colors.black, '5-Hit Damage'.tr() + ':($hit5dmgpercent%)×$teikafiredancebonuspercent%', Colors.red[500], Colors.red[700], Colors.red[900],
-                                          teikafiredancehit5dmgnc, teikafiredancehit5dmgexp, teikafiredancehit5dmgc),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '5-Hit Damage'.tr() +
+                                              ':($hit5dmgpercent%)×$teikafiredancebonuspercent%',
+                                          Colors.red[500],
+                                          Colors.red[700],
+                                          Colors.red[900],
+                                          teikafiredancehit5dmgnc,
+                                          teikafiredancehit5dmgexp,
+                                          teikafiredancehit5dmgc),
                                       SizedBox(height: 10),
                                     ],
                                   ),
@@ -14331,7 +18976,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 255, 255, 0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                               children: [
                                 SelectableText(
@@ -14344,18 +18992,42 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ExpansionTile(
                                       tilePadding: EdgeInsets.all(0),
                                       childrenPadding: EdgeInsets.all(0),
-                                      title: builddamagebarwithcrit(Colors.black, 'Celestial Shower/per Ice Shard'.tr() + ':($celestialshowerdmgpercent%)', Colors.lightBlue[200],
-                                          Colors.lightBlue[400], Colors.lightBlue[600], celestialshowerdmgnc, celestialshowerdmgexp, celestialshowerdmgc),
+                                      title: builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Celestial Shower/per Ice Shard'
+                                                  .tr() +
+                                              ':($celestialshowerdmgpercent%)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          celestialshowerdmgnc,
+                                          celestialshowerdmgexp,
+                                          celestialshowerdmgc),
                                       children: <Widget>[
                                         builddamagebarwithcrit(
                                             Colors.red,
-                                            'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                            'Melt'.tr() +
+                                                ':(' +
+                                                double.parse(
+                                                        (meltDMGpercent * 1.5)
+                                                            .toStringAsFixed(1))
+                                                    .toString() +
+                                                '%)',
                                             Colors.lightBlue[200],
                                             Colors.lightBlue[400],
                                             Colors.lightBlue[600],
-                                            celestialshowerdmgnc * 1.5 * meltDMGpercent / 100,
-                                            celestialshowerdmgexp * 1.5 * meltDMGpercent / 100,
-                                            celestialshowerdmgc * 1.5 * meltDMGpercent / 100),
+                                            celestialshowerdmgnc *
+                                                1.5 *
+                                                meltDMGpercent /
+                                                100,
+                                            celestialshowerdmgexp *
+                                                1.5 *
+                                                meltDMGpercent /
+                                                100,
+                                            celestialshowerdmgc *
+                                                1.5 *
+                                                meltDMGpercent /
+                                                100),
                                         SizedBox(height: 10),
                                       ]),
                                 //ANCHOR Ryukin Saxifrage DMG
@@ -14363,56 +19035,134 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ExpansionTile(
                                       tilePadding: EdgeInsets.all(0),
                                       childrenPadding: EdgeInsets.all(0),
-                                      title: builddamagebarwithcrit(Colors.black, 'Ryukin Saxifrage'.tr() + ':($ryukinsaxifragedmgpercent%)', Colors.red[200], Colors.red[400], Colors.red[600],
-                                          ryukinsaxifragedmgnc, ryukinsaxifragedmgexp, ryukinsaxifragedmgc),
+                                      title: builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Ryukin Saxifrage'.tr() +
+                                              ':($ryukinsaxifragedmgpercent%)',
+                                          Colors.red[200],
+                                          Colors.red[400],
+                                          Colors.red[600],
+                                          ryukinsaxifragedmgnc,
+                                          ryukinsaxifragedmgexp,
+                                          ryukinsaxifragedmgc),
                                       children: <Widget>[
                                         builddamagebarwithcrit(
                                             Colors.red,
-                                            'Vaporize'.tr() + ':(' + double.parse((vaporizeDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                            'Vaporize'.tr() +
+                                                ':(' +
+                                                double.parse(
+                                                        (vaporizeDMGpercent *
+                                                                1.5)
+                                                            .toStringAsFixed(1))
+                                                    .toString() +
+                                                '%)',
                                             Colors.red[200],
                                             Colors.red[400],
                                             Colors.red[600],
-                                            ryukinsaxifragedmgnc * 1.5 * vaporizeDMGpercent / 100,
-                                            ryukinsaxifragedmgexp * 1.5 * vaporizeDMGpercent / 100,
-                                            ryukinsaxifragedmgc * 1.5 * vaporizeDMGpercent / 100),
+                                            ryukinsaxifragedmgnc *
+                                                1.5 *
+                                                vaporizeDMGpercent /
+                                                100,
+                                            ryukinsaxifragedmgexp *
+                                                1.5 *
+                                                vaporizeDMGpercent /
+                                                100,
+                                            ryukinsaxifragedmgc *
+                                                1.5 *
+                                                vaporizeDMGpercent /
+                                                100),
                                         SizedBox(height: 10),
                                         builddamagebarwithcrit(
                                             Colors.red,
-                                            'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 2).toStringAsFixed(1)).toString() + '%)',
+                                            'Melt'.tr() +
+                                                ':(' +
+                                                double.parse(
+                                                        (meltDMGpercent * 2)
+                                                            .toStringAsFixed(1))
+                                                    .toString() +
+                                                '%)',
                                             Colors.red[200],
                                             Colors.red[400],
                                             Colors.red[600],
-                                            ryukinsaxifragedmgnc * 2 * meltDMGpercent / 100,
-                                            ryukinsaxifragedmgexp * 2 * meltDMGpercent / 100,
-                                            ryukinsaxifragedmgc * 2 * meltDMGpercent / 100),
+                                            ryukinsaxifragedmgnc *
+                                                2 *
+                                                meltDMGpercent /
+                                                100,
+                                            ryukinsaxifragedmgexp *
+                                                2 *
+                                                meltDMGpercent /
+                                                100,
+                                            ryukinsaxifragedmgc *
+                                                2 *
+                                                meltDMGpercent /
+                                                100),
                                         SizedBox(height: 10),
                                       ]),
                                 if (currentcharacter == 'yoimiya')
                                   ExpansionTile(
                                       tilePadding: EdgeInsets.all(0),
                                       childrenPadding: EdgeInsets.all(0),
-                                      title: builddamagebarwithcrit(Colors.black, 'Aurous Blaze'.tr() + ':($aurousblazedmgpercent%)', Colors.red[200], Colors.red[400], Colors.red[600],
-                                          aurousblazedmgnc, aurousblazedmgexp, aurousblazedmgc),
+                                      title: builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Aurous Blaze'.tr() +
+                                              ':($aurousblazedmgpercent%)',
+                                          Colors.red[200],
+                                          Colors.red[400],
+                                          Colors.red[600],
+                                          aurousblazedmgnc,
+                                          aurousblazedmgexp,
+                                          aurousblazedmgc),
                                       children: <Widget>[
                                         builddamagebarwithcrit(
                                             Colors.red,
-                                            'Vaporize'.tr() + ':(' + double.parse((vaporizeDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                            'Vaporize'.tr() +
+                                                ':(' +
+                                                double.parse(
+                                                        (vaporizeDMGpercent *
+                                                                1.5)
+                                                            .toStringAsFixed(1))
+                                                    .toString() +
+                                                '%)',
                                             Colors.red[200],
                                             Colors.red[400],
                                             Colors.red[600],
-                                            aurousblazedmgnc * 1.5 * vaporizeDMGpercent / 100,
-                                            aurousblazedmgexp * 1.5 * vaporizeDMGpercent / 100,
-                                            aurousblazedmgc * 1.5 * vaporizeDMGpercent / 100),
+                                            aurousblazedmgnc *
+                                                1.5 *
+                                                vaporizeDMGpercent /
+                                                100,
+                                            aurousblazedmgexp *
+                                                1.5 *
+                                                vaporizeDMGpercent /
+                                                100,
+                                            aurousblazedmgc *
+                                                1.5 *
+                                                vaporizeDMGpercent /
+                                                100),
                                         SizedBox(height: 10),
                                         builddamagebarwithcrit(
                                             Colors.red,
-                                            'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 2).toStringAsFixed(1)).toString() + '%)',
+                                            'Melt'.tr() +
+                                                ':(' +
+                                                double.parse(
+                                                        (meltDMGpercent * 2)
+                                                            .toStringAsFixed(1))
+                                                    .toString() +
+                                                '%)',
                                             Colors.red[200],
                                             Colors.red[400],
                                             Colors.red[600],
-                                            aurousblazedmgnc * 2 * meltDMGpercent / 100,
-                                            aurousblazedmgexp * 2 * meltDMGpercent / 100,
-                                            aurousblazedmgc * 2 * meltDMGpercent / 100),
+                                            aurousblazedmgnc *
+                                                2 *
+                                                meltDMGpercent /
+                                                100,
+                                            aurousblazedmgexp *
+                                                2 *
+                                                meltDMGpercent /
+                                                100,
+                                            aurousblazedmgc *
+                                                2 *
+                                                meltDMGpercent /
+                                                100),
                                         SizedBox(height: 10),
                                       ]),
                               ],
@@ -14421,7 +19171,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 255, 255, 0.8),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Column(
                               children: [
                                 SelectableText(
@@ -14430,17 +19183,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 SizedBox(height: 10),
                                 //ANCHOR Superconduct DMG
-                                Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                  SelectableText(
-                                    'Superconduct'.tr() + ':(' + superconductDMGpercent.toStringAsFixed(1) + '%)',
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      height: 1.1,
-                                    ),
-                                  )
-                                ]),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      SelectableText(
+                                        'Superconduct'.tr() +
+                                            ':(' +
+                                            superconductDMGpercent
+                                                .toStringAsFixed(1) +
+                                            '%)',
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          height: 1.1,
+                                        ),
+                                      )
+                                    ]),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
@@ -14454,7 +19213,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     ),
                                     SelectableText(
-                                      double.parse(superconductDMG.toStringAsFixed(1)).toString(),
+                                      double.parse(superconductDMG
+                                              .toStringAsFixed(1))
+                                          .toString(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.lightBlue[400],
@@ -14482,17 +19243,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 SizedBox(height: 10),
                                 //ANCHOR Overloaded DMG
-                                Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                  SelectableText(
-                                    'Overloaded'.tr() + ':(' + (overloadDMGpercent * 4).toStringAsFixed(1) + '%)',
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      height: 1.1,
-                                    ),
-                                  )
-                                ]),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      SelectableText(
+                                        'Overloaded'.tr() +
+                                            ':(' +
+                                            (overloadDMGpercent * 4)
+                                                .toStringAsFixed(1) +
+                                            '%)',
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          height: 1.1,
+                                        ),
+                                      )
+                                    ]),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
@@ -14506,7 +19273,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     ),
                                     SelectableText(
-                                      double.parse(overloadDMG.toStringAsFixed(1)).toString(),
+                                      double.parse(
+                                              overloadDMG.toStringAsFixed(1))
+                                          .toString(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.red[400],
@@ -14534,17 +19303,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 SizedBox(height: 10),
                                 //ANCHOR Electro-Charged DMG
-                                Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                  SelectableText(
-                                    'Electro-Charged'.tr() + ':(' + (electrochargedDMGpercent * 2.4).toStringAsFixed(1) + '% × 2)',
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      height: 1.1,
-                                    ),
-                                  )
-                                ]),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      SelectableText(
+                                        'Electro-Charged'.tr() +
+                                            ':(' +
+                                            (electrochargedDMGpercent * 2.4)
+                                                .toStringAsFixed(1) +
+                                            '% × 2)',
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          height: 1.1,
+                                        ),
+                                      )
+                                    ]),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
@@ -14558,7 +19333,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     ),
                                     SelectableText(
-                                      double.parse(electrochargedDMG.toStringAsFixed(1)).toString() + ' × 2',
+                                      double.parse(electrochargedDMG
+                                                  .toStringAsFixed(1))
+                                              .toString() +
+                                          ' × 2',
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.purple[400],
@@ -14586,17 +19364,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 SizedBox(height: 10),
                                 //ANCHOR Shattered DMG
-                                Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                  SelectableText(
-                                    'Shattered'.tr() + ':(' + shatteredDMGpercent.toStringAsFixed(1) + '%)',
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      height: 1.1,
-                                    ),
-                                  )
-                                ]),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      SelectableText(
+                                        'Shattered'.tr() +
+                                            ':(' +
+                                            shatteredDMGpercent
+                                                .toStringAsFixed(1) +
+                                            '%)',
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          height: 1.1,
+                                        ),
+                                      )
+                                    ]),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
@@ -14610,7 +19394,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     ),
                                     SelectableText(
-                                      double.parse(shatteredDMG.toStringAsFixed(1)).toString(),
+                                      double.parse(
+                                              shatteredDMG.toStringAsFixed(1))
+                                          .toString(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.grey[400],
@@ -14638,17 +19424,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 SizedBox(height: 10),
                                 //ANCHOR swirl DMG
-                                Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                  SelectableText(
-                                    'Swirl'.tr() + ':(' + swirlDMGpercent.toStringAsFixed(1) + '%)',
-                                    style: TextStyle(
-                                      //fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      height: 1.1,
-                                    ),
-                                  )
-                                ]),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      SelectableText(
+                                        'Swirl'.tr() +
+                                            ':(' +
+                                            swirlDMGpercent.toStringAsFixed(1) +
+                                            '%)',
+                                        style: TextStyle(
+                                          //fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          height: 1.1,
+                                        ),
+                                      )
+                                    ]),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
@@ -14662,7 +19453,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     ),
                                     SelectableText(
-                                      double.parse(swirlDMGonCryo.toStringAsFixed(1)).toString(),
+                                      double.parse(
+                                              swirlDMGonCryo.toStringAsFixed(1))
+                                          .toString(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.lightBlue[400],
@@ -14702,7 +19495,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     ),
                                     SelectableText(
-                                      double.parse(swirlDMGonPyro.toStringAsFixed(1)).toString(),
+                                      double.parse(
+                                              swirlDMGonPyro.toStringAsFixed(1))
+                                          .toString(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.red[400],
@@ -14743,7 +19538,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     ),
                                     SelectableText(
-                                      double.parse(swirlDMGonHydro.toStringAsFixed(1)).toString(),
+                                      double.parse(swirlDMGonHydro
+                                              .toStringAsFixed(1))
+                                          .toString(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.blue[400],
@@ -14784,7 +19581,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ),
                                     ),
                                     SelectableText(
-                                      double.parse(swirlDMGonElectro.toStringAsFixed(1)).toString(),
+                                      double.parse(swirlDMGonElectro
+                                              .toStringAsFixed(1))
+                                          .toString(),
                                       style: TextStyle(
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.purple[400],
@@ -14903,7 +19702,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 //ANCHOR method:damagebarbuilder(crit)
-  FractionallySizedBox builddamagebarwithcrit(Color titlec, String title, Color noncritc, Color expc, Color critc, var noncrit, var exp, var crit) {
+  FractionallySizedBox builddamagebarwithcrit(Color titlec, String title,
+      Color noncritc, Color expc, Color critc, var noncrit, var exp, var crit) {
     return FractionallySizedBox(
       widthFactor: 1.0,
       child: Scrollbar(
@@ -14912,17 +19712,19 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                SelectableText(
-                  title,
-                  style: TextStyle(
-                    //fontWeight: FontWeight.bold,
-                    color: titlec,
-                    fontSize: 15,
-                    height: 1.1,
-                  ),
-                ),
-              ]),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    SelectableText(
+                      title,
+                      style: TextStyle(
+                        //fontWeight: FontWeight.bold,
+                        color: titlec,
+                        fontSize: 15,
+                        height: 1.1,
+                      ),
+                    ),
+                  ]),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
