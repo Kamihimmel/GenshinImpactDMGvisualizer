@@ -8366,7 +8366,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (dragonslayerOn ? basicatk * 48 / 100 : 0) +
         (bennetqOn ? bennetbasicatk * bennetqlvtoratio[bennetqlv] / 100 : 0) +
         (manualatkOn ? manualatk : 0) +
-        (manualatkpercentOn ? basicatk * manualatkpercent / 100 : 0);
+        (manualatkpercentOn ? basicatk * manualatkpercent / 100 : 0) +
+        (rulebythunder1On ? basicatk * (15 + weaponref * 5) / 100 : 0);
 
     allatk = basicatk + bonusatk;
 
