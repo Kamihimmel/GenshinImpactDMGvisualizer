@@ -8293,6 +8293,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (rapidfiringOn ? (30 + weaponref * 10) : 0) +
         (reminiscenceofshime4On ? 50 : 0) +
         (amatsumiOn ? 30 : 0) +
+        (gladiator4On ? 35 : 0) +
         (rulebythunder2On ? ((rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))) : 0) as double;
     //bonusChargedATK
     bonusChargedATKDMGpercent = (reminiscenceofshime4On ? 50 : 0) +
@@ -13839,12 +13840,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                             });
                                           },
                                         ),
-                                      if ((artifactsetAselect == 'gladiator' || artifactsetBselect == 'gladiator') && (charactertoinfo[currentcharacter]['wtype'] == 'bow'||charactertoinfo[currentcharacter]['wtype'] == 'catalyst'))
+                                      if ((artifactsetAselect == 'gladiator' || artifactsetBselect == 'gladiator') &&
+                                          (charactertoinfo[currentcharacter]['wtype'] == 'bow' || charactertoinfo[currentcharacter]['wtype'] == 'catalyst'))
                                         FilterChip(
                                           label: Text('${"2 set".tr()}: ${"ATK".tr()} +18% '),
                                           backgroundColor: Colors.grey[300],
                                         ),
-                                      if ((artifactsetAselect == 'gladiator' && artifactsetBselect == 'gladiator') && (charactertoinfo[currentcharacter]['wtype'] == 'bow'||charactertoinfo[currentcharacter]['wtype'] == 'catalyst'))
+                                      if ((artifactsetAselect == 'gladiator' && artifactsetBselect == 'gladiator') &&
+                                          (charactertoinfo[currentcharacter]['wtype'] == 'bow' || charactertoinfo[currentcharacter]['wtype'] == 'catalyst'))
                                         FilterChip(
                                           label: Text('${"4 set".tr()}: ${"Increase Normal Attack DMG by 35% (Using sword/claymore/poleram)".tr()}'),
                                           backgroundColor: Colors.red[300],
