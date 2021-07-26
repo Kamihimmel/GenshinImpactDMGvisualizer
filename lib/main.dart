@@ -8921,21 +8921,21 @@ class _MyHomePageState extends State<MyHomePage> {
     chargedatkdmgc = allatk *
         (chargedattackdmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     chargedatkdmgnc = allatk *
         (chargedattackdmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres;
 
     chargedatkdmgexp = allatk *
         (chargedattackdmgpercent / 100) *
-        (1 + bonusPhysicalDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPhysicalres *
@@ -9082,21 +9082,21 @@ class _MyHomePageState extends State<MyHomePage> {
     cyrochargedatkdmgc = allatk *
         (chargedattackdmgpercent / 100) *
         (1 + allCD / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusCryoDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores;
 
     cyrochargedatkdmgnc = allatk *
         (chargedattackdmgpercent / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusCryoDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores;
 
     cyrochargedatkdmgexp = allatk *
         (chargedattackdmgpercent / 100) *
-        (1 + bonusCryoDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (1 + bonusCryoDMGpercent / 100 + bonusChargedATKDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores *
