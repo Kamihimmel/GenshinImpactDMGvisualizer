@@ -13343,44 +13343,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           },
                                         ),
                                       ]),
-                                    Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-                                      SelectableText(
-                                        'Constellation'.tr(),
-                                        style: TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 150,
-                                        child: Slider(
-                                          min: 0,
-                                          max: 10,
-                                          divisions: 10,
-                                          activeColor: Colors.red,
-                                          inactiveColor: Colors.red[200],
-                                          label: troublemakerstack.toString(),
-                                          value: troublemakerstack.toDouble(),
-                                          onChanged: (value) {
-                                            setState(() {
-                                              troublemakerstack = value.toInt();
-                                            });
-                                          },
-                                        ),
-                                      ),
-                                      FilterChip(
-                                        selectedColor: Colors.red,
-                                        backgroundColor: Colors.red[200],
-                                        label: Text('Summer Scorch: 1% pyro per stack'.tr()),
-                                        selected: summerscorchOn,
-                                        onSelected: (bool value) {
-                                          setState(() {
-                                            summerscorchOn = value;
-                                          });
-                                        },
-                                      ),
-                                    ]),
+
                                     //ANCHOR CharacterOptions:ayakaskill
                                     if (currentcharacter == 'ayaka')
                                       Wrap(spacing: 10, runSpacing: 10, crossAxisAlignment: WrapCrossAlignment.center, children: <Widget>[
