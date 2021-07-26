@@ -405,6 +405,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'messenger': AssetImage('images/weapon/Weapon_Messenger.png'),
     'ebonybow': AssetImage('images/weapon/Weapon_Ebony_Bow.png'),
     'thunderingpulse': AssetImage('images/weapon/Weapon_Thundering_Pulse.png'),
+    'mistsplitterreforged': AssetImage('images/weapon/Weapon_Mistsplitter_Reforged.png'),
   };
 
   //     'ATK%',
@@ -1726,6 +1727,10 @@ class _MyHomePageState extends State<MyHomePage> {
   bool rulebythunder2On = false;
   int rulebythunder2Times = 2;
 
+  bool mistsplitteredge1On = false;
+  bool mistsplitteredge2On = false;
+  int mistsplitteredge2Times = 3;
+
   bool pyro2On = false;
   bool cryo2On = false;
   bool zhonglieOn = false;
@@ -2091,6 +2096,36 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       rapidfiringOn = false;
     }
+
+    if (weaponselect == "mistsplitterreforged") {
+      mistsplitteredge1On = true;
+      mistsplitteredge2On = true;
+      weapontoatk = {1: 48, 5: 65, 10: 87, 15: 110, 20: 133, 25: 188, 30: 212, 35: 236, 40: 261, 45: 316, 50: 341, 55: 398, 60: 423, 65: 480, 70: 506, 75: 563, 80: 590, 85: 648, 90: 674};
+      weapontoCDpercent = {
+        1: 9.6,
+        5: 11.2,
+        10: 13.1,
+        15: 15,
+        20: 17,
+        25: 18.9,
+        30: 20.8,
+        35: 22.8,
+        40: 24.7,
+        45: 26.7,
+        50: 28.6,
+        55: 30.5,
+        60: 32.5,
+        65: 34.4,
+        70: 36.3,
+        75: 38.3,
+        80: 40.2,
+        85: 42.2,
+        90: 44.1
+      };
+    } else {
+      mistsplitteredge1On = false;
+      mistsplitteredge2On = false;
+    }
   }
 
   //ANCHOR weaponPopup
@@ -2105,163 +2140,220 @@ class _MyHomePageState extends State<MyHomePage> {
               return SimpleDialog(
                 title: Text('Select Weapon:').tr(),
                 children: <Widget>[
-                  SimpleDialogOption(
-                    child: Container(
-                      width: 400,
-                      height: 150,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Card(
-                            elevation: 3,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: InkWell(
-                              splashColor: Colors.blue.withAlpha(30),
-                              child: Container(
-                                width: 140,
-                                height: 140,
-                                decoration: BoxDecoration(
-                                  // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  image: DecorationImage(
-                                    image: AssetImage('images/weapon/Weapon_Amos.png'),
-                                    fit: BoxFit.contain,
+                  if (charactertoinfo[currentcharacter]['wtype'] == 'bow')
+                    SimpleDialogOption(
+                      child: Container(
+                        width: 400,
+                        height: 150,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.lightBlue[50],
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/weapon/Weapon_Amos.png'),
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            width: 200,
-                            child: Text(
-                              "Amos' Bow".tr(),
-                              style: TextStyle(
-                                //fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 20,
+                            Container(
+                              width: 200,
+                              child: Text(
+                                "Amos' Bow".tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        weaponstatcontrol('amos');
-                      });
+                      onPressed: () {
+                        setState(() {
+                          weaponstatcontrol('amos');
+                        });
 
-                      Navigator.pop(
-                        context,
-                        "user1",
-                      );
-                    },
-                  ),
-                  SimpleDialogOption(
-                    child: Container(
-                      width: 400,
-                      height: 150,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Card(
-                            elevation: 3,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: InkWell(
-                              splashColor: Colors.blue.withAlpha(30),
-                              child: Container(
-                                width: 140,
-                                height: 140,
-                                decoration: BoxDecoration(
-                                  // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  image: DecorationImage(
-                                    image: AssetImage('images/weapon/Weapon_Skyward_Harp.png'),
-                                    fit: BoxFit.contain,
+                        Navigator.pop(
+                          context,
+                          "user1",
+                        );
+                      },
+                    ),
+                  if (charactertoinfo[currentcharacter]['wtype'] == 'bow')
+                    SimpleDialogOption(
+                      child: Container(
+                        width: 400,
+                        height: 150,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.lightBlue[50],
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/weapon/Weapon_Skyward_Harp.png'),
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            width: 200,
-                            child: Text(
-                              'Skyward Harp'.tr(),
-                              style: TextStyle(
-                                //fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 20,
+                            Container(
+                              width: 200,
+                              child: Text(
+                                'Skyward Harp'.tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                      onPressed: () {
+                        setState(() {
+                          weaponstatcontrol('skywardharp');
+                        });
+                        Navigator.pop(
+                          context,
+                          "user1",
+                        );
+                      },
                     ),
-                    onPressed: () {
-                      setState(() {
-                        weaponstatcontrol('skywardharp');
-                      });
-                      Navigator.pop(
-                        context,
-                        "user1",
-                      );
-                    },
-                  ),
-                  SimpleDialogOption(
-                    child: Container(
-                      width: 400,
-                      height: 150,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Card(
-                            elevation: 3,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: InkWell(
-                              splashColor: Colors.blue.withAlpha(30),
-                              child: Container(
-                                width: 140,
-                                height: 140,
-                                decoration: BoxDecoration(
-                                  // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  image: DecorationImage(
-                                    image: AssetImage('images/weapon/Weapon_Thundering_Pulse.png'),
-                                    fit: BoxFit.contain,
+                  if (charactertoinfo[currentcharacter]['wtype'] == 'bow')
+                    SimpleDialogOption(
+                      child: Container(
+                        width: 400,
+                        height: 150,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.lightBlue[50],
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/weapon/Weapon_Thundering_Pulse.png'),
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            width: 200,
-                            child: Text(
-                              'Thundering Pulse'.tr(),
-                              style: TextStyle(
-                                //fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 20,
+                            Container(
+                              width: 200,
+                              child: Text(
+                                'Thundering Pulse'.tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                      onPressed: () {
+                        setState(() {
+                          weaponstatcontrol('thunderingpulse');
+                        });
+                        Navigator.pop(
+                          context,
+                          "user1",
+                        );
+                      },
                     ),
-                    onPressed: () {
-                      setState(() {
-                        weaponstatcontrol('thunderingpulse');
-                      });
-                      Navigator.pop(
-                        context,
-                        "user1",
-                      );
-                    },
-                  ),
+
+                  if (charactertoinfo[currentcharacter]['wtype'] == 'sword')
+                    SimpleDialogOption(
+                      child: Container(
+                        width: 400,
+                        height: 150,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.lightBlue[50],
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/weapon/Weapon_Mistsplitter_Reforged.png'),
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 200,
+                              child: Text(
+                                'Mistsplitter Reforged'.tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          weaponstatcontrol('mistsplitterreforged');
+                        });
+                        Navigator.pop(
+                          context,
+                          "user1",
+                        );
+                      },
+                    ),
 
                   // SimpleDialogOption(
                   //   child: Container(
@@ -2587,58 +2679,59 @@ class _MyHomePageState extends State<MyHomePage> {
                   //     );
                   //   },
                   // ),
-                  SimpleDialogOption(
-                    child: Container(
-                      width: 400,
-                      height: 150,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Card(
-                            elevation: 3,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: InkWell(
-                              splashColor: Colors.blue.withAlpha(30),
-                              child: Container(
-                                width: 140,
-                                height: 140,
-                                decoration: BoxDecoration(
-                                  // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  image: DecorationImage(
-                                    image: AssetImage('images/weapon/Weapon_Prototype_Crescent.png'),
-                                    fit: BoxFit.contain,
+                  if (charactertoinfo[currentcharacter]['wtype'] == 'bow')
+                    SimpleDialogOption(
+                      child: Container(
+                        width: 400,
+                        height: 150,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.lightBlue[50],
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/weapon/Weapon_Prototype_Crescent.png'),
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            width: 200,
-                            child: Text(
-                              'Prototype Crescent'.tr(),
-                              style: TextStyle(
-                                //fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 20,
+                            Container(
+                              width: 200,
+                              child: Text(
+                                'Prototype Crescent'.tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                      onPressed: () {
+                        setState(() {
+                          weaponstatcontrol('prototypecrescent');
+                        });
+                        Navigator.pop(
+                          context,
+                          "user1",
+                        );
+                      },
                     ),
-                    onPressed: () {
-                      setState(() {
-                        weaponstatcontrol('prototypecrescent');
-                      });
-                      Navigator.pop(
-                        context,
-                        "user1",
-                      );
-                    },
-                  ),
                   // SimpleDialogOption(
                   //   child: Container(
                   //     width: 400,
@@ -2747,58 +2840,59 @@ class _MyHomePageState extends State<MyHomePage> {
                   //     );
                   //   },
                   // ),
-                  SimpleDialogOption(
-                    child: Container(
-                      width: 400,
-                      height: 150,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Card(
-                            elevation: 3,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: InkWell(
-                              splashColor: Colors.blue.withAlpha(30),
-                              child: Container(
-                                width: 140,
-                                height: 140,
-                                decoration: BoxDecoration(
-                                  // color: Colors.lightBlue[50],
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  image: DecorationImage(
-                                    image: AssetImage('images/weapon/Weapon_Rust.png'),
-                                    fit: BoxFit.contain,
+                  if (charactertoinfo[currentcharacter]['wtype'] == 'bow')
+                    SimpleDialogOption(
+                      child: Container(
+                        width: 400,
+                        height: 150,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.lightBlue[50],
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/weapon/Weapon_Rust.png'),
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          Container(
-                            width: 200,
-                            child: Text(
-                              'Rust'.tr(),
-                              style: TextStyle(
-                                //fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 20,
+                            Container(
+                              width: 200,
+                              child: Text(
+                                'Rust'.tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                      onPressed: () {
+                        setState(() {
+                          weaponstatcontrol('rust');
+                        });
+                        Navigator.pop(
+                          context,
+                          "user1",
+                        );
+                      },
                     ),
-                    onPressed: () {
-                      setState(() {
-                        weaponstatcontrol('rust');
-                      });
-                      Navigator.pop(
-                        context,
-                        "user1",
-                      );
-                    },
-                  ),
                   // SimpleDialogOption(
                   //   child: Container(
                   //     width: 400,
@@ -8566,7 +8660,16 @@ class _MyHomePageState extends State<MyHomePage> {
     a4PyroDMGpercentMain = a4ElementDMGpercentbyLVL[gstar][glv];
     a4PyroDMGpercent = artifact4mainstatcat == 6 ? a4PyroDMGpercentMain : 0;
 
-    bonusPyroDMGpercent = levelPyroDMGpercent + weaponPyroDMGpercent + a4PyroDMGpercent + troublemakerstack * 2 + (summerscorchOn ? troublemakerstack : 0) + (yoimiyaconstellation2On ? 25 : 0);
+    bonusPyroDMGpercent = levelPyroDMGpercent +
+        weaponPyroDMGpercent +
+        a4PyroDMGpercent +
+        troublemakerstack * 2 +
+        (summerscorchOn ? troublemakerstack : 0) +
+        (yoimiyaconstellation2On ? 25 : 0) +
+        (mistsplitteredge1On ? (9 + weaponref * 3) : 0) +
+        (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'pyro'
+            ? (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))
+            : 0);
 
     if (cleveltoHydroDMGpercent[level] != null) levelHydroDMGpercent = cleveltoHydroDMGpercent[level];
     if (weapontoHydroDMGpercent[weaponlv] != null) weaponHydroDMGpercent = weapontoHydroDMGpercent[weaponlv];
@@ -8574,7 +8677,13 @@ class _MyHomePageState extends State<MyHomePage> {
     a4HydroDMGpercentMain = a4ElementDMGpercentbyLVL[gstar][glv];
     a4HydroDMGpercent = artifact4mainstatcat == 7 ? a4HydroDMGpercentMain : 0;
 
-    bonusHydroDMGpercent = levelHydroDMGpercent + weaponHydroDMGpercent + a4HydroDMGpercent;
+    bonusHydroDMGpercent = levelHydroDMGpercent +
+        weaponHydroDMGpercent +
+        a4HydroDMGpercent +
+        (mistsplitteredge1On ? (9 + weaponref * 3) : 0) +
+        (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'hydro'
+            ? (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))
+            : 0);
 
     if (cleveltoCryoDMGpercent[level] != null) levelCryoDMGpercent = cleveltoCryoDMGpercent[level];
     if (weapontoCryoDMGpercent[weaponlv] != null) weaponCryoDMGpercent = weapontoCryoDMGpercent[weaponlv];
@@ -8582,7 +8691,16 @@ class _MyHomePageState extends State<MyHomePage> {
     a4CryoDMGpercentMain = a4ElementDMGpercentbyLVL[gstar][glv];
     a4CryoDMGpercent = artifact4mainstatcat == 8 ? a4CryoDMGpercentMain : 0;
 
-    bonusCryoDMGpercent = levelCryoDMGpercent + weaponCryoDMGpercent + a4CryoDMGpercent + (blizzardstrayer2On ? 15 : 0) + (harmonyOn ? 20 : 0) + (katenOn ? 18 : 0);
+    bonusCryoDMGpercent = levelCryoDMGpercent +
+        weaponCryoDMGpercent +
+        a4CryoDMGpercent +
+        (blizzardstrayer2On ? 15 : 0) +
+        (harmonyOn ? 20 : 0) +
+        (katenOn ? 18 : 0) +
+        (mistsplitteredge1On ? (9 + weaponref * 3) : 0) +
+        (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'cryo'
+            ? (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))
+            : 0);
 
     if (cleveltoElectroDMGpercent[level] != null) levelElectroDMGpercent = cleveltoElectroDMGpercent[level];
     if (weapontoElectroDMGpercent[weaponlv] != null) weaponElectroDMGpercent = weapontoElectroDMGpercent[weaponlv];
@@ -8590,7 +8708,14 @@ class _MyHomePageState extends State<MyHomePage> {
     a4ElectroDMGpercentMain = a4ElementDMGpercentbyLVL[gstar][glv];
     a4ElectroDMGpercent = artifact4mainstatcat == 9 ? a4ElectroDMGpercentMain : 0;
 
-    bonusElectroDMGpercent = levelElectroDMGpercent + weaponElectroDMGpercent + a4ElectroDMGpercent + (thunderbird2On == true ? 15 : 0);
+    bonusElectroDMGpercent = levelElectroDMGpercent +
+        weaponElectroDMGpercent +
+        a4ElectroDMGpercent +
+        (thunderbird2On == true ? 15 : 0) +
+        (mistsplitteredge1On ? (9 + weaponref * 3) : 0) +
+        (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'electro'
+            ? (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))
+            : 0);
 
     if (cleveltoAnemoDMGpercent[level] != null) levelAnemoDMGpercent = cleveltoAnemoDMGpercent[level];
     if (weapontoAnemoDMGpercent[weaponlv] != null) weaponAnemoDMGpercent = weapontoAnemoDMGpercent[weaponlv];
@@ -8598,7 +8723,13 @@ class _MyHomePageState extends State<MyHomePage> {
     a4AnemoDMGpercentMain = a4ElementDMGpercentbyLVL[gstar][glv];
     a4AnemoDMGpercent = artifact4mainstatcat == 10 ? a4AnemoDMGpercentMain : 0;
 
-    bonusAnemoDMGpercent = levelAnemoDMGpercent + weaponAnemoDMGpercent + a4AnemoDMGpercent;
+    bonusAnemoDMGpercent = levelAnemoDMGpercent +
+        weaponAnemoDMGpercent +
+        a4AnemoDMGpercent +
+        (mistsplitteredge1On ? (9 + weaponref * 3) : 0) +
+        (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'anemo'
+            ? (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))
+            : 0);
 
     if (cleveltoGeoDMGpercent[level] != null) levelGeoDMGpercent = cleveltoGeoDMGpercent[level];
     if (weapontoGeoDMGpercent[weaponlv] != null) weaponGeoDMGpercent = weapontoGeoDMGpercent[weaponlv];
@@ -8606,7 +8737,13 @@ class _MyHomePageState extends State<MyHomePage> {
     a4GeoDMGpercentMain = a4ElementDMGpercentbyLVL[gstar][glv];
     a4GeoDMGpercent = artifact4mainstatcat == 11 ? a4GeoDMGpercentMain : 0;
 
-    bonusGeoDMGpercent = levelGeoDMGpercent + weaponGeoDMGpercent + a4GeoDMGpercent;
+    bonusGeoDMGpercent = levelGeoDMGpercent +
+        weaponGeoDMGpercent +
+        a4GeoDMGpercent +
+        (mistsplitteredge1On ? (9 + weaponref * 3) : 0) +
+        (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'geo'
+            ? (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))
+            : 0);
 
     //enemyparams
 
@@ -12197,6 +12334,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                             if (troublemakerstack != 0) buildStatRow(Colors.red, 'Tricks of the Trouble-Maker'.tr(), (troublemakerstack * 2).toString()),
                                             if (summerscorchOn) buildStatRow(Colors.red[400], 'Summer Scorch'.tr(), '$troublemakerstack'),
                                             if (yoimiyaconstellation2On) buildStatRow(Colors.amber, 'A Procession of Bonfires'.tr(), '25'),
+                                            if (mistsplitteredge1On) buildStatRow(Colors.purple, 'mistsplitteredge1'.tr(), (9 + weaponref * 3).toString()),
+                                            if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'pyro')
+                                              buildStatRow(Colors.amber, 'mistsplitteredge2'.tr(),
+                                                  (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21))).toString()),
                                           ],
                                         ),
                                       //ANCHOR statPyroDMG:bar
@@ -12210,6 +12351,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                             if (troublemakerstack != 0) buildstatbarpercent(Colors.red, troublemakerstack * 2),
                                             if (summerscorchOn) buildstatbarpercent(Colors.red[400], troublemakerstack),
                                             if (yoimiyaconstellation2On) buildstatbarpercent(Colors.amber, 25),
+                                            if (mistsplitteredge1On) buildstatbarpercent(Colors.purple, (9 + weaponref * 3)),
+                                            if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'pyro')
+                                              buildstatbarpercent(
+                                                  Colors.amber, (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))),
                                           ],
                                         ),
                                       //ANCHOR Hydro Damage Title
@@ -12225,6 +12370,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (levelHydroDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelHydroDMGpercent'),
                                           if (weaponHydroDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponHydroDMGpercent'),
                                           if (artifact4mainstatcat == 7) buildStatRow(Colors.purple, 'a4'.tr(), '$a4HydroDMGpercent'),
+                                          if (mistsplitteredge1On) buildStatRow(Colors.purple, 'mistsplitteredge1'.tr(), (9 + weaponref * 3).toString()),
+                                          if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'hydro')
+                                            buildStatRow(Colors.amber, 'mistsplitteredge2'.tr(),
+                                                (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21))).toString()),
                                         ],
                                       ),
                                       //ANCHOR statHydroDMG:bar
@@ -12234,6 +12383,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (levelHydroDMGpercent != 0) buildstatbarpercent(Colors.red, levelHydroDMGpercent),
                                           if (weaponHydroDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponHydroDMGpercent),
                                           if (artifact4mainstatcat == 7) buildstatbarpercent(Colors.purple, a4HydroDMGpercent),
+                                          if (mistsplitteredge1On) buildstatbarpercent(Colors.purple, (9 + weaponref * 3)),
+                                          if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'hydro')
+                                            buildstatbarpercent(
+                                                Colors.amber, (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))),
                                         ],
                                       ),
                                       //ANCHOR Cryo Damage Title
@@ -12252,6 +12405,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (blizzardstrayer2On) buildStatRow(Colors.blue[300], 'Blizzard2'.tr(), '15'),
                                           if (harmonyOn) buildStatRow(Colors.amber, 'Harmony between Heaven and Earth'.tr(), '20'),
                                           if (katenOn) buildStatRow(Colors.blue, 'katen'.tr(), '18'),
+                                          if (mistsplitteredge1On) buildStatRow(Colors.purple, 'mistsplitteredge1'.tr(), (9 + weaponref * 3).toString()),
+                                          if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'cryo')
+                                            buildStatRow(Colors.amber, 'mistsplitteredge2'.tr(),
+                                                (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21))).toString()),
                                         ],
                                       ),
                                       //ANCHOR statCryoDMG:bar
@@ -12264,6 +12421,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (blizzardstrayer2On) buildstatbarpercent(Colors.blue[300], 15),
                                           if (harmonyOn) buildstatbarpercent(Colors.amber, 20),
                                           if (katenOn) buildstatbarpercent(Colors.blue, 18),
+                                          if (mistsplitteredge1On) buildstatbarpercent(Colors.purple, (9 + weaponref * 3)),
+                                          if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'cryo')
+                                            buildstatbarpercent(
+                                                Colors.amber, (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))),
                                         ],
                                       ),
                                       //ANCHOR Electro Damage Title
@@ -12280,6 +12441,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (weaponElectroDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponElectroDMGpercent'),
                                           if (artifact4mainstatcat == 9) buildStatRow(Colors.purple, 'a4'.tr(), '$a4ElectroDMGpercent'),
                                           if (thunderbird2On) buildStatRow(Colors.purple[400], 'Thundering Fury 2 Set'.tr(), '15'),
+                                          if (mistsplitteredge1On) buildStatRow(Colors.purple, 'mistsplitteredge1'.tr(), (9 + weaponref * 3).toString()),
+                                          if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'electro')
+                                            buildStatRow(Colors.amber, 'mistsplitteredge2'.tr(),
+                                                (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21))).toString()),
                                         ],
                                       ),
                                       //ANCHOR statElectroDMG:bar
@@ -12289,7 +12454,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (levelElectroDMGpercent != 0) buildstatbarpercent(Colors.red, levelElectroDMGpercent),
                                           if (weaponElectroDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponElectroDMGpercent),
                                           if (artifact4mainstatcat == 9) buildstatbarpercent(Colors.purple, a4ElectroDMGpercent),
-                                          if (thunderbird2On) buildstatbarpercent(Colors.purple[400], 15)
+                                          if (thunderbird2On) buildstatbarpercent(Colors.purple[400], 15),
+                                          if (mistsplitteredge1On) buildstatbarpercent(Colors.purple, (9 + weaponref * 3)),
+                                          if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'electro')
+                                            buildstatbarpercent(
+                                                Colors.amber, (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))),
                                         ],
                                       ),
                                       //ANCHOR Anemo Damage Title
@@ -12305,6 +12474,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (levelAnemoDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelAnemoDMGpercent'),
                                           if (weaponAnemoDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponAnemoDMGpercent'),
                                           if (artifact4mainstatcat == 10) buildStatRow(Colors.purple, 'a4'.tr(), '$a4AnemoDMGpercent'),
+                                          if (mistsplitteredge1On) buildStatRow(Colors.purple, 'mistsplitteredge1'.tr(), (9 + weaponref * 3).toString()),
+                                          if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'anemo')
+                                            buildStatRow(Colors.amber, 'mistsplitteredge2'.tr(),
+                                                (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21))).toString()),
                                         ],
                                       ),
                                       //ANCHOR statAnemoDMG:bar
@@ -12314,6 +12487,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (levelAnemoDMGpercent != 0) buildstatbarpercent(Colors.red, levelAnemoDMGpercent),
                                           if (weaponAnemoDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponAnemoDMGpercent),
                                           if (artifact4mainstatcat == 10) buildstatbarpercent(Colors.purple, a4AnemoDMGpercent),
+                                          if (mistsplitteredge1On) buildstatbarpercent(Colors.purple, (9 + weaponref * 3)),
+                                          if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'anemo')
+                                            buildstatbarpercent(
+                                                Colors.amber, (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))),
                                         ],
                                       ),
                                       //ANCHOR Geo Damage Title
@@ -12329,6 +12506,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (levelGeoDMGpercent != 0) buildStatRow(Colors.red, 'character'.tr(), '$levelGeoDMGpercent'),
                                           if (weaponGeoDMGpercent != 0) buildStatRow(Colors.green, 'weapon'.tr(), '$weaponGeoDMGpercent'),
                                           if (artifact4mainstatcat == 11) buildStatRow(Colors.purple, 'a4'.tr(), '$a4GeoDMGpercent'),
+                                          if (mistsplitteredge1On) buildStatRow(Colors.purple, 'mistsplitteredge1'.tr(), (9 + weaponref * 3).toString()),
+                                          if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'geo')
+                                            buildStatRow(Colors.amber, 'mistsplitteredge2'.tr(),
+                                                (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21))).toString()),
                                         ],
                                       ),
                                       //ANCHOR statGeoDMG:bar
@@ -12338,6 +12519,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (levelGeoDMGpercent != 0) buildstatbarpercent(Colors.red, levelGeoDMGpercent),
                                           if (weaponGeoDMGpercent != 0) buildstatbarpercent(Colors.blue, weaponGeoDMGpercent),
                                           if (artifact4mainstatcat == 11) buildstatbarpercent(Colors.purple, a4GeoDMGpercent),
+                                          if (mistsplitteredge1On) buildstatbarpercent(Colors.purple, (9 + weaponref * 3)),
+                                          if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'geo')
+                                            buildstatbarpercent(
+                                                Colors.amber, (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))),
                                         ],
                                       ),
 
@@ -13650,6 +13835,65 @@ class _MyHomePageState extends State<MyHomePage> {
                                               onSelected: (bool value) {
                                                 setState(() {
                                                   rulebythunder2Times = 3;
+                                                });
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                    if (mistsplitteredge1On)
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label: Text("Mistsplitter's Edge1: Element DMG + ".tr() + (9 + weaponref * 3).toString() + '%'),
+                                              selected: true,
+                                              selectedColor: Colors.purple[300],
+                                              onSelected: (bool value) {
+                                                setState(() {});
+                                              },
+                                            ),
+                                            FilterChip(
+                                              label: Text("Mistsplitter's Edge2: Character Element DMG +".tr() +
+                                                  (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21))).toString() +
+                                                  "% Mistsplitter's Emblem lv".tr() +
+                                                  mistsplitteredge2Times.toString()),
+                                              selected: mistsplitteredge2On,
+                                              selectedColor: Colors.amber,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  mistsplitteredge2On = value;
+                                                });
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            ChoiceChip(
+                                              label: Text('1'),
+                                              selected: (mistsplitteredge2Times == 1),
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  mistsplitteredge2Times = 1;
+                                                });
+                                              },
+                                            ),
+                                            ChoiceChip(
+                                              label: Text('2'),
+                                              selected: (mistsplitteredge2Times == 2),
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  mistsplitteredge2Times = 2;
+                                                });
+                                              },
+                                            ),
+                                            ChoiceChip(
+                                              label: Text('3'),
+                                              selected: (mistsplitteredge2Times == 3),
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  mistsplitteredge2Times = 3;
                                                 });
                                               },
                                             ),
