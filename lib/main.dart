@@ -1470,6 +1470,57 @@ class _MyHomePageState extends State<MyHomePage> {
       14: 404.76,
       15: 427.04,
     },
+    'Kamisato Art: Hyouka DMG': {
+      1: 239.2,
+      2: 257.14,
+      3: 275.08,
+      4: 299,
+      5: 316.94,
+      6: 334.88,
+      7: 358.8,
+      8: 382.72,
+      9: 406.64,
+      10: 430.56,
+      11: 454.48,
+      12: 478.4,
+      13: 508.3,
+      14: 538.2,
+      15: 568.1,
+    },
+    'Kamisato Art: Soumetsu(Cutting) DMG': {
+      1: 112.3,
+      2: 120.72,
+      3: 129.15,
+      4: 140.38,
+      5: 148.8,
+      6: 157.22,
+      7: 168.45,
+      8: 179.68,
+      9: 190.91,
+      10: 202.14,
+      11: 213.37,
+      12: 224.6,
+      13: 238.64,
+      14: 252.68,
+      15: 266.71,
+    },
+    'Kamisato Art: Soumetsu(Bloom) DMG': {
+      1: 168.45,
+      2: 181.02,
+      3: 193.72,
+      4: 210.56,
+      5: 223.2,
+      6: 235.83,
+      7: 252.68,
+      8: 269.52,
+      9: 286.36,
+      10: 303.21,
+      11: 320.05,
+      12: 336.9,
+      13: 357.96,
+      14: 379.01,
+      15: 400.07,
+    },
   };
 
   double hit1dmgpercent = 0;
@@ -1653,6 +1704,21 @@ class _MyHomePageState extends State<MyHomePage> {
   double aurousblazedmgnc = 0;
   double aurousblazedmgexp = 0;
   double aurousblazedmgc = 0;
+
+  double hyoukadmgpercent = 0;
+  double hyoukadmgnc = 0;
+  double hyoukadmgexp = 0;
+  double hyoukadmgc = 0;
+
+  double soumetsucuttingdmgpercent = 0;
+  double soumetsucuttingdmgnc = 0;
+  double soumetsucuttingdmgexp = 0;
+  double soumetsucuttingdmgc = 0;
+
+  double soumetsubloomdmgpercent = 0;
+  double soumetsubloomdmgnc = 0;
+  double soumetsubloomdmgexp = 0;
+  double soumetsubloomdmgc = 0;
 
   double echoingballaddmgnc = 0;
   double echoingballaddmgexp = 0;
@@ -8889,6 +8955,10 @@ class _MyHomePageState extends State<MyHomePage> {
           plungedmgpercent = ayakanatklvl['PlungeDMG'][natklv];
           lplungedmgpercent = ayakanatklvl['LPlungeDMG'][natklv];
           hplungedmgpercent = ayakanatklvl['HPlungeDMG'][natklv];
+
+          hyoukadmgpercent = ayakanatklvl['Kamisato Art: Hyouka DMG'][eskilllv];
+          soumetsucuttingdmgpercent = ayakanatklvl['Kamisato Art: Soumetsu(Cutting) DMG'][eburstlv];
+          soumetsubloomdmgpercent = ayakanatklvl['Kamisato Art: Soumetsu(Bloom) DMG'][eburstlv];
         }
         break;
     }
@@ -9750,6 +9820,71 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    hyoukadmgc = allatk *
+        (hyoukadmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusCryoDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    hyoukadmgnc =
+        allatk * (hyoukadmgpercent / 100) * (1 + bonusCryoDMGpercent / 100 + bonusDMGpercent / 100) * (100 + level) / ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) * enemyCryores;
+
+    hyoukadmgexp = allatk *
+        (hyoukadmgpercent / 100) *
+        (1 + bonusCryoDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    soumetsucuttingdmgc = allatk *
+        (soumetsucuttingdmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusCryoDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    soumetsucuttingdmgnc = allatk *
+        (soumetsucuttingdmgpercent / 100) *
+        (1 + bonusCryoDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    soumetsucuttingdmgexp = allatk *
+        (soumetsucuttingdmgpercent / 100) *
+        (1 + bonusCryoDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    soumetsubloomdmgc = allatk *
+        (soumetsubloomdmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusCryoDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    soumetsubloomdmgnc = allatk *
+        (soumetsubloomdmgpercent / 100) *
+        (1 + bonusCryoDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores;
+
+    soumetsubloomdmgexp = allatk *
+        (soumetsubloomdmgpercent / 100) *
+        (1 + bonusCryoDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyCryores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
     echoingballaddmgc = allatk *
@@ -15220,6 +15355,27 @@ class _MyHomePageState extends State<MyHomePage> {
                                       SizedBox(height: 10),
                                     ],
                                   ),
+                                //ANCHOR Kamisato Art: Hyouka DMG
+                                if (currentcharacter == 'ayaka')
+                                  ExpansionTile(
+                                    tilePadding: EdgeInsets.all(0),
+                                    childrenPadding: EdgeInsets.all(0),
+                                    title: builddamagebarwithcrit(Colors.black, 'Hyouka'.tr() + ':($hyoukadmgpercent)%', Colors.lightBlue[200], Colors.lightBlue[400], Colors.lightBlue[600],
+                                        hyoukadmgnc, hyoukadmgexp, hyoukadmgc),
+                                    children: <Widget>[
+                                      builddamagebarwithcrit(
+                                          Colors.red,
+                                          'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                          Colors.lightBlue[200],
+                                          Colors.lightBlue[400],
+                                          Colors.lightBlue[600],
+                                          hyoukadmgnc * 1.5 * meltDMGpercent / 100,
+                                          hyoukadmgexp * 1.5 * meltDMGpercent / 100,
+                                          hyoukadmgc * 1.5 * meltDMGpercent / 100),
+                                      SizedBox(height: 10),
+                                    ],
+                                  ),
+                                //ANCHOR Teika Fire Dance DMG
                                 if (currentcharacter == 'yoimiya')
                                   ExpansionTile(
                                     tilePadding: EdgeInsets.all(0),
@@ -15275,6 +15431,42 @@ class _MyHomePageState extends State<MyHomePage> {
                                             celestialshowerdmgnc * 1.5 * meltDMGpercent / 100,
                                             celestialshowerdmgexp * 1.5 * meltDMGpercent / 100,
                                             celestialshowerdmgc * 1.5 * meltDMGpercent / 100),
+                                        SizedBox(height: 10),
+                                      ]),
+                                if (currentcharacter == 'ayaka')
+                                  ExpansionTile(
+                                      tilePadding: EdgeInsets.all(0),
+                                      childrenPadding: EdgeInsets.all(0),
+                                      title: builddamagebarwithcrit(Colors.black, 'Soumetsu(Cutting)'.tr() + ':($soumetsucuttingdmgpercent%)', Colors.lightBlue[200], Colors.lightBlue[400],
+                                          Colors.lightBlue[600], soumetsucuttingdmgnc, soumetsucuttingdmgexp, soumetsucuttingdmgc),
+                                      children: <Widget>[
+                                        builddamagebarwithcrit(
+                                            Colors.red,
+                                            'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                            Colors.lightBlue[200],
+                                            Colors.lightBlue[400],
+                                            Colors.lightBlue[600],
+                                            soumetsucuttingdmgnc * 1.5 * meltDMGpercent / 100,
+                                            soumetsucuttingdmgexp * 1.5 * meltDMGpercent / 100,
+                                            soumetsucuttingdmgc * 1.5 * meltDMGpercent / 100),
+                                        SizedBox(height: 10),
+                                      ]),
+                                if (currentcharacter == 'ayaka')
+                                  ExpansionTile(
+                                      tilePadding: EdgeInsets.all(0),
+                                      childrenPadding: EdgeInsets.all(0),
+                                      title: builddamagebarwithcrit(Colors.black, 'Soumetsu(Bloom)'.tr() + ':($soumetsubloomdmgpercent%)', Colors.lightBlue[200], Colors.lightBlue[400],
+                                          Colors.lightBlue[600], soumetsubloomdmgnc, soumetsubloomdmgexp, soumetsubloomdmgc),
+                                      children: <Widget>[
+                                        builddamagebarwithcrit(
+                                            Colors.red,
+                                            'Melt'.tr() + ':(' + double.parse((meltDMGpercent * 1.5).toStringAsFixed(1)).toString() + '%)',
+                                            Colors.lightBlue[200],
+                                            Colors.lightBlue[400],
+                                            Colors.lightBlue[600],
+                                            soumetsubloomdmgnc * 1.5 * meltDMGpercent / 100,
+                                            soumetsubloomdmgexp * 1.5 * meltDMGpercent / 100,
+                                            soumetsubloomdmgc * 1.5 * meltDMGpercent / 100),
                                         SizedBox(height: 10),
                                       ]),
                                 //ANCHOR Ryukin Saxifrage DMG
