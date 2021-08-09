@@ -43,6 +43,8 @@
     "Blizzard Strayer 4 set(cryo)": "Blizzard Strayer 4 set(cryo)",
     "Blizzard Strayer 4 set(frozen)": "Blizzard Strayer 4 set(frozen)",
     "Thundering Fury 2 Set": "Thundering Fury 2 Set",
+    "Thundering Fury 4 Set": "Thundering Fury 4 Set",
+    "Thundersoother 2 Set": "Thundersoother 2 Set",
     "Thundersoother 4 Set": "Thundersoother 4 Set",
     "Using an Elemental Burst increases all party members' ATK by 20% for 12s": "Using an Elemental Burst increases all party members' ATK by 20% for 12s",
     "Increase Normal Attack DMG by 35% (Using sword/claymore/poleram)": "Increase Normal Attack DMG by 35% (Using sword/claymore/poleram)",
@@ -292,5 +294,11 @@
     "Sky-Piercing Fang additional ATK":"Sky-Piercing Fang additional ATK",
     "Amenoma Kageuchi": "Amenoma Kageuchi",
     "Iwakura Succession: Gain 1 Succession Seed by Elemental Skill up to 3.After Elmental Burst regenerates ":"Iwakura Succession: Gain 1 Succession Seed by Elemental Skill up to 3.After Elmental Burst regenerates ",
-    "Energy for each Seed.":"Energy for each Seed."
+    "Energy for each Seed.":"Energy for each Seed.",
+    "Blackcliff Longsword":"Blackcliff Longsword",
+    "The Black Sword":"The Black Sword",
+    "Justice":"Justice",
+    "Justice: Normal and Charged Attacks DMG + ":"Justice: Normal and Charged Attacks DMG + ",
+    "Press the Advantage":"Press the Advantage",
+    "Press the Advantage: ATK + ":"Press the Advantage: ATK + "
 }

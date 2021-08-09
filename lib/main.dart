@@ -407,9 +407,10 @@ class _MyHomePageState extends State<MyHomePage> {
     'thunderingpulse': AssetImage('images/weapon/Weapon_Thundering_Pulse.png'),
     'mistsplitterreforged': AssetImage('images/weapon/Weapon_Mistsplitter_Reforged.png'),
     'skywardblade': AssetImage('images/weapon/Weapon_Skyward_Blade.png'),
-    'amenomakageuchi': AssetImage('images/weapon/Weapon_Amenoma_Kageuchi.png'),    
-	'blackclifflongsword':AssetImage('images/weapon/Weapon_Blackcliff_Longsword.png'),
-    'theblacksword':AssetImage('images/weapon/Weapon_The_Black_Sword.png'),  };
+    'amenomakageuchi': AssetImage('images/weapon/Weapon_Amenoma_Kageuchi.png'),
+    'blackclifflongsword': AssetImage('images/weapon/Weapon_Blackcliff_Longsword.png'),
+    'theblacksword': AssetImage('images/weapon/Weapon_The_Black_Sword.png'),
+  };
 
   //     'ATK%',
   //     'HP%',
@@ -1290,7 +1291,7 @@ class _MyHomePageState extends State<MyHomePage> {
       3: 138,
       4: 150,
       5: 159,
-      6: 1688,
+      6: 168,
       7: 180,
       8: 192,
       9: 204,
@@ -1809,6 +1810,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   bool iwakurasuccessionOn = false;
 
+  bool blackclifflongswordsp = false;
+  bool theblackswordsp = false;
+  int blackcliffbufftimes = 1;
+
   bool pyro2On = false;
   bool cryo2On = false;
   bool zhonglieOn = false;
@@ -2262,6 +2267,62 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       iwakurasuccessionOn = false;
     }
+
+    if (weaponselect == "blackclifflongsword") {
+      blackclifflongswordsp = true;
+      weapontoatk = {1: 44, 5: 59, 10: 79, 15: 99, 20: 119, 25: 165, 30: 185, 35: 205, 40: 226, 45: 273, 50: 293, 55: 340, 60: 361, 65: 408, 70: 429, 75: 476, 80: 497, 85: 544, 90: 565};
+      weapontoCDpercent = {
+        1: 8,
+        5: 9.3,
+        10: 10.9,
+        15: 12.5,
+        20: 14.1,
+        25: 15.8,
+        30: 17.4,
+        35: 19,
+        40: 20.6,
+        45: 22.2,
+        50: 23.8,
+        55: 25.4,
+        60: 27.1,
+        65: 28.7,
+        70: 30.3,
+        75: 31.9,
+        80: 33.5,
+        85: 35.1,
+        90: 36.8
+      };
+    } else {
+      blackclifflongswordsp = false;
+    }
+
+    if (weaponselect == "theblacksword") {
+      theblackswordsp = true;
+      weapontoatk = {1: 42, 5: 56, 10: 74, 15: 91, 20: 109, 25: 152, 30: 170, 35: 187, 40: 205, 45: 248, 50: 266, 55: 309, 60: 327, 65: 370, 70: 388, 75: 431, 80: 449, 85: 492, 90: 510};
+      weapontoCRpercent = {
+        1: 6,
+        5: 7,
+        10: 8.2,
+        15: 9.4,
+        20: 10.6,
+        25: 11.8,
+        30: 13,
+        35: 14.2,
+        40: 15.5,
+        45: 16.7,
+        50: 17.9,
+        55: 19.1,
+        60: 20.3,
+        65: 21.5,
+        70: 22.7,
+        75: 23.9,
+        80: 25.1,
+        85: 26.4,
+        90: 27.6
+      };
+    } else {
+      theblackswordsp = false;
+    }
   }
 
   //ANCHOR weaponPopup
@@ -2591,6 +2652,114 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         setState(() {
                           weaponstatcontrol('amenomakageuchi');
+                        });
+                        Navigator.pop(
+                          context,
+                          "user1",
+                        );
+                      },
+                    ),
+
+                  if (charactertoinfo[currentcharacter]['wtype'] == 'sword')
+                    SimpleDialogOption(
+                      child: Container(
+                        width: 400,
+                        height: 150,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.lightBlue[50],
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/weapon/Weapon_Blackcliff_Longsword.png'),
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 200,
+                              child: Text(
+                                'Blackcliff Longsword'.tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          weaponstatcontrol('blackclifflongsword');
+                        });
+                        Navigator.pop(
+                          context,
+                          "user1",
+                        );
+                      },
+                    ),
+
+                  if (charactertoinfo[currentcharacter]['wtype'] == 'sword')
+                    SimpleDialogOption(
+                      child: Container(
+                        width: 400,
+                        height: 150,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.lightBlue[50],
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/weapon/Weapon_The_Black_Sword.png'),
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 200,
+                              child: Text(
+                                'The Black Sword'.tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          weaponstatcontrol('theblacksword');
                         });
                         Navigator.pop(
                           context,
@@ -8632,7 +8801,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (reminiscenceofshime4On ? 50 : 0) +
         (amatsumiOn ? 30 : 0) +
         (gladiator4On ? 35 : 0) +
-        (rulebythunder2On ? ((rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))) : 0) as double;
+        (rulebythunder2On ? ((rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))) : 0) +
+        (theblackswordsp ? (15 + weaponref * 5) : 0) as double;
     //bonusChargedATK
     bonusChargedATKDMGpercent = (reminiscenceofshime4On ? 50 : 0) +
         (strongWilled1On ? (9 + weaponref * 3) : 0) +
@@ -8640,7 +8810,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (rapidfiringOn ? -10 : 0) +
         (amatsumiOn ? 30 : 0) +
         (ayakaconstellation6On ? 298 : 0) +
-        (troupesdawnlight4on ? 35 : 0) as double;
+        (troupesdawnlight4on ? 35 : 0) +
+        (theblackswordsp ? (15 + weaponref * 5) : 0) as double;
 
     //bonusplungeatk
     bonusPlungeATKDMGpercent = (reminiscenceofshime4On ? 50 : 0);
@@ -8708,7 +8879,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (bennetqOn ? bennetbasicatk * bennetqlvtoratio[bennetqlv] / 100 : 0) +
         (manualatkOn ? manualatk : 0) +
         (manualatkpercentOn ? basicatk * manualatkpercent / 100 : 0) +
-        (rulebythunder1On ? basicatk * (15 + weaponref * 5) / 100 : 0);
+        (rulebythunder1On ? basicatk * (15 + weaponref * 5) / 100 : 0) +
+        (blackclifflongswordsp ? basicatk * (9 + weaponref * 3) / 100 * blackcliffbufftimes : 0);
 
     allatk = basicatk + bonusatk;
 
@@ -11832,6 +12004,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 if (rulebythunder1On)
                                                   buildStatRow(Colors.purple, '${"Rule by Thunder1".tr()}%(' + (15 + weaponref * 5).toStringAsFixed(1) + ')',
                                                       (basicatk * (15 + weaponref * 5) / 100).toStringAsFixed(1)),
+                                                if (blackclifflongswordsp && blackcliffbufftimes > 0)
+                                                  buildStatRow(Colors.black, '${"Press the Advantage".tr()}%(' + ((9 + weaponref * 3) * blackcliffbufftimes).toStringAsFixed(1) + ')',
+                                                      (basicatk * (9 + weaponref * 3) * blackcliffbufftimes / 100).toStringAsFixed(1)),
                                               ],
                                             ),
                                             //ANCHOR statATK:bar
@@ -12501,6 +12676,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             if (rapidfiringOn) buildStatRow(Colors.teal[300], 'Rapid Firing'.tr(), (30 + weaponref * 10).toString()),
                                             if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
                                             if (amatsumiOn) buildStatRow(Colors.blue, 'amatsumi'.tr(), "30"),
+                                            if (theblackswordsp) buildStatRow(Colors.black, 'Justice'.tr(), (15 + weaponref * 5).toString()),
                                           ],
                                         ),
                                       //ANCHOR statNormalATKDMG:bar
@@ -12540,6 +12716,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             if (rapidfiringOn) buildstatbarpercent(Colors.teal[300], (30 + weaponref * 10)),
                                             if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
                                             if (amatsumiOn) buildstatbarpercent(Colors.blue, 30),
+                                            if (theblackswordsp) buildstatbarpercent(Colors.black, (15 + weaponref * 5) as double),
                                           ],
                                         ),
                                       if (bonusChargedATKDMGpercent != 0)
@@ -12558,6 +12735,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             if (reminiscenceofshime4On) buildStatRow(Colors.red, 'Reminiscence4'.tr(), "50"),
                                             if (rapidfiringOn) buildStatRow(Colors.teal[300], 'Rapid Firing'.tr(), "-10"),
                                             if (amatsumiOn) buildStatRow(Colors.blue, 'amatsumi'.tr(), "30"),
+                                            if (theblackswordsp) buildStatRow(Colors.black, 'Justice'.tr(), (15 + weaponref * 5).toString()),
                                             if (ayakaconstellation6On) buildStatRow(Colors.grey, 'ayakaconstellation6'.tr(), "298"),
                                           ],
                                         ),
@@ -12607,6 +12785,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               ),
                                             if (reminiscenceofshime4On) buildstatbarpercent(Colors.red, 50),
                                             if (amatsumiOn) buildstatbarpercent(Colors.blue, 30),
+                                            if (theblackswordsp) buildstatbarpercent(Colors.black, (15 + weaponref * 5) as double),
                                             if (ayakaconstellation6On) buildstatbarpercent(Colors.grey, 298),
                                           ],
                                         ),
@@ -14277,6 +14456,70 @@ class _MyHomePageState extends State<MyHomePage> {
                                               selectedColor: Colors.tealAccent,
                                               onSelected: (bool value) {
                                                 setState(() {});
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                    if (weaponselect == 'theblacksword')
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label: Text('Justice: Normal and Charged Attacks DMG + '.tr() + (15 + weaponref * 5).toString() + '%'),
+                                              selected: theblackswordsp,
+                                              selectedColor: Colors.grey,
+                                              onSelected: (bool value) {
+                                                setState(() {});
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                    if (weaponselect == 'blackclifflongsword')
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label: Text("Press the Advantage: ATK + ".tr() + (blackcliffbufftimes * (9 + weaponref * 3)).toString() + "%"),
+                                              selected: blackclifflongswordsp,
+                                              selectedColor: Colors.grey,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  blackclifflongswordsp = value;
+                                                });
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            ChoiceChip(
+                                              label: Text('1'),
+                                              selected: (blackcliffbufftimes == 1),
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  blackcliffbufftimes = 1;
+                                                });
+                                              },
+                                            ),
+                                            ChoiceChip(
+                                              label: Text('2'),
+                                              selected: (blackcliffbufftimes == 2),
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  blackcliffbufftimes = 2;
+                                                });
+                                              },
+                                            ),
+                                            ChoiceChip(
+                                              label: Text('3'),
+                                              selected: (blackcliffbufftimes == 3),
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  blackcliffbufftimes = 3;
+                                                });
                                               },
                                             ),
                                           ]),

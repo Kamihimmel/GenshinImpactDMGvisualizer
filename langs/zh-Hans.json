@@ -43,6 +43,8 @@
     "Blizzard Strayer 4 set(cryo)": "冰风4冰附着加成",
     "Blizzard Strayer 4 set(frozen)": "冰风4冰冻加成",
     "Thundering Fury 2 Set": "如雷2",
+    "Thundering Fury 4 Set": "如雷4",
+    "Thundersoother 2 Set": "平雷2",
     "Thundersoother 4 Set": "平雷4",
     "Using an Elemental Burst increases all party members' ATK by 20% for 12s": "施放元素爆发后，队伍中所有角色ATK + 20%，持续12秒",
     "Increase Normal Attack DMG by 35% (Using sword/claymore/poleram)": "普通攻击伤害 + 35%，(单手剑、双手剑、长柄武器角色)",
@@ -291,5 +293,11 @@
     "Sky-Piercing Fang additional ATK":"穿刺高天的利齿附加伤害",
     "Amenoma Kageuchi": "天目影打刀",
     "Iwakura Succession: Gain 1 Succession Seed by Elemental Skill up to 3.After Elmental Burst regenerates ":"岩藏之胤：释放元素技能时获得一个胤种，至多3个。释放元素爆发后每个胤种回复",
-    "Energy for each Seed.":"点能量"
+    "Energy for each Seed.":"点能量",
+    "Blackcliff Longsword":"黑岩长剑",
+    "The Black Sword":"黑剑",
+    "Justice":"正义",
+    "Justice: Normal and Charged Attacks DMG + ":"正义：普通攻击与重击造成的伤害提升",
+    "Press the Advantage":"乘胜追击",
+    "Press the Advantage: ATK + ":"乘胜追击：攻击力增加"
 }
