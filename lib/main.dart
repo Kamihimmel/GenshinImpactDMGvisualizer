@@ -406,9 +406,10 @@ class _MyHomePageState extends State<MyHomePage> {
     'ebonybow': AssetImage('images/weapon/Weapon_Ebony_Bow.png'),
     'thunderingpulse': AssetImage('images/weapon/Weapon_Thundering_Pulse.png'),
     'mistsplitterreforged': AssetImage('images/weapon/Weapon_Mistsplitter_Reforged.png'),
-    'blackclifflongsword':AssetImage('images/weapon/Weapon_Blackcliff_Longsword.png'),
-    'theblacksword':AssetImage('images/weapon/Weapon_The_Black_Sword.png'),
-  };
+    'skywardblade': AssetImage('images/weapon/Weapon_Skyward_Blade.png'),
+    'amenomakageuchi': AssetImage('images/weapon/Weapon_Amenoma_Kageuchi.png'),    
+	'blackclifflongsword':AssetImage('images/weapon/Weapon_Blackcliff_Longsword.png'),
+    'theblacksword':AssetImage('images/weapon/Weapon_The_Black_Sword.png'),  };
 
   //     'ATK%',
   //     'HP%',
@@ -1726,6 +1727,10 @@ class _MyHomePageState extends State<MyHomePage> {
   double echoingballaddmgexp = 0;
   double echoingballaddmgc = 0;
 
+  double skypiercingfangdmgnc = 0;
+  double skypiercingfangdmgexp = 0;
+  double skypiercingfangdmgc = 0;
+
   double overloadDMGpercent = 0;
   double superconductDMGpercent = 0;
   double electrochargedDMGpercent = 0;
@@ -1798,6 +1803,11 @@ class _MyHomePageState extends State<MyHomePage> {
   bool mistsplitteredge1On = false;
   bool mistsplitteredge2On = false;
   int mistsplitteredge2Times = 3;
+
+  bool skypiercingfang1On = false;
+  bool skypiercingfang2On = false;
+
+  bool iwakurasuccessionOn = false;
 
   bool pyro2On = false;
   bool cryo2On = false;
@@ -2194,6 +2204,64 @@ class _MyHomePageState extends State<MyHomePage> {
       mistsplitteredge1On = false;
       mistsplitteredge2On = false;
     }
+
+    if (weaponselect == "skywardblade") {
+      skypiercingfang1On = true;
+      skypiercingfang2On = true;
+      weapontoatk = {1: 46, 5: 62, 10: 82, 15: 102, 20: 122, 25: 173, 30: 194, 35: 214, 40: 235, 45: 287, 50: 308, 55: 361, 60: 382, 65: 435, 70: 457, 75: 510, 80: 532, 85: 586, 90: 608};
+      weapontoERpercent = {
+        1: 12,
+        5: 13.9,
+        10: 16.4,
+        15: 18.8,
+        20: 21.2,
+        25: 23.6,
+        30: 26.1,
+        35: 28.5,
+        40: 30.9,
+        45: 33.3,
+        50: 35.7,
+        55: 38.2,
+        60: 40.6,
+        65: 43,
+        70: 45.4,
+        75: 47.9,
+        80: 50.3,
+        85: 52.7,
+        90: 55.1
+      };
+    } else {
+      skypiercingfang1On = false;
+      skypiercingfang2On = false;
+    }
+
+    if (weaponselect == "amenomakageuchi") {
+      iwakurasuccessionOn = true;
+      weapontoatk = {1: 41, 5: 54, 10: 69, 15: 84, 20: 99, 25: 140, 30: 155, 35: 169, 40: 184, 45: 224, 50: 238, 55: 278, 60: 293, 65: 333, 70: 347, 75: 387, 80: 401, 85: 440, 90: 454};
+      weapontoatkpercent = {
+        1: 12,
+        5: 13.9,
+        10: 16.4,
+        15: 18.8,
+        20: 21.2,
+        25: 23.6,
+        30: 26.1,
+        35: 28.5,
+        40: 30.9,
+        45: 33.3,
+        50: 35.7,
+        55: 38.2,
+        60: 40.6,
+        65: 43,
+        70: 45.4,
+        75: 47.9,
+        80: 50.3,
+        85: 52.7,
+        90: 55.1
+      };
+    } else {
+      iwakurasuccessionOn = false;
+    }
   }
 
   //ANCHOR weaponPopup
@@ -2415,6 +2483,114 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         setState(() {
                           weaponstatcontrol('mistsplitterreforged');
+                        });
+                        Navigator.pop(
+                          context,
+                          "user1",
+                        );
+                      },
+                    ),
+
+                  if (charactertoinfo[currentcharacter]['wtype'] == 'sword')
+                    SimpleDialogOption(
+                      child: Container(
+                        width: 400,
+                        height: 150,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.lightBlue[50],
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/weapon/Weapon_Skyward_Blade.png'),
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 200,
+                              child: Text(
+                                'Skyward Blade'.tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          weaponstatcontrol('skywardblade');
+                        });
+                        Navigator.pop(
+                          context,
+                          "user1",
+                        );
+                      },
+                    ),
+
+                  if (charactertoinfo[currentcharacter]['wtype'] == 'sword')
+                    SimpleDialogOption(
+                      child: Container(
+                        width: 400,
+                        height: 150,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.lightBlue[50],
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/weapon/Weapon_Amenoma_Kageuchi.png'),
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 200,
+                              child: Text(
+                                'Amenoma Kageuchi'.tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          weaponstatcontrol('amenomakageuchi');
                         });
                         Navigator.pop(
                           context,
@@ -8686,6 +8862,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (stat4CRpercentOn ? stat4CRpercent : 0) +
         (stat5CRpercentOn ? stat5CRpercent : 0) +
         (undividedHeartOn ? 20 : 0) +
+        (skypiercingfang1On ? (3 + weaponref) : 0) +
         (blizzardstrayer41On ? 20 : 0) +
         (blizzardstrayer42On ? 20 : 0) +
         (cryo2On ? 15 : 0) +
@@ -9908,6 +10085,29 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyPhysicalres *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
+    skypiercingfangdmgc = allatk *
+        ((15 + weaponref * 5) / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPhysicalres;
+
+    skypiercingfangdmgnc = allatk *
+        ((15 + weaponref * 5) / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPhysicalres;
+
+    skypiercingfangdmgexp = allatk *
+        ((15 + weaponref * 5) / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPhysicalres *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
     //screenadjust
     double heightadjust = (MediaQuery.of(context).size.height - 200 > 800) ? (MediaQuery.of(context).size.height - 200) : 800;
 
@@ -9953,19 +10153,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 // ...
               },
             ),
-            if (spoilermode)
-              ListTile(
-                title: Text('yoimiya').tr(),
-                onTap: () {
-                  // Update the state of the app.
-                  setState(() {
-                    currentcharacter = 'yoimiya';
-                    DynamicTheme.of(context).setTheme(1);
-                  });
+            // if (spoilermode)
+            ListTile(
+              title: Text('yoimiya').tr(),
+              onTap: () {
+                // Update the state of the app.
+                setState(() {
+                  currentcharacter = 'yoimiya';
+                  DynamicTheme.of(context).setTheme(1);
+                });
 
-                  // ...
-                },
-              ),
+                // ...
+              },
+            ),
             ListTile(
               title: Text('ayaka').tr(),
               onTap: () {
@@ -11932,6 +12132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 if (artifact5mainstatcat == 5) buildStatRow(Colors.purple, 'a5'.tr(), '$a5CR'),
                                                 if (stat5CRpercentOn == true) buildStatRow(Colors.teal, 'a5'.tr(), '$stat5CRpercent'),
                                                 if (undividedHeartOn == true) buildStatRow(Colors.amber, 'Undevided Heart'.tr(), '20'),
+                                                if (skypiercingfang1On == true) buildStatRow(Colors.amber, 'Sky-piercing Fang'.tr(), (3 + weaponref).toString()),
                                                 if (blizzardstrayer41On == true) buildStatRow(Colors.blue[300], 'Blizzard Strayer 4 set(cryo)'.tr(), '20'),
                                                 if (blizzardstrayer42On == true) buildStatRow(Colors.blue[400], 'Blizzard Strayer 4 set(frozen)'.tr(), '20'),
                                                 if (cryo2On == true) buildStatRow(Colors.blue[200], '2 Cryo'.tr(), '15'),
@@ -13656,17 +13857,17 @@ class _MyHomePageState extends State<MyHomePage> {
                                             },
                                           ),
                                         ),
-                                        FilterChip(
-                                          selectedColor: Colors.red,
-                                          backgroundColor: Colors.red[200],
-                                          label: Text('Summer Scorch: 1% pyro per stack'.tr()),
-                                          selected: summerscorchOn,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              summerscorchOn = value;
-                                            });
-                                          },
-                                        ),
+                                        // FilterChip(
+                                        //   selectedColor: Colors.red,
+                                        //   backgroundColor: Colors.red[200],
+                                        //   label: Text('Summer Scorch: 1% pyro per stack'.tr()),
+                                        //   selected: summerscorchOn,
+                                        //   onSelected: (bool value) {
+                                        //     setState(() {
+                                        //       summerscorchOn = value;
+                                        //     });
+                                        //   },
+                                        // ),
                                       ]),
 
                                     //ANCHOR CharacterOptions:ayakaskill
@@ -14032,6 +14233,50 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 setState(() {
                                                   mistsplitteredge2Times = 3;
                                                 });
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                    if (weaponselect == 'skywardblade')
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label: Text('Sky-Piercing Fang1: Crit Rate + '.tr() + (3 + weaponref).toString() + '%'.tr()),
+                                              selected: skypiercingfang1On,
+                                              selectedColor: Colors.tealAccent,
+                                              onSelected: (bool value) {
+                                                setState(() {});
+                                              },
+                                            ),
+                                            FilterChip(
+                                              label: Text('Sky-Piercing Fang2: Movement/ATK SPD + 10% & Normal/Charged hit deal additional DMG equal to '.tr() +
+                                                  (15 + weaponref * 5).toString() +
+                                                  '% ATK for 12s after Elemental Burst'.tr()),
+                                              selected: skypiercingfang2On,
+                                              selectedColor: Colors.tealAccent,
+                                              onSelected: (bool value) {
+                                                setState(() {});
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                    if (weaponselect == 'amenomakageuchi')
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label: Text('Iwakura Succession: Gain 1 Succession Seed by Elemental Skill up to 3.After Elmental Burst regenerates '.tr() +
+                                                  (4.5 + weaponref * 1.5).toString() +
+                                                  'Energy for each Seed.'.tr()),
+                                              selected: iwakurasuccessionOn,
+                                              selectedColor: Colors.tealAccent,
+                                              onSelected: (bool value) {
+                                                setState(() {});
                                               },
                                             ),
                                           ]),
@@ -15290,6 +15535,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                   //ANCHOR Echoing Ballad Physical AoE
                                   builddamagebarwithcrit(Colors.black, 'Echoing Ballad Physical AoE'.tr() + ':(125%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], echoingballaddmgnc,
                                       echoingballaddmgexp, echoingballaddmgc),
+                                if (skypiercingfang2On)
+                                  //ANCHOR Echoing Ballad Physical AoE
+                                  builddamagebarwithcrit(Colors.black, 'Sky-Piercing Fang additional ATK'.tr() + ':(' + (15 + weaponref * 5).toString() + '%)', Colors.grey[500], Colors.grey[700],
+                                      Colors.grey[900], skypiercingfangdmgnc, skypiercingfangdmgexp, skypiercingfangdmgc),
                               ],
                             ),
                           ),
