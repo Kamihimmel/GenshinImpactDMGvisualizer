@@ -282,5 +282,14 @@
     "% Mistsplitter's Emblem lv": "% 雾切之巴印层数",
     "mistsplitteredge1": "雾切御腰物1",
     "mistsplitteredge2": "雾切御腰物2",
-    "Mistsplitter Reforged": "雾切之回光"
+    "Mistsplitter Reforged": "雾切之回光",
+    "Skyward Blade": "天空之刃",
+    "Sky-piercing Fang":"穿刺高天的利齿",
+    "Sky-Piercing Fang1: Crit Rate + ":"穿刺高天的利齿1: 暴击率 + ",
+    "Sky-Piercing Fang2: Movement/ATK SPD + 10% & Normal/Charged hit deal additional DMG equal to ":"穿刺高天的利齿2: 元素爆发后 移速/攻速 +10% & 普攻/重击附加",
+    "% ATK for 12s after Elemental Burst":"% 攻击力的伤害 持续12s",
+    "Sky-Piercing Fang additional ATK":"穿刺高天的利齿附加伤害",
+    "Amenoma Kageuchi": "天目影打刀",
+    "Iwakura Succession: Gain 1 Succession Seed by Elemental Skill up to 3.After Elmental Burst regenerates ":"岩藏之胤：释放元素技能时获得一个胤种，至多3个。释放元素爆发后每个胤种回复",
+    "Energy for each Seed.":"点能量"
 }
