@@ -410,6 +410,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'amenomakageuchi': AssetImage('images/weapon/Weapon_Amenoma_Kageuchi.png'),
     'blackclifflongsword': AssetImage('images/weapon/Weapon_Blackcliff_Longsword.png'),
     'theblacksword': AssetImage('images/weapon/Weapon_The_Black_Sword.png'),
+    'jadecutter': AssetImage('images/weapon/Weapon_Primordial_Jade_Cutter.png'),
   };
 
   //     'ATK%',
@@ -1796,6 +1797,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool unreturningOn = false;
 
   bool rapidfiringOn = false;
+  bool protectorvirtue = false;
 
   bool rulebythunder1On = false;
   bool rulebythunder2On = false;
@@ -2210,6 +2212,34 @@ class _MyHomePageState extends State<MyHomePage> {
       mistsplitteredge2On = false;
     }
 
+    if (weaponselect == "jadecutter") {
+      protectorvirtue = true;
+      weapontoatk = {1: 44, 5: 58, 10: 76, 15: 93, 20: 110, 25: 158, 30: 176, 35: 193, 40: 210, 45: 258, 50: 275, 55: 324, 60: 341, 65: 390, 70: 408, 75: 457, 80: 475, 85: 524, 90: 542};
+      weapontoCRpercent = {
+        1: 9.6,
+        5: 11.2,
+        10: 13.1,
+        15: 15,
+        20: 17,
+        25: 18.9,
+        30: 20.8,
+        35: 22.8,
+        40: 24.7,
+        45: 26.7,
+        50: 28.6,
+        55: 30.5,
+        60: 32.5,
+        65: 34.4,
+        70: 36.3,
+        75: 38.3,
+        80: 40.2,
+        85: 42.2,
+        90: 44.1
+      };
+    } else {
+      protectorvirtue = false;
+    }
+
     if (weaponselect == "skywardblade") {
       skypiercingfang1On = true;
       skypiercingfang2On = true;
@@ -2544,6 +2574,60 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         setState(() {
                           weaponstatcontrol('mistsplitterreforged');
+                        });
+                        Navigator.pop(
+                          context,
+                          "user1",
+                        );
+                      },
+                    ),
+
+                  if (charactertoinfo[currentcharacter]['wtype'] == 'sword')
+                    SimpleDialogOption(
+                      child: Container(
+                        width: 400,
+                        height: 150,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.lightBlue[50],
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/weapon/Weapon_Primordial_Jade_Cutter.png'),
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 200,
+                              child: Text(
+                                'Primordial Jade Cutter'.tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          weaponstatcontrol('jadecutter');
                         });
                         Navigator.pop(
                           context,
@@ -8879,8 +8963,9 @@ class _MyHomePageState extends State<MyHomePage> {
         (bennetqOn ? bennetbasicatk * bennetqlvtoratio[bennetqlv] / 100 : 0) +
         (manualatkOn ? manualatk : 0) +
         (manualatkpercentOn ? basicatk * manualatkpercent / 100 : 0) +
+        (blackclifflongswordsp ? basicatk * (9 + weaponref * 3) / 100 * blackcliffbufftimes : 0) +
         (rulebythunder1On ? basicatk * (15 + weaponref * 5) / 100 : 0) +
-        (blackclifflongswordsp ? basicatk * (9 + weaponref * 3) / 100 * blackcliffbufftimes : 0);
+        (protectorvirtue ? allHP * (0.9 + 0.3 * weaponref) / 100 : 0);
 
     allatk = basicatk + bonusatk;
 
@@ -8964,7 +9049,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (stat4hpOn ? stat4hp : 0) +
         a5percentHPMain +
         a5percentHP +
-        (stat5hpOn ? stat5hp : 0);
+        (stat5hpOn ? stat5hp : 0) +
+        (protectorvirtue ? (15 + weaponref * 5) / 100 * lvlhp : 0);
 
     allHP = lvlhp + bonusHP;
 
@@ -12007,6 +12093,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 if (blackclifflongswordsp && blackcliffbufftimes > 0)
                                                   buildStatRow(Colors.black, '${"Press the Advantage".tr()}%(' + ((9 + weaponref * 3) * blackcliffbufftimes).toStringAsFixed(1) + ')',
                                                       (basicatk * (9 + weaponref * 3) * blackcliffbufftimes / 100).toStringAsFixed(1)),
+                                                if (protectorvirtue) buildStatRow(Colors.green, "Protector's Virtue".tr(), ((allHP * (0.9 + weaponref * 0.3) / 100).toStringAsFixed(1))),
                                               ],
                                             ),
                                             //ANCHOR statATK:bar
@@ -12039,6 +12126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 if (manualatkOn) buildstatbar(Colors.red[300], (manualatk)),
                                                 if (manualatkpercentOn) buildstatbar(Colors.red[300], (basicatk * manualatkpercent / 100)),
                                                 if (rulebythunder1On == true) buildstatbar(Colors.purple, (basicatk * (15 + weaponref * 5) / 100)),
+                                                if (protectorvirtue) buildstatbar(Colors.green, (allHP * (0.9 + weaponref * 0.3) / 100)),
                                               ],
                                             ),
                                           ],
@@ -12102,6 +12190,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   buildStatRow(Colors.teal, '${"a5".tr()}%($a5HPpercentMain)', double.parse(a5percentHPMain.toStringAsFixed(1)).toString()),
                                                 if (stat5hppercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%($stat5hppercent)', double.parse(a5percentHP.toStringAsFixed(1)).toString()),
                                                 if (stat5hpOn == true) buildStatRow(Colors.teal[700], 'a5'.tr(), double.parse(stat5hp.toStringAsFixed(1)).toString()),
+                                                if (protectorvirtue)
+                                                  buildStatRow(Colors.green, "Protector's Virtue".tr() + "%(" + (15 + weaponref * 5).toStringAsFixed(1) + ")",
+                                                      double.parse((lvlhp * (15 + weaponref * 5) / 100).toStringAsFixed(1)).toString()),
                                               ],
                                             ),
 
@@ -12125,6 +12216,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 if (artifact5mainstatcat == 1) buildstatbarhp(Colors.teal, a5percentHPMain),
                                                 if (stat5hppercentOn == true) buildstatbarhp(Colors.teal, a5percentHP),
                                                 if (stat5hpOn == true) buildstatbarhp(Colors.teal[700], stat5hp),
+                                                if (protectorvirtue) buildstatbarhp(Colors.green, lvlhp * (15 + weaponref * 5) / 100),
                                               ],
                                             ),
                                           ],
@@ -14276,6 +14368,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 setState(() {
                                                   unreturningOn = value;
                                                 });
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                    if (weaponselect == 'jadecutter')
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label:
+                                                  Text("Protector's Virtue: HP +".tr() + (15 + weaponref * 5).toString() + '% & ATK + '.tr() + (0.9 + weaponref * 0.3).toString() + '% of Max HP'.tr()),
+                                              selected: protectorvirtue,
+                                              selectedColor: Colors.green,
+                                              onSelected: (bool value) {
+                                                setState(() {});
                                               },
                                             ),
                                           ]),
