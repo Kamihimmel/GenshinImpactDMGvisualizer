@@ -10152,19 +10152,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 // ...
               },
             ),
-            if (spoilermode)
-              ListTile(
-                title: Text('yoimiya').tr(),
-                onTap: () {
-                  // Update the state of the app.
-                  setState(() {
-                    currentcharacter = 'yoimiya';
-                    DynamicTheme.of(context).setTheme(1);
-                  });
+            // if (spoilermode)
+            ListTile(
+              title: Text('yoimiya').tr(),
+              onTap: () {
+                // Update the state of the app.
+                setState(() {
+                  currentcharacter = 'yoimiya';
+                  DynamicTheme.of(context).setTheme(1);
+                });
 
-                  // ...
-                },
-              ),
+                // ...
+              },
+            ),
             ListTile(
               title: Text('ayaka').tr(),
               onTap: () {
@@ -13856,17 +13856,17 @@ class _MyHomePageState extends State<MyHomePage> {
                                             },
                                           ),
                                         ),
-                                        FilterChip(
-                                          selectedColor: Colors.red,
-                                          backgroundColor: Colors.red[200],
-                                          label: Text('Summer Scorch: 1% pyro per stack'.tr()),
-                                          selected: summerscorchOn,
-                                          onSelected: (bool value) {
-                                            setState(() {
-                                              summerscorchOn = value;
-                                            });
-                                          },
-                                        ),
+                                        // FilterChip(
+                                        //   selectedColor: Colors.red,
+                                        //   backgroundColor: Colors.red[200],
+                                        //   label: Text('Summer Scorch: 1% pyro per stack'.tr()),
+                                        //   selected: summerscorchOn,
+                                        //   onSelected: (bool value) {
+                                        //     setState(() {
+                                        //       summerscorchOn = value;
+                                        //     });
+                                        //   },
+                                        // ),
                                       ]),
 
                                     //ANCHOR CharacterOptions:ayakaskill
