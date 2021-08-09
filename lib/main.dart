@@ -406,6 +406,8 @@ class _MyHomePageState extends State<MyHomePage> {
     'ebonybow': AssetImage('images/weapon/Weapon_Ebony_Bow.png'),
     'thunderingpulse': AssetImage('images/weapon/Weapon_Thundering_Pulse.png'),
     'mistsplitterreforged': AssetImage('images/weapon/Weapon_Mistsplitter_Reforged.png'),
+    'blackclifflongsword':AssetImage('images/weapon/Weapon_Blackcliff_Longsword.png'),
+    'theblacksword':AssetImage('images/weapon/Weapon_The_Black_Sword.png'),
   };
 
   //     'ATK%',
