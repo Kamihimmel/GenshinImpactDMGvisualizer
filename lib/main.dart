@@ -87,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String fsub1n = 'HP%';
 
   String currentcharacter = 'ganyu';
+  String lastcharacter = '';
   Map charactertoinfo = {
     'ganyu': {'iconimage': AssetImage('images/ganyu.png'), 'splashimage': AssetImage('images/2021010519290354247.png'), 'element': 'cryo', 'wtype': 'bow', 'color': 0, 'en': 'Ganyu'},
     'yoimiya': {'iconimage': AssetImage('images/yoimiya.png'), 'splashimage': AssetImage('images/yoimiyalarge.png'), 'element': 'pyro', 'wtype': 'bow', 'color': 1, 'en': 'Yoimiya'},
@@ -8874,6 +8875,34 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
 
     currentcharacter = themetocharacter[DynamicTheme.of(context).themeId];
+
+    //weaponselect
+    switch (currentcharacter) {
+      case ('ganyu'):
+        {
+          if (lastcharacter != 'ganyu') {
+            weaponstatcontrol('amos');
+            lastcharacter = 'ganyu';
+          }
+        }
+        break;
+      case ('ayaka'):
+        {
+          if (lastcharacter != 'ayaka') {
+            weaponstatcontrol('mistsplitterreforged');
+            lastcharacter = 'ayaka';
+          }
+        }
+        break;
+      case ('yoimiya'):
+        {
+          if (lastcharacter != 'yoimiya') {
+            weaponstatcontrol('thunderingpulse');
+            lastcharacter = 'yoimiya';
+          }
+        }
+        break;
+    }
 
     //defparam
     enemydefdebuff = (ayakaconstellation4On ? 30 : 0) + enemydefinput;
