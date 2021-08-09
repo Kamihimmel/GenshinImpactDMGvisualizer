@@ -10504,12 +10504,15 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 120,
               decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 1), borderRadius: BorderRadius.all(Radius.circular(10))),
               child: Center(
-                child: Text(
-                  "ver " + currentcharacter.tr() + " 0.9",
-                  style: TextStyle(
-                    //fontWeight: FontWeight.bold,
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 15,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    "ver " + currentcharacter.tr() + " 0.9",
+                    style: TextStyle(
+                      //fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 15,
+                    ),
                   ),
                 ),
               ),
