@@ -438,6 +438,8 @@ class _MyHomePageState extends State<MyHomePage> {
     'thunderbird': AssetImage('images/Item_Thunderbird\'s_Mercy.png'),
     'thundersoother': AssetImage('images/Item_Thundersoother\'s_Heart.png'),
     'reminiscenceofshime': AssetImage('images/Item_Reminiscence_of_Shime.png'),
+    'witch': AssetImage('images/Item_Witch\'s_Flower_of_Blaze.png'),
+    'tsuba':AssetImage('images/Item_Magnificent_Tsuba.png'),
   };
 
 //ANCHOR artifact1stat
@@ -1788,6 +1790,11 @@ class _MyHomePageState extends State<MyHomePage> {
   bool thundersoother4On = false;
   bool reminiscenceofshime2On = false;
   bool reminiscenceofshime4On = false;
+  bool witch2On= false;
+  bool witch4On=false;
+  int witch4Times=0;
+  bool tsuba2On=false;
+  bool tsuba4On=false;
 
   bool strongWilled1On = true;
   bool strongWilled2On = true;
@@ -1991,6 +1998,28 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       reminiscenceofshime2On = false;
       reminiscenceofshime4On = false;
+    }
+
+    if (artifactsetAselect == 'witch' && artifactsetBselect == 'witch') {
+      witch2On = true;
+      witch4On = true;
+    } else if (artifactsetAselect == 'witch' || artifactsetBselect == 'witch') {
+      witch2On = true;
+      witch4On = false;
+    } else {
+      witch2On = false;
+      witch4On = false;
+    }
+
+    if (artifactsetAselect == 'tsuba' && artifactsetBselect == 'tsuba') {
+      tsuba2On = true;
+      tsuba4On = true;
+    } else if (artifactsetAselect == 'tsuba' || artifactsetBselect == 'tsuba') {
+      tsuba2On = true;
+      tsuba4On = false;
+    } else {
+      tsuba2On = false;
+      tsuba4On = false;
     }
   }
 
@@ -4251,6 +4280,108 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                     },
                   ),
+                  SimpleDialogOption(
+                    child: Container(
+                      width: 400,
+                      height: 110,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Card(
+                            elevation: 3,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: InkWell(
+                              splashColor: Colors.blue.withAlpha(30),
+                              child: Container(
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  // color: Colors.lightBlue[50],
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  image: DecorationImage(
+                                    image: AssetImage('images/Item_Magnificent_Tsuba.png'),
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            'Emblem of Severed Fate',
+                            style: TextStyle(
+                              //fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ).tr(),
+                        ],
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        artifactstatcontrol("A", 'tsuba');
+                      });
+
+                      Navigator.pop(
+                        context,
+                        "user1",
+                      );
+                    },
+                  ),
+                SimpleDialogOption(
+                    child: Container(
+                      width: 400,
+                      height: 110,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Card(
+                            elevation: 3,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: InkWell(
+                              splashColor: Colors.blue.withAlpha(30),
+                              child: Container(
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  // color: Colors.lightBlue[50],
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  image: DecorationImage(
+                                    image: AssetImage('images/Item_Witch\'s_Flower_of_Blaze.png'),
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            'Crimson Witch of Flames',
+                            style: TextStyle(
+                              //fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ).tr(),
+                        ],
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        artifactstatcontrol("A", 'witch');
+                      });
+
+                      Navigator.pop(
+                        context,
+                        "user1",
+                      );
+                    },
+                  ),
                 ],
               );
             },
@@ -4671,6 +4802,108 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () {
                       setState(() {
                         artifactstatcontrol("B", 'reminiscenceofshime');
+                      });
+
+                      Navigator.pop(
+                        context,
+                        "user1",
+                      );
+                    },
+                  ),
+                SimpleDialogOption(
+                    child: Container(
+                      width: 400,
+                      height: 110,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Card(
+                            elevation: 3,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: InkWell(
+                              splashColor: Colors.blue.withAlpha(30),
+                              child: Container(
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  // color: Colors.lightBlue[50],
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  image: DecorationImage(
+                                    image: AssetImage('images/Item_Magnificent_Tsuba.png'),
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            'Emblem of Severed Fate',
+                            style: TextStyle(
+                              //fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ).tr(),
+                        ],
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        artifactstatcontrol("B", 'tsuba');
+                      });
+
+                      Navigator.pop(
+                        context,
+                        "user1",
+                      );
+                    },
+                  ),
+                  SimpleDialogOption(
+                    child: Container(
+                      width: 400,
+                      height: 110,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Card(
+                            elevation: 3,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: InkWell(
+                              splashColor: Colors.blue.withAlpha(30),
+                              child: Container(
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  // color: Colors.lightBlue[50],
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  image: DecorationImage(
+                                    image: AssetImage('images/Item_Witch\'s_Flower_of_Blaze.png'),
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            'Crimson Witch of Flames',
+                            style: TextStyle(
+                              //fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ).tr(),
+                        ],
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        artifactstatcontrol("B", 'witch');
                       });
 
                       Navigator.pop(
@@ -8907,38 +9140,6 @@ class _MyHomePageState extends State<MyHomePage> {
     //defparam
     enemydefdebuff = (ayakaconstellation4On ? 30 : 0) + enemydefinput;
 
-    //bonusNormalATK
-    bonusNormalATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) +
-        (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) +
-        (rapidfiringOn ? (30 + weaponref * 10) : 0) +
-        (reminiscenceofshime4On ? 50 : 0) +
-        (amatsumiOn ? 30 : 0) +
-        (gladiator4On ? 35 : 0) +
-        (rulebythunder2On ? ((rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))) : 0) +
-        (theblackswordsp ? (15 + weaponref * 5) : 0) as double;
-    //bonusChargedATK
-    bonusChargedATKDMGpercent = (reminiscenceofshime4On ? 50 : 0) +
-        (strongWilled1On ? (9 + weaponref * 3) : 0) +
-        (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) +
-        (rapidfiringOn ? -10 : 0) +
-        (amatsumiOn ? 30 : 0) +
-        (ayakaconstellation6On ? 298 : 0) +
-        (troupesdawnlight4on ? 35 : 0) +
-        (theblackswordsp ? (15 + weaponref * 5) : 0) as double;
-
-    //bonusplungeatk
-    bonusPlungeATKDMGpercent = (reminiscenceofshime4On ? 50 : 0);
-    //bonusBurstATK
-    bonusBurstDMGpercent = (royalflora2On ? 20 : 0) as double;
-    //bonusDMG
-    bonusDMGpercent = (monaqOn ? monaqlvtoratio[monaqlv] : 0) + (thundersoother4On ? 35 : 0) + (manualDMGpercentOn ? manualDMGpercent : 0) as double;
-
-    if (strongWilled2Times <= 3) {
-      bloomBonusChargedATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * (strongWilled2Times + 2) : 0) + (troupesdawnlight4on ? 35 : 0) as double;
-    } else {
-      bloomBonusChargedATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * 5 : 0) + (troupesdawnlight4on ? 35 : 0) as double;
-    }
-
     //ATK params
 
     levelatk = cleveltoatk[currentcharacter][level];
@@ -9095,7 +9296,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (stat2ERpercentOn ? stat2ERpercent : 0) +
         (stat3ERpercentOn ? stat3ERpercent : 0) +
         (stat4ERpercentOn ? stat4ERpercent : 0) +
-        (stat5ERpercentOn ? stat5ERpercent : 0);
+        (stat5ERpercentOn ? stat5ERpercent : 0)+(tsuba2On?20:0);
 
     allER = 100 + bonusER;
 
@@ -9176,6 +9377,38 @@ class _MyHomePageState extends State<MyHomePage> {
         (echoingBalladOn ? (15 + weaponref * 5) : 0) +
         (manualCDpercentOn ? manualCDpercent : 0);
     allCD = baseCD + bonusCD;
+
+    //bonusNormalATK
+    bonusNormalATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) +
+        (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) +
+        (rapidfiringOn ? (30 + weaponref * 10) : 0) +
+        (reminiscenceofshime4On ? 50 : 0) +
+        (amatsumiOn ? 30 : 0) +
+        (gladiator4On ? 35 : 0) +
+        (rulebythunder2On ? ((rulebythunder2Times == 1 ? (weaponref * 3 + 9) : (rulebythunder2Times == 2 ? (weaponref * 6 + 18) : (weaponref * 10 + 30)))) : 0) +
+        (theblackswordsp ? (15 + weaponref * 5) : 0) as double;
+    //bonusChargedATK
+    bonusChargedATKDMGpercent = (reminiscenceofshime4On ? 50 : 0) +
+        (strongWilled1On ? (9 + weaponref * 3) : 0) +
+        (strongWilled2On ? (6 + weaponref * 2) * strongWilled2Times : 0) +
+        (rapidfiringOn ? -10 : 0) +
+        (amatsumiOn ? 30 : 0) +
+        (ayakaconstellation6On ? 298 : 0) +
+        (troupesdawnlight4on ? 35 : 0) +
+        (theblackswordsp ? (15 + weaponref * 5) : 0) as double;
+
+    //bonusplungeatk
+    bonusPlungeATKDMGpercent = (reminiscenceofshime4On ? 50 : 0);
+    //bonusBurstATK
+    bonusBurstDMGpercent = (royalflora2On ? 20 : 0)+(tsuba4On?((allER/4>=75)?75:allER/4):0) as double;
+    //bonusDMG
+    bonusDMGpercent = (monaqOn ? monaqlvtoratio[monaqlv] : 0) + (thundersoother4On ? 35 : 0) + (manualDMGpercentOn ? manualDMGpercent : 0) as double;
+
+    if (strongWilled2Times <= 3) {
+      bloomBonusChargedATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * (strongWilled2Times + 2) : 0) + (troupesdawnlight4on ? 35 : 0) as double;
+    } else {
+      bloomBonusChargedATKDMGpercent = (strongWilled1On ? (9 + weaponref * 3) : 0) + (strongWilled2On ? (6 + weaponref * 2) * 5 : 0) + (troupesdawnlight4on ? 35 : 0) as double;
+    }
 
     //DMG params
     if (cleveltoPhysicalDMGpercent[level] != null) levelPhysicalDMGpercent = cleveltoPhysicalDMGpercent[level];
@@ -12356,6 +12589,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 if (stat3ERpercentOn == true) buildStatRow(Colors.blueGrey, '${"a3".tr()}%', '$stat3ERpercent'),
                                                 if (stat4ERpercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%', '$stat4ERpercent'),
                                                 if (stat5ERpercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%', '$stat5ERpercent'),
+                                                if (tsuba2On==true)  buildStatRow(Colors.deepPurple, '${"Emblem of Severed Fate".tr()}%','20'),
                                               ],
                                             ),
 
@@ -12371,6 +12605,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 if (stat3ERpercentOn == true) buildstatbarpercent(Colors.blueGrey, stat3ERpercent),
                                                 if (stat4ERpercentOn == true) buildstatbarpercent(Colors.purple, stat4ERpercent),
                                                 if (stat5ERpercentOn == true) buildstatbarpercent(Colors.teal, stat5ERpercent),
+                                                if(tsuba2On==true) buildstatbarpercent(Colors.deepPurple, 20),
                                               ],
                                             ),
                                           ],
@@ -13178,6 +13413,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           if (royalflora2On) buildStatRow(Colors.blue, 'Noblesse Oblige 2 Set'.tr(), '20'),
+                                          if (tsuba4On) buildStatRow(Colors.deepPurple,'Emblem of Severed Fate'.tr(), (tsuba4On?((allER/4>=75)?75:allER/4):0).toStringAsFixed(0)),
                                         ],
                                       ),
                                       //ANCHOR statBurstDMG:bar
@@ -13185,6 +13421,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           if (royalflora2On) buildstatbarpercent(Colors.blue, 20),
+                                          if (tsuba4On) buildstatbarpercent(Colors.deepPurple,(tsuba4On?((allER/4>=75)?75:allER/4):0)),
                                         ],
                                       ),
                                       //ANCHOR  Damage Bonus Title
@@ -14904,6 +15141,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                               reminiscenceofshime4On = value;
                                             });
                                           },
+                                        ),
+                                      if (artifactsetAselect == 'tsuba' || artifactsetBselect == 'tsuba')
+                                        FilterChip(
+                                          label: Text('${"2 set".tr()}: ${"Energy Recharge".tr()} +20% '),
+                                          selectedColor: Colors.deepPurple[300],
+                                          backgroundColor: Colors.deepPurple[200],
+                                          selected: tsuba2On,
+                                          onSelected: (bool value) {},
+                                        ),
+                                      if (artifactsetAselect == 'tsuba' && artifactsetBselect == 'tsuba')
+                                        FilterChip(
+                                          label: Text('${"4 set".tr()}: ${"Elemental Burst Damage".tr()} + '+(tsuba4On?((allER/4>=75)?75:allER/4):0).toStringAsFixed(0)+'% '),
+                                          selectedColor: Colors.deepPurple[300],
+                                          backgroundColor: Colors.deepPurple[200],
+                                          selected: tsuba4On,
+                                          onSelected: (bool value) {}
                                         ),
                                     ]),
                                     SizedBox(height: 10),
