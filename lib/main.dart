@@ -653,7 +653,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   var a4ElementDMGpercentbyLVL = {
     4: {1: 8.1, 4: 13.4, 8: 20.6, 12: 27.7, 16: 34.8, 20: 34.8},
-    5: {1: 9, 4: 14.9, 8: 22.8, 12: 30.8, 16: 38.7, 20: 44.6}
+    5: {1: 9, 4: 14.9, 8: 22.8, 12: 30.8, 16: 38.7, 20: 46.6}
   };
   double a4PyroDMGpercentMain = 0;
   double a4HydroDMGpercentMain = 0;
