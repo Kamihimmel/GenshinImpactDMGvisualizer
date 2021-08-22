@@ -5388,6 +5388,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1EM < 138) stat1EM = num.parse((stat1EM + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -5396,6 +5397,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1EM > 0) stat1EM = num.parse((stat1EM - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -5547,6 +5549,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1hp < 1794) stat1hp = num.parse((stat1hp + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -5555,6 +5558,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1hp > 0) stat1hp = num.parse((stat1hp - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -5628,6 +5632,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1atk < 114) stat1atk = num.parse((stat1atk + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -5636,6 +5641,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1atk > 0) stat1atk = num.parse((stat1atk - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -5707,6 +5713,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1def < 138) stat1def = num.parse((stat1def + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -5715,6 +5722,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat1def > 0) stat1def = num.parse((stat1def - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -6221,6 +6229,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2EM < 138) stat2EM = num.parse((stat2EM + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -6229,6 +6238,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2EM > 0) stat2EM = num.parse((stat2EM - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -6380,6 +6390,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2hp < 1794) stat2hp = num.parse((stat2hp + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -6388,6 +6399,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2hp > 0) stat2hp = num.parse((stat2hp - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -6461,6 +6473,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2atk < 114) stat2atk = num.parse((stat2atk + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -6469,6 +6482,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2atk > 0) stat2atk = num.parse((stat2atk - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -6540,6 +6554,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2def < 138) stat2def = num.parse((stat2def + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -6548,6 +6563,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat2def > 0) stat2def = num.parse((stat2def - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -7054,6 +7070,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3EM < 138) stat3EM = num.parse((stat3EM + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -7062,6 +7079,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3EM > 0) stat3EM = num.parse((stat3EM - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -7213,6 +7231,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3hp < 1794) stat3hp = num.parse((stat3hp + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -7221,6 +7240,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3hp > 0) stat3hp = num.parse((stat3hp - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -7294,6 +7314,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3atk < 114) stat3atk = num.parse((stat3atk + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -7302,6 +7323,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3atk > 0) stat3atk = num.parse((stat3atk - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -7373,6 +7395,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3def < 138) stat3def = num.parse((stat3def + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -7381,6 +7404,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat3def > 0) stat3def = num.parse((stat3def - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -7887,6 +7911,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4EM < 138) stat4EM = num.parse((stat4EM + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -7895,6 +7920,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4EM > 0) stat4EM = num.parse((stat4EM - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -8046,6 +8072,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4hp < 1794) stat4hp = num.parse((stat4hp + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -8054,6 +8081,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4hp > 0) stat4hp = num.parse((stat4hp - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -8127,6 +8155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4atk < 114) stat4atk = num.parse((stat4atk + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -8135,6 +8164,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4atk > 0) stat4atk = num.parse((stat4atk - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -8206,6 +8236,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4def < 138) stat4def = num.parse((stat4def + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -8214,6 +8245,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat4def > 0) stat4def = num.parse((stat4def - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -8720,6 +8752,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5EM < 138) stat5EM = num.parse((stat5EM + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -8728,6 +8761,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5EM > 0) stat5EM = num.parse((stat5EM - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -8879,6 +8913,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5hp < 1794) stat5hp = num.parse((stat5hp + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -8887,6 +8922,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5hp > 0) stat5hp = num.parse((stat5hp - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -8960,6 +8996,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5atk < 114) stat5atk = num.parse((stat5atk + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -8968,6 +9005,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5atk > 0) stat5atk = num.parse((stat5atk - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -9039,6 +9077,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5def < 138) stat5def = num.parse((stat5def + 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -9047,6 +9086,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     setState(() {
                                       if (stat5def > 0) stat5def = num.parse((stat5def - 1).toStringAsFixed(0));
+                                      _setLabel("new");
                                     });
                                   },
                                 ),
@@ -15274,7 +15314,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       FilterChip(
                                         selectedColor: Colors.blue[200],
                                         backgroundColor: Colors.blue[50],
-                                        label: Text('${"2 Cyro".tr()}: ${"Crit Rate".tr()} +15%'),
+                                        label: Text('${"2 Cryo".tr()}: ${"Crit Rate".tr()} +15%'),
                                         selected: cryo2On,
                                         onSelected: (bool value) {
                                           setState(() {
