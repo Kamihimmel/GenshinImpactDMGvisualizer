@@ -439,7 +439,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'thundersoother': AssetImage('images/Item_Thundersoother\'s_Heart.png'),
     'reminiscenceofshime': AssetImage('images/Item_Reminiscence_of_Shime.png'),
     'witch': AssetImage('images/Item_Witch\'s_Flower_of_Blaze.png'),
-    'tsuba':AssetImage('images/Item_Magnificent_Tsuba.png'),
+    'tsuba': AssetImage('images/Item_Magnificent_Tsuba.png'),
   };
 
 //ANCHOR artifact1stat
@@ -1790,11 +1790,11 @@ class _MyHomePageState extends State<MyHomePage> {
   bool thundersoother4On = false;
   bool reminiscenceofshime2On = false;
   bool reminiscenceofshime4On = false;
-  bool witch2On= false;
-  bool witch4On=false;
-  int witch4Times=0;
-  bool tsuba2On=false;
-  bool tsuba4On=false;
+  bool witch2On = false;
+  bool witch4On = false;
+  int witch4Times = 0;
+  bool tsuba2On = false;
+  bool tsuba4On = false;
 
   bool strongWilled1On = true;
   bool strongWilled2On = true;
@@ -4331,7 +4331,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                     },
                   ),
-                SimpleDialogOption(
+                  SimpleDialogOption(
                     child: Container(
                       width: 400,
                       height: 110,
@@ -4810,7 +4810,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                     },
                   ),
-                SimpleDialogOption(
+                  SimpleDialogOption(
                     child: Container(
                       width: 400,
                       height: 110,
@@ -9296,7 +9296,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (stat2ERpercentOn ? stat2ERpercent : 0) +
         (stat3ERpercentOn ? stat3ERpercent : 0) +
         (stat4ERpercentOn ? stat4ERpercent : 0) +
-        (stat5ERpercentOn ? stat5ERpercent : 0)+(tsuba2On?20:0);
+        (stat5ERpercentOn ? stat5ERpercent : 0) +
+        (tsuba2On ? 20 : 0);
 
     allER = 100 + bonusER;
 
@@ -9400,7 +9401,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //bonusplungeatk
     bonusPlungeATKDMGpercent = (reminiscenceofshime4On ? 50 : 0);
     //bonusBurstATK
-    bonusBurstDMGpercent = (royalflora2On ? 20 : 0)+(tsuba4On?((allER/4>=75)?75:allER/4):0) as double;
+    bonusBurstDMGpercent = (royalflora2On ? 20 : 0) + (tsuba4On ? ((allER / 4 >= 75) ? 75 : allER / 4) : 0) as double;
     //bonusDMG
     bonusDMGpercent = (monaqOn ? monaqlvtoratio[monaqlv] : 0) + (thundersoother4On ? 35 : 0) + (manualDMGpercentOn ? manualDMGpercent : 0) as double;
 
@@ -9434,7 +9435,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (mistsplitteredge1On ? (9 + weaponref * 3) : 0) +
         (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'pyro'
             ? (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))
-            : 0);
+            : 0) +
+        (witch2On ? (15 + (witch4On ? (7.5 * witch4Times) : 0)) : 0);
 
     if (cleveltoHydroDMGpercent[level] != null) levelHydroDMGpercent = cleveltoHydroDMGpercent[level];
     if (weapontoHydroDMGpercent[weaponlv] != null) weaponHydroDMGpercent = weapontoHydroDMGpercent[weaponlv];
@@ -9668,7 +9670,7 @@ class _MyHomePageState extends State<MyHomePage> {
     superconductDMGpercent = (1 + basicsuperconductpercent + (thunderbird4On == true ? 0.4 : 0)) * 100;
     superconductDMG = electroReactionBaseBYlv[level] * 1 * superconductDMGpercent / 100 * enemyCryores;
 
-    overloadDMGpercent = (1 + basicsuperconductpercent + (thunderbird4On == true ? 0.4 : 0)) * 100;
+    overloadDMGpercent = (1 + basicsuperconductpercent + (thunderbird4On == true ? 0.4 : 0) + (witch4On == true ? 0.4 : 0)) * 100;
     overloadDMG = electroReactionBaseBYlv[level] * 4 * overloadDMGpercent / 100 * enemyPyrores;
 
     electrochargedDMGpercent = (1 + basicsuperconductpercent + (thunderbird4On == true ? 0.4 : 0)) * 100;
@@ -9677,8 +9679,8 @@ class _MyHomePageState extends State<MyHomePage> {
     shatteredDMGpercent = (1 + basicsuperconductpercent) * 100;
     shatteredDMG = electroReactionBaseBYlv[level] * 3 * shatteredDMGpercent / 100 * enemyPhysicalres;
 
-    vaporizeDMGpercent = 100 * (1 + basicmeltpercent);
-    meltDMGpercent = 100 * (1 + basicmeltpercent);
+    vaporizeDMGpercent = 100 * (1 + basicmeltpercent + (witch4On == true ? 0.15 : 0));
+    meltDMGpercent = 100 * (1 + basicmeltpercent + (witch4On == true ? 0.15 : 0));
 
     swirlDMGpercent = (1 + basicsuperconductpercent) * 100;
     swirlDMGonHydro = electroReactionBaseBYlv[level] * 1.2 * swirlDMGpercent / 100 * enemyHydrores;
@@ -12589,7 +12591,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 if (stat3ERpercentOn == true) buildStatRow(Colors.blueGrey, '${"a3".tr()}%', '$stat3ERpercent'),
                                                 if (stat4ERpercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%', '$stat4ERpercent'),
                                                 if (stat5ERpercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%', '$stat5ERpercent'),
-                                                if (tsuba2On==true)  buildStatRow(Colors.deepPurple, '${"Emblem of Severed Fate".tr()}%','20'),
+                                                if (tsuba2On == true) buildStatRow(Colors.deepPurple, '${"Emblem of Severed Fate".tr()}%', '20'),
                                               ],
                                             ),
 
@@ -12605,7 +12607,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 if (stat3ERpercentOn == true) buildstatbarpercent(Colors.blueGrey, stat3ERpercent),
                                                 if (stat4ERpercentOn == true) buildstatbarpercent(Colors.purple, stat4ERpercent),
                                                 if (stat5ERpercentOn == true) buildstatbarpercent(Colors.teal, stat5ERpercent),
-                                                if(tsuba2On==true) buildstatbarpercent(Colors.deepPurple, 20),
+                                                if (tsuba2On == true) buildstatbarpercent(Colors.deepPurple, 20),
                                               ],
                                             ),
                                           ],
@@ -13214,6 +13216,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'pyro')
                                               buildStatRow(Colors.amber, 'mistsplitteredge2'.tr(),
                                                   (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21))).toString()),
+                                            if (witch2On) buildStatRow(Colors.red[600], 'witch2'.tr(), (15 + (witch4On ? (7.5 * witch4Times) : 0)).toString()),
                                           ],
                                         ),
                                       //ANCHOR statPyroDMG:bar
@@ -13231,6 +13234,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'pyro')
                                               buildstatbarpercent(
                                                   Colors.amber, (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))),
+                                            if (witch2On) buildstatbarpercent(Colors.red[600], (15 + (witch4On ? (7.5 * witch4Times) : 0))),
                                           ],
                                         ),
                                       //ANCHOR Hydro Damage Title
@@ -13413,7 +13417,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           if (royalflora2On) buildStatRow(Colors.blue, 'Noblesse Oblige 2 Set'.tr(), '20'),
-                                          if (tsuba4On) buildStatRow(Colors.deepPurple,'Emblem of Severed Fate'.tr(), (tsuba4On?((allER/4>=75)?75:allER/4):0).toStringAsFixed(0)),
+                                          if (tsuba4On) buildStatRow(Colors.deepPurple, 'Emblem of Severed Fate'.tr(), (tsuba4On ? ((allER / 4 >= 75) ? 75 : allER / 4) : 0).toStringAsFixed(0)),
                                         ],
                                       ),
                                       //ANCHOR statBurstDMG:bar
@@ -13421,7 +13425,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           if (royalflora2On) buildstatbarpercent(Colors.blue, 20),
-                                          if (tsuba4On) buildstatbarpercent(Colors.deepPurple,(tsuba4On?((allER/4>=75)?75:allER/4):0)),
+                                          if (tsuba4On) buildstatbarpercent(Colors.deepPurple, (tsuba4On ? ((allER / 4 >= 75) ? 75 : allER / 4) : 0)),
                                         ],
                                       ),
                                       //ANCHOR  Damage Bonus Title
@@ -13650,6 +13654,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicmeltpercent * 100).toStringAsFixed(1)),
+                                          if (witch4On) buildStatRow(Colors.red[600], 'Crimson Witch of Flames 4 Set'.tr(), '15'),
                                         ],
                                       ),
                                       //ANCHOR statVaporizeDMG:bar
@@ -13657,6 +13662,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicmeltpercent * 100 / 5)),
+                                          if (witch4On) buildstatbarpercent(Colors.red[600], 15 / 5),
                                         ],
                                       ),
                                       //ANCHOR Melt Damage Title
@@ -13670,6 +13676,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), ((basicmeltpercent) * 100).toStringAsFixed(1)),
+                                          if (witch4On) buildStatRow(Colors.red[600], 'Crimson Witch of Flames 4 Set'.tr(), '15'),
                                         ],
                                       ),
                                       //ANCHOR statMeltDMG:bar
@@ -13677,6 +13684,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicmeltpercent * 100 / 5)),
+                                          if (witch4On) buildstatbarpercent(Colors.red[600], 15 / 5),
                                         ],
                                       ),
 
@@ -13714,6 +13722,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         children: [
                                           if (allEM != 0) buildStatRow(Colors.amber[400], 'EM'.tr(), (basicsuperconductpercent * 100).toStringAsFixed(1)),
                                           if (thunderbird4On) buildStatRow(Colors.purple[400], 'Thundering Fury 4 Set'.tr(), '40'),
+                                          if (witch4On) buildStatRow(Colors.red[600], 'Crimson Witch of Flames 4 Set'.tr(), '40'),
                                         ],
                                       ),
                                       //ANCHOR statOverloadedDMG:bar
@@ -13722,6 +13731,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         children: [
                                           if (allEM != 0) buildstatbarpercent(Colors.amber[400], (basicsuperconductpercent * 100 / 5)),
                                           if (thunderbird4On) buildstatbarpercent(Colors.purple[400], 40 / 5),
+                                          if (witch4On) buildstatbarpercent(Colors.red[600], 40 / 5),
                                         ],
                                       ),
                                       //ANCHOR Electro-Charged Damage Title
@@ -15152,12 +15162,69 @@ class _MyHomePageState extends State<MyHomePage> {
                                         ),
                                       if (artifactsetAselect == 'tsuba' && artifactsetBselect == 'tsuba')
                                         FilterChip(
-                                          label: Text('${"4 set".tr()}: ${"Elemental Burst Damage".tr()} + '+(tsuba4On?((allER/4>=75)?75:allER/4):0).toStringAsFixed(0)+'% '),
-                                          selectedColor: Colors.deepPurple[300],
-                                          backgroundColor: Colors.deepPurple[200],
-                                          selected: tsuba4On,
-                                          onSelected: (bool value) {}
+                                            label: Text('${"4 set".tr()}: ${"Elemental Burst Damage".tr()} + ' + (tsuba4On ? ((allER / 4 >= 75) ? 75 : allER / 4) : 0).toStringAsFixed(0) + '% '),
+                                            selectedColor: Colors.deepPurple[300],
+                                            backgroundColor: Colors.deepPurple[200],
+                                            selected: tsuba4On,
+                                            onSelected: (bool value) {}),
+                                      if (artifactsetAselect == 'witch' || artifactsetBselect == 'witch')
+                                        FilterChip(
+                                          label: Text('${"2 set".tr()}: ${"Pyro Damage".tr()} +' + (15 + (witch4On ? (7.5 * witch4Times) : 0)).toString() + '% '),
+                                          selectedColor: Colors.red[600],
+                                          backgroundColor: Colors.red[300],
+                                          selected: witch2On,
+                                          onSelected: (bool value) {},
                                         ),
+                                      if (artifactsetAselect == 'witch' && artifactsetBselect == 'witch')
+                                        Column(children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                                label: Text('${"4 set".tr()}: ${"Overloaded and Burning Damage".tr()} + ' + '40% '),
+                                                selectedColor: Colors.red[600],
+                                                backgroundColor: Colors.red[300],
+                                                selected: witch4On,
+                                                onSelected: (bool value) {}),
+                                            FilterChip(
+                                                label: Text('${"4 set".tr()}: ${"Vaporize and Melt Damage".tr()} + ' + '15% '),
+                                                selectedColor: Colors.red[600],
+                                                backgroundColor: Colors.red[300],
+                                                selected: witch4On,
+                                                onSelected: (bool value) {}),
+                                            FilterChip(
+                                                label: Text('2-Piece Set Bonus +50% of its starting value (Max 3 stacks)'.tr()),
+                                                selectedColor: Colors.red[600],
+                                                backgroundColor: Colors.red[300],
+                                                selected: witch4On,
+                                                onSelected: (bool value) {}),
+                                          ]),
+                                          SizedBox(height: 10),
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            ChoiceChip(
+                                                label: Text('1'),
+                                                selected: (witch4Times == 1),
+                                                onSelected: (bool value) {
+                                                  setState(() {
+                                                    witch4Times != 1 ? witch4Times = 1 : witch4Times = 0;
+                                                  });
+                                                }),
+                                            ChoiceChip(
+                                                label: Text('2'),
+                                                selected: (witch4Times == 2),
+                                                onSelected: (bool value) {
+                                                  setState(() {
+                                                    witch4Times != 2 ? witch4Times = 2 : witch4Times = 0;
+                                                  });
+                                                }),
+                                            ChoiceChip(
+                                                label: Text('3'),
+                                                selected: (witch4Times == 3),
+                                                onSelected: (bool value) {
+                                                  setState(() {
+                                                    witch4Times != 3 ? witch4Times = 3 : witch4Times = 0;
+                                                  });
+                                                }),
+                                          ]),
+                                        ]),
                                     ]),
                                     SizedBox(height: 10),
                                   ],
