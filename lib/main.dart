@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         1: ThemeData(primarySwatch: Colors.red),
         //ayaka
         2: ThemeData(primarySwatch: Colors.blue),
-        3: ThemeData(primarySwatch: Colors.lightGreen),
+        3: ThemeData(primarySwatch: Colors.purple),
         4: ThemeData(primarySwatch: Colors.green),
         5: ThemeData(primarySwatch: Colors.lightBlue),
       },
@@ -91,13 +91,22 @@ class _MyHomePageState extends State<MyHomePage> {
   Map charactertoinfo = {
     'ganyu': {'iconimage': AssetImage('images/ganyu.png'), 'splashimage': AssetImage('images/2021010519290354247.png'), 'element': 'cryo', 'wtype': 'bow', 'color': 0, 'en': 'Ganyu'},
     'yoimiya': {'iconimage': AssetImage('images/yoimiya.png'), 'splashimage': AssetImage('images/yoimiyalarge.png'), 'element': 'pyro', 'wtype': 'bow', 'color': 1, 'en': 'Yoimiya'},
-    'ayaka': {'iconimage': AssetImage('images/ayaka.png'), 'splashimage': AssetImage('images/ayakalarge.png'), 'element': 'cryo', 'wtype': 'sword', 'color': 2, 'en': 'Kamisato Ayaka'}
+    'ayaka': {'iconimage': AssetImage('images/ayaka.png'), 'splashimage': AssetImage('images/ayakalarge.png'), 'element': 'cryo', 'wtype': 'sword', 'color': 2, 'en': 'Kamisato Ayaka'},
+    'raiden': {
+      'iconimage': AssetImage('images/raiden.png'),
+      'splashimage': AssetImage('images/Character_Raiden_Shogun_Portrait.png'),
+      'element': 'electro',
+      'wtype': 'polearm',
+      'color': 3,
+      'en': 'Raiden Shogun'
+    }
   };
 
   Map themetocharacter = {
     0: 'ganyu',
     1: 'yoimiya',
     2: 'ayaka',
+    3: 'raiden',
   };
 
   bool spoilermode = false;
@@ -105,18 +114,21 @@ class _MyHomePageState extends State<MyHomePage> {
   Map elementopng = {
     'cryo': AssetImage('images/2020060220525531988.png'),
     'pyro': AssetImage('images/2020031618522830538.png'),
+    'electro': AssetImage('images/2020082817414588799.png'),
   };
 
   Map cleveltoatk = {
     'ganyu': {1: 26, 10: 26, 20: 68, 30: 68, 40: 135, 50: 173, 60: 217, 70: 256, 80: 295, 90: 335},
     'yoimiya': {1: 25, 10: 65, 20: 65, 30: 65, 40: 130, 50: 167, 60: 209, 70: 247, 80: 285, 90: 323},
     'ayaka': {1: 27, 10: 27, 20: 69, 30: 69, 40: 138, 50: 177, 60: 222, 70: 238, 80: 302, 90: 342},
+    'raiden': {1: 26, 10: 26, 20: 68, 30: 68, 40: 136, 50: 174, 60: 219, 70: 258, 80: 298, 90: 337},
   };
 
   Map baseDEFbyLV = {
     'ganyu': {1: 49, 10: 49, 20: 127, 30: 169, 40: 253, 50: 326, 60: 409, 70: 482, 80: 556, 90: 630},
     'yoimiya': {1: 48, 10: 48, 20: 124, 30: 124, 40: 247, 50: 318, 60: 399, 70: 470, 80: 542, 90: 615},
     'ayaka': {1: 61, 10: 61, 20: 158, 30: 158, 40: 315, 50: 405, 60: 509, 70: 600, 80: 692, 90: 784},
+    'raiden': {1: 61, 10: 61, 20: 159, 30: 159, 40: 317, 50: 408, 60: 512, 70: 604, 80: 696, 90: 789},
   };
 
   Map baseHPbyLV = {
@@ -156,11 +168,27 @@ class _MyHomePageState extends State<MyHomePage> {
       80: 11345,
       90: 12858,
     },
+    'raiden': {
+      1: 1005,
+      10: 1005,
+      20: 2606,
+      30: 2606,
+      40: 5189,
+      50: 6675,
+      60: 8373,
+      70: 9875,
+      80: 11388,
+      90: 12907,
+    },
   };
 
   Map baseCDbyLVL = {
     'ganyu': {1: 50, 10: 50, 20: 50, 30: 50, 40: 50, 50: 59.6, 60: 69.2, 70: 69.2, 80: 78.8, 90: 88.4},
     'ayaka': {1: 50, 10: 50, 20: 50, 30: 50, 40: 50, 50: 59.6, 60: 69.2, 70: 69.2, 80: 78.8, 90: 88.4},
+  };
+
+  Map baseERbyLVL = {
+    'raiden': {1: 100, 10: 100, 20: 100, 30: 100, 40: 100, 50: 108, 60: 116, 70: 116, 80: 124, 90: 132},
   };
 
   int levelatk = 0;
@@ -360,6 +388,7 @@ class _MyHomePageState extends State<MyHomePage> {
   double bonusdef = 0;
   double bonusER = 0;
   double alldef = 0;
+  double baseER = 0;
   double allER = 0;
   double bonusHP = 0;
   double allHP = 0;
@@ -412,6 +441,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'blackclifflongsword': AssetImage('images/weapon/Weapon_Blackcliff_Longsword.png'),
     'theblacksword': AssetImage('images/weapon/Weapon_The_Black_Sword.png'),
     'jadecutter': AssetImage('images/weapon/Weapon_Primordial_Jade_Cutter.png'),
+    'engulfinglightning': AssetImage('images/weapon/Weapon_Engulfing_Lightning.png'),
   };
 
   //     'ATK%',
@@ -1773,6 +1803,9 @@ class _MyHomePageState extends State<MyHomePage> {
   bool ayakaconstellation4On = false;
   bool ayakaconstellation6On = false;
 
+  //raidenoption
+  bool raidenconstellation2On = false;
+
   bool blizzardstrayer2On = true;
   bool blizzardstrayer41On = true;
   bool blizzardstrayer42On = true;
@@ -1823,6 +1856,9 @@ class _MyHomePageState extends State<MyHomePage> {
   bool blackclifflongswordsp = false;
   bool theblackswordsp = false;
   int blackcliffbufftimes = 1;
+
+  bool engulfinglightningsp1 = false;
+  bool engulfinglightningsp2 = false;
 
   bool pyro2On = false;
   bool cryo2On = false;
@@ -2383,6 +2419,36 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       theblackswordsp = false;
     }
+
+    if (weaponselect == "engulfinglightning") {
+      engulfinglightningsp1 = true;
+      engulfinglightningsp2 = true;
+      weapontoatk = {1: 46, 5: 62, 10: 82, 15: 102, 20: 122, 25: 173, 30: 194, 35: 214, 40: 235, 45: 287, 50: 308, 55: 361, 60: 382, 65: 435, 70: 457, 75: 510, 80: 532, 85: 586, 90: 608};
+      weapontoERpercent = {
+        1: 12,
+        5: 13.9,
+        10: 16.4,
+        15: 18.8,
+        20: 21.2,
+        25: 23.6,
+        30: 26.1,
+        35: 28.5,
+        40: 30.9,
+        45: 33.3,
+        50: 35.7,
+        55: 38.2,
+        60: 40.6,
+        65: 43,
+        70: 45.4,
+        75: 47.9,
+        80: 50.3,
+        85: 52.7,
+        90: 55.1
+      };
+    } else {
+      engulfinglightningsp1 = false;
+      engulfinglightningsp2 = false;
+    }
   }
 
   //ANCHOR weaponPopup
@@ -2874,6 +2940,60 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         setState(() {
                           weaponstatcontrol('theblacksword');
+                        });
+                        Navigator.pop(
+                          context,
+                          "user1",
+                        );
+                      },
+                    ),
+
+                  if (charactertoinfo[currentcharacter]['wtype'] == 'polearm')
+                    SimpleDialogOption(
+                      child: Container(
+                        width: 400,
+                        height: 150,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.lightBlue[50],
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/weapon/Weapon_Engulfing_Lightning.png'),
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 200,
+                              child: Text(
+                                'Engulfing Lightning'.tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          weaponstatcontrol('engulfinglightning');
                         });
                         Navigator.pop(
                           context,
@@ -9175,6 +9295,14 @@ class _MyHomePageState extends State<MyHomePage> {
           }
         }
         break;
+      case ('raiden'):
+        {
+          if (lastcharacter != 'raiden') {
+            weaponstatcontrol('engulfinglightning');
+            lastcharacter = 'raiden';
+          }
+        }
+        break;
     }
 
     //defparam
@@ -9235,7 +9363,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (manualatkpercentOn ? basicatk * manualatkpercent / 100 : 0) +
         (blackclifflongswordsp ? basicatk * (9 + weaponref * 3) / 100 * blackcliffbufftimes : 0) +
         (rulebythunder1On ? basicatk * (15 + weaponref * 5) / 100 : 0) +
-        (protectorvirtue ? allHP * (0.9 + 0.3 * weaponref) / 100 : 0);
+        (protectorvirtue ? allHP * (0.9 + 0.3 * weaponref) / 100 : 0) +
+        (engulfinglightningsp1 ? basicatk / 100 * (((allER - 100) * (weaponref * 7 + 21) / 100) < (weaponref * 10 + 70) ? ((allER - 100) * (weaponref * 7 + 21) / 100) : (weaponref * 10 + 70)) : 0);
 
     allatk = basicatk + bonusatk;
 
@@ -9325,6 +9454,12 @@ class _MyHomePageState extends State<MyHomePage> {
     allHP = lvlhp + bonusHP;
 
     //ER params
+    //CD params
+    if (baseERbyLVL[currentcharacter] != null) {
+      baseER = baseERbyLVL[currentcharacter][level];
+    } else {
+      baseER = 100;
+    }
     if (weapontoERpercent[weaponlv] != null) weaponERpercent = weapontoERpercent[weaponlv];
 
     a3ERpercentMain = a3ERpercentbyLVL[sstar][slv];
@@ -9337,9 +9472,10 @@ class _MyHomePageState extends State<MyHomePage> {
         (stat3ERpercentOn ? stat3ERpercent : 0) +
         (stat4ERpercentOn ? stat4ERpercent : 0) +
         (stat5ERpercentOn ? stat5ERpercent : 0) +
-        (tsuba2On ? 20 : 0);
+        (tsuba2On ? 20 : 0) +
+        (engulfinglightningsp2 ? (25 + 5 * weaponref) : 0);
 
-    allER = 100 + bonusER;
+    allER = baseER + bonusER;
 
     //EM params
     if (weapontoEM[weaponlv] != null) weaponEM = weapontoEM[weaponlv];
@@ -9522,7 +9658,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (mistsplitteredge1On ? (9 + weaponref * 3) : 0) +
         (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'electro'
             ? (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))
-            : 0);
+            : 0) +
+        (currentcharacter == 'raiden' ? (allER - 100) * 0.4 : 0);
 
     if (cleveltoAnemoDMGpercent[level] != null) levelAnemoDMGpercent = cleveltoAnemoDMGpercent[level];
     if (weapontoAnemoDMGpercent[weaponlv] != null) weaponAnemoDMGpercent = weapontoAnemoDMGpercent[weaponlv];
@@ -10734,6 +10871,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 setState(() {
                   currentcharacter = 'ayaka';
                   DynamicTheme.of(context).setTheme(2);
+                });
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: Text('raiden').tr(),
+              onTap: () {
+                setState(() {
+                  currentcharacter = 'raiden';
+                  DynamicTheme.of(context).setTheme(3);
                 });
                 // Update the state of the app.
                 // ...
@@ -12401,6 +12549,19 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   buildStatRow(Colors.black, '${"Press the Advantage".tr()}%(' + ((9 + weaponref * 3) * blackcliffbufftimes).toStringAsFixed(1) + ')',
                                                       (basicatk * (9 + weaponref * 3) * blackcliffbufftimes / 100).toStringAsFixed(1)),
                                                 if (protectorvirtue) buildStatRow(Colors.green, "Protector's Virtue".tr(), ((allHP * (0.9 + weaponref * 0.3) / 100).toStringAsFixed(1))),
+                                                if (engulfinglightningsp1)
+                                                  buildStatRow(
+                                                      Colors.purple[300],
+                                                      "Timeless Dream%(".tr() +
+                                                          (((allER - 100) * (weaponref * 7 + 21) / 100) < (weaponref * 10 + 70) ? ((allER - 100) * (weaponref * 7 + 21) / 100) : (weaponref * 10 + 70))
+                                                              .toStringAsFixed(1) +
+                                                          ")",
+                                                      ((basicatk /
+                                                              100 *
+                                                              (((allER - 100) * (weaponref * 7 + 21) / 100) < (weaponref * 10 + 70)
+                                                                  ? ((allER - 100) * (weaponref * 7 + 21) / 100)
+                                                                  : (weaponref * 10 + 70)))
+                                                          .toStringAsFixed(1))),
                                               ],
                                             ),
                                             //ANCHOR statATK:bar
@@ -12434,6 +12595,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 if (manualatkpercentOn) buildstatbar(Colors.red[300], (basicatk * manualatkpercent / 100)),
                                                 if (rulebythunder1On == true) buildstatbar(Colors.purple, (basicatk * (15 + weaponref * 5) / 100)),
                                                 if (protectorvirtue) buildstatbar(Colors.green, (allHP * (0.9 + weaponref * 0.3) / 100)),
+                                                if (engulfinglightningsp1)
+                                                  buildstatbar(
+                                                      Colors.purple[300],
+                                                      (basicatk /
+                                                          100 *
+                                                          (((allER - 100) * (weaponref * 7 + 21) / 100) < (weaponref * 10 + 70)
+                                                              ? ((allER - 100) * (weaponref * 7 + 21) / 100)
+                                                              : (weaponref * 10 + 70)))),
                                               ],
                                             ),
                                           ],
@@ -12623,8 +12792,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                             Row(
                                               mainAxisAlignment: MainAxisAlignment.start,
                                               children: [
-                                                buildStatRow(Colors.red, '${"baseER".tr()}%', '100'),
-                                                if (weaponERpercent != 0) buildStatRow(Colors.green, '${"weapon".tr()}%', '$weaponERpercent'),
+                                                buildStatRow(Colors.red, '${"baseER".tr()}%', '$baseER'),
+                                                if (weaponERpercent != 0) buildStatRow(Colors.blue, '${"weapon".tr()}%', '$weaponERpercent'),
                                                 if (stat1ERpercentOn == true) buildStatRow(Colors.yellow[700], '${"a1".tr()}%', '$stat1ERpercent'),
                                                 if (stat2ERpercentOn == true) buildStatRow(Colors.pink[700], '${"a2".tr()}%', '$stat2ERpercent'),
                                                 if (artifact3mainstatcat == 5) buildStatRow(Colors.blueGrey, '${"a3".tr()}%', '$a3ERpercentMain'),
@@ -12632,6 +12801,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 if (stat4ERpercentOn == true) buildStatRow(Colors.purple, '${"a4".tr()}%', '$stat4ERpercent'),
                                                 if (stat5ERpercentOn == true) buildStatRow(Colors.teal, '${"a5".tr()}%', '$stat5ERpercent'),
                                                 if (tsuba2On == true) buildStatRow(Colors.deepPurple, '${"Emblem of Severed Fate".tr()}%', '20'),
+                                                if (engulfinglightningsp2) buildStatRow(Colors.amber, "Timeless Dream".tr(), (weaponref * 5 + 25).toString()),
                                               ],
                                             ),
 
@@ -12639,7 +12809,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             Row(
                                               mainAxisAlignment: MainAxisAlignment.start,
                                               children: [
-                                                buildstatbarpercent(Colors.red, 50),
+                                                buildstatbarpercent(Colors.red, baseER),
                                                 if (weaponERpercent != 0) buildstatbarpercent(Colors.blue, weaponERpercent),
                                                 if (stat1ERpercentOn == true) buildstatbarpercent(Colors.yellow[700], stat1ERpercent),
                                                 if (stat2ERpercentOn == true) buildstatbarpercent(Colors.pink[700], stat2ERpercent),
@@ -12648,6 +12818,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 if (stat4ERpercentOn == true) buildstatbarpercent(Colors.purple, stat4ERpercent),
                                                 if (stat5ERpercentOn == true) buildstatbarpercent(Colors.teal, stat5ERpercent),
                                                 if (tsuba2On == true) buildstatbarpercent(Colors.deepPurple, 20),
+                                                if (engulfinglightningsp2) buildstatbarpercent(Colors.amber, (weaponref * 5 + 25)),
                                               ],
                                             ),
                                           ],
@@ -13365,6 +13536,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'electro')
                                             buildStatRow(Colors.amber, 'mistsplitteredge2'.tr(),
                                                 (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21))).toString()),
+                                          if (currentcharacter == 'raiden') buildStatRow(Colors.purple[400], 'Enlightened One'.tr(), ((allER - 100) * 0.4).toStringAsFixed(1))
                                         ],
                                       ),
                                       //ANCHOR statElectroDMG:bar
@@ -13379,6 +13551,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (mistsplitteredge2On && charactertoinfo[currentcharacter]['element'] == 'electro')
                                             buildstatbarpercent(
                                                 Colors.amber, (mistsplitteredge2Times == 1 ? (weaponref * 2 + 6) : (mistsplitteredge2Times == 2 ? (weaponref * 4 + 12) : (weaponref * 7 + 21)))),
+                                          if (currentcharacter == 'raiden') buildstatbarpercent(Colors.purple[400], ((allER - 100) * 0.4)),
                                         ],
                                       ),
                                       //ANCHOR Anemo Damage Title
@@ -14486,6 +14659,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                           },
                                         ),
                                       ]),
+
+                                    //ANCHOR CharacterOptions:raidenskill
+                                    if (currentcharacter == 'raiden')
+                                      Wrap(spacing: 10, runSpacing: 10, crossAxisAlignment: WrapCrossAlignment.center, children: <Widget>[
+                                        FilterChip(
+                                          selectedColor: Colors.purple[200],
+                                          backgroundColor: Colors.purple[200],
+                                          label: Text('Enlightened One:Musou Isshin Energy restoration +'.tr() +
+                                              ((allER - 100) * 0.6).toStringAsFixed(1) +
+                                              '% & Electro DMG +'.tr() +
+                                              ((allER - 100) * 0.4).toStringAsFixed(1) +
+                                              "%"),
+                                          selected: true,
+                                          onSelected: (bool value) {},
+                                        ),
+                                      ]),
+
                                     Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                       SelectableText(
                                         'Constellation'.tr(),
@@ -14537,6 +14727,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                           onSelected: (bool value) {
                                             setState(() {
                                               ayakaconstellation6On = value;
+                                            });
+                                          },
+                                        ),
+                                      ]),
+                                    if (currentcharacter == 'raiden')
+                                      Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                        FilterChip(
+                                          label: Text("Constellation2: Musou no Hitotachi and Musou Isshin ignore 60% of opponents' DEF".tr()),
+                                          selected: raidenconstellation2On,
+                                          onSelected: (bool value) {
+                                            setState(() {
+                                              raidenconstellation2On = value;
                                             });
                                           },
                                         ),
@@ -14947,6 +15149,39 @@ class _MyHomePageState extends State<MyHomePage> {
                                               onSelected: (bool value) {
                                                 setState(() {
                                                   blackcliffbufftimes = 3;
+                                                });
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                    if (weaponselect == 'engulfinglightning')
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label: Text('Timeless Dream-Eternal Stove1: ATK+'.tr() +
+                                                  (((allER - 100) * (weaponref * 7 + 21) / 100) < (weaponref * 10 + 70) ? ((allER - 100) * (weaponref * 7 + 21) / 100) : (weaponref * 10 + 70))
+                                                      .toStringAsFixed(1) +
+                                                  '% (MAX '.tr() +
+                                                  (weaponref * 10 + 70).toString() +
+                                                  '%)'),
+                                              selected: engulfinglightningsp1,
+                                              selectedColor: Colors.purple[300],
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  unreturningOn = value;
+                                                });
+                                              },
+                                            ),
+                                            FilterChip(
+                                              label: Text('Timeless Dream-Eternal Stove2: ER +'.tr() + (weaponref * 5 + 25).toString() + '% after Elemental Burst'.tr()),
+                                              selected: engulfinglightningsp2,
+                                              selectedColor: Colors.amber,
+                                              onSelected: (bool value) {
+                                                setState(() {
+                                                  engulfinglightningsp2 = value;
                                                 });
                                               },
                                             ),
