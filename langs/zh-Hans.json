@@ -316,7 +316,7 @@
     "raiden": "雷电将军",
     "Enlightened One": "殊胜之御体",
     "Enlightened One:Musou Isshin Energy restoration +": "殊胜之御体:梦想一心元素能量恢复+",
-    "% & Electro DMG +": "% & 雷元素伤害 +",
+    ") & Electro DMG +": ") & 雷元素伤害 +",
     "Constellation2: Musou no Hitotachi and Musou Isshin ignore 60% of opponents' DEF": "命之座2:梦想一刀梦想一心无视敌方60%防御",
     "Timeless Dream-Eternal Stove1: ATK+": "非时之梦·常世灶食1: 攻击力+",
     "% (MAX ": "% (最大 ",
@@ -325,7 +325,7 @@
     "Timeless Dream%(": "非时之梦%(",
     "Engulfing Lightning": "薙草之稻光",
     "Timeless Dream": "非时之梦",
-    "Resolve": "愿力",
+    "Resolve Stack": "愿力层数",
     "Musounohitotachi": "梦想一刀",
     "+ Resolve Bounus": "+ 愿力加成"
 }

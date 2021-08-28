@@ -317,7 +317,7 @@
     "raiden": "Raiden Shogun",
     "Enlightened One": "Enlightened One",
     "Enlightened One:Musou Isshin Energy restoration +": "Enlightened One:Musou Isshin Energy restoration +",
-    "% & Electro DMG +": "% & Electro DMG +",
+    ") & Electro DMG +": ") & Electro DMG +",
     "Constellation2: Musou no Hitotachi and Musou Isshin ignore 60% of opponents' DEF": "Constellation2: Musou no Hitotachi and Musou Isshin ignore 60% of opponents' DEF",
     "Timeless Dream-Eternal Stove1: ATK+": "Timeless Dream-Eternal Stove1: ATK+",
     "% (MAX ": "% (MAX ",
@@ -326,7 +326,7 @@
     "Timeless Dream%(": "Timeless Dream%(",
     "Engulfing Lightning": "Engulfing Lightning",
     "Timeless Dream": "Timeless Dream",
-    "Resolve": "Resolve",
+    "Resolve Stack": "Resolve Stack",
     "Musounohitotachi": "Musounohitotachi",
     "+ Resolve Bounus": "+ Resolve Bounus"
 }

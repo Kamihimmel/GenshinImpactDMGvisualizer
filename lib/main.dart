@@ -1765,6 +1765,23 @@ class _MyHomePageState extends State<MyHomePage> {
       13: 1.54,
       14: 1.63,
       15: 1.72,
+    },
+    'Musou Isshin Energy Restoration': {
+      1: 1.6,
+      2: 1.7,
+      3: 1.8,
+      4: 1.9,
+      5: 2,
+      6: 2.1,
+      7: 2.2,
+      8: 2.3,
+      9: 2.4,
+      10: 2.5,
+      11: 2.5,
+      12: 2.5,
+      13: 2.5,
+      14: 2.5,
+      15: 2.5,
     }
   };
 
@@ -2017,6 +2034,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   double resolveinitpercent = 0;
   double resolvepercent = 0;
+
+  double musouisshinenergyrestoration = 0;
+  double musouisshinenergyrestorationpercent = 0;
+  double musouisshinenergyrestorationvalue = 0;
 
   double echoingballaddmgnc = 0;
   double echoingballaddmgexp = 0;
@@ -10118,6 +10139,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
           resolveinitpercent = raidennatklvl['Resolve Bonus Init'][eburstlv];
           resolvepercent = raidennatklvl['Resolve Bonus'][eburstlv];
+
+          musouisshinenergyrestoration = raidennatklvl['Musou Isshin Energy Restoration'][eburstlv];
         }
         break;
     }
@@ -11060,21 +11083,21 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolveinitpercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musounohitotachidmgnc = allatk *
         (musounohitotachidmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolveinitpercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musounohitotachidmgexp = allatk *
         (musounohitotachidmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolveinitpercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
@@ -11083,21 +11106,21 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit1dmgnc = allatk *
         (musoushinsetsuhit1dmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit1dmgexp = allatk *
         (musoushinsetsuhit1dmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
@@ -11106,21 +11129,21 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit2dmgnc = allatk *
         (musoushinsetsuhit2dmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit2dmgexp = allatk *
         (musoushinsetsuhit2dmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
@@ -11129,21 +11152,21 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit3dmgnc = allatk *
         (musoushinsetsuhit3dmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit3dmgexp = allatk *
         (musoushinsetsuhit3dmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
@@ -11152,21 +11175,21 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit4dmgnc = allatk *
         (musoushinsetsuhit4dmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit4dmgexp = allatk *
         (musoushinsetsuhit4dmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
@@ -11175,21 +11198,21 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit5dmgnc = allatk *
         (musoushinsetsuhit5dmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit5dmgexp = allatk *
         (musoushinsetsuhit5dmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
@@ -11198,21 +11221,21 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuchargedatkdmgnc = allatk *
         (musoushinsetsuchargedatkdmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuchargedatkdmgexp = allatk *
         (musoushinsetsuchargedatkdmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
@@ -11221,21 +11244,21 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuplungedmgnc = allatk *
         (musoushinsetsuplungedmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuplungedmgexp = allatk *
         (musoushinsetsuplungedmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
@@ -11244,21 +11267,21 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsulplungedmgnc = allatk *
         (musoushinsetsulplungedmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsulplungedmgexp = allatk *
         (musoushinsetsulplungedmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
@@ -11267,23 +11290,26 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhplungedmgnc = allatk *
         (musoushinsetsuhplungedmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhplungedmgexp = allatk *
         (musoushinsetsuhplungedmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
         (100 + level) /
-        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    musouisshinenergyrestorationpercent = (allER - 100) * 0.6;
+    musouisshinenergyrestorationvalue = (1 + musouisshinenergyrestorationpercent / 100) * musouisshinenergyrestoration;
 
     echoingballaddmgc = allatk *
         (125 / 100) *
@@ -15189,8 +15215,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                               selectedColor: Colors.purple[200],
                                               backgroundColor: Colors.purple[200],
                                               label: Text('Enlightened One:Musou Isshin Energy restoration +'.tr() +
-                                                  ((allER - 100) * 0.6).toStringAsFixed(1) +
-                                                  '% & Electro DMG +'.tr() +
+                                                  musouisshinenergyrestorationpercent.toStringAsFixed(1) +
+                                                  '%(' +
+                                                  musouisshinenergyrestorationvalue.toStringAsFixed(1) +
+                                                  ') & Electro DMG +'.tr() +
                                                   ((allER - 100) * 0.4).toStringAsFixed(1) +
                                                   "%"),
                                               selected: true,
@@ -15199,7 +15227,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ]),
                                           Wrap(spacing: 10, runSpacing: 10, crossAxisAlignment: WrapCrossAlignment.center, children: <Widget>[
                                             SelectableText(
-                                              '${"Resolve".tr()}%: $resolvestack',
+                                              '${"Resolve Stack".tr()}: $resolvestack',
                                               style: TextStyle(
                                                 //fontWeight: FontWeight.bold,
                                                 color: Colors.black,
@@ -15285,7 +15313,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     if (currentcharacter == 'raiden')
                                       Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
                                         FilterChip(
-                                          label: Text("Constellation2: Musou no Hitotachi and Musou Isshin ignore 60% of opponents' DEF".tr() + raidenconstellation2On.toString()),
+                                          label: Text("Constellation2: Musou no Hitotachi and Musou Isshin ignore 60% of opponents' DEF".tr()),
                                           selected: raidenconstellation2On,
                                           onSelected: (bool value) {
                                             setState(() {
