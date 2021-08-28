@@ -1561,6 +1561,213 @@ class _MyHomePageState extends State<MyHomePage> {
     },
   };
 
+  var raidennatklvl = {
+    'Secret Art: Musoushinsetsu Musounohitotachi DMG': {
+      1: 400.8,
+      2: 430.86,
+      3: 460.92,
+      4: 501,
+      5: 531.06,
+      6: 561.12,
+      7: 601.2,
+      8: 641.28,
+      9: 681.36,
+      10: 721.44,
+      11: 761.52,
+      12: 801.6,
+      13: 851.7,
+      14: 901.8,
+      15: 951.9,
+    },
+    'Secret Art: Musoushinsetsu 1hitDMG': {
+      1: 44.74,
+      2: 47.79,
+      3: 50.84,
+      4: 54.91,
+      5: 57.96,
+      6: 61.51,
+      7: 66.09,
+      8: 70.66,
+      9: 75.24,
+      10: 79.82,
+      11: 84.39,
+      12: 88.97,
+      13: 93.54,
+      14: 98.12,
+      15: 102.69,
+    },
+    'Secret Art: Musoushinsetsu 2hitDMG': {
+      1: 43.96,
+      2: 46.95,
+      3: 49.95,
+      4: 53.95,
+      5: 56.94,
+      6: 60.44,
+      7: 64.94,
+      8: 70.66,
+      9: 73.93,
+      10: 78.42,
+      11: 82.92,
+      12: 87.41,
+      13: 91.91,
+      14: 96.4,
+      15: 100.9,
+    },
+    'Secret Art: Musoushinsetsu 3hitDMG': {
+      1: 53.82,
+      2: 57.49,
+      3: 61.16,
+      4: 66.05,
+      5: 69.72,
+      6: 74,
+      7: 79.51,
+      8: 85.01,
+      9: 90.52,
+      10: 96.02,
+      11: 101.53,
+      12: 107.3,
+      13: 112.54,
+      14: 118.04,
+      15: 123.55,
+    },
+    'Secret Art: Musoushinsetsu 4hitDMG': {
+      1: 30.89 + 30.98,
+      2: 32.99 + 33.09,
+      3: 35.1 + 35.2,
+      4: 37.91 + 38.02,
+      5: 40.01 + 40.13,
+      6: 42.47 + 42.59,
+      7: 45.63 + 45.76,
+      8: 48.79 + 48.93,
+      9: 51.95 + 52.1,
+      10: 55.11 + 52.26,
+      11: 58.27 + 58.43,
+      12: 61.43 + 61.6,
+      13: 64.58 + 64.77,
+      14: 67.74 + 67.94,
+      15: 70.9 + 71.1,
+    },
+    'Secret Art: Musoushinsetsu 5hitDMG': {
+      1: 73.94,
+      2: 78.99,
+      3: 84.03,
+      4: 90.75,
+      5: 95.79,
+      6: 101.67,
+      7: 109.24,
+      8: 116.8,
+      9: 124.36,
+      10: 131.92,
+      11: 139.48,
+      12: 147.05,
+      13: 154.61,
+      14: 162.17,
+      15: 169.73,
+    },
+    'Secret Art: Musoushinsetsu ChargedAttackDMG': {
+      1: 61.6 + 74.36,
+      2: 65.8 + 79.43,
+      3: 70 + 84.5,
+      4: 75.6 + 91.26,
+      5: 79.8 + 96.33,
+      6: 84.7 + 102.25,
+      7: 91 + 109.85,
+      8: 97.3 + 117.46,
+      9: 103.6 + 125.06,
+      10: 109.9 + 132.67,
+      11: 116.2 + 140.27,
+      12: 122.5 + 147.88,
+      13: 128.8 + 155.48,
+      14: 135.1 + 163.09,
+      15: 141.4 + 170.69,
+    },
+    'Secret Art: Musoushinsetsu PlungeDMG': {
+      1: 63.93,
+      2: 69.14,
+      3: 74.34,
+      4: 81.77,
+      5: 86.98,
+      6: 32.93,
+      7: 101.1,
+      8: 109.28,
+      9: 117.46,
+      10: 126.38,
+      11: 135.3,
+      12: 144.24,
+      13: 153.14,
+      14: 162.03,
+      15: 170.98,
+    },
+    'Secret Art: Musoushinsetsu LPlungeDMG': {
+      1: 127.84,
+      2: 138.24,
+      3: 148.65,
+      4: 163.51,
+      5: 173.92,
+      6: 185.81,
+      7: 202.16,
+      8: 218.51,
+      9: 234.86,
+      10: 252.7,
+      11: 270.54,
+      12: 288.38,
+      13: 306.22,
+      14: 324.05,
+      15: 341.89,
+    },
+    'Secret Art: Musoushinsetsu HPlungeDMG': {
+      1: 159.68,
+      2: 172.67,
+      3: 185.67,
+      4: 204.24,
+      5: 217.23,
+      6: 232.09,
+      7: 252.51,
+      8: 272.93,
+      9: 293.36,
+      10: 315.64,
+      11: 337.92,
+      12: 360.2,
+      13: 382.48,
+      14: 404.76,
+      15: 427.04,
+    },
+    'Resolve Bonus Init': {
+      1: 3.89,
+      2: 4.18,
+      3: 4.47,
+      4: 4.86,
+      5: 5.51,
+      6: 5.44,
+      7: 5.83,
+      8: 6.22,
+      9: 6.61,
+      10: 7,
+      11: 7.39,
+      12: 7.78,
+      13: 8.26,
+      14: 8.75,
+      15: 9.23,
+    },
+    'Resolve Bonus': {
+      1: 0.73,
+      2: 0.78,
+      3: 0.84,
+      4: 0.91,
+      5: 0.96,
+      6: 1.02,
+      7: 1.09,
+      8: 1.16,
+      9: 1.23,
+      10: 1.31,
+      11: 1.38,
+      12: 1.45,
+      13: 1.54,
+      14: 1.63,
+      15: 1.72,
+    }
+  };
+
   double hit1dmgpercent = 0;
   double hit2dmgpercent = 0;
   double hit3dmgpercent = 0;
@@ -1758,6 +1965,59 @@ class _MyHomePageState extends State<MyHomePage> {
   double soumetsubloomdmgexp = 0;
   double soumetsubloomdmgc = 0;
 
+  double musounohitotachidmgpercent = 0;
+  double musounohitotachidmgnc = 0;
+  double musounohitotachidmgexp = 0;
+  double musounohitotachidmgc = 0;
+
+  double musoushinsetsuhit1dmgpercent = 0;
+  double musoushinsetsuhit1dmgnc = 0;
+  double musoushinsetsuhit1dmgexp = 0;
+  double musoushinsetsuhit1dmgc = 0;
+
+  double musoushinsetsuhit2dmgpercent = 0;
+  double musoushinsetsuhit2dmgnc = 0;
+  double musoushinsetsuhit2dmgexp = 0;
+  double musoushinsetsuhit2dmgc = 0;
+
+  double musoushinsetsuhit3dmgpercent = 0;
+  double musoushinsetsuhit3dmgnc = 0;
+  double musoushinsetsuhit3dmgexp = 0;
+  double musoushinsetsuhit3dmgc = 0;
+
+  double musoushinsetsuhit4dmgpercent = 0;
+  double musoushinsetsuhit4dmgnc = 0;
+  double musoushinsetsuhit4dmgexp = 0;
+  double musoushinsetsuhit4dmgc = 0;
+
+  double musoushinsetsuhit5dmgpercent = 0;
+  double musoushinsetsuhit5dmgnc = 0;
+  double musoushinsetsuhit5dmgexp = 0;
+  double musoushinsetsuhit5dmgc = 0;
+
+  double musoushinsetsuchargedatkdmgpercent = 0;
+  double musoushinsetsuchargedatkdmgnc = 0;
+  double musoushinsetsuchargedatkdmgexp = 0;
+  double musoushinsetsuchargedatkdmgc = 0;
+
+  double musoushinsetsuplungedmgpercent = 0;
+  double musoushinsetsuplungedmgnc = 0;
+  double musoushinsetsuplungedmgexp = 0;
+  double musoushinsetsuplungedmgc = 0;
+
+  double musoushinsetsuhplungedmgpercent = 0;
+  double musoushinsetsuhplungedmgnc = 0;
+  double musoushinsetsuhplungedmgexp = 0;
+  double musoushinsetsuhplungedmgc = 0;
+
+  double musoushinsetsulplungedmgpercent = 0;
+  double musoushinsetsulplungedmgnc = 0;
+  double musoushinsetsulplungedmgexp = 0;
+  double musoushinsetsulplungedmgc = 0;
+
+  double resolveinitpercent = 0;
+  double resolvepercent = 0;
+
   double echoingballaddmgnc = 0;
   double echoingballaddmgexp = 0;
   double echoingballaddmgc = 0;
@@ -1805,6 +2065,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   //raidenoption
   bool raidenconstellation2On = false;
+  int resolvestack = 0;
 
   bool blizzardstrayer2On = true;
   bool blizzardstrayer41On = true;
@@ -9839,6 +10100,26 @@ class _MyHomePageState extends State<MyHomePage> {
           soumetsubloomdmgpercent = ayakanatklvl['Kamisato Art: Soumetsu(Bloom) DMG'][eburstlv];
         }
         break;
+
+      case ('raiden'):
+        {
+          musounohitotachidmgpercent = raidennatklvl['Secret Art: Musoushinsetsu Musounohitotachi DMG'][eburstlv];
+
+          musoushinsetsuhit1dmgpercent = raidennatklvl['Secret Art: Musoushinsetsu 1hitDMG'][eburstlv];
+          musoushinsetsuhit2dmgpercent = raidennatklvl['Secret Art: Musoushinsetsu 2hitDMG'][eburstlv];
+          musoushinsetsuhit3dmgpercent = raidennatklvl['Secret Art: Musoushinsetsu 3hitDMG'][eburstlv];
+          musoushinsetsuhit4dmgpercent = raidennatklvl['Secret Art: Musoushinsetsu 4hitDMG'][eburstlv];
+          musoushinsetsuhit5dmgpercent = raidennatklvl['Secret Art: Musoushinsetsu 5hitDMG'][eburstlv];
+          musoushinsetsuchargedatkdmgpercent = raidennatklvl['Secret Art: Musoushinsetsu ChargedAttackDMG'][eburstlv];
+
+          musoushinsetsuplungedmgpercent = raidennatklvl['Secret Art: Musoushinsetsu PlungeDMG'][eburstlv];
+          musoushinsetsulplungedmgpercent = raidennatklvl['Secret Art: Musoushinsetsu LPlungeDMG'][eburstlv];
+          musoushinsetsuhplungedmgpercent = raidennatklvl['Secret Art: Musoushinsetsu HPlungeDMG'][eburstlv];
+
+          resolveinitpercent = raidennatklvl['Resolve Bonus Init'][eburstlv];
+          resolvepercent = raidennatklvl['Resolve Bonus'][eburstlv];
+        }
+        break;
     }
 
     basicmeltpercent = (1 * 25 * allEM) / (9 * (allEM + 1400));
@@ -10527,6 +10808,15 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyPyrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
+    teikafiredancehit1dmgc = allatk *
+        (hit1dmgpercent / 100) *
+        (teikafiredancebonuspercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusPyroDMGpercent / 100 + bonusNormalATKDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPyrores;
+
     teikafiredancehit1dmgnc = allatk *
         (hit1dmgpercent / 100) *
         (teikafiredancebonuspercent / 100) *
@@ -10763,6 +11053,236 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    musounohitotachidmgc = allatk *
+        (musounohitotachidmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolveinitpercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musounohitotachidmgnc = allatk *
+        (musounohitotachidmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolveinitpercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musounohitotachidmgexp = allatk *
+        (musounohitotachidmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolveinitpercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    musoushinsetsuhit1dmgc = allatk *
+        (musoushinsetsuhit1dmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuhit1dmgnc = allatk *
+        (musoushinsetsuhit1dmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuhit1dmgexp = allatk *
+        (musoushinsetsuhit1dmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    musoushinsetsuhit2dmgc = allatk *
+        (musoushinsetsuhit2dmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuhit2dmgnc = allatk *
+        (musoushinsetsuhit2dmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuhit2dmgexp = allatk *
+        (musoushinsetsuhit2dmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    musoushinsetsuhit3dmgc = allatk *
+        (musoushinsetsuhit3dmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuhit3dmgnc = allatk *
+        (musoushinsetsuhit3dmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuhit3dmgexp = allatk *
+        (musoushinsetsuhit3dmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    musoushinsetsuhit4dmgc = allatk *
+        (musoushinsetsuhit4dmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuhit4dmgnc = allatk *
+        (musoushinsetsuhit4dmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuhit4dmgexp = allatk *
+        (musoushinsetsuhit4dmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    musoushinsetsuhit5dmgc = allatk *
+        (musoushinsetsuhit5dmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuhit5dmgnc = allatk *
+        (musoushinsetsuhit5dmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuhit5dmgexp = allatk *
+        (musoushinsetsuhit5dmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    musoushinsetsuchargedatkdmgc = allatk *
+        (musoushinsetsuchargedatkdmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuchargedatkdmgnc = allatk *
+        (musoushinsetsuchargedatkdmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuchargedatkdmgexp = allatk *
+        (musoushinsetsuchargedatkdmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    musoushinsetsuplungedmgc = allatk *
+        (musoushinsetsuplungedmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuplungedmgnc = allatk *
+        (musoushinsetsuplungedmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuplungedmgexp = allatk *
+        (musoushinsetsuplungedmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    musoushinsetsulplungedmgc = allatk *
+        (musoushinsetsulplungedmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsulplungedmgnc = allatk *
+        (musoushinsetsulplungedmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsulplungedmgexp = allatk *
+        (musoushinsetsulplungedmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    musoushinsetsuhplungedmgc = allatk *
+        (musoushinsetsuhplungedmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuhplungedmgnc = allatk *
+        (musoushinsetsuhplungedmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    musoushinsetsuhplungedmgexp = allatk *
+        (musoushinsetsuhplungedmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100 + resolvepercent * resolvestack / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100 * (1 - (raidenconstellation2On ? 0.6 : 0))) * (100 + enemylv) + 100 + level) *
+        enemyElectrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
     echoingballaddmgc = allatk *
@@ -14662,19 +15182,50 @@ class _MyHomePageState extends State<MyHomePage> {
 
                                     //ANCHOR CharacterOptions:raidenskill
                                     if (currentcharacter == 'raiden')
-                                      Wrap(spacing: 10, runSpacing: 10, crossAxisAlignment: WrapCrossAlignment.center, children: <Widget>[
-                                        FilterChip(
-                                          selectedColor: Colors.purple[200],
-                                          backgroundColor: Colors.purple[200],
-                                          label: Text('Enlightened One:Musou Isshin Energy restoration +'.tr() +
-                                              ((allER - 100) * 0.6).toStringAsFixed(1) +
-                                              '% & Electro DMG +'.tr() +
-                                              ((allER - 100) * 0.4).toStringAsFixed(1) +
-                                              "%"),
-                                          selected: true,
-                                          onSelected: (bool value) {},
-                                        ),
-                                      ]),
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, crossAxisAlignment: WrapCrossAlignment.center, children: <Widget>[
+                                            FilterChip(
+                                              selectedColor: Colors.purple[200],
+                                              backgroundColor: Colors.purple[200],
+                                              label: Text('Enlightened One:Musou Isshin Energy restoration +'.tr() +
+                                                  ((allER - 100) * 0.6).toStringAsFixed(1) +
+                                                  '% & Electro DMG +'.tr() +
+                                                  ((allER - 100) * 0.4).toStringAsFixed(1) +
+                                                  "%"),
+                                              selected: true,
+                                              onSelected: (bool value) {},
+                                            ),
+                                          ]),
+                                          Wrap(spacing: 10, runSpacing: 10, crossAxisAlignment: WrapCrossAlignment.center, children: <Widget>[
+                                            SelectableText(
+                                              '${"Resolve".tr()}%: $resolvestack',
+                                              style: TextStyle(
+                                                //fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 150,
+                                              child: Slider(
+                                                min: 0,
+                                                max: 60,
+                                                divisions: 60,
+                                                activeColor: Colors.purple,
+                                                inactiveColor: Colors.purple[200],
+                                                label: resolvestack.toString(),
+                                                value: resolvestack.toDouble(),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    resolvestack = value.toInt();
+                                                  });
+                                                },
+                                              ),
+                                            ),
+                                          ]),
+                                        ],
+                                      ),
 
                                     Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
                                       SelectableText(
@@ -14734,7 +15285,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     if (currentcharacter == 'raiden')
                                       Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
                                         FilterChip(
-                                          label: Text("Constellation2: Musou no Hitotachi and Musou Isshin ignore 60% of opponents' DEF".tr()),
+                                          label: Text("Constellation2: Musou no Hitotachi and Musou Isshin ignore 60% of opponents' DEF".tr() + raidenconstellation2On.toString()),
                                           selected: raidenconstellation2On,
                                           onSelected: (bool value) {
                                             setState(() {
@@ -16570,7 +17121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ExpansionTile(
                                     tilePadding: EdgeInsets.all(0),
                                     childrenPadding: EdgeInsets.all(0),
-                                    title: builddamagebarwithcrit(Colors.black, 'Trail of the Qilin DMG'.tr() + ':($trailoftheqilindmgpercent)%', Colors.lightBlue[200], Colors.lightBlue[400],
+                                    title: builddamagebarwithcrit(Colors.black, 'Trail of the Qilin DMG'.tr() + ':($trailoftheqilindmgpercent%)', Colors.lightBlue[200], Colors.lightBlue[400],
                                         Colors.lightBlue[600], trailoftheqilindmgnc, trailoftheqilindmgexp, trailoftheqilindmgc),
                                     children: <Widget>[
                                       builddamagebarwithcrit(
@@ -16590,7 +17141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ExpansionTile(
                                     tilePadding: EdgeInsets.all(0),
                                     childrenPadding: EdgeInsets.all(0),
-                                    title: builddamagebarwithcrit(Colors.black, 'Hyouka'.tr() + ':($hyoukadmgpercent)%', Colors.lightBlue[200], Colors.lightBlue[400], Colors.lightBlue[600],
+                                    title: builddamagebarwithcrit(Colors.black, 'Hyouka'.tr() + ':($hyoukadmgpercent%)', Colors.lightBlue[200], Colors.lightBlue[400], Colors.lightBlue[600],
                                         hyoukadmgnc, hyoukadmgexp, hyoukadmgc),
                                     children: <Widget>[
                                       builddamagebarwithcrit(
@@ -16610,7 +17161,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ExpansionTile(
                                     tilePadding: EdgeInsets.all(0),
                                     childrenPadding: EdgeInsets.all(0),
-                                    title: builddamagebarwithcrit(Colors.black, 'Teika Fire Dance'.tr() + "/" + 'per loop'.tr() + ':($teikafiredancebonuspercent)%' + 'Normal Attack Damage'.tr(),
+                                    title: builddamagebarwithcrit(Colors.black, 'Teika Fire Dance'.tr() + "/" + 'per loop'.tr() + ':($teikafiredancebonuspercent%)' + 'Normal Attack Damage'.tr(),
                                         Colors.red[500], Colors.red[700], Colors.red[900], teikafiredanceallhitdmgnc, teikafiredanceallhitdmgexp, teikafiredanceallhitdmgc),
                                     children: <Widget>[
                                       builddamagebarwithcrit(Colors.black, '1-Hit Damage'.tr() + ':($hit1dmgpercent% × $teikafiredancebonuspercent% × 2)', Colors.red[500], Colors.red[700],
@@ -16756,6 +17307,129 @@ class _MyHomePageState extends State<MyHomePage> {
                                             aurousblazedmgc * 2 * meltDMGpercent / 100),
                                         SizedBox(height: 10),
                                       ]),
+
+                                //ANCHOR Musoushinsetsu DMG
+                                if (currentcharacter == 'raiden')
+                                  ExpansionTile(
+                                    tilePadding: EdgeInsets.all(0),
+                                    childrenPadding: EdgeInsets.all(0),
+                                    title: builddamagebarwithcrit(
+                                        Colors.black,
+                                        'Musounohitotachi'.tr() + ':($musounohitotachidmgpercent%) ' + '+ Resolve Bounus'.tr() + ':(' + (resolveinitpercent * resolvestack).toStringAsFixed(2) + '%)',
+                                        Colors.purple[500],
+                                        Colors.purple[700],
+                                        Colors.purple[900],
+                                        musounohitotachidmgnc,
+                                        musounohitotachidmgexp,
+                                        musounohitotachidmgc),
+                                    children: <Widget>[
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '1-Hit Damage'.tr() + ':($musoushinsetsuhit1dmgpercent%) ' + '+ Resolve Bounus'.tr() + ':(' + (resolvepercent * resolvestack).toStringAsFixed(2) + '%)',
+                                          Colors.purple[500],
+                                          Colors.purple[700],
+                                          Colors.purple[900],
+                                          musoushinsetsuhit1dmgnc,
+                                          musoushinsetsuhit1dmgexp,
+                                          musoushinsetsuhit1dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '2-Hit Damage'.tr() + ':($musoushinsetsuhit2dmgpercent%) ' + '+ Resolve Bounus'.tr() + ':(' + (resolvepercent * resolvestack).toStringAsFixed(2) + '%)',
+                                          Colors.purple[500],
+                                          Colors.purple[700],
+                                          Colors.purple[900],
+                                          musoushinsetsuhit2dmgnc,
+                                          musoushinsetsuhit2dmgexp,
+                                          musoushinsetsuhit2dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '3-Hit Damage'.tr() + ':($musoushinsetsuhit3dmgpercent%) ' + '+ Resolve Bounus'.tr() + ':(' + (resolvepercent * resolvestack).toStringAsFixed(2) + '%)',
+                                          Colors.purple[500],
+                                          Colors.purple[700],
+                                          Colors.purple[900],
+                                          musoushinsetsuhit3dmgnc,
+                                          musoushinsetsuhit3dmgexp,
+                                          musoushinsetsuhit3dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '4-Hit Damage'.tr() + ':($musoushinsetsuhit4dmgpercent%) ' + '+ Resolve Bounus'.tr() + ':(' + (resolvepercent * resolvestack).toStringAsFixed(2) + '%)',
+                                          Colors.purple[500],
+                                          Colors.purple[700],
+                                          Colors.purple[900],
+                                          musoushinsetsuhit4dmgnc,
+                                          musoushinsetsuhit4dmgexp,
+                                          musoushinsetsuhit4dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          '5-Hit Damage'.tr() + ':($musoushinsetsuhit5dmgpercent%) ' + '+ Resolve Bounus'.tr() + ':(' + (resolvepercent * resolvestack).toStringAsFixed(2) + '%)',
+                                          Colors.purple[500],
+                                          Colors.purple[700],
+                                          Colors.purple[900],
+                                          musoushinsetsuhit5dmgnc,
+                                          musoushinsetsuhit5dmgexp,
+                                          musoushinsetsuhit5dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Charged Attack Damage'.tr() +
+                                              ':($musoushinsetsuchargedatkdmgpercent%) ' +
+                                              '+ Resolve Bounus'.tr() +
+                                              ':(' +
+                                              (resolvepercent * resolvestack).toStringAsFixed(2) +
+                                              '%)',
+                                          Colors.purple[500],
+                                          Colors.purple[700],
+                                          Colors.purple[900],
+                                          musoushinsetsuchargedatkdmgnc,
+                                          musoushinsetsuchargedatkdmgexp,
+                                          musoushinsetsuchargedatkdmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Plunge Damage'.tr() + ':($musoushinsetsuplungedmgpercent%) ' + '+ Resolve Bounus'.tr() + ':(' + (resolvepercent * resolvestack).toStringAsFixed(2) + '%)',
+                                          Colors.purple[500],
+                                          Colors.purple[700],
+                                          Colors.purple[900],
+                                          musoushinsetsuplungedmgnc,
+                                          musoushinsetsuplungedmgexp,
+                                          musoushinsetsuplungedmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'Low Plunge Damage'.tr() +
+                                              ':($musoushinsetsulplungedmgpercent%) ' +
+                                              '+ Resolve Bounus'.tr() +
+                                              ':(' +
+                                              (resolvepercent * resolvestack).toStringAsFixed(2) +
+                                              '%)',
+                                          Colors.purple[500],
+                                          Colors.purple[700],
+                                          Colors.purple[900],
+                                          musoushinsetsulplungedmgnc,
+                                          musoushinsetsulplungedmgexp,
+                                          musoushinsetsulplungedmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black,
+                                          'High Plunge Damage'.tr() +
+                                              ':($musoushinsetsuhplungedmgpercent%) ' +
+                                              '+ Resolve Bounus'.tr() +
+                                              ':(' +
+                                              (resolvepercent * resolvestack).toStringAsFixed(2) +
+                                              '%)',
+                                          Colors.purple[500],
+                                          Colors.purple[700],
+                                          Colors.purple[900],
+                                          musoushinsetsuhplungedmgnc,
+                                          musoushinsetsuhplungedmgexp,
+                                          musoushinsetsuhplungedmgc),
+                                      SizedBox(height: 10),
+                                    ],
+                                  ),
                               ],
                             ),
                           ),
