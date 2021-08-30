@@ -9590,6 +9590,72 @@ class _MyHomePageState extends State<MyHomePage> {
     //defparam
     enemydefdebuff = (ayakaconstellation4On ? 30 : 0) + enemydefinput;
 
+    //ER params
+    if (baseERbyLVL[currentcharacter] != null) {
+      baseER = baseERbyLVL[currentcharacter][level];
+    } else {
+      baseER = 100;
+    }
+    if (weapontoERpercent[weaponlv] != null) weaponERpercent = weapontoERpercent[weaponlv];
+
+    a3ERpercentMain = a3ERpercentbyLVL[sstar][slv];
+    a3percentERMain = artifact3mainstatcat == 5 ? a3ERpercentMain : 0;
+
+    bonusER = weaponERpercent +
+        a3percentERMain +
+        (stat1ERpercentOn ? stat1ERpercent : 0) +
+        (stat2ERpercentOn ? stat2ERpercent : 0) +
+        (stat3ERpercentOn ? stat3ERpercent : 0) +
+        (stat4ERpercentOn ? stat4ERpercent : 0) +
+        (stat5ERpercentOn ? stat5ERpercent : 0) +
+        (tsuba2On ? 20 : 0) +
+        (engulfinglightningsp2 ? (25 + 5 * weaponref) : 0);
+
+    allER = baseER + bonusER;
+
+    //HP params
+    lvlhp = baseHPbyLV[currentcharacter][level];
+    if (weapontoHPpercent[weaponlv] != null) {
+      weaponHPpercent = weapontoHPpercent[weaponlv];
+      weaponHPpercentstat = lvlhp * weaponHPpercent / 100;
+    } else {
+      weaponHPpercentstat = 0;
+    }
+
+    a1percenthp = stat1hppercentOn ? lvlhp * stat1hppercent / 100 : 0;
+    a2percenthp = stat2hppercentOn ? lvlhp * stat2hppercent / 100 : 0;
+    a3percentHP = stat3hppercentOn ? lvlhp * stat3hppercent / 100 : 0;
+    a4percentHP = stat4hppercentOn ? lvlhp * stat4hppercent / 100 : 0;
+    a5percentHP = stat5hppercentOn ? lvlhp * stat5hppercent / 100 : 0;
+
+    a1hp = a1hpbyLVL[fstar][flv];
+    a3HPpercentMain = a3HPpercentbyLVL[sstar][slv];
+    a4HPpercentMain = a4HPpercentbyLVL[gstar][glv];
+    a5HPpercentMain = a5HPpercentbyLVL[cstar][clv];
+
+    a3percentHPMain = (artifact3mainstatcat == 1) ? lvlhp * a3HPpercentMain / 100 : 0;
+    a4percentHPMain = artifact4mainstatcat == 1 ? lvlhp * a4HPpercentMain / 100 : 0;
+    a5percentHPMain = artifact5mainstatcat == 1 ? lvlhp * a5HPpercentMain / 100 : 0;
+
+    bonusHP = weaponHPpercentstat +
+        a1percenthp +
+        (stat1hpOn ? stat1hp : 0) +
+        a1hp +
+        a2percenthp +
+        (stat2hpOn ? stat2hp : 0) +
+        a3percentHPMain +
+        a3percentHP +
+        (stat3hpOn ? stat3hp : 0) +
+        a4percentHPMain +
+        a4percentHP +
+        (stat4hpOn ? stat4hp : 0) +
+        a5percentHPMain +
+        a5percentHP +
+        (stat5hpOn ? stat5hp : 0) +
+        (protectorvirtue ? (15 + weaponref * 5) / 100 * lvlhp : 0);
+
+    allHP = lvlhp + bonusHP;
+
     //ATK params
 
     levelatk = cleveltoatk[currentcharacter][level];
@@ -9691,73 +9757,6 @@ class _MyHomePageState extends State<MyHomePage> {
         (stat5defOn ? stat5def : 0);
 
     alldef = lvldef + bonusdef;
-
-    //HP params
-    lvlhp = baseHPbyLV[currentcharacter][level];
-    if (weapontoHPpercent[weaponlv] != null) {
-      weaponHPpercent = weapontoHPpercent[weaponlv];
-      weaponHPpercentstat = lvlhp * weaponHPpercent / 100;
-    } else {
-      weaponHPpercentstat = 0;
-    }
-
-    a1percenthp = stat1hppercentOn ? lvlhp * stat1hppercent / 100 : 0;
-    a2percenthp = stat2hppercentOn ? lvlhp * stat2hppercent / 100 : 0;
-    a3percentHP = stat3hppercentOn ? lvlhp * stat3hppercent / 100 : 0;
-    a4percentHP = stat4hppercentOn ? lvlhp * stat4hppercent / 100 : 0;
-    a5percentHP = stat5hppercentOn ? lvlhp * stat5hppercent / 100 : 0;
-
-    a1hp = a1hpbyLVL[fstar][flv];
-    a3HPpercentMain = a3HPpercentbyLVL[sstar][slv];
-    a4HPpercentMain = a4HPpercentbyLVL[gstar][glv];
-    a5HPpercentMain = a5HPpercentbyLVL[cstar][clv];
-
-    a3percentHPMain = (artifact3mainstatcat == 1) ? lvlhp * a3HPpercentMain / 100 : 0;
-    a4percentHPMain = artifact4mainstatcat == 1 ? lvlhp * a4HPpercentMain / 100 : 0;
-    a5percentHPMain = artifact5mainstatcat == 1 ? lvlhp * a5HPpercentMain / 100 : 0;
-
-    bonusHP = weaponHPpercentstat +
-        a1percenthp +
-        (stat1hpOn ? stat1hp : 0) +
-        a1hp +
-        a2percenthp +
-        (stat2hpOn ? stat2hp : 0) +
-        a3percentHPMain +
-        a3percentHP +
-        (stat3hpOn ? stat3hp : 0) +
-        a4percentHPMain +
-        a4percentHP +
-        (stat4hpOn ? stat4hp : 0) +
-        a5percentHPMain +
-        a5percentHP +
-        (stat5hpOn ? stat5hp : 0) +
-        (protectorvirtue ? (15 + weaponref * 5) / 100 * lvlhp : 0);
-
-    allHP = lvlhp + bonusHP;
-
-    //ER params
-    //CD params
-    if (baseERbyLVL[currentcharacter] != null) {
-      baseER = baseERbyLVL[currentcharacter][level];
-    } else {
-      baseER = 100;
-    }
-    if (weapontoERpercent[weaponlv] != null) weaponERpercent = weapontoERpercent[weaponlv];
-
-    a3ERpercentMain = a3ERpercentbyLVL[sstar][slv];
-    a3percentERMain = artifact3mainstatcat == 5 ? a3ERpercentMain : 0;
-
-    bonusER = weaponERpercent +
-        a3percentERMain +
-        (stat1ERpercentOn ? stat1ERpercent : 0) +
-        (stat2ERpercentOn ? stat2ERpercent : 0) +
-        (stat3ERpercentOn ? stat3ERpercent : 0) +
-        (stat4ERpercentOn ? stat4ERpercent : 0) +
-        (stat5ERpercentOn ? stat5ERpercent : 0) +
-        (tsuba2On ? 20 : 0) +
-        (engulfinglightningsp2 ? (25 + 5 * weaponref) : 0);
-
-    allER = baseER + bonusER;
 
     //EM params
     if (weapontoEM[weaponlv] != null) weaponEM = weapontoEM[weaponlv];
@@ -15749,9 +15748,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               selected: engulfinglightningsp1,
                                               selectedColor: Colors.purple[300],
                                               onSelected: (bool value) {
-                                                setState(() {
-                                                  unreturningOn = value;
-                                                });
+                                                setState(() {});
                                               },
                                             ),
                                             FilterChip(
