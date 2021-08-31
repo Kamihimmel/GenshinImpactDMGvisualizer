@@ -1562,6 +1562,176 @@ class _MyHomePageState extends State<MyHomePage> {
   };
 
   var raidennatklvl = {
+    '1hitDMG': {
+      1: 39.65,
+      2: 42.87,
+      3: 46.1,
+      4: 50.71,
+      5: 53.94,
+      6: 57.63,
+      7: 62.7,
+      8: 67.77,
+      9: 72.84,
+      10: 78.37,
+      11: 84.71,
+      12: 92.16,
+      13: 99.62,
+      14: 107.07,
+      15: 115.2,
+    },
+    '2hitDMG': {
+      1: 39.73,
+      2: 42.97,
+      3: 46.2,
+      4: 50.82,
+      5: 54.05,
+      6: 57.75,
+      7: 62.83,
+      8: 67.91,
+      9: 73,
+      10: 78.54,
+      11: 84.89,
+      12: 92.36,
+      13: 99.83,
+      14: 107.3,
+      15: 115.45,
+    },
+    '3hitDMG': {
+      1: 49.88,
+      2: 53.94,
+      3: 58,
+      4: 63.8,
+      5: 67.86,
+      6: 72.5,
+      7: 78.88,
+      8: 85.26,
+      9: 91.64,
+      10: 98.6,
+      11: 106.58,
+      12: 115.95,
+      13: 125.33,
+      14: 134.71,
+      15: 144.94,
+    },
+    '4hitDMG': {
+      1: 28.98,
+      2: 31.34,
+      3: 33.7,
+      4: 37.07,
+      5: 39.43,
+      6: 42.13,
+      7: 45.83,
+      8: 49.54,
+      9: 53.25,
+      10: 57.29,
+      11: 61.92,
+      12: 67.37,
+      13: 72.82,
+      14: 78.27,
+      15: 84.22,
+    },
+    '5hitDMG': {
+      1: 65.45,
+      2: 70.77,
+      3: 76.1,
+      4: 83.71,
+      5: 89.04,
+      6: 95.13,
+      7: 103.5,
+      8: 117.87,
+      9: 120.24,
+      10: 129.37,
+      11: 139.83,
+      12: 152.14,
+      13: 164.44,
+      14: 176.75,
+      15: 190.17,
+    },
+    'ChargedAttackDMG': {
+      1: 99.59,
+      2: 107.69,
+      3: 115.8,
+      4: 127.38,
+      5: 135.49,
+      6: 144.75,
+      7: 157.49,
+      8: 170.23,
+      9: 182.96,
+      10: 196.86,
+      11: 212.78,
+      12: 231.51,
+      13: 250.23,
+      14: 268.96,
+      15: 289.38,
+    },
+    'PlungeDMG': {
+      1: 63.93,
+      2: 69.14,
+      3: 74.34,
+      4: 81.77,
+      5: 86.98,
+      6: 92.93,
+      7: 101.1,
+      8: 109.28,
+      9: 117.46,
+      10: 126.38,
+      11: 135.3,
+      12: 144.22,
+      13: 153.14,
+      14: 162.06,
+      15: 170.98,
+    },
+    'LPlungeDMG': {
+      1: 127.84,
+      2: 138.24,
+      3: 148.65,
+      4: 163.51,
+      5: 173.92,
+      6: 185.81,
+      7: 202.16,
+      8: 218.51,
+      9: 234.86,
+      10: 252.7,
+      11: 270.54,
+      12: 288.38,
+      13: 306.22,
+      14: 324.05,
+      15: 341.89,
+    },
+    'HPlungeDMG': {
+      1: 159.68,
+      2: 172.67,
+      3: 185.67,
+      4: 204.24,
+      5: 217.23,
+      6: 232.09,
+      7: 252.51,
+      8: 272.93,
+      9: 293.36,
+      10: 315.64,
+      11: 337.92,
+      12: 360.2,
+      13: 382.48,
+      14: 404.76,
+      15: 427.04,
+    },
+    'transcendence': {
+      1: 117.2,
+      2: 125.99,
+      3: 134.78,
+      4: 146.5,
+      5: 155.29,
+      6: 164.08,
+      7: 175.8,
+      8: 187.52,
+      9: 199.24,
+      10: 210.96,
+      11: 222.68,
+      12: 234.4,
+      13: 249.05,
+      14: 263.7,
+      15: 278.35,
+    },
     'Secret Art: Musoushinsetsu Musounohitotachi DMG': {
       1: 400.8,
       2: 430.86,
@@ -1981,6 +2151,11 @@ class _MyHomePageState extends State<MyHomePage> {
   double soumetsubloomdmgnc = 0;
   double soumetsubloomdmgexp = 0;
   double soumetsubloomdmgc = 0;
+
+  double transcendencedmgpercent = 0;
+  double transcendencedmgnc = 0;
+  double transcendencedmgexp = 0;
+  double transcendencedmgc = 0;
 
   double musounohitotachidmgpercent = 0;
   double musounohitotachidmgnc = 0;
@@ -10123,6 +10298,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
       case ('raiden'):
         {
+          hit1dmgpercent = raidennatklvl['1hitDMG'][natklv];
+          hit2dmgpercent = raidennatklvl['2hitDMG'][natklv];
+          hit3dmgpercent = raidennatklvl['3hitDMG'][natklv];
+          hit4dmgpercent = raidennatklvl['4hitDMG'][natklv];
+          hit5dmgpercent = raidennatklvl['5hitDMG'][natklv];
+          chargedattackdmgpercent = raidennatklvl['ChargedAttackDMG'][natklv];
+
+          plungedmgpercent = raidennatklvl['PlungeDMG'][natklv];
+          lplungedmgpercent = raidennatklvl['LPlungeDMG'][natklv];
+          hplungedmgpercent = raidennatklvl['HPlungeDMG'][natklv];
+
+          transcendencedmgpercent = raidennatklvl['transcendence'][eskilllv];
           musounohitotachidmgpercent = raidennatklvl['Secret Art: Musoushinsetsu Musounohitotachi DMG'][eburstlv];
 
           musoushinsetsuhit1dmgpercent = raidennatklvl['Secret Art: Musoushinsetsu 1hitDMG'][eburstlv];
@@ -10703,11 +10890,19 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyPhysicalres *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
-    natkalldmgnc = hit1dmgnc + hit2dmgnc + hit3dmgnc + hit4dmgnc + hit5dmgnc + (hit6dmgnc > 0 ? hit6dmgnc : 0);
-
-    natkalldmgexp = hit1dmgexp + hit2dmgexp + hit3dmgexp + hit4dmgexp + hit5dmgexp + (hit6dmgexp > 0 ? hit6dmgexp : 0);
-
-    natkalldmgc = hit1dmgc + hit2dmgc + hit3dmgc + hit4dmgc + hit5dmgc + (hit6dmgc > 0 ? hit6dmgc : 0);
+    if (currentcharacter == 'ayaka') {
+      natkalldmgnc = hit1dmgnc + hit2dmgnc + hit3dmgnc + hit4dmgnc * 3 + hit5dmgnc + (hit6dmgnc > 0 ? hit6dmgnc : 0);
+      natkalldmgexp = hit1dmgexp + hit2dmgexp + hit3dmgexp + hit4dmgexp * 3 + hit5dmgexp + (hit6dmgexp > 0 ? hit6dmgexp : 0);
+      natkalldmgc = hit1dmgc + hit2dmgc + hit3dmgc + hit4dmgc * 3 + hit5dmgc + (hit6dmgc > 0 ? hit6dmgc : 0);
+    } else if (currentcharacter == 'raiden') {
+      natkalldmgnc = hit1dmgnc + hit2dmgnc + hit3dmgnc + hit4dmgnc * 2 + hit5dmgnc + (hit6dmgnc > 0 ? hit6dmgnc : 0);
+      natkalldmgexp = hit1dmgexp + hit2dmgexp + hit3dmgexp + hit4dmgexp * 2 + hit5dmgexp + (hit6dmgexp > 0 ? hit6dmgexp : 0);
+      natkalldmgc = hit1dmgc + hit2dmgc + hit3dmgc + hit4dmgc * 2 + hit5dmgc + (hit6dmgc > 0 ? hit6dmgc : 0);
+    } else {
+      natkalldmgnc = hit1dmgnc + hit2dmgnc + hit3dmgnc + hit4dmgnc + hit5dmgnc + (hit6dmgnc > 0 ? hit6dmgnc : 0);
+      natkalldmgexp = hit1dmgexp + hit2dmgexp + hit3dmgexp + hit4dmgexp + hit5dmgexp + (hit6dmgexp > 0 ? hit6dmgexp : 0);
+      natkalldmgc = hit1dmgc + hit2dmgc + hit3dmgc + hit4dmgc + hit5dmgc + (hit6dmgc > 0 ? hit6dmgc : 0);
+    }
 
     frostflakedmgc = allatk *
         (frostflakedmgpercent / 100) *
@@ -11029,6 +11224,29 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    transcendencedmgc = allatk *
+        (transcendencedmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    transcendencedmgnc = allatk *
+        (transcendencedmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    transcendencedmgexp = allatk *
+        (transcendencedmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyElectrores *
         (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
 
     soumetsucuttingdmgc = allatk *
@@ -16964,6 +17182,42 @@ class _MyHomePageState extends State<MyHomePage> {
                                       SizedBox(height: 10),
                                     ],
                                   ),
+                                if (currentcharacter == 'raiden')
+                                  ExpansionTile(
+                                    tilePadding: EdgeInsets.all(0),
+                                    childrenPadding: EdgeInsets.all(0),
+                                    title: builddamagebarwithcrit(Colors.black, 'Normal Attack Damage'.tr() + '/' + 'per loop'.tr() + ':(100%)', Colors.grey[500], Colors.grey[700], Colors.grey[900],
+                                        natkalldmgnc, natkalldmgexp, natkalldmgc),
+                                    children: <Widget>[
+                                      builddamagebarwithcrit(
+                                          Colors.black, '1-Hit Damage'.tr() + ':($hit1dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit1dmgnc, hit1dmgexp, hit1dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, '2-Hit Damage'.tr() + ':($hit2dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit2dmgnc, hit2dmgexp, hit2dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, '3-Hit Damage'.tr() + ':($hit3dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit3dmgnc, hit3dmgexp, hit3dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, '4-Hit Damage'.tr() + ':($hit4dmgpercent% × 2)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit4dmgnc, hit4dmgexp, hit4dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, '5-Hit Damage'.tr() + ':($hit5dmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hit5dmgnc, hit5dmgexp, hit5dmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(Colors.black, 'Charged Attack Damage'.tr() + ':($chargedattackdmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900],
+                                          chargedatkdmgnc, chargedatkdmgexp, chargedatkdmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(
+                                          Colors.black, 'Plunge Damage'.tr() + ':($plungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], plungedmgnc, plungedmgexp, plungedmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(Colors.black, 'Low Plunge Damage'.tr() + ':($lplungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], lplungedmgnc,
+                                          lplungedmgexp, lplungedmgc),
+                                      SizedBox(height: 10),
+                                      builddamagebarwithcrit(Colors.black, 'High Plunge Damage'.tr() + ':($hplungedmgpercent%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], hplungedmgnc,
+                                          hplungedmgexp, hplungedmgc),
+                                      SizedBox(height: 10),
+                                    ],
+                                  ),
                                 //ANCHOR Kindling Arrow
                                 if (currentcharacter == 'yoimiya') SizedBox(height: 10),
                                 if (currentcharacter == 'yoimiya')
@@ -17091,13 +17345,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                   builddamagebarwithcrit(Colors.black, 'Echoing Ballad Physical AoE'.tr() + ':(125%)', Colors.grey[500], Colors.grey[700], Colors.grey[900], echoingballaddmgnc,
                                       echoingballaddmgexp, echoingballaddmgc),
                                 if (skypiercingfang2On)
-                                  //ANCHOR Echoing Ballad Physical AoE
+                                  //ANCHOR Sky-Piercing Fang additional ATK
                                   builddamagebarwithcrit(Colors.black, 'Sky-Piercing Fang additional ATK'.tr() + ':(' + (15 + weaponref * 5).toString() + '%)', Colors.grey[500], Colors.grey[700],
                                       Colors.grey[900], skypiercingfangdmgnc, skypiercingfangdmgexp, skypiercingfangdmgc),
                               ],
                             ),
                           ),
                           Container(
+                            //ANCHOR Elemental Skill Panel
                             padding: EdgeInsets.all(10.0),
                             margin: EdgeInsets.all(10.0),
                             decoration: BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.8), borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -17206,6 +17461,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                       SizedBox(height: 10),
                                     ],
                                   ),
+                                if (currentcharacter == 'raiden')
+                                  builddamagebarwithcrit(Colors.black, 'Transcendence: Baleful Omen'.tr() + ':($transcendencedmgpercent%)', Colors.purple[500], Colors.purple[700], Colors.purple[900],
+                                      transcendencedmgnc, transcendencedmgexp, transcendencedmgc),
                               ],
                             ),
                           ),
@@ -17216,6 +17474,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Column(
                               children: [
                                 SelectableText(
+                                  //ANCHOR Elemental Burst Panel
                                   'Elemental Burst Panel'.tr(),
                                   style: TextStyle(fontSize: 20),
                                 ),
@@ -17332,7 +17591,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                             aurousblazedmgc * 2 * meltDMGpercent / 100),
                                         SizedBox(height: 10),
                                       ]),
-
                                 //ANCHOR Musoushinsetsu DMG
                                 if (currentcharacter == 'raiden')
                                   ExpansionTile(
