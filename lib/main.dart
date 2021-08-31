@@ -358,6 +358,9 @@ class _MyHomePageState extends State<MyHomePage> {
   double bonusCR = 0;
   double allCR = 0;
 
+  double skillCR = 0;
+  double burstCR = 0;
+
   double baseCD = 50;
   double weaponCD = 0;
   double bonusCD = 0;
@@ -442,6 +445,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'theblacksword': AssetImage('images/weapon/Weapon_The_Black_Sword.png'),
     'jadecutter': AssetImage('images/weapon/Weapon_Primordial_Jade_Cutter.png'),
     'engulfinglightning': AssetImage('images/weapon/Weapon_Engulfing_Lightning.png'),
+    'catch': AssetImage('images/weapon/Weapon_The_Catch.png'),
   };
 
   //     'ATK%',
@@ -2906,6 +2910,51 @@ class _MyHomePageState extends State<MyHomePage> {
       engulfinglightningsp1 = false;
       engulfinglightningsp2 = false;
     }
+
+    if (weaponselect == 'catch') {
+      weapontoatk = {
+        1: 42,
+        5: 56,
+        10: 74,
+        15: 91,
+        20: 109,
+        25: 152,
+        30: 170,
+        35: 187,
+        40: 205,
+        45: 248,
+        50: 266,
+        55: 309,
+        60: 327,
+        65: 370,
+        70: 388,
+        75: 431,
+        80: 449,
+        85: 492,
+        90: 510,
+      };
+      weapontoERpercent = {
+        1: 10,
+        5: 11.6,
+        10: 13.6,
+        15: 15.7,
+        20: 17.7,
+        25: 19.7,
+        30: 21.7,
+        35: 23.7,
+        40: 25.8,
+        45: 27.8,
+        50: 29.8,
+        55: 31.8,
+        60: 33.8,
+        65: 35.9,
+        70: 37.9,
+        75: 39.9,
+        80: 41.9,
+        85: 43.9,
+        90: 45.9,
+      };
+    }
   }
 
   //ANCHOR weaponPopup
@@ -3404,7 +3453,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         );
                       },
                     ),
-
                   if (charactertoinfo[currentcharacter]['wtype'] == 'polearm')
                     SimpleDialogOption(
                       child: Container(
@@ -3451,6 +3499,59 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         setState(() {
                           weaponstatcontrol('engulfinglightning');
+                        });
+                        Navigator.pop(
+                          context,
+                          "user1",
+                        );
+                      },
+                    ),
+                  if (charactertoinfo[currentcharacter]['wtype'] == 'polearm')
+                    SimpleDialogOption(
+                      child: Container(
+                        width: 400,
+                        height: 150,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.lightBlue[50],
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/weapon/Weapon_The_Catch.png'),
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 200,
+                              child: Text(
+                                'The Catch'.tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          weaponstatcontrol('catch');
                         });
                         Navigator.pop(
                           context,
@@ -9990,6 +10091,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (manualCRpercentOn ? manualCRpercent : 0);
     allCR = baseCR + bonusCR;
 
+    burstCR = (weaponselect == 'catch' ? (4.5 + weaponref * 1.5) : 0) as double;
+
     //CD params
     if (baseCDbyLVL[currentcharacter] != null) {
       baseCD = baseCDbyLVL[currentcharacter][level];
@@ -10033,7 +10136,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //bonusplungeatk
     bonusPlungeATKDMGpercent = (reminiscenceofshime4On ? 50 : 0);
     //bonusBurstATK
-    bonusBurstDMGpercent = (royalflora2On ? 20 : 0) + (tsuba4On ? ((allER / 4 >= 75) ? 75 : allER / 4) : 0) as double;
+    bonusBurstDMGpercent = (royalflora2On ? 20 : 0) + (tsuba4On ? ((allER / 4 >= 75) ? 75 : allER / 4) : 0) + (weaponselect == "catch" ? (12 + weaponref * 4) : 0) as double;
     //bonusDMG
     bonusDMGpercent = (monaqOn ? monaqlvtoratio[monaqlv] : 0) + (thundersoother4On ? 35 : 0) + (manualDMGpercentOn ? manualDMGpercent : 0) as double;
 
@@ -11000,7 +11103,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     kindlingarrowdmgc = allatk *
         (kindlingdmgpercent / 100) *
@@ -11182,7 +11285,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     aurousblazedmgc = allatk *
         (aurousblazedmgpercent / 100) *
@@ -11205,7 +11308,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyPyrores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     hyoukadmgc = allatk *
         (hyoukadmgpercent / 100) *
@@ -11270,7 +11373,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     soumetsubloomdmgc = allatk *
         (soumetsubloomdmgpercent / 100) *
@@ -11293,7 +11396,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
         enemyCryores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musounohitotachidmgc = allatk *
         (musounohitotachidmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
@@ -11316,7 +11419,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuhit1dmgc = allatk *
         (musoushinsetsuhit1dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
@@ -11339,7 +11442,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuhit2dmgc = allatk *
         (musoushinsetsuhit2dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
@@ -11362,7 +11465,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuhit3dmgc = allatk *
         (musoushinsetsuhit3dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
@@ -11385,7 +11488,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuhit4dmgc = allatk *
         (musoushinsetsuhit4dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
@@ -11408,7 +11511,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuhit5dmgc = allatk *
         (musoushinsetsuhit5dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
@@ -11431,7 +11534,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuchargedatkdmgc = allatk *
         (musoushinsetsuchargedatkdmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
@@ -11454,7 +11557,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuplungedmgc = allatk *
         (musoushinsetsuplungedmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
@@ -11477,7 +11580,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsulplungedmgc = allatk *
         (musoushinsetsulplungedmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
@@ -11500,7 +11603,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuhplungedmgc = allatk *
         (musoushinsetsuhplungedmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
@@ -11523,7 +11626,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores *
-        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+        (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musouisshinenergyrestorationpercent = (allER - 100) * 0.6;
     musouisshinenergyrestorationvalue = (1 + musouisshinenergyrestorationpercent / 100) * musouisshinenergyrestoration;
@@ -13974,6 +14077,54 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ),
                                   ),
                                 ),
+                                //ANCHOR Burst CR
+                                if (burstCR > 0)
+                                  SelectableText(
+                                    '${"Elemental Burst Critical Rate".tr()}:' + burstCR.toString() + '%',
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: FractionallySizedBox(
+                                    widthFactor: 1.0,
+                                    child: Scrollbar(
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            //ANCHOR Burst CR:stats
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                if (weaponselect == 'catch') buildStatRow(Colors.lightBlue, 'The Catch'.tr(), (4.5 + weaponref * 1.5).toString()),
+                                              ],
+                                            ),
+                                            //ANCHOR Burst CR:bar
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                if (weaponselect == 'catch')
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: (4.5 * weaponref * 1.5) * 2,
+                                                        height: 20,
+                                                        color: Colors.lightBlue,
+                                                      ),
+                                                    ],
+                                                  ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -14394,6 +14545,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         children: [
                                           if (royalflora2On) buildStatRow(Colors.blue, 'Noblesse Oblige 2 Set'.tr(), '20'),
                                           if (tsuba4On) buildStatRow(Colors.deepPurple, 'Emblem of Severed Fate'.tr(), (tsuba4On ? ((allER / 4 >= 75) ? 75 : allER / 4) : 0).toStringAsFixed(0)),
+                                          if (weaponselect == 'catch') buildStatRow(Colors.lightBlue, 'The Catch'.tr(), (12 + weaponref * 4).toStringAsFixed(0)),
                                         ],
                                       ),
                                       //ANCHOR statBurstDMG:bar
@@ -14402,6 +14554,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         children: [
                                           if (royalflora2On) buildstatbarpercent(Colors.blue, 20),
                                           if (tsuba4On) buildstatbarpercent(Colors.deepPurple, (tsuba4On ? ((allER / 4 >= 75) ? 75 : allER / 4) : 0)),
+                                          if (weaponselect == 'catch') buildstatbarpercent(Colors.lightBlue, (12 + weaponref * 4)),
                                         ],
                                       ),
                                       //ANCHOR  Damage Bonus Title
@@ -15977,6 +16130,33 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 setState(() {
                                                   engulfinglightningsp2 = value;
                                                 });
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                    if (weaponselect == 'catch')
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label: Text('Elemental Burst Damage'.tr() + ' + ' + (12 + weaponref * 4).toString() + '%'),
+                                              selected: true,
+                                              selectedColor: Colors.lightBlue,
+                                              onSelected: (bool value) {
+                                                setState(() {});
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label: Text('Elemental Burst Critical Rate'.tr() + ' + ' + (4.5 + weaponref * 1.5).toString() + '%'),
+                                              selected: true,
+                                              selectedColor: Colors.lightBlue,
+                                              onSelected: (bool value) {
+                                                setState(() {});
                                               },
                                             ),
                                           ]),
