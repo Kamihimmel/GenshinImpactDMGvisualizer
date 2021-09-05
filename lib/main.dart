@@ -445,6 +445,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'theblacksword': AssetImage('images/weapon/Weapon_The_Black_Sword.png'),
     'jadecutter': AssetImage('images/weapon/Weapon_Primordial_Jade_Cutter.png'),
     'engulfinglightning': AssetImage('images/weapon/Weapon_Engulfing_Lightning.png'),
+    'skywardspine': AssetImage('images/weapon/Weapon_Skyward_Spine.png'),
     'catch': AssetImage('images/weapon/Weapon_The_Catch.png'),
   };
 
@@ -2226,6 +2227,10 @@ class _MyHomePageState extends State<MyHomePage> {
   double skypiercingfangdmgexp = 0;
   double skypiercingfangdmgc = 0;
 
+  double blackwingdmgnc = 0;
+  double blackwingdmgexp = 0;
+  double blackwingdmgc = 0;
+
   double overloadDMGpercent = 0;
   double superconductDMGpercent = 0;
   double electrochargedDMGpercent = 0;
@@ -2320,6 +2325,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   bool engulfinglightningsp1 = false;
   bool engulfinglightningsp2 = false;
+
+  bool blackwing1On = false;
+  bool blackwing2On = false;
 
   bool pyro2On = false;
   bool cryo2On = false;
@@ -2955,6 +2963,36 @@ class _MyHomePageState extends State<MyHomePage> {
         90: 45.9,
       };
     }
+
+    if (weaponselect == "skywardspine") {
+      blackwing1On = true;
+      blackwing2On = true;
+      weapontoatk = {1: 48, 5: 65, 10: 87, 15: 110, 20: 133, 25: 188, 30: 212, 35: 236, 40: 261, 45: 316, 50: 341, 55: 398, 60: 423, 65: 480, 70: 506, 75: 563, 80: 590, 85: 648, 90: 674};
+      weapontoERpercent = {
+        1: 8,
+        5: 9.3,
+        10: 10.9,
+        15: 12.5,
+        20: 14.1,
+        25: 15.8,
+        30: 17.4,
+        35: 19,
+        40: 20.6,
+        45: 22.2,
+        50: 23.8,
+        55: 25.4,
+        60: 27.1,
+        65: 28.7,
+        70: 30.3,
+        75: 31.9,
+        80: 33.5,
+        85: 35.1,
+        90: 36.8
+      };
+    } else {
+      blackwing1On = false;
+      blackwing2On = false;
+    }
   }
 
   //ANCHOR weaponPopup
@@ -3499,6 +3537,59 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         setState(() {
                           weaponstatcontrol('engulfinglightning');
+                        });
+                        Navigator.pop(
+                          context,
+                          "user1",
+                        );
+                      },
+                    ),
+                  if (charactertoinfo[currentcharacter]['wtype'] == 'polearm')
+                    SimpleDialogOption(
+                      child: Container(
+                        width: 400,
+                        height: 150,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                child: Container(
+                                  width: 140,
+                                  height: 140,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.lightBlue[50],
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    image: DecorationImage(
+                                      image: AssetImage('images/weapon/Weapon_Skyward_Spine.png'),
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 200,
+                              child: Text(
+                                'Skyward Spine'.tr(),
+                                style: TextStyle(
+                                  //fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          weaponstatcontrol('skywardspine');
                         });
                         Navigator.pop(
                           context,
@@ -10085,6 +10176,7 @@ class _MyHomePageState extends State<MyHomePage> {
         (stat5CRpercentOn ? stat5CRpercent : 0) +
         (undividedHeartOn ? 20 : 0) +
         (skypiercingfang1On ? (3 + weaponref) : 0) +
+        (blackwing1On ? (6 + weaponref * 2) : 0) +
         (blizzardstrayer41On ? 20 : 0) +
         (blizzardstrayer42On ? 20 : 0) +
         (cryo2On ? 15 : 0) +
@@ -11667,6 +11759,29 @@ class _MyHomePageState extends State<MyHomePage> {
 
     skypiercingfangdmgexp = allatk *
         ((15 + weaponref * 5) / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPhysicalres *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    blackwingdmgc = allatk *
+        ((25 + weaponref * 15) / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPhysicalres;
+
+    blackwingdmgnc = allatk *
+        ((25 + weaponref * 15) / 100) *
+        (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyPhysicalres;
+
+    blackwingdmgexp = allatk *
+        ((25 + weaponref * 15) / 100) *
         (1 + bonusPhysicalDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
@@ -13746,6 +13861,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 if (stat5CRpercentOn == true) buildStatRow(Colors.teal, 'a5'.tr(), '$stat5CRpercent'),
                                                 if (undividedHeartOn == true) buildStatRow(Colors.amber, 'Undevided Heart'.tr(), '20'),
                                                 if (skypiercingfang1On == true) buildStatRow(Colors.amber, 'Sky-piercing Fang'.tr(), (3 + weaponref).toString()),
+                                                if (blackwing1On == true) buildStatRow(Colors.amber, 'Black Wing'.tr(), (6 + weaponref * 2).toString()),
                                                 if (blizzardstrayer41On == true) buildStatRow(Colors.blue[300], 'Blizzard Strayer 4 set(cryo)'.tr(), '20'),
                                                 if (blizzardstrayer42On == true) buildStatRow(Colors.blue[400], 'Blizzard Strayer 4 set(frozen)'.tr(), '20'),
                                                 if (cryo2On == true) buildStatRow(Colors.blue[200], '2 Cryo'.tr(), '15'),
@@ -13862,6 +13978,32 @@ class _MyHomePageState extends State<MyHomePage> {
                                                         curve: Curves.easeIn,
                                                         duration: Duration(milliseconds: 500),
                                                         width: 40,
+                                                        height: 20,
+                                                        color: Colors.amber,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (skypiercingfang1On == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: (3 + weaponref).toDouble(),
+                                                        height: 20,
+                                                        color: Colors.amber,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if (blackwing1On == true)
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      AnimatedContainer(
+                                                        curve: Curves.easeIn,
+                                                        duration: Duration(milliseconds: 500),
+                                                        width: ((6 + weaponref * 2) * 2).toDouble(),
                                                         height: 20,
                                                         color: Colors.amber,
                                                       ),
@@ -16136,6 +16278,31 @@ class _MyHomePageState extends State<MyHomePage> {
                                           SizedBox(height: 10),
                                         ],
                                       ),
+                                    if (weaponselect == 'skywardspine')
+                                      Column(
+                                        children: [
+                                          Wrap(spacing: 10, runSpacing: 10, children: <Widget>[
+                                            FilterChip(
+                                              label: Text('Black Wing1: Crit Rate + '.tr() + (6 + weaponref * 2).toString() + '% & Normal ATK SPD + 10%'.tr()),
+                                              selected: blackwing1On,
+                                              selectedColor: Colors.tealAccent,
+                                              onSelected: (bool value) {
+                                                setState(() {});
+                                              },
+                                            ),
+                                            FilterChip(
+                                              label:
+                                                  Text('Black Wing2: Normal/Charged hit have 50% chance to deal additional AoE DMG equal to '.tr() + (25 + weaponref * 15).toString() + '% ATK'.tr()),
+                                              selected: blackwing2On,
+                                              selectedColor: Colors.tealAccent,
+                                              onSelected: (bool value) {
+                                                setState(() {});
+                                              },
+                                            ),
+                                          ]),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
                                     if (weaponselect == 'catch')
                                       Column(
                                         children: [
@@ -17528,6 +17695,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                   //ANCHOR Sky-Piercing Fang additional ATK
                                   builddamagebarwithcrit(Colors.black, 'Sky-Piercing Fang additional ATK'.tr() + ':(' + (15 + weaponref * 5).toString() + '%)', Colors.grey[500], Colors.grey[700],
                                       Colors.grey[900], skypiercingfangdmgnc, skypiercingfangdmgexp, skypiercingfangdmgc),
+                                if (blackwing2On)
+                                  //ANCHOR Black Wing additional ATK
+                                  builddamagebarwithcrit(Colors.black, 'Black Wing Vacuum Blade AoE'.tr() + ':(' + (25 + weaponref * 15).toString() + '%)', Colors.grey[500], Colors.grey[700],
+                                      Colors.grey[900], blackwingdmgnc, blackwingdmgexp, blackwingdmgc),
                               ],
                             ),
                           ),

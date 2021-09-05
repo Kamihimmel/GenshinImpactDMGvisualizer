@@ -330,5 +330,12 @@
     "+ Resolve Bounus": "+ 愿力加成",
     "Transcendence: Baleful Omen":"神变·恶曜开眼",
     "The Catch":"【渔获】",
-    "Elemental Burst Critical Rate":"元素爆发暴击率"
+    "Elemental Burst Critical Rate":"元素爆发暴击率",
+    "Skyward Spine":"天空之脊",
+    "Black Wing":"斫断黑翼的利齿",
+    "Black Wing1: Crit Rate + ":"斫断黑翼的利齿1: 暴击率 + ",
+    "% & Normal ATK SPD + 10%":"% & 普通攻击速度 + 10%",
+    "Black Wing2: Normal/Charged hit have 50% chance to deal additional AoE DMG equal to ":"斫断黑翼的利齿2: 普通攻击/重击时有50%几率造成小范围伤害等同于",
+    "% ATK":"% 攻击力",
+    "Black Wing Vacuum Blade AoE":"斫断黑翼的利齿 真空波范围攻击"
 }
