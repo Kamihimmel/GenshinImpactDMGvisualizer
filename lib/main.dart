@@ -1737,6 +1737,40 @@ class _MyHomePageState extends State<MyHomePage> {
       14: 263.7,
       15: 278.35,
     },
+    'transcendenceco': {
+      1: 42,
+      2: 45.15,
+      3: 48.3,
+      4: 52.5,
+      5: 55.65,
+      6: 58.8,
+      7: 63,
+      8: 67.2,
+      9: 71.4,
+      10: 75.6,
+      11: 79.8,
+      12: 84,
+      13: 89.25,
+      14: 94.5,
+      15: 99.75,
+    },
+    'transcendencebuff': {
+      1: 0.22,
+      2: 0.23,
+      3: 0.24,
+      4: 0.25,
+      5: 0.26,
+      6: 0.27,
+      7: 0.28,
+      8: 0.29,
+      9: 0.3,
+      10: 0.3,
+      11: 0.3,
+      12: 0.3,
+      13: 0.3,
+      14: 0.3,
+      15: 0.3,
+    },
     'Secret Art: Musoushinsetsu Musounohitotachi DMG': {
       1: 400.8,
       2: 430.86,
@@ -2161,6 +2195,12 @@ class _MyHomePageState extends State<MyHomePage> {
   double transcendencedmgnc = 0;
   double transcendencedmgexp = 0;
   double transcendencedmgc = 0;
+  double transcendenceburstbuff = 0;
+
+  double transcendencecodmgpercent = 0;
+  double transcendencecodmgnc = 0;
+  double transcendencecodmgexp = 0;
+  double transcendencecodmgc = 0;
 
   double musounohitotachidmgpercent = 0;
   double musounohitotachidmgnc = 0;
@@ -10228,7 +10268,10 @@ class _MyHomePageState extends State<MyHomePage> {
     //bonusplungeatk
     bonusPlungeATKDMGpercent = (reminiscenceofshime4On ? 50 : 0);
     //bonusBurstATK
-    bonusBurstDMGpercent = (royalflora2On ? 20 : 0) + (tsuba4On ? ((allER / 4 >= 75) ? 75 : allER / 4) : 0) + (weaponselect == "catch" ? (12 + weaponref * 4) : 0) as double;
+    bonusBurstDMGpercent = (royalflora2On ? 20 : 0) +
+        (tsuba4On ? ((allER / 4 >= 75) ? 75 : allER / 4) : 0) +
+        (weaponselect == "catch" ? (12 + weaponref * 4) : 0) +
+        (currentcharacter == 'raiden' ? transcendenceburstbuff * 90 : 0) as double;
     //bonusDMG
     bonusDMGpercent = (monaqOn ? monaqlvtoratio[monaqlv] : 0) + (thundersoother4On ? 35 : 0) + (manualDMGpercentOn ? manualDMGpercent : 0) as double;
 
@@ -10505,6 +10548,8 @@ class _MyHomePageState extends State<MyHomePage> {
           hplungedmgpercent = raidennatklvl['HPlungeDMG'][natklv];
 
           transcendencedmgpercent = raidennatklvl['transcendence'][eskilllv];
+          transcendenceburstbuff = raidennatklvl['transcendencebuff'][eskilllv];
+          transcendencecodmgpercent = raidennatklvl['transcendenceco'][eskilllv];
           musounohitotachidmgpercent = raidennatklvl['Secret Art: Musoushinsetsu Musounohitotachi DMG'][eburstlv];
 
           musoushinsetsuhit1dmgpercent = raidennatklvl['Secret Art: Musoushinsetsu 1hitDMG'][eburstlv];
@@ -11438,6 +11483,29 @@ class _MyHomePageState extends State<MyHomePage> {
 
     transcendencedmgexp = allatk *
         (transcendencedmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyElectrores *
+        (1 + allCD / 100 * (allCR < 100 ? allCR : 100) / 100);
+
+    transcendencecodmgc = allatk *
+        (transcendencecodmgpercent / 100) *
+        (1 + allCD / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    transcendencecodmgnc = allatk *
+        (transcendencecodmgpercent / 100) *
+        (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100) *
+        (100 + level) /
+        ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
+        enemyElectrores;
+
+    transcendencecodmgexp = allatk *
+        (transcendencecodmgpercent / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - enemydefdebuff / 100) * (100 + enemylv) + 100 + level) *
@@ -14688,6 +14756,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (royalflora2On) buildStatRow(Colors.blue, 'Noblesse Oblige 2 Set'.tr(), '20'),
                                           if (tsuba4On) buildStatRow(Colors.deepPurple, 'Emblem of Severed Fate'.tr(), (tsuba4On ? ((allER / 4 >= 75) ? 75 : allER / 4) : 0).toStringAsFixed(0)),
                                           if (weaponselect == 'catch') buildStatRow(Colors.lightBlue, 'The Catch'.tr(), (12 + weaponref * 4).toStringAsFixed(0)),
+                                          if (currentcharacter == 'raiden') buildStatRow(Colors.purple, 'Transcendence'.tr(), (transcendenceburstbuff * 90).toStringAsFixed(0)),
                                         ],
                                       ),
                                       //ANCHOR statBurstDMG:bar
@@ -14697,6 +14766,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           if (royalflora2On) buildstatbarpercent(Colors.blue, 20),
                                           if (tsuba4On) buildstatbarpercent(Colors.deepPurple, (tsuba4On ? ((allER / 4 >= 75) ? 75 : allER / 4) : 0)),
                                           if (weaponselect == 'catch') buildstatbarpercent(Colors.lightBlue, (12 + weaponref * 4)),
+                                          if (currentcharacter == 'raiden') buildstatbarpercent(Colors.purple, (transcendenceburstbuff * 90)),
                                         ],
                                       ),
                                       //ANCHOR  Damage Bonus Title
@@ -17813,8 +17883,19 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ],
                                   ),
                                 if (currentcharacter == 'raiden')
-                                  builddamagebarwithcrit(Colors.black, 'Transcendence: Baleful Omen'.tr() + ':($transcendencedmgpercent%)', Colors.purple[500], Colors.purple[700], Colors.purple[900],
-                                      transcendencedmgnc, transcendencedmgexp, transcendencedmgc),
+                                  builddamagebarwithcrit(
+                                      Colors.black,
+                                      'Transcendence: Baleful Omen'.tr() + ':($transcendencedmgpercent%)' + " " + transcendenceburstbuff.toString() + "% Per energy E-Burst DMG Bonus".tr(),
+                                      Colors.purple[500],
+                                      Colors.purple[700],
+                                      Colors.purple[900],
+                                      transcendencedmgnc,
+                                      transcendencedmgexp,
+                                      transcendencedmgc),
+                                if (currentcharacter == 'raiden') SizedBox(height: 10),
+                                if (currentcharacter == 'raiden')
+                                  builddamagebarwithcrit(Colors.black, 'Transcendence: Baleful Omen Coordinated Atk'.tr() + ':($transcendencecodmgpercent%)', Colors.purple[500], Colors.purple[700],
+                                      Colors.purple[900], transcendencecodmgnc, transcendencecodmgexp, transcendencecodmgc),
                               ],
                             ),
                           ),
