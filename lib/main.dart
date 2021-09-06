@@ -11559,7 +11559,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musounohitotachidmgc = allatk *
-        (musounohitotachidmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musounohitotachidmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
@@ -11567,14 +11568,16 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyElectrores;
 
     musounohitotachidmgnc = allatk *
-        (musounohitotachidmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musounohitotachidmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musounohitotachidmgexp = allatk *
-        (musounohitotachidmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musounohitotachidmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
@@ -11582,7 +11585,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuhit1dmgc = allatk *
-        (musoushinsetsuhit1dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit1dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
@@ -11590,14 +11594,16 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyElectrores;
 
     musoushinsetsuhit1dmgnc = allatk *
-        (musoushinsetsuhit1dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit1dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit1dmgexp = allatk *
-        (musoushinsetsuhit1dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit1dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
@@ -11605,7 +11611,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuhit2dmgc = allatk *
-        (musoushinsetsuhit2dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit2dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
@@ -11613,14 +11620,16 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyElectrores;
 
     musoushinsetsuhit2dmgnc = allatk *
-        (musoushinsetsuhit2dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit2dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit2dmgexp = allatk *
-        (musoushinsetsuhit2dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit2dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
@@ -11628,7 +11637,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuhit3dmgc = allatk *
-        (musoushinsetsuhit3dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit3dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
@@ -11636,14 +11646,16 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyElectrores;
 
     musoushinsetsuhit3dmgnc = allatk *
-        (musoushinsetsuhit3dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit3dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit3dmgexp = allatk *
-        (musoushinsetsuhit3dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit3dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
@@ -11651,7 +11663,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuhit4dmgc = allatk *
-        (musoushinsetsuhit4dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit4dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
@@ -11659,14 +11672,16 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyElectrores;
 
     musoushinsetsuhit4dmgnc = allatk *
-        (musoushinsetsuhit4dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit4dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit4dmgexp = allatk *
-        (musoushinsetsuhit4dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit4dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
@@ -11674,7 +11689,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuhit5dmgc = allatk *
-        (musoushinsetsuhit5dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit5dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
@@ -11682,14 +11698,16 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyElectrores;
 
     musoushinsetsuhit5dmgnc = allatk *
-        (musoushinsetsuhit5dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit5dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhit5dmgexp = allatk *
-        (musoushinsetsuhit5dmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhit5dmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
@@ -11697,7 +11715,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuchargedatkdmgc = allatk *
-        (musoushinsetsuchargedatkdmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuchargedatkdmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
@@ -11705,14 +11724,16 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyElectrores;
 
     musoushinsetsuchargedatkdmgnc = allatk *
-        (musoushinsetsuchargedatkdmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuchargedatkdmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuchargedatkdmgexp = allatk *
-        (musoushinsetsuchargedatkdmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuchargedatkdmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusBurstDMGpercent / 100 + bonusDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
@@ -11720,7 +11741,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuplungedmgc = allatk *
-        (musoushinsetsuplungedmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuplungedmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100) *
         (100 + level) /
@@ -11728,14 +11750,16 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyElectrores;
 
     musoushinsetsuplungedmgnc = allatk *
-        (musoushinsetsuplungedmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuplungedmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuplungedmgexp = allatk *
-        (musoushinsetsuplungedmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuplungedmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
@@ -11743,7 +11767,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsulplungedmgc = allatk *
-        (musoushinsetsulplungedmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsulplungedmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100) *
         (100 + level) /
@@ -11751,14 +11776,16 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyElectrores;
 
     musoushinsetsulplungedmgnc = allatk *
-        (musoushinsetsulplungedmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsulplungedmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsulplungedmgexp = allatk *
-        (musoushinsetsulplungedmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsulplungedmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
@@ -11766,7 +11793,8 @@ class _MyHomePageState extends State<MyHomePage> {
         (1 + allCD / 100 * ((allCR + burstCR) < 100 ? (allCR + burstCR) : 100) / 100);
 
     musoushinsetsuhplungedmgc = allatk *
-        (musoushinsetsuhplungedmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhplungedmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + allCD / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100) *
         (100 + level) /
@@ -11774,14 +11802,16 @@ class _MyHomePageState extends State<MyHomePage> {
         enemyElectrores;
 
     musoushinsetsuhplungedmgnc = allatk *
-        (musoushinsetsuhplungedmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhplungedmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
         enemyElectrores;
 
     musoushinsetsuhplungedmgexp = allatk *
-        (musoushinsetsuhplungedmgpercent / 100 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
+        (musoushinsetsuhplungedmgpercent / 100) *
+        (1 + (resolveinitpercent + resolvepercent * resolvestack) / 100) *
         (1 + bonusElectroDMGpercent / 100 + bonusDMGpercent / 100 + bonusBurstDMGpercent / 100) *
         (100 + level) /
         ((1 - (enemydefdebuff + (raidenconstellation2On ? 60 : 0)) / 100) * (100 + enemylv) + 100 + level) *
@@ -18032,9 +18062,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                         Colors.black,
                                         'Musounohitotachi'.tr() +
                                             ':($musounohitotachidmgpercent%) ' +
-                                            '+ Resolve Bounus'.tr() +
+                                            '× Resolve Bounus'.tr() +
                                             ':(' +
-                                            (resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
+                                            (100 + resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
                                             '%)',
                                         Colors.purple[500],
                                         Colors.purple[700],
@@ -18047,9 +18077,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                           Colors.black,
                                           '1-Hit Damage'.tr() +
                                               ':($musoushinsetsuhit1dmgpercent%) ' +
-                                              '+ Resolve Bounus'.tr() +
+                                              '× Resolve Bounus'.tr() +
                                               ':(' +
-                                              (resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
+                                              (100 + resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
                                               '%)',
                                           Colors.purple[500],
                                           Colors.purple[700],
@@ -18062,9 +18092,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                           Colors.black,
                                           '2-Hit Damage'.tr() +
                                               ':($musoushinsetsuhit2dmgpercent%) ' +
-                                              '+ Resolve Bounus'.tr() +
+                                              '× Resolve Bounus'.tr() +
                                               ':(' +
-                                              (resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
+                                              (100 + resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
                                               '%)',
                                           Colors.purple[500],
                                           Colors.purple[700],
@@ -18077,9 +18107,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                           Colors.black,
                                           '3-Hit Damage'.tr() +
                                               ':($musoushinsetsuhit3dmgpercent%) ' +
-                                              '+ Resolve Bounus'.tr() +
+                                              '× Resolve Bounus'.tr() +
                                               ':(' +
-                                              (resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
+                                              (100 + resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
                                               '%)',
                                           Colors.purple[500],
                                           Colors.purple[700],
@@ -18092,9 +18122,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                           Colors.black,
                                           '4-Hit Damage'.tr() +
                                               ':($musoushinsetsuhit4dmgpercent%) ' +
-                                              '+ Resolve Bounus'.tr() +
+                                              '× Resolve Bounus'.tr() +
                                               ':(' +
-                                              (resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
+                                              (100 + resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
                                               '%)',
                                           Colors.purple[500],
                                           Colors.purple[700],
@@ -18107,9 +18137,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                           Colors.black,
                                           '5-Hit Damage'.tr() +
                                               ':($musoushinsetsuhit5dmgpercent%) ' +
-                                              '+ Resolve Bounus'.tr() +
+                                              '× Resolve Bounus'.tr() +
                                               ':(' +
-                                              (resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
+                                              (100 + resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
                                               '%)',
                                           Colors.purple[500],
                                           Colors.purple[700],
@@ -18122,9 +18152,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                           Colors.black,
                                           'Charged Attack Damage'.tr() +
                                               ':($musoushinsetsuchargedatkdmgpercent%) ' +
-                                              '+ Resolve Bounus'.tr() +
+                                              '× Resolve Bounus'.tr() +
                                               ':(' +
-                                              (resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
+                                              (100 + resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
                                               '%)',
                                           Colors.purple[500],
                                           Colors.purple[700],
@@ -18137,9 +18167,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                           Colors.black,
                                           'Plunge Damage'.tr() +
                                               ':($musoushinsetsuplungedmgpercent%) ' +
-                                              '+ Resolve Bounus'.tr() +
+                                              '× Resolve Bounus'.tr() +
                                               ':(' +
-                                              (resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
+                                              (100 + resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
                                               '%)',
                                           Colors.purple[500],
                                           Colors.purple[700],
@@ -18152,9 +18182,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                           Colors.black,
                                           'Low Plunge Damage'.tr() +
                                               ':($musoushinsetsulplungedmgpercent%) ' +
-                                              '+ Resolve Bounus'.tr() +
+                                              '× Resolve Bounus'.tr() +
                                               ':(' +
-                                              (resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
+                                              (100 + resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
                                               '%)',
                                           Colors.purple[500],
                                           Colors.purple[700],
@@ -18167,9 +18197,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                           Colors.black,
                                           'High Plunge Damage'.tr() +
                                               ':($musoushinsetsuhplungedmgpercent%) ' +
-                                              '+ Resolve Bounus'.tr() +
+                                              '× Resolve Bounus'.tr() +
                                               ':(' +
-                                              (resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
+                                              (100 + resolveinitpercent + resolvepercent * resolvestack).toStringAsFixed(2) +
                                               '%)',
                                           Colors.purple[500],
                                           Colors.purple[700],
